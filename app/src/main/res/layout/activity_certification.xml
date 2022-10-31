@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/color_f5f5f5"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/include_title"/>
+
+    <LinearLayout
+            android:layout_marginTop="20pt"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/ivPhoto"
+                android:layout_marginTop="34pt"
+                android:layout_marginBottom="70pt"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/upload_photo_button"
+                android:layout_width="199pt"
+                android:layout_height="276pt"/>
+
+        <LinearLayout
+                android:id="@+id/llName"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="30pt"
+                android:paddingEnd="30pt"
+                android:layout_height="104pt">
+
+            <TextView
+                    android:text="姓名:"
+                    android:textSize="30pt"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/etName"
+                    android:paddingStart="20pt"
+                    android:paddingEnd="20pt"
+                    android:background="@null"
+                    android:gravity="end|center_vertical"
+                    android:hint="请输入您的姓名"
+                    android:textSize="26pt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <View
+                android:background="@color/color_d6d6d6"
+                android:layout_marginStart="30pt"
+                android:layout_marginEnd="30pt"
+                android:layout_width="match_parent"
+                android:layout_height="1pt"/>
+
+        <LinearLayout
+                android:id="@+id/llIdCard"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="30pt"
+                android:paddingEnd="30pt"
+                android:layout_height="104pt">
+
+            <TextView
+                    android:text="身份证:"
+                    android:textSize="30pt"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/etIdCard"
+                    android:inputType="number"
+                    android:paddingStart="20pt"
+                    android:paddingEnd="20pt"
+                    android:background="@null"
+                    android:gravity="end|center_vertical"
+                    android:hint="请输入您的身份证"
+                    android:textSize="26pt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+            android:layout_marginTop="113pt"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btnSubmit"
+            android:layout_width="658pt"
+            android:text="提交"
+            android:textSize="32pt"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_login_register_btn_bg"
+            android:layout_height="80pt"/>
+</LinearLayout>

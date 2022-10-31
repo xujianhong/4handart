@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/while_fb"
+
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/pop_video"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sex_select_bg"
+        android:paddingBottom="3dp"
+        android:drawableLeft="@drawable/select_video"
+        android:drawableStart="@drawable/select_video"
+        android:drawablePadding="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="3dp"
+        android:text="开始拍摄"
+        style="?borderlessButtonStyle"
+        android:textColor="@color/green_2b"
+        android:textSize="@dimen/text_13" />
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="1dp"
+        android:background="@color/white_ef"/>
+    <Button
+        android:visibility="gone"
+        android:id="@+id/pop_recording"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/sex_select_bg"
+        android:paddingBottom="3dp"
+        android:drawableLeft="@drawable/select_recording"
+        android:drawableStart="@drawable/select_recording"
+        android:drawablePadding="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="3dp"
+        android:text="@string/Local_recording"
+        style="?borderlessButtonStyle"
+        android:textColor="@color/green_2b"
+        android:textSize="@dimen/text_13" />
+
+    <!--<Button-->
+        <!--android:id="@+id/pop_ksong"-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:background="@drawable/green_0_btn_bg"-->
+        <!--android:paddingBottom="3dp"-->
+        <!--android:drawableLeft="@mipmap/select_ksong"-->
+        <!--android:drawableStart="@mipmap/select_ksong"-->
+        <!--android:drawablePadding="5dp"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingRight="20dp"-->
+        <!--android:paddingTop="3dp"-->
+        <!--android:text="@string/Local_ksong"-->
+
+        <!--android:textColor="@color/white_f8"-->
+        <!--android:textSize="@dimen/text_15" />-->
+
+</LinearLayout>

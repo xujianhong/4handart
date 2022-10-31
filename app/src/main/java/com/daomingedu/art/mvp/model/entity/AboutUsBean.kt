@@ -1,0 +1,3 @@
+package com.daomingedu.art.mvp.model.entity
+
+data class AboutUsBean(val aboutUs:String,val privacy:String,val serviceAgent:String)

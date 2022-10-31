@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pop_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/while_fb"
+
+        android:orientation="vertical">
+
+    <Button
+            android:id="@+id/pop_upload_photos"
+            style="?borderlessButtonStyle"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:background="@drawable/sex_select_bg"
+            android:drawableStart="@drawable/ic_upload_photos"
+            android:drawableLeft="@drawable/ic_upload_photos"
+            android:drawablePadding="5dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="3dp"
+            android:text="@string/Upload_photos"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_13" />
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white_ef" />
+
+    <Button
+            android:id="@+id/pop_upload_video"
+            style="?borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sex_select_bg"
+            android:drawableStart="@drawable/select_video"
+            android:drawableLeft="@drawable/select_video"
+            android:drawablePadding="5dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="3dp"
+            android:text="@string/Upload_video"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_13" />
+
+    <Button
+            android:id="@+id/pop_upload_recording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sex_select_bg"
+            android:drawableStart="@drawable/select_recording"
+            android:drawableLeft="@drawable/select_recording"
+            android:drawablePadding="5dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="3dp"
+            android:text="@string/Upload_recording"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_13"
+            android:visibility="gone" />
+
+</LinearLayout>

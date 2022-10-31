@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_record_main"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_record_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            tool:text ="00:00"/>
+
+
+
+    <ImageView
+        android:id="@+id/iv_record_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/questionrecordanimation"/>
+    <ProgressBar
+        android:id="@+id/pb_record"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:visibility="invisible"
+        android:layout_gravity="center_vertical"
+        style="@style/Base.Widget.AppCompat.ProgressBar"/>
+</LinearLayout>

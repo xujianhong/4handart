@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.CertificationContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class CertificationModule_ProvideCertificationViewFactory
+    implements Factory<CertificationContract.View> {
+  private final CertificationModule module;
+
+  public CertificationModule_ProvideCertificationViewFactory(CertificationModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public CertificationContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static CertificationContract.View provideInstance(CertificationModule module) {
+    return proxyProvideCertificationView(module);
+  }
+
+  public static CertificationModule_ProvideCertificationViewFactory create(
+      CertificationModule module) {
+    return new CertificationModule_ProvideCertificationViewFactory(module);
+  }
+
+  public static CertificationContract.View proxyProvideCertificationView(
+      CertificationModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideCertificationView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

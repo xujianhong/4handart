@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifyMottoContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyMottoModule_ProvideModifyMottoViewFactory
+    implements Factory<ModifyMottoContract.View> {
+  private final ModifyMottoModule module;
+
+  public ModifyMottoModule_ProvideModifyMottoViewFactory(ModifyMottoModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public ModifyMottoContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static ModifyMottoContract.View provideInstance(ModifyMottoModule module) {
+    return proxyProvideModifyMottoView(module);
+  }
+
+  public static ModifyMottoModule_ProvideModifyMottoViewFactory create(ModifyMottoModule module) {
+    return new ModifyMottoModule_ProvideModifyMottoViewFactory(module);
+  }
+
+  public static ModifyMottoContract.View proxyProvideModifyMottoView(ModifyMottoModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideModifyMottoView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

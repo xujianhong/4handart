@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_select_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+      />
+
+    <ViewStub
+        android:id="@+id/vs_select_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/vs_select_image_video_bg" />
+
+
+    <TextView
+        android:id="@+id/tv_select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:padding="2dp"
+        android:shadowColor="@color/colorShadow"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        tool:text="asdasdasdasdasd" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/select_btn_bg">
+
+        <ImageButton
+            android:id="@+id/btn_select_image_video"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end|top"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_select_false" />
+    </FrameLayout>
+
+    <ViewStub
+        android:id="@+id/vs_no_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/vs_no_image" />
+    <ViewStub
+        android:id="@+id/vs_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/vs_camera_view" />
+</FrameLayout>

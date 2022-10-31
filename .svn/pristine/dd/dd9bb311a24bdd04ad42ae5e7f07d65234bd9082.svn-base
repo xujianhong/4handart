@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifyNameContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyNameModule_ProvideModifyNameViewFactory
+    implements Factory<ModifyNameContract.View> {
+  private final ModifyNameModule module;
+
+  public ModifyNameModule_ProvideModifyNameViewFactory(ModifyNameModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public ModifyNameContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static ModifyNameContract.View provideInstance(ModifyNameModule module) {
+    return proxyProvideModifyNameView(module);
+  }
+
+  public static ModifyNameModule_ProvideModifyNameViewFactory create(ModifyNameModule module) {
+    return new ModifyNameModule_ProvideModifyNameViewFactory(module);
+  }
+
+  public static ModifyNameContract.View proxyProvideModifyNameView(ModifyNameModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideModifyNameView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,45 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.PianoContract;
+import com.daomingedu.art.mvp.model.PianoModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class PianoModule_ProvidePianoModelFactory implements Factory<PianoContract.Model> {
+  private final PianoModule module;
+
+  private final Provider<PianoModel> modelProvider;
+
+  public PianoModule_ProvidePianoModelFactory(
+      PianoModule module, Provider<PianoModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public PianoContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static PianoContract.Model provideInstance(
+      PianoModule module, Provider<PianoModel> modelProvider) {
+    return proxyProvidePianoModel(module, modelProvider.get());
+  }
+
+  public static PianoModule_ProvidePianoModelFactory create(
+      PianoModule module, Provider<PianoModel> modelProvider) {
+    return new PianoModule_ProvidePianoModelFactory(module, modelProvider);
+  }
+
+  public static PianoContract.Model proxyProvidePianoModel(PianoModule instance, PianoModel model) {
+    return Preconditions.checkNotNull(
+        instance.providePianoModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

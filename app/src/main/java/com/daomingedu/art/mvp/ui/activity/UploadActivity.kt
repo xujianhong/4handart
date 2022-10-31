@@ -1,0 +1,850 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.Manifest
+import android.app.Activity
+import android.app.ProgressDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
+import android.net.Uri
+import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
+import android.os.Message
+
+import android.text.TextUtils
+import android.util.Base64
+import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.daomingedu.art.R
+import com.daomingedu.art.app.Constant
+import com.daomingedu.art.app.Preference
+import com.daomingedu.art.app.onClick
+import com.daomingedu.art.bean.ScoreBean
+import com.daomingedu.art.bean.SongBean
+import com.daomingedu.art.bean.SongBeanMajorLevelSong
+import com.daomingedu.art.mvp.model.LocalWork
+import com.daomingedu.art.mvp.ui.activity.view.IUploadView
+import com.daomingedu.art.bean.KeyBean
+import com.daomingedu.art.db.VideoList
+import com.daomingedu.art.mvp.model.api.Api
+import com.daomingedu.art.mvp.ui.activity.presenter.IUploadPresenter
+import com.daomingedu.art.mvp.ui.activity.presenter.UploadCompl
+import com.daomingedu.art.util.*
+import com.google.gson.Gson
+import com.jmolsmobile.landscapevideocapture.VideoCaptureActivity
+import com.jmolsmobile.landscapevideocapture.configuration.CaptureConfiguration
+import com.jmolsmobile.landscapevideocapture.configuration.PredefinedCaptureConfigurations
+import com.jmolsmobile.landscapevideocapture.view.VideoCaptureView.saveBitmapToSdCard
+import com.lzy.okgo.model.HttpParams
+import com.pili.pldroid.player.PLOnCompletionListener
+import com.pili.pldroid.player.PLOnErrorListener
+import com.pili.pldroid.player.widget.PLVideoTextureView
+import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tencent.cos.xml.CosXmlServiceConfig
+import com.tencent.cos.xml.CosXmlSimpleService
+import com.tencent.cos.xml.exception.CosXmlClientException
+import com.tencent.cos.xml.exception.CosXmlServiceException
+import com.tencent.cos.xml.listener.CosXmlProgressListener
+import com.tencent.cos.xml.listener.CosXmlResultListener
+import com.tencent.cos.xml.model.CosXmlRequest
+import com.tencent.cos.xml.model.CosXmlResult
+import com.tencent.cos.xml.transfer.TransferConfig
+import com.tencent.cos.xml.transfer.TransferManager
+import kotlinx.android.synthetic.main.activity_upload.*
+import kotlinx.android.synthetic.main.toolbar.*
+import org.litepal.LitePal
+import java.io.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+
+class UploadActivity : AppCompatActivity(), IUploadView {
+
+    private var videoTime by Preference(Constant.VIDEO_TIME, 0)
+    private var videoPixel by Preference(Constant.VIDEO_PIXEL, 0)
+    internal var videofile: Long = Long.MAX_VALUE//限制视频文件大小
+
+    lateinit var folder: String
+    var videoNum: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_upload)
+
+        toolbar_new_title.text = "上传视频"
+        toolbar_new.setNavigationOnClickListener {
+            val intent = Intent()
+            intent.putExtra("result", 3)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+
+        isShowSongList = intent.extras?.getInt("isShowSongList")!!
+        isShowImport = intent.extras?.getInt("isShowImport")!!
+        id = intent.extras?.getString("id")!!
+        url = intent.extras?.getString("url")!!
+
+        folder = intent.extras?.getString("folder")!!
+        videoNum = intent.extras?.getInt("videoNum")!!
+        //type = intent.extras?.getInt("type")!!
+        //videoType = intent.extras?.getInt("videoType")!!
+        iUploadPresenter = UploadCompl(this, this, url)
+        iUploadPresenter.getSongList(id)
+
+        when (isShowSongList) {
+            0 -> upload_songlist.visibility = View.GONE
+            1 -> upload_songlist.visibility = View.VISIBLE
+        }
+
+        upload_songlist.setOnClickListener {
+            when (type) {
+                0 -> {
+                    if (list_song.isNotEmpty()) {
+                        val array = arrayOfNulls<String>(list_song.size)
+                        for (i in list_song.indices) {
+                            array[i] = list_song[i].name
+                        }
+                        val alertBuilder = AlertDialog.Builder(this)
+                        alertBuilder.setTitle("请选择曲目")
+                        alertBuilder.setSingleChoiceItems(
+                            array,
+                            0,
+                            object : DialogInterface.OnClickListener {
+                                override fun onClick(p0: DialogInterface?, p1: Int) {
+                                    songId = list_song[p1].id
+                                    upload_songlist_tv.text = list_song[p1].name
+                                    p0?.dismiss()
+                                }
+                            })
+                        val dialog = alertBuilder.create()
+                        dialog.show()
+                    }
+                }
+            }
+            iUploadPresenter.getSongList(id)
+        }
+        upload_btn.setOnClickListener {
+            if (localPath.isEmpty()) {
+                Toast.makeText(this, "请选择上传视频", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (isShowSongList == 1) {
+                //0表示没指定曲谱, 1已指定谱曲
+                when (type) {
+                    0 -> {
+                        if (TextUtils.isEmpty(songId)) {
+                            Toast.makeText(this, "请选择曲目", Toast.LENGTH_SHORT).show()
+                            return@setOnClickListener
+                        }
+                    }
+                }
+            }
+            if (isUpload == 0) {
+                Toast.makeText(this, "人脸识别未通过", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val file = File(localPath)
+            iUploadPresenter.uploadPath(id, file.name)
+
+        }
+        camera_btn.setOnClickListener {
+            if (isShowSongList == 1) {
+                //0表示没指定曲谱, 1已指定谱曲
+                when (type) {
+                    0 -> {
+                        if (TextUtils.isEmpty(songId)) {
+                            Toast.makeText(this, "请选择曲目", Toast.LENGTH_SHORT).show()
+                            return@setOnClickListener
+                        }
+                    }
+                }
+            }
+            RxPermissions(this).request(
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            )
+                .subscribe {
+                    if (it) {
+                        getWaterPrintImg()
+                    } else {
+                        Toast.makeText(this, "请开启相关权限", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+        }
+        upload_img.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            val file = File(localPath)
+//            var uri: Uri? = null
+//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+//                intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                //记得修改com.xxx.fileprovider与androidmanifest相同
+//                uri = FileProvider.getUriForFile(this,"com.example.handartmanagement", file)
+//            }else{
+//                uri = Uri.parse("file://$file")
+//            }
+//            intent.setDataAndType(uri, "video/*")
+//            startActivity(intent)
+        }
+    }
+
+    fun base64ToBitmap(base64Data: String): Bitmap {
+        val bytes = Base64.decode(base64Data, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    }
+
+    fun saveBitmapToSdCard(
+        context: Context,
+        mybitmap: Bitmap,
+        name: String
+    ): Boolean {
+        var result = false
+        //创建位图保存目录
+        val path =
+            Environment.getExternalStorageDirectory().toString() + "/test/"
+        val sd = File(path)
+        if (!sd.exists()) {
+            sd.mkdir()
+        }
+        val file = File("$path$name.png")
+        var fileOutputStream: FileOutputStream? = null
+        try {
+            // 判断SD卡是否存在，并且是否具有读写权限
+            if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+                fileOutputStream = FileOutputStream(file)
+                mybitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+                fileOutputStream.flush()
+                fileOutputStream.close()
+
+                //update gallery
+                val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+                val uri = Uri.fromFile(file)
+                intent.data = uri
+                context.sendBroadcast(intent)
+                //Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
+                result = true
+            } else {
+                Toast.makeText(context, "不能读取到SD卡", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return result
+    }
+
+    private fun getWaterPrintImg() {
+        val httpParams = HttpParams()
+        httpParams.put("key", Constant.KEY)
+        MyOkGoUtil.postGetString(
+            this,
+            Api.APP_DOMAIN + "/api/common/getWaterMark",
+            httpParams,
+            object : Handler() {
+                override fun handleMessage(msg: Message) {
+                    super.handleMessage(msg)
+                    if (msg.what == 0) {
+                        val result = msg.obj as String
+                        val bitmap = base64ToBitmap(result)
+                        if (saveBitmapToSdCard(this@UploadActivity, bitmap, "test")) {
+                            when (videoType) {
+                                1 -> {
+                                    when (MemoryUtil.memoryIsAvailble(this@UploadActivity)) {
+                                        0 -> takeVideo("")
+                                        1 -> {
+                                            val dialog = AlertDialog.Builder(this@UploadActivity)
+                                            dialog.setMessage("存储空间过小, 可能会出现录制完了无法保存视频的情况, 是否继续拍摄视频")
+                                            dialog.setCancelable(false)
+                                            dialog.setPositiveButton(
+                                                "继续",
+                                                object : DialogInterface.OnClickListener {
+                                                    override fun onClick(
+                                                        dialog: DialogInterface?,
+                                                        which: Int
+                                                    ) {
+                                                        dialog?.dismiss()
+                                                        takeVideo("")
+                                                    }
+                                                })
+                                            dialog.setNegativeButton(
+                                                "取消",
+                                                object : DialogInterface.OnClickListener {
+                                                    override fun onClick(
+                                                        dialog: DialogInterface?,
+                                                        which: Int
+                                                    ) {
+                                                        dialog?.dismiss()
+                                                    }
+                                                })
+                                            dialog.create().show()
+                                        }
+                                    }
+                                }
+                                0 -> {
+                                    val builder = AlertDialog.Builder(this@UploadActivity)
+                                    builder.setMessage("请选择上传视频方式")
+                                    builder.setPositiveButton(
+                                        "立即拍摄",
+                                        object : DialogInterface.OnClickListener {
+                                            override fun onClick(
+                                                dialog: DialogInterface?,
+                                                which: Int
+                                            ) {
+                                                dialog?.dismiss()
+                                                when (MemoryUtil.memoryIsAvailble(this@UploadActivity)) {
+                                                    0 -> takeVideo("")
+                                                    1 -> {
+                                                        val dialog =
+                                                            AlertDialog.Builder(this@UploadActivity)
+                                                        dialog.setMessage("存储空间过小, 可能会出现录制完了无法保存视频的情况, 是否继续拍摄视频")
+                                                        dialog.setCancelable(false)
+                                                        dialog.setPositiveButton(
+                                                            "继续",
+                                                            object :
+                                                                DialogInterface.OnClickListener {
+                                                                override fun onClick(
+                                                                    dialog: DialogInterface?,
+                                                                    which: Int
+                                                                ) {
+                                                                    dialog?.dismiss()
+                                                                    takeVideo("")
+                                                                }
+                                                            })
+                                                        dialog.setNegativeButton(
+                                                            "取消",
+                                                            object :
+                                                                DialogInterface.OnClickListener {
+                                                                override fun onClick(
+                                                                    dialog: DialogInterface?,
+                                                                    which: Int
+                                                                ) {
+                                                                    dialog?.dismiss()
+                                                                }
+                                                            })
+                                                        dialog.create().show()
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    builder.setNegativeButton(
+                                        "选择缓存视频",
+                                        object : DialogInterface.OnClickListener {
+                                            override fun onClick(
+                                                dialog: DialogInterface?,
+                                                which: Int
+                                            ) {
+                                                dialog?.dismiss()
+                                                UploadVideoListActivity.startUploadVideoListActivity(
+                                                    this@UploadActivity,
+                                                    1,
+                                                    isShowImport,
+                                                    folder,
+                                                    videoNum
+                                                )
+                                            }
+                                        })
+                                    builder.create().show()
+                                }
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this@UploadActivity, "请检查网络连接是否正常", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            })
+    }
+
+    fun loadVideoScreenshot(videoUrl: String, time: Long, imageView: ImageView) {
+        imageView.visibility = View.VISIBLE
+        val media: MediaMetadataRetriever = MediaMetadataRetriever()
+        media.setDataSource(videoUrl)
+//        MediaMetadataRetriever media = new MediaMetadataRetriever();
+//        media.setDataSource(path);
+//        media.getFrameAtTime(time)
+        val base64 = bitmapToBase64(media.getFrameAtTime(time))
+        iUploadPresenter.getFaceScore(id, base64)
+
+
+//        Glide.with(this)
+//            .setDefaultRequestOptions(
+//                RequestOptions()
+//                    .frame(time)
+//            ).asBitmap()
+//            .load(videoUrl).addListener(object : RequestListener<Bitmap> {
+//                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+//                    Log.e("loadVideoScreenshot",e.toString())
+//                    return false
+//                }
+//
+//                override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                    imageView.setImageBitmap(resource)
+//                    val base64 = bitmapToBase64(resource!!)
+//                    iUploadPresenter.getFaceScore(id, base64)
+//                    return false
+//                }
+//
+//            })
+//            .into(imageView)
+
+    }
+
+
+    /**
+     * 打开摄像头录像
+     */
+    private fun takeVideo(fileName: String) {
+        val config = createCaptureConfiguration()
+        val intent = Intent(this, VideoCaptureActivity::class.java)
+        intent.putExtra(VideoCaptureActivity.EXTRA_CAPTURE_CONFIGURATION, config)
+        intent.putExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME, fileName) //文件名称
+        intent.putExtra(VideoCaptureActivity.WATER, SharedPreferencesUtil.getWater(this))
+        intent.putExtra("videoType", 1)
+        startActivityForResult(intent, LocalWork.VIDEO)
+    }
+
+    private fun createCaptureConfiguration(): CaptureConfiguration {
+        //分辨率
+        val resolution = when (videoPixel) {
+            1 -> PredefinedCaptureConfigurations.CaptureResolution.RES_480P
+            2 -> PredefinedCaptureConfigurations.CaptureResolution.RES_720P
+            3 -> PredefinedCaptureConfigurations.CaptureResolution.RES_1080P
+            else -> PredefinedCaptureConfigurations.CaptureResolution.RES_480P
+        }
+        //质量
+        val quality = PredefinedCaptureConfigurations.CaptureQuality.LOW //低质量
+        //限制时长
+        //val fileDuration = videoTime * 60 //10分钟
+        val fileDuration = videoTime
+        //限制大小
+        val filesize = CaptureConfiguration.NO_FILESIZE_LIMIT //不限
+        //true显示录制视频时的时间，false为不显示
+        val builder =
+            CaptureConfiguration.Builder(resolution, quality)
+        builder.maxDuration(fileDuration)
+//        builder.maxFileSize(((application as MyApp).getVideo() / 1024 / 1024) as Int)
+        builder.frameRate(PredefinedCaptureConfigurations.FPS_30)
+        builder.noCameraToggle()
+        builder.showRecordingTime()
+        return builder.build()
+    }
+
+    fun bitmapToBase64(bitmap: Bitmap): String {
+        var result = ""
+        var baos: ByteArrayOutputStream? = null
+        try {
+            if (bitmap != null) {
+                baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                baos.flush()
+                baos.close()
+                val bitmapBytes: ByteArray = baos.toByteArray()
+                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.flush()
+                    baos.close()
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+        return result
+    }
+
+    private fun getTime(date_temp: Long): String {
+        //时间格式,HH是24小时制，hh是AM PM12小时制
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        //比如timestamp=1449210225945；
+        val date_string = sdf.format(Date(date_temp))
+        //至于取10位或取13位，date_temp*1000L就是这种截取作用。如果是和服务器传值的，就和后台商量好就可以了
+        Log.d("test", date_string)
+        return date_string
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (resultCode == Activity.RESULT_OK) {
+            true -> {
+//                creatTime = getTime(System.currentTimeMillis())
+                upload_score.text = "AI人脸识别中，请稍等..."
+                if (requestCode == 100) {
+
+                    camera_btn.visibility = View.GONE
+
+                    //val result = FileUtil.getRealFilePath(this, item)
+                    localPath = data?.extras?.getString("result")!!
+                    loadVideoScreenshot(localPath, firstTime, upload_img)
+
+                    initVideoPlay(localPath)
+                } else if (requestCode == LocalWork.VIDEO) {
+
+                    localPath = data!!.getStringExtra(VideoCaptureActivity.EXTRA_OUTPUT_FILENAME)
+                    val file = File(localPath)
+                    if (!file.exists()) {
+                        Toast.makeText(this, "视频获取失败", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+                    if (!MediaFile.isVideoFileType(localPath)) {
+                        Toast.makeText(this, "请选择视频", Toast.LENGTH_SHORT).show()
+                        return
+                    }
+                    if (file.length() > videofile) {
+                        Toast.makeText(
+                            this,
+                            "视频大于+" + (videofile / (1024 * 1024)).toInt() + "M，建议选择视频作品--录像",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return
+                    }
+
+                    if (videoNum == 1) {
+                        val video = LitePal.where(
+                            "folder = '$folder'"
+                        ).find(VideoList::class.java)
+                        for (item in video) {
+                            File(item.path).let {
+                                if (it.exists()) {
+                                    it.delete()
+                                }
+                            }
+                        }
+                        LitePal.deleteAll(VideoList::class.java, "folder = ?", folder)
+                    }
+                    //保存数据库
+                    val video = VideoList(localPath, folder);
+                    video.save()
+
+
+//                    Log.e("videoTime",StringUtils.getVedioTotalTime(localPath))
+                    camera_btn.visibility = View.GONE
+
+                    sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)))
+                    loadVideoScreenshot(localPath, firstTime, upload_img)
+                    initVideoPlay(localPath)
+                }
+            }
+        }
+    }
+
+    private var id = ""
+    private var url = ""
+    private var isShowSongList = 0
+    private var isShowImport = 0
+    var type = 0
+    var videoType = 0
+    lateinit var iUploadPresenter: IUploadPresenter
+
+    //    private var creatTime = ""
+    private var uploadPath = ""
+    private var localPath = ""
+
+    //    private var firstTime = 3000000L
+    private var firstTime = 3000000L
+    private var firstScore = ""
+    private var secondScore = ""
+    private var secondTime = 6000000L
+    private var isAudit = 0
+    private var isUpload = 0
+
+    //private var compare_time = 0
+    private var mScore = 0.00
+    private var songId = ""
+    private var list_song = ArrayList<SongBeanMajorLevelSong>()
+
+    companion object {
+
+        /*fun startUploadActivity(activity: AppCompatActivity, id: String, type: Int, videoType: Int){
+            val intent = Intent(activity, UploadActivity::class.java)
+            intent.putExtra("id", id)
+            intent.putExtra("type", type)
+            intent.putExtra("videoType", videoType)
+            activity.startActivityForResult(intent, 0)
+        }*/
+
+        fun startUploadActivity(
+            activity: AppCompatActivity,
+            id: String,
+            url: String,
+            isShowSongList: Int,
+            isShowImport: Int,
+            folder: String,
+            videoNum: Int
+        ) {
+            val intent = Intent(activity, UploadActivity::class.java)
+            intent.putExtra("id", id)
+            intent.putExtra("url", url)
+            intent.putExtra("isShowSongList", isShowSongList)
+            intent.putExtra("isShowImport", isShowImport)
+            intent.putExtra("folder", folder)
+            intent.putExtra("videoNum", videoNum)
+            activity.startActivityForResult(intent, 0)
+        }
+    }
+
+    private fun initVideoPlay(videoPath: String) {
+        PLVideoTextureView.stopPlayback()
+        upload_tv.visibility = View.VISIBLE
+        btn_play.visibility = View.VISIBLE
+        btn_play.onClick {
+           if( PLVideoTextureView.isPlaying){
+               PLVideoTextureView.stopPlayback()
+           }
+            PLVideoTextureView.setVideoPath(videoPath)
+            PLVideoTextureView.start()
+        }
+        PLVideoTextureView.visibility = View.VISIBLE
+        PLVideoTextureView.setMediaController(MediaController(this))
+        PLVideoTextureView.setVideoPath(videoPath)
+        PLVideoTextureView.start()
+        PLVideoTextureView.setOnErrorListener(object : PLOnErrorListener {
+            override fun onError(p0: Int): Boolean {
+                return false
+            }
+        })
+        PLVideoTextureView.setOnCompletionListener(object : PLOnCompletionListener {
+            override fun onCompletion() {
+            }
+        })
+    }
+
+    override fun getSongListResult(result: String) {
+        if (result.isNotEmpty()) {
+            //0表示没指定曲谱, 1已指定谱曲
+            val songBean = SongBean.getData(result)
+            videoType = songBean.isLimitTime
+            upload_tip.text = songBean.remark
+
+            /* when(videoType){
+                 1 -> camera_btn.text = "拍摄视频"
+                 0 -> camera_btn.text = "选择本地视频"
+             }*/
+            if (songBean.majorLevelSongList != null) {
+                list_song = songBean.majorLevelSongList
+                type = 0
+            } else {
+                val musicSong = songBean.musicSong
+                //songId = musicSong.id
+                upload_songlist_select.visibility = View.GONE
+                upload_songlist_tv.text = musicSong.name
+                type = 1
+
+                tv_name.text = "系统抽题结果：${musicSong.name}"
+            }
+
+        }
+    }
+
+    override fun uploadPathResult(result: String) {
+        if (result.isNotEmpty()) {
+            uploadPath = result
+            iUploadPresenter.getTencentKey()
+        }
+    }
+
+    override fun getTencentKeyResult(result: String) {
+        if (result.isNotEmpty()) {
+            val keyBean = KeyBean.getData(result)
+            val credentials = keyBean.cosTempKey.credentials
+            val mySessionCredentialProvider = MySessionCredentialProvider(
+                credentials.tmpSecretId,
+                credentials.tmpSecretKey,
+                credentials.sessionToken,
+                keyBean.cosTempKey.startTime.toLong(),
+                keyBean.cosTempKey.expiredTime.toLong()
+            )
+            val serviceConfig = CosXmlServiceConfig.Builder()
+                .setRegion(keyBean.region)
+                .builder()
+            val cosXmlService =
+                CosXmlSimpleService(this, serviceConfig, mySessionCredentialProvider)
+            val transferConfig = TransferConfig.Builder().build()
+            val transferManager = TransferManager(
+                cosXmlService,
+                transferConfig
+            )
+
+            val bucket = keyBean.bucketName  //存储桶，格式：BucketName-APPID
+            val cosPath = "/$uploadPath" //对象在存储桶中的位置标识符，即称对象键
+            val srcPath = localPath
+
+            val uploadId: String? = null
+
+            progressDialog = ProgressDialog(this)
+            progressDialog?.setCancelable(false)
+            progressDialog?.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
+            progressDialog?.setMessage("视频上传中")
+            progressDialog?.show()
+            // 上传文件
+            val cosxmlUploadTask = transferManager.upload(
+                bucket, cosPath,
+                srcPath, uploadId
+            )
+            cosxmlUploadTask.setCosXmlProgressListener(object : CosXmlProgressListener {
+                override fun onProgress(complete: Long, target: Long) {
+                    Log.d("test", "onProgress")
+                    Log.d("test", complete.toString())
+                    Log.d("test", target.toString())
+                    progressDialog?.max = 100
+                    progressDialog?.progress =
+                        (((complete.toDouble() / target.toDouble()) * 100).toInt())
+                }
+            })
+            cosxmlUploadTask.setCosXmlResultListener(object : CosXmlResultListener {
+                override fun onSuccess(request: CosXmlRequest?, result: CosXmlResult?) {
+                    Log.d("test", "onSuccess")
+                    Log.d("test", Gson().toJson(result))
+                    progressDialog?.dismiss()
+                    //isUpToTencent = true
+                    handler.sendEmptyMessage(1)
+                }
+
+                override fun onFail(
+                    request: CosXmlRequest?,
+                    exception: CosXmlClientException?,
+                    serviceException: CosXmlServiceException?
+                ) {
+                    handler.sendEmptyMessage(2)
+                    Log.d("test", "onFail")
+                    Log.d("test", exception?.errorCode.toString())
+                    Log.d("test", serviceException?.message)
+
+                }
+
+
+
+            })
+        }
+    }
+
+    var progressDialog: ProgressDialog? = null
+
+    val handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            if (msg.what == 0) {
+                val file = File(localPath)
+                loadVideoScreenshot(localPath, firstTime, upload_img)
+                initVideoPlay(localPath)
+                //iUploadPresenter.uploadPath(id, file.name)
+            } else if (msg.what == 1) {
+                val file = File(localPath)
+                iUploadPresenter.saveUpload(
+                    id,
+                    uploadPath,
+                    mScore,
+                    songId,
+                    file.length().toString(),
+                    getTime(file.lastModified()),
+                    isAudit.toString(),
+                    StringUtils.getVedioTotalTime(localPath)
+                )
+            }else if(msg.what == 2){
+                Toast.makeText(this@UploadActivity,"网络错误",Toast.LENGTH_SHORT).show()
+                progressDialog?.dismiss()
+            }
+        }
+    }
+
+    override fun getFaceScoreResult(result: String) {
+        if (result.isNotEmpty()) {
+            val scoreBean = ScoreBean.getData(result)
+            upload_score.text = scoreBean.text
+            isAudit = scoreBean.isAudit
+            isUpload = scoreBean.isUpload
+            /*when(scoreBean.isUpload){
+                1 -> {
+                    val file = File(localPath)
+                    iUploadPresenter.uploadPath(id, file.name)
+                }
+            }*/
+            /*val passScore = scoreBean.passScore.toDouble()
+            val score = scoreBean.score.toDouble()
+            if (score >= passScore){
+                mScore = score
+                isAudit = true
+                upload_score.text = "AI人脸识别相似度:100%\n" +  "AI人脸识别已通过,请点击提交上传"
+            }else {
+                upload_score.text = "AI人脸识别未通过,请点击拍摄视频重新拍摄上传\n或直接点击提交,进行人工审核"
+            }*/
+            /*compare_time ++
+            if (compare_time < 3){
+                when(compare_time){
+                    1 -> {
+                        if (score >= passScore){
+                            mScore = score
+                            isAudit = true
+                            upload_score.text = "AI人脸识别相似度:100%\n" +  "AI人脸识别已通过,请点击提交上传"
+                        }else {
+                            loadVideoScreenshot(localPath, secondTime, upload_img)
+                        }
+                    }
+                    2 -> {
+                        if (score >= passScore){
+                            upload_score.text = "AI人脸识别相似度:100%\n" +  "AI人脸识别已通过,请点击提交上传"
+                            mScore = score
+                            isAudit = true
+                        }else {
+                            upload_score.text = "AI人脸识别未通过,请点击拍摄视频重新拍摄上传\n或直接点击提交,进行人工审核"
+                        }
+                    }
+                }
+            }else {
+                compare_time = 0
+            }*/
+        }
+    }
+
+    override fun getFaceScoreResultFailed(result: String) {
+        if (result.isNotEmpty()) {
+            upload_score.text = result
+        }
+    }
+
+    override fun saveUploadResult(result: String) {
+        Toast.makeText(this, "视频保存成功", Toast.LENGTH_SHORT).show()
+        val intent = Intent()
+        intent.putExtra("result", 1)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    override fun saveUploadFailedResult(result: String) {
+        val intent = Intent()
+        intent.putExtra("result", 2)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PLVideoTextureView.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        PLVideoTextureView.stopPlayback()
+    }
+}

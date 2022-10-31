@@ -1,0 +1,250 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u00a2\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\t\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\t\n\u0002\b\u0012\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0007\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u0004B\u0005\u00a2\u0006\u0002\u0010\u0005J\b\u0010P\u001a\u00020\u0007H\u0002J\b\u0010Q\u001a\u00020RH\u0016J\u0012\u0010S\u001a\u00020R2\b\u0010T\u001a\u0004\u0018\u00010UH\u0016J\b\u0010V\u001a\u00020RH\u0002J\u0012\u0010W\u001a\u00020+2\b\u0010T\u001a\u0004\u0018\u00010UH\u0016J\b\u0010X\u001a\u00020RH\u0002J\b\u0010Y\u001a\u00020RH\u0016J\u0010\u0010Z\u001a\u00020R2\u0006\u0010[\u001a\u00020\\H\u0016J\u0012\u0010]\u001a\u00020R2\b\u0010^\u001a\u0004\u0018\u00010_H\u0016J\b\u0010`\u001a\u00020RH\u0014J\b\u0010a\u001a\u00020RH\u0014J\u0010\u0010b\u001a\u00020R2\u0006\u0010c\u001a\u00020dH\u0016J\b\u0010e\u001a\u00020RH\u0002J\b\u0010f\u001a\u00020RH\u0016J\u0010\u0010g\u001a\u00020R2\u0006\u0010h\u001a\u00020\u0007H\u0016J\b\u0010i\u001a\u00020RH\u0002J\u0006\u0010j\u001a\u00020RR\u000e\u0010\u0006\u001a\u00020\u0007X\u0082D\u00a2\u0006\u0002\n\u0000R\u000e\u0010\b\u001a\u00020\u0007X\u0082D\u00a2\u0006\u0002\n\u0000R\u0010\u0010\t\u001a\u0004\u0018\u00010\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001c\u0010\n\u001a\u0004\u0018\u00010\u000bX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\f\u0010\r\"\u0004\b\u000e\u0010\u000fR\u001a\u0010\u0010\u001a\u00020\u0011X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0012\u0010\u0013\"\u0004\b\u0014\u0010\u0015R\u001c\u0010\u0016\u001a\u0004\u0018\u00010\u0017X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0018\u0010\u0019\"\u0004\b\u001a\u0010\u001bR\u000e\u0010\u001c\u001a\u00020\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u001e\u001a\u00020\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010\u001f\u001a\u00020\u001dX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b \u0010!\"\u0004\b\"\u0010#R\u000e\u0010$\u001a\u00020\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010%\u001a\u0004\u0018\u00010\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0014\u0010&\u001a\b\u0012\u0004\u0012\u00020\u00070\'X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0010\u0010(\u001a\u0004\u0018\u00010)X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010*\u001a\u00020+X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b,\u0010-\"\u0004\b.\u0010/R\u0010\u00100\u001a\u0004\u0018\u000101X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u00102\u001a\u0004\u0018\u000101X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0014\u00103\u001a\u0004\u0018\u0001048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u00105\u001a\u000206X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b7\u00108\"\u0004\b9\u0010:R\u0010\u0010;\u001a\u0004\u0018\u000101X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010<\u001a\u00020+X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b=\u0010-\"\u0004\b>\u0010/R\u001a\u0010?\u001a\u00020\u0007X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b@\u0010A\"\u0004\bB\u0010CR\u001a\u0010D\u001a\u00020\u0007X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bE\u0010A\"\u0004\bF\u0010CR\u000e\u0010G\u001a\u00020\u0007X\u0082D\u00a2\u0006\u0002\n\u0000R\u001c\u0010H\u001a\u0004\u0018\u00010IX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bJ\u0010K\"\u0004\bL\u0010MR\u0010\u0010N\u001a\u0004\u0018\u00010OX\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006k"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/PianoActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/PianoPresenter;", "Lcom/daomingedu/art/mvp/contract/PianoContract$View;", "Landroid/view/View$OnClickListener;", "()V", "PACKAGE_URL_SCHEME", "", "SUFFIX", "audioPath", "db", "Landroid/database/sqlite/SQLiteDatabase;", "getDb$app_release", "()Landroid/database/sqlite/SQLiteDatabase;", "setDb$app_release", "(Landroid/database/sqlite/SQLiteDatabase;)V", "handler", "Landroid/os/Handler;", "getHandler$app_release", "()Landroid/os/Handler;", "setHandler$app_release", "(Landroid/os/Handler;)V", "helper", "Lcom/daomingedu/art/data/BaseDataHelper;", "getHelper$app_release", "()Lcom/daomingedu/art/data/BaseDataHelper;", "setHelper$app_release", "(Lcom/daomingedu/art/data/BaseDataHelper;)V", "inThePause", "", "isPause", "isSrcoll", "isSrcoll$app_release", "()Z", "setSrcoll$app_release", "(Z)V", "isStopRecord", "length1", "list", "Ljava/util/ArrayList;", "mMediaRecorder01", "Landroid/media/MediaRecorder;", "minute", "", "getMinute$app_release", "()I", "setMinute$app_release", "(I)V", "myRecAudioDir", "Ljava/io/File;", "myRecAudioFile", "piano", "Lcom/daomingedu/art/mvp/ui/widget/piano/Piano_view;", "recordFile", "", "getRecordFile$app_release", "()J", "setRecordFile$app_release", "(J)V", "saveFile", "second", "getSecond$app_release", "setSecond$app_release", "strMinute", "getStrMinute$app_release", "()Ljava/lang/String;", "setStrMinute$app_release", "(Ljava/lang/String;)V", "strSecond", "getStrSecond$app_release", "setStrSecond$app_release", "strTempFile", "timer", "Ljava/util/Timer;", "getTimer$app_release", "()Ljava/util/Timer;", "setTimer$app_release", "(Ljava/util/Timer;)V", "tv_time", "Landroid/widget/TextView;", "getTime", "hideLoading", "", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initRecording", "initView", "initViews", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onClick", "v", "Landroid/view/View;", "onDestroy", "onResume", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showDialog", "showLoading", "showMessage", "message", "start", "stopReRecord", "app_release"})
+public final class PianoActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.PianoPresenter> implements com.daomingedu.art.mvp.contract.PianoContract.View, android.view.View.OnClickListener {
+    private final java.lang.String PACKAGE_URL_SCHEME = "package:";
+    private android.widget.TextView tv_time;
+    private final java.lang.String strTempFile = "/DDmusic";
+    private java.io.File myRecAudioFile;
+    
+    /**
+     * 录音保存路径
+     */
+    private java.io.File myRecAudioDir;
+    private java.lang.String audioPath;
+    private java.io.File saveFile;
+    private android.media.MediaRecorder mMediaRecorder01;
+    
+    /**
+     * 是否停止录音
+     */
+    private boolean isStopRecord;
+    private java.lang.String length1;
+    private final java.lang.String SUFFIX = ".mp4";
+    
+    /**
+     * 记录需要合成的几段amr语音文件
+     */
+    private final java.util.ArrayList<java.lang.String> list = null;
+    private int second;
+    private int minute;
+    @org.jetbrains.annotations.NotNull()
+    private java.lang.String strMinute;
+    @org.jetbrains.annotations.NotNull()
+    private java.lang.String strSecond;
+    
+    /**
+     * 计时器
+     */
+    @org.jetbrains.annotations.Nullable()
+    private java.util.Timer timer;
+    
+    /**
+     * 是否暂停标志位
+     */
+    private boolean isPause;
+    
+    /**
+     * 在暂停状态中
+     */
+    private boolean inThePause;
+    private long recordFile;
+    @org.jetbrains.annotations.NotNull()
+    private android.os.Handler handler;
+    @org.jetbrains.annotations.Nullable()
+    public com.daomingedu.art.mvp.ui.widget.piano.Piano_view piano;
+    private boolean isSrcoll;
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.data.BaseDataHelper helper;
+    @org.jetbrains.annotations.Nullable()
+    private android.database.sqlite.SQLiteDatabase db;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public void onClick(@org.jetbrains.annotations.Nullable()
+    android.view.View v) {
+    }
+    
+    public final int getSecond$app_release() {
+        return 0;
+    }
+    
+    public final void setSecond$app_release(int p0) {
+    }
+    
+    public final int getMinute$app_release() {
+        return 0;
+    }
+    
+    public final void setMinute$app_release(int p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getStrMinute$app_release() {
+        return null;
+    }
+    
+    public final void setStrMinute$app_release(@org.jetbrains.annotations.NotNull()
+    java.lang.String p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getStrSecond$app_release() {
+        return null;
+    }
+    
+    public final void setStrSecond$app_release(@org.jetbrains.annotations.NotNull()
+    java.lang.String p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final java.util.Timer getTimer$app_release() {
+        return null;
+    }
+    
+    public final void setTimer$app_release(@org.jetbrains.annotations.Nullable()
+    java.util.Timer p0) {
+    }
+    
+    public final long getRecordFile$app_release() {
+        return 0L;
+    }
+    
+    public final void setRecordFile$app_release(long p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.os.Handler getHandler$app_release() {
+        return null;
+    }
+    
+    public final void setHandler$app_release(@org.jetbrains.annotations.NotNull()
+    android.os.Handler p0) {
+    }
+    
+    public final boolean isSrcoll$app_release() {
+        return false;
+    }
+    
+    public final void setSrcoll$app_release(boolean p0) {
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    private final void initViews() {
+    }
+    
+    /**
+     * 初始化录音
+     */
+    private final void initRecording() throws java.lang.Exception {
+    }
+    
+    /**
+     * 预设录音文件名称为时间
+     *
+     * @return
+     */
+    private final java.lang.String getTime() {
+        return null;
+    }
+    
+    @java.lang.Override()
+    protected void onResume() {
+    }
+    
+    @java.lang.Override()
+    protected void onDestroy() {
+    }
+    
+    /**
+     * 开始录音
+     */
+    private final void start() {
+    }
+    
+    /**
+     * 停止录音
+     */
+    public final void stopReRecord() {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.data.BaseDataHelper getHelper$app_release() {
+        return null;
+    }
+    
+    public final void setHelper$app_release(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.data.BaseDataHelper p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.database.sqlite.SQLiteDatabase getDb$app_release() {
+        return null;
+    }
+    
+    public final void setDb$app_release(@org.jetbrains.annotations.Nullable()
+    android.database.sqlite.SQLiteDatabase p0) {
+    }
+    
+    /**
+     * 添加名称
+     */
+    private final void showDialog() {
+    }
+    
+    public PianoActivity() {
+        super();
+    }
+}

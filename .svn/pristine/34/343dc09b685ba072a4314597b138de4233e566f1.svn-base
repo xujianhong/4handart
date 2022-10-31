@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.GradeBean;
+import com.daomingedu.art.mvp.ui.adapter.HomeGradeAdapter;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeModule_ProvideHomeGradeAdapterFactory implements Factory<HomeGradeAdapter> {
+  private final HomeModule module;
+
+  private final Provider<List<GradeBean>> gradesProvider;
+
+  public HomeModule_ProvideHomeGradeAdapterFactory(
+      HomeModule module, Provider<List<GradeBean>> gradesProvider) {
+    this.module = module;
+    this.gradesProvider = gradesProvider;
+  }
+
+  @Override
+  public HomeGradeAdapter get() {
+    return provideInstance(module, gradesProvider);
+  }
+
+  public static HomeGradeAdapter provideInstance(
+      HomeModule module, Provider<List<GradeBean>> gradesProvider) {
+    return proxyProvideHomeGradeAdapter(module, gradesProvider.get());
+  }
+
+  public static HomeModule_ProvideHomeGradeAdapterFactory create(
+      HomeModule module, Provider<List<GradeBean>> gradesProvider) {
+    return new HomeModule_ProvideHomeGradeAdapterFactory(module, gradesProvider);
+  }
+
+  public static HomeGradeAdapter proxyProvideHomeGradeAdapter(
+      HomeModule instance, List<GradeBean> grades) {
+    return Preconditions.checkNotNull(
+        instance.provideHomeGradeAdapter(grades),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

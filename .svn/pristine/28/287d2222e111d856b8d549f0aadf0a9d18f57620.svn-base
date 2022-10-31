@@ -1,0 +1,99 @@
+package com.daomingedu.art.app;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * 展示 [FragmentManager.FragmentLifecycleCallbacks] 的用法
+ *
+ *
+ * Created by JessYan on 23/08/2018 17:14
+ * [Contact me](mailto:jess.yan.effort@gmail.com)
+ * [Follow me](https://github.com/JessYanCoding)
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u00006\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u000b\n\u0002\u0018\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0002J\"\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\b\u0010\t\u001a\u0004\u0018\u00010\nH\u0016J \u0010\u000b\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\f\u001a\u00020\rH\u0016J\"\u0010\u000e\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\b\u0010\t\u001a\u0004\u0018\u00010\nH\u0016J\u0018\u0010\u000f\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J\u0018\u0010\u0010\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J\u0018\u0010\u0011\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J\u0018\u0010\u0012\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J \u0010\u0013\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\u0014\u001a\u00020\nH\u0016J\u0018\u0010\u0015\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J\u0018\u0010\u0016\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016J*\u0010\u0017\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\u0018\u001a\u00020\u00192\b\u0010\t\u001a\u0004\u0018\u00010\nH\u0016J\u0018\u0010\u001a\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016\u00a8\u0006\u001b"}, d2 = {"Lcom/daomingedu/art/app/FragmentLifecycleCallbacksImpl;", "Landroid/support/v4/app/FragmentManager$FragmentLifecycleCallbacks;", "()V", "onFragmentActivityCreated", "", "fm", "Landroid/support/v4/app/FragmentManager;", "f", "Landroid/support/v4/app/Fragment;", "savedInstanceState", "Landroid/os/Bundle;", "onFragmentAttached", "context", "Landroid/content/Context;", "onFragmentCreated", "onFragmentDestroyed", "onFragmentDetached", "onFragmentPaused", "onFragmentResumed", "onFragmentSaveInstanceState", "outState", "onFragmentStarted", "onFragmentStopped", "onFragmentViewCreated", "v", "Landroid/view/View;", "onFragmentViewDestroyed", "app_debug"})
+public final class FragmentLifecycleCallbacksImpl extends android.support.v4.app.FragmentManager.FragmentLifecycleCallbacks {
+    
+    @java.lang.Override()
+    public void onFragmentAttached(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f, @org.jetbrains.annotations.NotNull()
+    android.content.Context context) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentCreated(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f, @org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentViewCreated(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f, @org.jetbrains.annotations.NotNull()
+    android.view.View v, @org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentActivityCreated(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f, @org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentStarted(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentResumed(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentPaused(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentStopped(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentSaveInstanceState(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f, @org.jetbrains.annotations.NotNull()
+    android.os.Bundle outState) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentViewDestroyed(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentDestroyed(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    @java.lang.Override()
+    public void onFragmentDetached(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentManager fm, @org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment f) {
+    }
+    
+    public FragmentLifecycleCallbacksImpl() {
+        super();
+    }
+}

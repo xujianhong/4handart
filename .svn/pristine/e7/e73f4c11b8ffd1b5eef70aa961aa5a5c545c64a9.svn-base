@@ -1,0 +1,97 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.model.entity.ShareBean;
+import com.daomingedu.art.mvp.ui.adapter.ShareAdapter;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MyStudyCirclePresenter_MembersInjector
+    implements MembersInjector<MyStudyCirclePresenter> {
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  private final Provider<ShareAdapter> mAdapterProvider;
+
+  private final Provider<List<ShareBean>> mDataProvider;
+
+  public MyStudyCirclePresenter_MembersInjector(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<MyStudyCirclePresenter> create(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    return new MyStudyCirclePresenter_MembersInjector(
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider,
+        mAdapterProvider,
+        mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(MyStudyCirclePresenter instance) {
+    injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+    injectMImageLoader(instance, mImageLoaderProvider.get());
+    injectMAppManager(instance, mAppManagerProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMErrorHandler(
+      MyStudyCirclePresenter instance, RxErrorHandler mErrorHandler) {
+    instance.mErrorHandler = mErrorHandler;
+  }
+
+  public static void injectMApplication(MyStudyCirclePresenter instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+
+  public static void injectMImageLoader(MyStudyCirclePresenter instance, ImageLoader mImageLoader) {
+    instance.mImageLoader = mImageLoader;
+  }
+
+  public static void injectMAppManager(MyStudyCirclePresenter instance, AppManager mAppManager) {
+    instance.mAppManager = mAppManager;
+  }
+
+  public static void injectMAdapter(MyStudyCirclePresenter instance, ShareAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(MyStudyCirclePresenter instance, List<ShareBean> mData) {
+    instance.mData = mData;
+  }
+}

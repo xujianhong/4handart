@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white_ef">
+    <include layout="@layout/include_page_head"/>
+    <EditText
+            android:id="@+id/et_modify_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="@dimen/text_15"
+            android:maxLength="5"
+            android:textColorHint="@color/gray_96"
+            android:background="@color/while_fb"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Name_prompt"
+            android:textSize="@dimen/text_14"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/gray_96"/>
+</LinearLayout>

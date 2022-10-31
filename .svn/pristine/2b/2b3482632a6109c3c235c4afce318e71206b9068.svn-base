@@ -1,0 +1,221 @@
+package com.daomingedu.art.di.component;
+
+import android.app.Application;
+import com.daomingedu.art.di.module.LocalWorkModule;
+import com.daomingedu.art.di.module.LocalWorkModule_ProvideLocalWorkModelFactory;
+import com.daomingedu.art.di.module.LocalWorkModule_ProvideLocalWorkViewFactory;
+import com.daomingedu.art.mvp.contract.LocalWorkContract;
+import com.daomingedu.art.mvp.model.LocalWorkModel;
+import com.daomingedu.art.mvp.model.LocalWorkModel_Factory;
+import com.daomingedu.art.mvp.presenter.LocalWorkPresenter;
+import com.daomingedu.art.mvp.presenter.LocalWorkPresenter_Factory;
+import com.daomingedu.art.mvp.ui.activity.LocalWorkActivity;
+import com.google.gson.Gson;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class DaggerLocalWorkComponent implements LocalWorkComponent {
+  private com_jess_arms_di_component_AppComponent_repositoryManager repositoryManagerProvider;
+
+  private com_jess_arms_di_component_AppComponent_gson gsonProvider;
+
+  private com_jess_arms_di_component_AppComponent_application applicationProvider;
+
+  private Provider<LocalWorkModel> localWorkModelProvider;
+
+  private Provider<LocalWorkContract.Model> provideLocalWorkModelProvider;
+
+  private Provider<LocalWorkContract.View> provideLocalWorkViewProvider;
+
+  private com_jess_arms_di_component_AppComponent_rxErrorHandler rxErrorHandlerProvider;
+
+  private com_jess_arms_di_component_AppComponent_imageLoader imageLoaderProvider;
+
+  private com_jess_arms_di_component_AppComponent_appManager appManagerProvider;
+
+  private Provider<LocalWorkPresenter> localWorkPresenterProvider;
+
+  private DaggerLocalWorkComponent(Builder builder) {
+    initialize(builder);
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+    this.repositoryManagerProvider =
+        new com_jess_arms_di_component_AppComponent_repositoryManager(builder.appComponent);
+    this.gsonProvider = new com_jess_arms_di_component_AppComponent_gson(builder.appComponent);
+    this.applicationProvider =
+        new com_jess_arms_di_component_AppComponent_application(builder.appComponent);
+    this.localWorkModelProvider =
+        DoubleCheck.provider(
+            LocalWorkModel_Factory.create(
+                repositoryManagerProvider, gsonProvider, applicationProvider));
+    this.provideLocalWorkModelProvider =
+        DoubleCheck.provider(
+            LocalWorkModule_ProvideLocalWorkModelFactory.create(
+                builder.localWorkModule, localWorkModelProvider));
+    this.provideLocalWorkViewProvider =
+        DoubleCheck.provider(
+            LocalWorkModule_ProvideLocalWorkViewFactory.create(builder.localWorkModule));
+    this.rxErrorHandlerProvider =
+        new com_jess_arms_di_component_AppComponent_rxErrorHandler(builder.appComponent);
+    this.imageLoaderProvider =
+        new com_jess_arms_di_component_AppComponent_imageLoader(builder.appComponent);
+    this.appManagerProvider =
+        new com_jess_arms_di_component_AppComponent_appManager(builder.appComponent);
+    this.localWorkPresenterProvider =
+        DoubleCheck.provider(
+            LocalWorkPresenter_Factory.create(
+                provideLocalWorkModelProvider,
+                provideLocalWorkViewProvider,
+                rxErrorHandlerProvider,
+                applicationProvider,
+                imageLoaderProvider,
+                appManagerProvider));
+  }
+
+  @Override
+  public void inject(LocalWorkActivity activity) {
+    injectLocalWorkActivity(activity);
+  }
+
+  private LocalWorkActivity injectLocalWorkActivity(LocalWorkActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, localWorkPresenterProvider.get());
+    return instance;
+  }
+
+  public static final class Builder {
+    private LocalWorkModule localWorkModule;
+
+    private AppComponent appComponent;
+
+    private Builder() {}
+
+    public LocalWorkComponent build() {
+      if (localWorkModule == null) {
+        throw new IllegalStateException(LocalWorkModule.class.getCanonicalName() + " must be set");
+      }
+      if (appComponent == null) {
+        throw new IllegalStateException(AppComponent.class.getCanonicalName() + " must be set");
+      }
+      return new DaggerLocalWorkComponent(this);
+    }
+
+    public Builder localWorkModule(LocalWorkModule localWorkModule) {
+      this.localWorkModule = Preconditions.checkNotNull(localWorkModule);
+      return this;
+    }
+
+    public Builder appComponent(AppComponent appComponent) {
+      this.appComponent = Preconditions.checkNotNull(appComponent);
+      return this;
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_repositoryManager
+      implements Provider<IRepositoryManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_repositoryManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public IRepositoryManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.repositoryManager(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_gson implements Provider<Gson> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_gson(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Gson get() {
+      return Preconditions.checkNotNull(
+          appComponent.gson(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_application
+      implements Provider<Application> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_application(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Application get() {
+      return Preconditions.checkNotNull(
+          appComponent.application(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_rxErrorHandler
+      implements Provider<RxErrorHandler> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_rxErrorHandler(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public RxErrorHandler get() {
+      return Preconditions.checkNotNull(
+          appComponent.rxErrorHandler(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_imageLoader
+      implements Provider<ImageLoader> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_imageLoader(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public ImageLoader get() {
+      return Preconditions.checkNotNull(
+          appComponent.imageLoader(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_appManager
+      implements Provider<AppManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_appManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public AppManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.appManager(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+}

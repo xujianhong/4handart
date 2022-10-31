@@ -1,0 +1,31 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.UploadVideoPreviewPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadVideoPreviewActivity_MembersInjector
+    implements MembersInjector<UploadVideoPreviewActivity> {
+  private final Provider<UploadVideoPreviewPresenter> mPresenterProvider;
+
+  public UploadVideoPreviewActivity_MembersInjector(
+      Provider<UploadVideoPreviewPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<UploadVideoPreviewActivity> create(
+      Provider<UploadVideoPreviewPresenter> mPresenterProvider) {
+    return new UploadVideoPreviewActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(UploadVideoPreviewActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

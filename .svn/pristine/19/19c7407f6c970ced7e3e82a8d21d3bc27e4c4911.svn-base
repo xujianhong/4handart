@@ -1,0 +1,97 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.model.entity.BlockUserBean;
+import com.daomingedu.art.mvp.ui.adapter.BlockUsersAdapter;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class BlockUsersPresenter_MembersInjector
+    implements MembersInjector<BlockUsersPresenter> {
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  private final Provider<BlockUsersAdapter> mAdapterProvider;
+
+  private final Provider<List<BlockUserBean>> mDataProvider;
+
+  public BlockUsersPresenter_MembersInjector(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<BlockUsersAdapter> mAdapterProvider,
+      Provider<List<BlockUserBean>> mDataProvider) {
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<BlockUsersPresenter> create(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<BlockUsersAdapter> mAdapterProvider,
+      Provider<List<BlockUserBean>> mDataProvider) {
+    return new BlockUsersPresenter_MembersInjector(
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider,
+        mAdapterProvider,
+        mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(BlockUsersPresenter instance) {
+    injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+    injectMImageLoader(instance, mImageLoaderProvider.get());
+    injectMAppManager(instance, mAppManagerProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMErrorHandler(
+      BlockUsersPresenter instance, RxErrorHandler mErrorHandler) {
+    instance.mErrorHandler = mErrorHandler;
+  }
+
+  public static void injectMApplication(BlockUsersPresenter instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+
+  public static void injectMImageLoader(BlockUsersPresenter instance, ImageLoader mImageLoader) {
+    instance.mImageLoader = mImageLoader;
+  }
+
+  public static void injectMAppManager(BlockUsersPresenter instance, AppManager mAppManager) {
+    instance.mAppManager = mAppManager;
+  }
+
+  public static void injectMAdapter(BlockUsersPresenter instance, BlockUsersAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(BlockUsersPresenter instance, List<BlockUserBean> mData) {
+    instance.mData = mData;
+  }
+}

@@ -1,0 +1,242 @@
+package com.daomingedu.art.di.component;
+
+import android.app.Application;
+import com.daomingedu.art.di.module.StudyCircleInfoModule;
+import com.daomingedu.art.di.module.StudyCircleInfoModule_ProvideAdapterFactory;
+import com.daomingedu.art.di.module.StudyCircleInfoModule_ProvideDatasFactory;
+import com.daomingedu.art.di.module.StudyCircleInfoModule_ProvideStudyCircleInfoModelFactory;
+import com.daomingedu.art.di.module.StudyCircleInfoModule_ProvideStudyCircleInfoViewFactory;
+import com.daomingedu.art.mvp.contract.StudyCircleInfoContract;
+import com.daomingedu.art.mvp.model.StudyCircleInfoModel;
+import com.daomingedu.art.mvp.model.StudyCircleInfoModel_Factory;
+import com.daomingedu.art.mvp.presenter.StudyCircleInfoPresenter;
+import com.daomingedu.art.mvp.presenter.StudyCircleInfoPresenter_Factory;
+import com.daomingedu.art.mvp.ui.activity.StudyCircleInfoActivity;
+import com.daomingedu.art.mvp.ui.activity.StudyCircleInfoActivity_MembersInjector;
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter;
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem;
+import com.google.gson.Gson;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class DaggerStudyCircleInfoComponent implements StudyCircleInfoComponent {
+  private com_jess_arms_di_component_AppComponent_repositoryManager repositoryManagerProvider;
+
+  private com_jess_arms_di_component_AppComponent_gson gsonProvider;
+
+  private com_jess_arms_di_component_AppComponent_application applicationProvider;
+
+  private Provider<StudyCircleInfoModel> studyCircleInfoModelProvider;
+
+  private Provider<StudyCircleInfoContract.Model> provideStudyCircleInfoModelProvider;
+
+  private Provider<StudyCircleInfoContract.View> provideStudyCircleInfoViewProvider;
+
+  private com_jess_arms_di_component_AppComponent_rxErrorHandler rxErrorHandlerProvider;
+
+  private com_jess_arms_di_component_AppComponent_imageLoader imageLoaderProvider;
+
+  private com_jess_arms_di_component_AppComponent_appManager appManagerProvider;
+
+  private Provider<StudyCircleInfoPresenter> studyCircleInfoPresenterProvider;
+
+  private Provider<List<ShareInfoMuLtipleItem>> provideDatasProvider;
+
+  private Provider<ShareInfoAdapter> provideAdapterProvider;
+
+  private DaggerStudyCircleInfoComponent(Builder builder) {
+    initialize(builder);
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+    this.repositoryManagerProvider =
+        new com_jess_arms_di_component_AppComponent_repositoryManager(builder.appComponent);
+    this.gsonProvider = new com_jess_arms_di_component_AppComponent_gson(builder.appComponent);
+    this.applicationProvider =
+        new com_jess_arms_di_component_AppComponent_application(builder.appComponent);
+    this.studyCircleInfoModelProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoModel_Factory.create(
+                repositoryManagerProvider, gsonProvider, applicationProvider));
+    this.provideStudyCircleInfoModelProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoModule_ProvideStudyCircleInfoModelFactory.create(
+                builder.studyCircleInfoModule, studyCircleInfoModelProvider));
+    this.provideStudyCircleInfoViewProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoModule_ProvideStudyCircleInfoViewFactory.create(
+                builder.studyCircleInfoModule));
+    this.rxErrorHandlerProvider =
+        new com_jess_arms_di_component_AppComponent_rxErrorHandler(builder.appComponent);
+    this.imageLoaderProvider =
+        new com_jess_arms_di_component_AppComponent_imageLoader(builder.appComponent);
+    this.appManagerProvider =
+        new com_jess_arms_di_component_AppComponent_appManager(builder.appComponent);
+    this.studyCircleInfoPresenterProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoPresenter_Factory.create(
+                provideStudyCircleInfoModelProvider,
+                provideStudyCircleInfoViewProvider,
+                rxErrorHandlerProvider,
+                applicationProvider,
+                imageLoaderProvider,
+                appManagerProvider));
+    this.provideDatasProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoModule_ProvideDatasFactory.create(builder.studyCircleInfoModule));
+    this.provideAdapterProvider =
+        DoubleCheck.provider(
+            StudyCircleInfoModule_ProvideAdapterFactory.create(
+                builder.studyCircleInfoModule, provideDatasProvider));
+  }
+
+  @Override
+  public void inject(StudyCircleInfoActivity activity) {
+    injectStudyCircleInfoActivity(activity);
+  }
+
+  private StudyCircleInfoActivity injectStudyCircleInfoActivity(StudyCircleInfoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, studyCircleInfoPresenterProvider.get());
+    StudyCircleInfoActivity_MembersInjector.injectMAdapter(instance, provideAdapterProvider.get());
+    StudyCircleInfoActivity_MembersInjector.injectMData(instance, provideDatasProvider.get());
+    return instance;
+  }
+
+  public static final class Builder {
+    private StudyCircleInfoModule studyCircleInfoModule;
+
+    private AppComponent appComponent;
+
+    private Builder() {}
+
+    public StudyCircleInfoComponent build() {
+      if (studyCircleInfoModule == null) {
+        throw new IllegalStateException(
+            StudyCircleInfoModule.class.getCanonicalName() + " must be set");
+      }
+      if (appComponent == null) {
+        throw new IllegalStateException(AppComponent.class.getCanonicalName() + " must be set");
+      }
+      return new DaggerStudyCircleInfoComponent(this);
+    }
+
+    public Builder studyCircleInfoModule(StudyCircleInfoModule studyCircleInfoModule) {
+      this.studyCircleInfoModule = Preconditions.checkNotNull(studyCircleInfoModule);
+      return this;
+    }
+
+    public Builder appComponent(AppComponent appComponent) {
+      this.appComponent = Preconditions.checkNotNull(appComponent);
+      return this;
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_repositoryManager
+      implements Provider<IRepositoryManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_repositoryManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public IRepositoryManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.repositoryManager(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_gson implements Provider<Gson> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_gson(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Gson get() {
+      return Preconditions.checkNotNull(
+          appComponent.gson(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_application
+      implements Provider<Application> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_application(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Application get() {
+      return Preconditions.checkNotNull(
+          appComponent.application(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_rxErrorHandler
+      implements Provider<RxErrorHandler> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_rxErrorHandler(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public RxErrorHandler get() {
+      return Preconditions.checkNotNull(
+          appComponent.rxErrorHandler(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_imageLoader
+      implements Provider<ImageLoader> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_imageLoader(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public ImageLoader get() {
+      return Preconditions.checkNotNull(
+          appComponent.imageLoader(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_appManager
+      implements Provider<AppManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_appManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public AppManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.appManager(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+}

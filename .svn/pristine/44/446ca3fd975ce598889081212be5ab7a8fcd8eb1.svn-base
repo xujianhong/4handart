@@ -1,0 +1,44 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.MineContract;
+import com.daomingedu.art.mvp.model.MineModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MineModule_ProvideMineModelFactory implements Factory<MineContract.Model> {
+  private final MineModule module;
+
+  private final Provider<MineModel> modelProvider;
+
+  public MineModule_ProvideMineModelFactory(MineModule module, Provider<MineModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public MineContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static MineContract.Model provideInstance(
+      MineModule module, Provider<MineModel> modelProvider) {
+    return proxyProvideMineModel(module, modelProvider.get());
+  }
+
+  public static MineModule_ProvideMineModelFactory create(
+      MineModule module, Provider<MineModel> modelProvider) {
+    return new MineModule_ProvideMineModelFactory(module, modelProvider);
+  }
+
+  public static MineContract.Model proxyProvideMineModel(MineModule instance, MineModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideMineModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

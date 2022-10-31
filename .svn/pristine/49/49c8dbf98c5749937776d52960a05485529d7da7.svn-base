@@ -1,0 +1,402 @@
+package com.daomingedu.art.bean;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\"\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0006\n\u0002\u0010\b\n\u0002\bL\n\u0002\u0010\u000b\n\u0002\b\u0005\b\u0086\b\u0018\u0000 [2\u00020\u0001:\u0001[B\u00d5\u0001\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0001\u0012\u0006\u0010\u0005\u001a\u00020\u0003\u0012\u0006\u0010\u0006\u001a\u00020\u0003\u0012\u0006\u0010\u0007\u001a\u00020\u0003\u0012\u0006\u0010\b\u001a\u00020\u0003\u0012\u0006\u0010\t\u001a\u00020\n\u0012\u0006\u0010\u000b\u001a\u00020\u0003\u0012\u0006\u0010\f\u001a\u00020\n\u0012\u0006\u0010\r\u001a\u00020\u0001\u0012\u0006\u0010\u000e\u001a\u00020\u0003\u0012\u0006\u0010\u000f\u001a\u00020\u0003\u0012\u0006\u0010\u0010\u001a\u00020\u0003\u0012\u0006\u0010\u0011\u001a\u00020\u0003\u0012\u0006\u0010\u0012\u001a\u00020\u0003\u0012\u0006\u0010\u0013\u001a\u00020\u0003\u0012\u0006\u0010\u0014\u001a\u00020\u0003\u0012\u0006\u0010\u0015\u001a\u00020\u0003\u0012\u0006\u0010\u0016\u001a\u00020\u0003\u0012\u0006\u0010\u0017\u001a\u00020\u0003\u0012\u0006\u0010\u0018\u001a\u00020\u0001\u0012\u0006\u0010\u0019\u001a\u00020\u0001\u0012\u0006\u0010\u001a\u001a\u00020\u0003\u0012\u0006\u0010\u001b\u001a\u00020\u0003\u0012\u0006\u0010\u001c\u001a\u00020\u0003\u0012\u0006\u0010\u001d\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u001eJ\t\u0010;\u001a\u00020\u0003H\u00c6\u0003J\t\u0010<\u001a\u00020\u0001H\u00c6\u0003J\t\u0010=\u001a\u00020\u0003H\u00c6\u0003J\t\u0010>\u001a\u00020\u0003H\u00c6\u0003J\t\u0010?\u001a\u00020\u0003H\u00c6\u0003J\t\u0010@\u001a\u00020\u0003H\u00c6\u0003J\t\u0010A\u001a\u00020\u0003H\u00c6\u0003J\t\u0010B\u001a\u00020\u0003H\u00c6\u0003J\t\u0010C\u001a\u00020\u0003H\u00c6\u0003J\t\u0010D\u001a\u00020\u0003H\u00c6\u0003J\t\u0010E\u001a\u00020\u0003H\u00c6\u0003J\t\u0010F\u001a\u00020\u0001H\u00c6\u0003J\t\u0010G\u001a\u00020\u0003H\u00c6\u0003J\t\u0010H\u001a\u00020\u0001H\u00c6\u0003J\t\u0010I\u001a\u00020\u0001H\u00c6\u0003J\t\u0010J\u001a\u00020\u0003H\u00c6\u0003J\t\u0010K\u001a\u00020\u0003H\u00c6\u0003J\t\u0010L\u001a\u00020\u0003H\u00c6\u0003J\t\u0010M\u001a\u00020\u0003H\u00c6\u0003J\t\u0010N\u001a\u00020\u0003H\u00c6\u0003J\t\u0010O\u001a\u00020\u0003H\u00c6\u0003J\t\u0010P\u001a\u00020\u0003H\u00c6\u0003J\t\u0010Q\u001a\u00020\u0003H\u00c6\u0003J\t\u0010R\u001a\u00020\nH\u00c6\u0003J\t\u0010S\u001a\u00020\u0003H\u00c6\u0003J\t\u0010T\u001a\u00020\nH\u00c6\u0003J\u008d\u0002\u0010U\u001a\u00020\u00002\b\b\u0002\u0010\u0002\u001a\u00020\u00032\b\b\u0002\u0010\u0004\u001a\u00020\u00012\b\b\u0002\u0010\u0005\u001a\u00020\u00032\b\b\u0002\u0010\u0006\u001a\u00020\u00032\b\b\u0002\u0010\u0007\u001a\u00020\u00032\b\b\u0002\u0010\b\u001a\u00020\u00032\b\b\u0002\u0010\t\u001a\u00020\n2\b\b\u0002\u0010\u000b\u001a\u00020\u00032\b\b\u0002\u0010\f\u001a\u00020\n2\b\b\u0002\u0010\r\u001a\u00020\u00012\b\b\u0002\u0010\u000e\u001a\u00020\u00032\b\b\u0002\u0010\u000f\u001a\u00020\u00032\b\b\u0002\u0010\u0010\u001a\u00020\u00032\b\b\u0002\u0010\u0011\u001a\u00020\u00032\b\b\u0002\u0010\u0012\u001a\u00020\u00032\b\b\u0002\u0010\u0013\u001a\u00020\u00032\b\b\u0002\u0010\u0014\u001a\u00020\u00032\b\b\u0002\u0010\u0015\u001a\u00020\u00032\b\b\u0002\u0010\u0016\u001a\u00020\u00032\b\b\u0002\u0010\u0017\u001a\u00020\u00032\b\b\u0002\u0010\u0018\u001a\u00020\u00012\b\b\u0002\u0010\u0019\u001a\u00020\u00012\b\b\u0002\u0010\u001a\u001a\u00020\u00032\b\b\u0002\u0010\u001b\u001a\u00020\u00032\b\b\u0002\u0010\u001c\u001a\u00020\u00032\b\b\u0002\u0010\u001d\u001a\u00020\u0003H\u00c6\u0001J\u0013\u0010V\u001a\u00020W2\b\u0010X\u001a\u0004\u0018\u00010\u0001H\u00d6\u0003J\t\u0010Y\u001a\u00020\nH\u00d6\u0001J\t\u0010Z\u001a\u00020\u0003H\u00d6\u0001R\u0011\u0010\u0004\u001a\u00020\u0001\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001f\u0010 R\u0011\u0010\u0005\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b!\u0010\"R\u0011\u0010\u0006\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b#\u0010\"R\u0011\u0010\u0007\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b$\u0010\"R\u0011\u0010\b\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b%\u0010\"R\u0011\u0010\t\u001a\u00020\n\u00a2\u0006\b\n\u0000\u001a\u0004\b&\u0010\'R\u0011\u0010\u000b\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b(\u0010\"R\u0011\u0010\f\u001a\u00020\n\u00a2\u0006\b\n\u0000\u001a\u0004\b)\u0010\'R\u0011\u0010\r\u001a\u00020\u0001\u00a2\u0006\b\n\u0000\u001a\u0004\b\r\u0010 R\u0011\u0010\u000e\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b*\u0010\"R\u0011\u0010\u000f\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b+\u0010\"R\u0011\u0010\u0010\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b,\u0010\"R\u0011\u0010\u0011\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b-\u0010\"R\u0011\u0010\u0012\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b.\u0010\"R\u0011\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b/\u0010\"R\u0011\u0010\u0013\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b0\u0010\"R\u0011\u0010\u0014\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b1\u0010\"R\u0011\u0010\u0015\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b2\u0010\"R\u0011\u0010\u0016\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b3\u0010\"R\u0011\u0010\u0017\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b4\u0010\"R\u0011\u0010\u0018\u001a\u00020\u0001\u00a2\u0006\b\n\u0000\u001a\u0004\b5\u0010 R\u0011\u0010\u0019\u001a\u00020\u0001\u00a2\u0006\b\n\u0000\u001a\u0004\b6\u0010 R\u0011\u0010\u001a\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b7\u0010\"R\u0011\u0010\u001b\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b8\u0010\"R\u0011\u0010\u001c\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b9\u0010\"R\u0011\u0010\u001d\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b:\u0010\"\u00a8\u0006\\"}, d2 = {"Lcom/daomingedu/art/bean/StudentBeanMusicVideo;", "", "statusText", "", "auditDate", "auditUser", "createTime", "id", "imgA", "imgAScore", "", "imgB", "imgBScore", "isAudit", "majorId", "majorLevelId", "majorLevelSongId", "majorLevelSongImg", "musicSongId", "studentId", "testId", "testSignId", "testSignMajorId", "typeId", "uploadDate", "uploadNum", "videoCreateData", "videoPath", "videoSize", "videoTransPath", "(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;ILjava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", "getAuditDate", "()Ljava/lang/Object;", "getAuditUser", "()Ljava/lang/String;", "getCreateTime", "getId", "getImgA", "getImgAScore", "()I", "getImgB", "getImgBScore", "getMajorId", "getMajorLevelId", "getMajorLevelSongId", "getMajorLevelSongImg", "getMusicSongId", "getStatusText", "getStudentId", "getTestId", "getTestSignId", "getTestSignMajorId", "getTypeId", "getUploadDate", "getUploadNum", "getVideoCreateData", "getVideoPath", "getVideoSize", "getVideoTransPath", "component1", "component10", "component11", "component12", "component13", "component14", "component15", "component16", "component17", "component18", "component19", "component2", "component20", "component21", "component22", "component23", "component24", "component25", "component26", "component3", "component4", "component5", "component6", "component7", "component8", "component9", "copy", "equals", "", "other", "hashCode", "toString", "Companion", "app_debug"})
+public final class StudentBeanMusicVideo {
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String statusText = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.Object auditDate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String auditUser = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String createTime = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String id = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String imgA = null;
+    private final int imgAScore = 0;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String imgB = null;
+    private final int imgBScore = 0;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.Object isAudit = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String majorId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String majorLevelId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String majorLevelSongId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String majorLevelSongImg = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String musicSongId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String studentId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String testId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String testSignId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String testSignMajorId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String typeId = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.Object uploadDate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.Object uploadNum = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String videoCreateData = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String videoPath = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String videoSize = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String videoTransPath = null;
+    public static final com.daomingedu.art.bean.StudentBeanMusicVideo.Companion Companion = null;
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getStatusText() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object getAuditDate() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getAuditUser() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getCreateTime() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getImgA() {
+        return null;
+    }
+    
+    public final int getImgAScore() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getImgB() {
+        return null;
+    }
+    
+    public final int getImgBScore() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object isAudit() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getMajorId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getMajorLevelId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getMajorLevelSongId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getMajorLevelSongImg() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getMusicSongId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getStudentId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getTestId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getTestSignId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getTestSignMajorId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getTypeId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object getUploadDate() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object getUploadNum() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getVideoCreateData() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getVideoPath() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getVideoSize() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getVideoTransPath() {
+        return null;
+    }
+    
+    public StudentBeanMusicVideo(@org.jetbrains.annotations.NotNull()
+    java.lang.String statusText, @org.jetbrains.annotations.NotNull()
+    java.lang.Object auditDate, @org.jetbrains.annotations.NotNull()
+    java.lang.String auditUser, @org.jetbrains.annotations.NotNull()
+    java.lang.String createTime, @org.jetbrains.annotations.NotNull()
+    java.lang.String id, @org.jetbrains.annotations.NotNull()
+    java.lang.String imgA, int imgAScore, @org.jetbrains.annotations.NotNull()
+    java.lang.String imgB, int imgBScore, @org.jetbrains.annotations.NotNull()
+    java.lang.Object isAudit, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelSongId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelSongImg, @org.jetbrains.annotations.NotNull()
+    java.lang.String musicSongId, @org.jetbrains.annotations.NotNull()
+    java.lang.String studentId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testSignId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testSignMajorId, @org.jetbrains.annotations.NotNull()
+    java.lang.String typeId, @org.jetbrains.annotations.NotNull()
+    java.lang.Object uploadDate, @org.jetbrains.annotations.NotNull()
+    java.lang.Object uploadNum, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoCreateData, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoPath, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoSize, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoTransPath) {
+        super();
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component1() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object component2() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component3() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component4() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component5() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component6() {
+        return null;
+    }
+    
+    public final int component7() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component8() {
+        return null;
+    }
+    
+    public final int component9() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object component10() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component11() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component12() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component13() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component14() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component15() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component16() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component17() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component18() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component19() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component20() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object component21() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.Object component22() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component23() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component24() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component25() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component26() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.bean.StudentBeanMusicVideo copy(@org.jetbrains.annotations.NotNull()
+    java.lang.String statusText, @org.jetbrains.annotations.NotNull()
+    java.lang.Object auditDate, @org.jetbrains.annotations.NotNull()
+    java.lang.String auditUser, @org.jetbrains.annotations.NotNull()
+    java.lang.String createTime, @org.jetbrains.annotations.NotNull()
+    java.lang.String id, @org.jetbrains.annotations.NotNull()
+    java.lang.String imgA, int imgAScore, @org.jetbrains.annotations.NotNull()
+    java.lang.String imgB, int imgBScore, @org.jetbrains.annotations.NotNull()
+    java.lang.Object isAudit, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelSongId, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelSongImg, @org.jetbrains.annotations.NotNull()
+    java.lang.String musicSongId, @org.jetbrains.annotations.NotNull()
+    java.lang.String studentId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testSignId, @org.jetbrains.annotations.NotNull()
+    java.lang.String testSignMajorId, @org.jetbrains.annotations.NotNull()
+    java.lang.String typeId, @org.jetbrains.annotations.NotNull()
+    java.lang.Object uploadDate, @org.jetbrains.annotations.NotNull()
+    java.lang.Object uploadNum, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoCreateData, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoPath, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoSize, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoTransPath) {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public java.lang.String toString() {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public int hashCode() {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public boolean equals(@org.jetbrains.annotations.Nullable()
+    java.lang.Object p0) {
+        return false;
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u001e\u0010\u0003\u001a\u0012\u0012\u0004\u0012\u00020\u00050\u0004j\b\u0012\u0004\u0012\u00020\u0005`\u00062\u0006\u0010\u0007\u001a\u00020\b\u00a8\u0006\t"}, d2 = {"Lcom/daomingedu/art/bean/StudentBeanMusicVideo$Companion;", "", "()V", "getListData", "Ljava/util/ArrayList;", "Lcom/daomingedu/art/bean/StudentBeanMusicVideo;", "Lkotlin/collections/ArrayList;", "result", "", "app_debug"})
+    public static final class Companion {
+        
+        @org.jetbrains.annotations.NotNull()
+        public final java.util.ArrayList<com.daomingedu.art.bean.StudentBeanMusicVideo> getListData(@org.jetbrains.annotations.NotNull()
+        java.lang.String result) {
+            return null;
+        }
+        
+        private Companion() {
+            super();
+        }
+    }
+}

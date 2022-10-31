@@ -1,0 +1,37 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.NewsBean;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeModule_ProvideDatasFactory implements Factory<List<NewsBean>> {
+  private final HomeModule module;
+
+  public HomeModule_ProvideDatasFactory(HomeModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public List<NewsBean> get() {
+    return provideInstance(module);
+  }
+
+  public static List<NewsBean> provideInstance(HomeModule module) {
+    return proxyProvideDatas(module);
+  }
+
+  public static HomeModule_ProvideDatasFactory create(HomeModule module) {
+    return new HomeModule_ProvideDatasFactory(module);
+  }
+
+  public static List<NewsBean> proxyProvideDatas(HomeModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideDatas(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

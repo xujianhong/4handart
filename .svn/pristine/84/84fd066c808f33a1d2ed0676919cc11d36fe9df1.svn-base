@@ -1,0 +1,55 @@
+// Generated code from Butter Knife. Do not modify!
+package com.daomingedu.art.mvp.ui.widget.playrecording;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.daomingedu.art.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class PlayRecordingView_ViewBinding implements Unbinder {
+  private PlayRecordingView target;
+
+  @UiThread
+  public PlayRecordingView_ViewBinding(PlayRecordingView target) {
+    this(target, target);
+  }
+
+  @UiThread
+  public PlayRecordingView_ViewBinding(PlayRecordingView target, View source) {
+    this.target = target;
+
+    target.ib_pause = Utils.findRequiredViewAsType(source, R.id.ib_pause, "field 'ib_pause'", ImageButton.class);
+    target.tv_time_current = Utils.findRequiredViewAsType(source, R.id.tv_time_current, "field 'tv_time_current'", TextView.class);
+    target.sb_progress = Utils.findRequiredViewAsType(source, R.id.sb_progress, "field 'sb_progress'", SeekBar.class);
+    target.tv_time = Utils.findRequiredViewAsType(source, R.id.tv_time, "field 'tv_time'", TextView.class);
+    target.pb_loading = Utils.findRequiredViewAsType(source, R.id.pb_loading, "field 'pb_loading'", ProgressBar.class);
+    target.video_loading = Utils.findRequiredViewAsType(source, R.id.video_loading, "field 'video_loading'", FrameLayout.class);
+    target.rl_recordingView = Utils.findRequiredViewAsType(source, R.id.rl_recordingView, "field 'rl_recordingView'", RelativeLayout.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    PlayRecordingView target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
+
+    target.ib_pause = null;
+    target.tv_time_current = null;
+    target.sb_progress = null;
+    target.tv_time = null;
+    target.pb_loading = null;
+    target.video_loading = null;
+    target.rl_recordingView = null;
+  }
+}

@@ -1,0 +1,56 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.StudyCircleInfoPresenter;
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter;
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleInfoActivity_MembersInjector
+    implements MembersInjector<StudyCircleInfoActivity> {
+  private final Provider<StudyCircleInfoPresenter> mPresenterProvider;
+
+  private final Provider<ShareInfoAdapter> mAdapterProvider;
+
+  private final Provider<List<ShareInfoMuLtipleItem>> mDataProvider;
+
+  public StudyCircleInfoActivity_MembersInjector(
+      Provider<StudyCircleInfoPresenter> mPresenterProvider,
+      Provider<ShareInfoAdapter> mAdapterProvider,
+      Provider<List<ShareInfoMuLtipleItem>> mDataProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<StudyCircleInfoActivity> create(
+      Provider<StudyCircleInfoPresenter> mPresenterProvider,
+      Provider<ShareInfoAdapter> mAdapterProvider,
+      Provider<List<ShareInfoMuLtipleItem>> mDataProvider) {
+    return new StudyCircleInfoActivity_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(StudyCircleInfoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMAdapter(StudyCircleInfoActivity instance, ShareInfoAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(
+      StudyCircleInfoActivity instance, List<ShareInfoMuLtipleItem> mData) {
+    instance.mData = mData;
+  }
+}

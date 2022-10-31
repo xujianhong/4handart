@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:background="@drawable/btn_select_image_bg"
+    >
+
+    <ImageView
+        android:id="@+id/iv_select_folder"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/no_image" />
+
+    <TextView
+        android:id="@+id/tv_select_folder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tool:text="文件夹名字"
+        android:textColor="@color/colorText"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:layout_gravity="center_vertical"/>
+    <CheckBox
+        android:id="@+id/cb_select_folder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+</LinearLayout>

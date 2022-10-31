@@ -1,0 +1,27 @@
+package com.daomingedu.art.mvp.contract;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/07/2019 21:18
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001:\u0002\u0002\u0003\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/ImageDetailsContract;", "", "Model", "View", "app_release"})
+public abstract interface ImageDetailsContract {
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\n\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001\u00a8\u0006\u0002"}, d2 = {"Lcom/daomingedu/art/mvp/contract/ImageDetailsContract$View;", "Lcom/jess/arms/mvp/IView;", "app_release"})
+    public static abstract interface View extends com.jess.arms.mvp.IView {
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\n\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001\u00a8\u0006\u0002"}, d2 = {"Lcom/daomingedu/art/mvp/contract/ImageDetailsContract$Model;", "Lcom/jess/arms/mvp/IModel;", "app_release"})
+    public static abstract interface Model extends com.jess.arms.mvp.IModel {
+    }
+}

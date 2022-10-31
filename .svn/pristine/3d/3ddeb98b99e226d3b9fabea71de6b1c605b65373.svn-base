@@ -1,0 +1,19 @@
+package com.daomingedu.art.app;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * 放置 AndroidEventBus 的 Tag, 便于检索
+ * Arms 核心库现在并不会依赖某个 EventBus, 要想使用 EventBus, 还请在项目中自行依赖对应的 EventBus
+ * 现在支持两种 EventBus, greenrobot 的 EventBus 和畅销书 《Android源码设计模式解析与实战》的作者 何红辉 所作的 AndroidEventBus
+ *
+ * @see [EventBusTags wiki 官方文档](https://github.com/JessYanCoding/MVPArms/wiki.3.5)
+ * Created by JessYan on 8/30/2016 16:39
+ * [Contact me](mailto:jess.yan.effort@gmail.com)
+ * [Follow me](https://github.com/JessYanCoding)
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\n\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\bf\u0018\u00002\u00020\u0001\u00a8\u0006\u0002"}, d2 = {"Lcom/daomingedu/art/app/EventBusTags;", "", "app_debug"})
+public abstract interface EventBusTags {
+}

@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ForgetPasswordContract;
+import com.daomingedu.art.mvp.model.ForgetPasswordModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ForgetPasswordModule_ProvideForgetPasswordModelFactory
+    implements Factory<ForgetPasswordContract.Model> {
+  private final ForgetPasswordModule module;
+
+  private final Provider<ForgetPasswordModel> modelProvider;
+
+  public ForgetPasswordModule_ProvideForgetPasswordModelFactory(
+      ForgetPasswordModule module, Provider<ForgetPasswordModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public ForgetPasswordContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static ForgetPasswordContract.Model provideInstance(
+      ForgetPasswordModule module, Provider<ForgetPasswordModel> modelProvider) {
+    return proxyProvideForgetPasswordModel(module, modelProvider.get());
+  }
+
+  public static ForgetPasswordModule_ProvideForgetPasswordModelFactory create(
+      ForgetPasswordModule module, Provider<ForgetPasswordModel> modelProvider) {
+    return new ForgetPasswordModule_ProvideForgetPasswordModelFactory(module, modelProvider);
+  }
+
+  public static ForgetPasswordContract.Model proxyProvideForgetPasswordModel(
+      ForgetPasswordModule instance, ForgetPasswordModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideForgetPasswordModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

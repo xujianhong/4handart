@@ -1,0 +1,127 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+
+
+
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+
+import com.daomingedu.art.di.component.DaggerBlockUsersComponent
+import com.daomingedu.art.di.module.BlockUsersModule
+import com.daomingedu.art.mvp.contract.BlockUsersContract
+import com.daomingedu.art.mvp.presenter.BlockUsersPresenter
+
+import com.daomingedu.art.R
+import com.daomingedu.art.mvp.model.entity.BlockUserBean
+import com.daomingedu.art.mvp.ui.adapter.BlockUsersAdapter
+import com.daomingedu.art.mvp.ui.decoration.DividerDecoration
+import com.daomingedu.art.mvp.ui.widget.WrapContentLinearLayoutManager
+import com.daomingedu.art.util.startActivityForResult
+import javax.inject.Inject
+import kotlinx.android.synthetic.main.activity_block_users.*
+import kotlinx.android.synthetic.main.activity_block_users.recyclerView
+import kotlinx.android.synthetic.main.activity_block_users.swipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_study_circle.*
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 06/02/2019 23:11
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class BlockUsersActivity : BaseActivity<BlockUsersPresenter>(), BlockUsersContract.View {
+
+    @Inject
+    lateinit var mAdapter:BlockUsersAdapter
+    @Inject
+    lateinit var mData:MutableList<BlockUserBean>
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerBlockUsersComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .blockUsersModule(BlockUsersModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_block_users //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        title = "屏蔽用户"
+        swipeRefreshLayout.setOnRefreshListener {
+            mPresenter?.myReport(true)
+        }
+        val itemDecoration = DividerDecoration(resources.getColor(R.color.color_969696),1)
+        itemDecoration.setDrawLastItem(false)
+        recyclerView.addItemDecoration(itemDecoration)
+        recyclerView.layoutManager =  WrapContentLinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        recyclerView.adapter = mAdapter.apply {
+            setOnItemChildClickListener { adapter, view, position ->
+                when(view.id){
+                    R.id.btnCancelBlock -> {
+                        AlertDialog.Builder(this@BlockUsersActivity).setTitle("是否取消屏蔽?")
+                            .setNegativeButton("否",null)
+                            .setPositiveButton("是") { _, _ -> mPresenter?.delReport(mData[position].reportId,position) }
+                            .show()
+                    }
+                }
+            }
+            setOnLoadMoreListener({
+                mPresenter?.myReport(false)
+            }, recyclerView)
+            setEnableLoadMore(true)
+        }
+        mPresenter?.myReport(true)
+    }
+
+
+    override fun showLoading() {
+        swipeRefreshLayout.isRefreshing = true
+    }
+
+    override fun hideLoading() {
+        swipeRefreshLayout.isRefreshing = false
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+}

@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.PersonInfoContract;
+import com.daomingedu.art.mvp.model.PersonInfoModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class PersonInfoModule_ProvidePersonInfoModelFactory
+    implements Factory<PersonInfoContract.Model> {
+  private final PersonInfoModule module;
+
+  private final Provider<PersonInfoModel> modelProvider;
+
+  public PersonInfoModule_ProvidePersonInfoModelFactory(
+      PersonInfoModule module, Provider<PersonInfoModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public PersonInfoContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static PersonInfoContract.Model provideInstance(
+      PersonInfoModule module, Provider<PersonInfoModel> modelProvider) {
+    return proxyProvidePersonInfoModel(module, modelProvider.get());
+  }
+
+  public static PersonInfoModule_ProvidePersonInfoModelFactory create(
+      PersonInfoModule module, Provider<PersonInfoModel> modelProvider) {
+    return new PersonInfoModule_ProvidePersonInfoModelFactory(module, modelProvider);
+  }
+
+  public static PersonInfoContract.Model proxyProvidePersonInfoModel(
+      PersonInfoModule instance, PersonInfoModel model) {
+    return Preconditions.checkNotNull(
+        instance.providePersonInfoModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

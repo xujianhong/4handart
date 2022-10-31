@@ -1,0 +1,134 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000~\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0004\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u0004B\u0005\u00a2\u0006\u0002\u0010\u0005J\b\u0010\u001e\u001a\u00020\u001fH\u0016J\u0012\u0010 \u001a\u00020\u001f2\b\u0010!\u001a\u0004\u0018\u00010\"H\u0016J\u000e\u0010#\u001a\u00020\u001f2\u0006\u0010$\u001a\u00020%J\u0012\u0010&\u001a\u00020\'2\b\u0010!\u001a\u0004\u0018\u00010\"H\u0016J\b\u0010(\u001a\u00020\u001fH\u0016J\u0010\u0010)\u001a\u00020\u001f2\u0006\u0010*\u001a\u00020+H\u0016J\u0010\u0010,\u001a\u00020\u001f2\u0006\u0010-\u001a\u00020.H\u0016J\b\u0010/\u001a\u00020\u001fH\u0014J\u001a\u00100\u001a\u0002012\u0006\u00102\u001a\u00020\'2\b\u00103\u001a\u0004\u0018\u000104H\u0016J\b\u00105\u001a\u00020\u001fH\u0014J\b\u00106\u001a\u00020\u001fH\u0014J\u0010\u00107\u001a\u00020\u001f2\u0006\u00108\u001a\u000209H\u0016J\b\u0010:\u001a\u00020\u001fH\u0016J\u0010\u0010;\u001a\u00020\u001f2\u0006\u0010<\u001a\u00020%H\u0016R\u001c\u0010\u0006\u001a\u0004\u0018\u00010\u0007X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\b\u0010\t\"\u0004\b\n\u0010\u000bR\u001c\u0010\f\u001a\u0004\u0018\u00010\rX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000e\u0010\u000f\"\u0004\b\u0010\u0010\u0011R\u001c\u0010\u0012\u001a\u0004\u0018\u00010\u0013X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0015\"\u0004\b\u0016\u0010\u0017R\u001c\u0010\u0018\u001a\u0004\u0018\u00010\u0019X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001a\u0010\u001b\"\u0004\b\u001c\u0010\u001d\u00a8\u0006="}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/LocalVideoDetailActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/LocalVideoDetailPresenter;", "Lcom/daomingedu/art/mvp/contract/LocalVideoDetailContract$View;", "Lme/jessyan/autosize/internal/CancelAdapt;", "()V", "db", "Landroid/database/sqlite/SQLiteDatabase;", "getDb$app_release", "()Landroid/database/sqlite/SQLiteDatabase;", "setDb$app_release", "(Landroid/database/sqlite/SQLiteDatabase;)V", "helper", "Lcom/daomingedu/art/data/BaseDataHelper;", "getHelper$app_release", "()Lcom/daomingedu/art/data/BaseDataHelper;", "setHelper$app_release", "(Lcom/daomingedu/art/data/BaseDataHelper;)V", "playView", "Lcom/daomingedu/ijkplayertest/widget/PlayView;", "getPlayView", "()Lcom/daomingedu/ijkplayertest/widget/PlayView;", "setPlayView", "(Lcom/daomingedu/ijkplayertest/widget/PlayView;)V", "work", "Lcom/daomingedu/art/mvp/model/LocalWork;", "getWork$app_release", "()Lcom/daomingedu/art/mvp/model/LocalWork;", "setWork$app_release", "(Lcom/daomingedu/art/mvp/model/LocalWork;)V", "hideLoading", "", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initPlay", "path", "", "initView", "", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onConfigurationChanged", "newConfig", "Landroid/content/res/Configuration;", "onDestroy", "onKeyDown", "", "keyCode", "event", "Landroid/view/KeyEvent;", "onPause", "onStart", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showLoading", "showMessage", "message", "app_release"})
+public final class LocalVideoDetailActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.LocalVideoDetailPresenter> implements com.daomingedu.art.mvp.contract.LocalVideoDetailContract.View, me.jessyan.autosize.internal.CancelAdapt {
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.data.BaseDataHelper helper;
+    @org.jetbrains.annotations.Nullable()
+    private android.database.sqlite.SQLiteDatabase db;
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.mvp.model.LocalWork work;
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.ijkplayertest.widget.PlayView playView;
+    private java.util.HashMap _$_findViewCache;
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.data.BaseDataHelper getHelper$app_release() {
+        return null;
+    }
+    
+    public final void setHelper$app_release(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.data.BaseDataHelper p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.database.sqlite.SQLiteDatabase getDb$app_release() {
+        return null;
+    }
+    
+    public final void setDb$app_release(@org.jetbrains.annotations.Nullable()
+    android.database.sqlite.SQLiteDatabase p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.mvp.model.LocalWork getWork$app_release() {
+        return null;
+    }
+    
+    public final void setWork$app_release(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.mvp.model.LocalWork p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.ijkplayertest.widget.PlayView getPlayView() {
+        return null;
+    }
+    
+    public final void setPlayView(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.ijkplayertest.widget.PlayView p0) {
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    public final void initPlay(@org.jetbrains.annotations.NotNull()
+    java.lang.String path) {
+    }
+    
+    @java.lang.Override()
+    public void onConfigurationChanged(@org.jetbrains.annotations.NotNull()
+    android.content.res.Configuration newConfig) {
+    }
+    
+    @java.lang.Override()
+    protected void onDestroy() {
+    }
+    
+    @java.lang.Override()
+    protected void onStart() {
+    }
+    
+    @java.lang.Override()
+    protected void onPause() {
+    }
+    
+    @java.lang.Override()
+    public boolean onKeyDown(int keyCode, @org.jetbrains.annotations.Nullable()
+    android.view.KeyEvent event) {
+        return false;
+    }
+    
+    public LocalVideoDetailActivity() {
+        super();
+    }
+}

@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MainModule_ProvideStudyCircleFragmentFactory
+    implements Factory<StudyCircleFragment> {
+  private final MainModule module;
+
+  public MainModule_ProvideStudyCircleFragmentFactory(MainModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public StudyCircleFragment get() {
+    return provideInstance(module);
+  }
+
+  public static StudyCircleFragment provideInstance(MainModule module) {
+    return proxyProvideStudyCircleFragment(module);
+  }
+
+  public static MainModule_ProvideStudyCircleFragmentFactory create(MainModule module) {
+    return new MainModule_ProvideStudyCircleFragmentFactory(module);
+  }
+
+  public static StudyCircleFragment proxyProvideStudyCircleFragment(MainModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideStudyCircleFragment(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifyPasswordContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyPasswordModule_ProvideModifyPasswordViewFactory
+    implements Factory<ModifyPasswordContract.View> {
+  private final ModifyPasswordModule module;
+
+  public ModifyPasswordModule_ProvideModifyPasswordViewFactory(ModifyPasswordModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public ModifyPasswordContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static ModifyPasswordContract.View provideInstance(ModifyPasswordModule module) {
+    return proxyProvideModifyPasswordView(module);
+  }
+
+  public static ModifyPasswordModule_ProvideModifyPasswordViewFactory create(
+      ModifyPasswordModule module) {
+    return new ModifyPasswordModule_ProvideModifyPasswordViewFactory(module);
+  }
+
+  public static ModifyPasswordContract.View proxyProvideModifyPasswordView(
+      ModifyPasswordModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideModifyPasswordView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

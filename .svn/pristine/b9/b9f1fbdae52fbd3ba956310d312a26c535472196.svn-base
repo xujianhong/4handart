@@ -1,0 +1,68 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.MainPresenter;
+import com.daomingedu.art.mvp.ui.fragment.HomeFragment;
+import com.daomingedu.art.mvp.ui.fragment.MineFragment;
+import com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MainActivity_MembersInjector implements MembersInjector<MainActivity> {
+  private final Provider<MainPresenter> mPresenterProvider;
+
+  private final Provider<HomeFragment> mHomeFragmentProvider;
+
+  private final Provider<StudyCircleFragment> mStudyCircleFragmentProvider;
+
+  private final Provider<MineFragment> mMineFragmentProvider;
+
+  public MainActivity_MembersInjector(
+      Provider<MainPresenter> mPresenterProvider,
+      Provider<HomeFragment> mHomeFragmentProvider,
+      Provider<StudyCircleFragment> mStudyCircleFragmentProvider,
+      Provider<MineFragment> mMineFragmentProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mHomeFragmentProvider = mHomeFragmentProvider;
+    this.mStudyCircleFragmentProvider = mStudyCircleFragmentProvider;
+    this.mMineFragmentProvider = mMineFragmentProvider;
+  }
+
+  public static MembersInjector<MainActivity> create(
+      Provider<MainPresenter> mPresenterProvider,
+      Provider<HomeFragment> mHomeFragmentProvider,
+      Provider<StudyCircleFragment> mStudyCircleFragmentProvider,
+      Provider<MineFragment> mMineFragmentProvider) {
+    return new MainActivity_MembersInjector(
+        mPresenterProvider,
+        mHomeFragmentProvider,
+        mStudyCircleFragmentProvider,
+        mMineFragmentProvider);
+  }
+
+  @Override
+  public void injectMembers(MainActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMHomeFragment(instance, mHomeFragmentProvider.get());
+    injectMStudyCircleFragment(instance, mStudyCircleFragmentProvider.get());
+    injectMMineFragment(instance, mMineFragmentProvider.get());
+  }
+
+  public static void injectMHomeFragment(MainActivity instance, HomeFragment mHomeFragment) {
+    instance.mHomeFragment = mHomeFragment;
+  }
+
+  public static void injectMStudyCircleFragment(
+      MainActivity instance, StudyCircleFragment mStudyCircleFragment) {
+    instance.mStudyCircleFragment = mStudyCircleFragment;
+  }
+
+  public static void injectMMineFragment(MainActivity instance, MineFragment mMineFragment) {
+    instance.mMineFragment = mMineFragment;
+  }
+}

@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.BlockUsersContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class BlockUsersModule_ProvideBlockUsersViewFactory
+    implements Factory<BlockUsersContract.View> {
+  private final BlockUsersModule module;
+
+  public BlockUsersModule_ProvideBlockUsersViewFactory(BlockUsersModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public BlockUsersContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static BlockUsersContract.View provideInstance(BlockUsersModule module) {
+    return proxyProvideBlockUsersView(module);
+  }
+
+  public static BlockUsersModule_ProvideBlockUsersViewFactory create(BlockUsersModule module) {
+    return new BlockUsersModule_ProvideBlockUsersViewFactory(module);
+  }
+
+  public static BlockUsersContract.View proxyProvideBlockUsersView(BlockUsersModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideBlockUsersView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,89 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.lzy.imagepicker"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="27" />
+9-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml
+10
+11    <!-- 在SDCard中创建与删除文件权限 -->
+12    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+12-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:7:5-83
+12-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:7:22-81
+13    <!-- 往SDCard写入数据权限 -->
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:9:5-80
+14-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:9:22-78
+15    <!-- 从SDCard读取数据权限 -->
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:11:5-79
+16-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:11:22-77
+17    <!-- 相机权限 -->
+18    <uses-permission android:name="android.permission.CAMERA" />
+18-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:13:5-64
+18-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:13:22-62
+19
+20    <application>
+20-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:15:5-46:19
+21        <activity android:name="com.lzy.imagepicker.ui.ImageBaseActivity" />
+21-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:16:9-57
+21-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:16:19-55
+22        <activity
+22-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:17:9-20:54
+23            android:name="com.lzy.imagepicker.ui.ImageGridActivity"
+23-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:18:13-49
+24            android:configChanges="orientation|screenSize"
+24-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:19:13-59
+25            android:theme="@style/ImagePickerTheme" />
+25-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:20:13-52
+26        <activity
+26-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:21:9-25:54
+27            android:name="com.lzy.imagepicker.ui.ImageCropActivity"
+27-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:22:13-49
+28            android:configChanges="orientation|screenSize"
+28-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:23:13-59
+29            android:hardwareAccelerated="false"
+29-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:24:13-48
+30            android:theme="@style/ImagePickerTheme" />
+30-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:25:13-52
+31        <activity
+31-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:26:9-29:64
+32            android:name="com.lzy.imagepicker.ui.ImagePreviewActivity"
+32-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:27:13-52
+33            android:configChanges="orientation|screenSize"
+33-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:28:13-59
+34            android:theme="@style/ImagePickerThemeFullScreen" />
+34-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:29:13-62
+35        <activity
+35-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:31:9-34:64
+36            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+36-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:32:13-55
+37            android:configChanges="orientation|screenSize"
+37-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:33:13-59
+38            android:theme="@style/ImagePickerThemeFullScreen" />
+38-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:34:13-62
+39
+40        <provider
+40-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:36:9-44:20
+41            android:name="com.lzy.imagepicker.ImagePickerProvider"
+41-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:37:13-48
+42            android:authorities="dollar_openBracket_applicationId_closeBracket.provider"
+42-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:38:13-60
+43            android:exported="false"
+43-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:39:13-37
+44            android:grantUriPermissions="true" >
+44-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:40:13-47
+45            <meta-data
+45-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:41:13-43:57
+46                android:name="android.support.FILE_PROVIDER_PATHS"
+46-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:42:17-67
+47                android:resource="@xml/provider_paths" />
+47-->C:\E\as_project\handart\4handart\imagepicker\src\main\AndroidManifest.xml:43:17-55
+48        </provider>
+49    </application>
+50
+51</manifest>

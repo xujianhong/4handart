@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_pop_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:gravity="center_horizontal"
+    android:background="@color/black_1f"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_photo"
+        android:background="@drawable/filled_box_top"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/null_bg"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/Select_pic_camera"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_15"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#ccc"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_cancel"
+        android:background="@drawable/filled_box_bottom"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_pick_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/null_bg"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/Select_pic_photo"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_15"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/filled_box"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/null_bg"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/Select_pic_cancel"
+            android:textColor="@color/green_2b"
+            android:textSize="@dimen/text_15"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>

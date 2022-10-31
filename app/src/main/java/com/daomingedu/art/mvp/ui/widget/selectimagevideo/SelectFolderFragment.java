@@ -1,0 +1,99 @@
+package com.daomingedu.art.mvp.ui.widget.selectimagevideo;
+
+import android.app.Dialog;
+import android.os.Bundle;
+
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.daomingedu.art.R;
+import com.daomingedu.art.mvp.ui.widget.selectimagevideo.listener.ItemClickSupport;
+import com.daomingedu.art.mvp.ui.widget.selectimagevideo.listener.OnSelectFolderListener;
+import com.daomingedu.art.mvp.ui.widget.selectimagevideo.listener.RecyclerViewClickListener;
+import com.daomingedu.art.mvp.ui.widget.selectimagevideo.util.FileFolder;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.List;
+
+/**
+ * Created by jianhongxu on 2017/6/18.
+ */
+
+public class SelectFolderFragment extends BottomSheetDialogFragment {
+
+    private BottomSheetBehavior mBehavior;
+
+    List<FileFolder> folders;
+
+    RecyclerView rv_select_folder;
+
+    SelectFolderAdapter adapter;
+    private OnSelectFolderListener mSelectFolderListener;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null)
+            folders = (List<FileFolder>) getArguments().getSerializable("folder");
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        BottomSheetDialog dialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
+        View view = View.inflate(getContext(), R.layout.select_folder_dialog, null);
+        initViews(view);
+        dialog.setContentView(view);
+        mBehavior = BottomSheetBehavior.from((View) view.getParent());
+        return dialog;
+    }
+
+    private void initViews(View view) {
+        rv_select_folder = (RecyclerView) view.findViewById(R.id.rv_select_folder);
+        adapter = new SelectFolderAdapter(getActivity());
+        adapter.setData(folders);
+        rv_select_folder.setHasFixedSize(true);
+        rv_select_folder.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rv_select_folder.setAdapter(adapter);
+        rv_select_folder.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
+        ItemClickSupport.addTo(rv_select_folder).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                
+            }
+        });
+        rv_select_folder.addOnItemTouchListener(new RecyclerViewClickListener(getActivity(),
+                rv_select_folder,
+                new RecyclerViewClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int position) {
+                        if(!folders.get(position).isCheck()){
+                            folders.get(position).setCheck(true);
+                            adapter.notifyItemChanged(position);
+                            if(mSelectFolderListener!=null) {
+                                mSelectFolderListener.onSelectFolder(folders.get(position).getFileParentPath());
+                                mBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onItemLongClick(View v, int position) {
+
+                    }
+                }));
+    }
+
+
+   public void addOnSelectFolderListener(OnSelectFolderListener listener){
+       mSelectFolderListener = listener;
+   }
+
+}

@@ -1,0 +1,40 @@
+package com.daomingedu.art.mvp.ui.activity.presenter;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0010\u000e\n\u0002\b\b\n\u0002\u0010\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\u0015\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\u0002\u0010\u0006J\u0010\u0010\u0014\u001a\u00020\u00152\u0006\u0010\u0016\u001a\u00020\fH\u0016R\u0011\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u0011\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\b\n\u0000\u001a\u0004\b\t\u0010\nR+\u0010\r\u001a\u00020\f2\u0006\u0010\u000b\u001a\u00020\f8B@BX\u0082\u008e\u0002\u00a2\u0006\u0012\n\u0004\b\u0012\u0010\u0013\u001a\u0004\b\u000e\u0010\u000f\"\u0004\b\u0010\u0010\u0011\u00a8\u0006\u0017"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/presenter/FeedbackCompl;", "Lcom/daomingedu/art/mvp/ui/activity/presenter/IFeedbackPresenter;", "context", "Landroid/content/Context;", "iFeedbackView", "Lcom/daomingedu/art/mvp/ui/activity/view/IFeedbackView;", "(Landroid/content/Context;Lcom/daomingedu/art/mvp/ui/activity/view/IFeedbackView;)V", "getContext", "()Landroid/content/Context;", "getIFeedbackView", "()Lcom/daomingedu/art/mvp/ui/activity/view/IFeedbackView;", "<set-?>", "", "sessionId", "getSessionId", "()Ljava/lang/String;", "setSessionId", "(Ljava/lang/String;)V", "sessionId$delegate", "Lcom/daomingedu/art/app/Preference;", "feedback", "", "content", "app_release"})
+public final class FeedbackCompl implements com.daomingedu.art.mvp.ui.activity.presenter.IFeedbackPresenter {
+    private final com.daomingedu.art.app.Preference sessionId$delegate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final android.content.Context context = null;
+    @org.jetbrains.annotations.NotNull()
+    private final com.daomingedu.art.mvp.ui.activity.view.IFeedbackView iFeedbackView = null;
+    
+    private final java.lang.String getSessionId() {
+        return null;
+    }
+    
+    private final void setSessionId(java.lang.String p0) {
+    }
+    
+    @java.lang.Override()
+    public void feedback(@org.jetbrains.annotations.NotNull()
+    java.lang.String content) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.content.Context getContext() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.activity.view.IFeedbackView getIFeedbackView() {
+        return null;
+    }
+    
+    public FeedbackCompl(@org.jetbrains.annotations.NotNull()
+    android.content.Context context, @org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.activity.view.IFeedbackView iFeedbackView) {
+        super();
+    }
+}

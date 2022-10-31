@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="horizontal"
+              android:gravity="center_vertical"
+              android:padding="20pt"
+              android:background="@color/white"
+              android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/ivAvatar"
+            android:src="@drawable/avatar_default"
+            android:layout_width="100pt"
+            android:layout_height="100pt"/>
+
+    <TextView
+            android:id="@+id/tvNickName"
+            android:layout_marginStart="20pt"
+            android:text="昵称"
+            android:textSize="30pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    <Button
+            android:id="@+id/btnCancelBlock"
+            android:text="取消屏蔽"
+            android:textSize="34pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

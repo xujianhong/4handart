@@ -1,0 +1,43 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyPasswordModel_MembersInjector
+    implements MembersInjector<ModifyPasswordModel> {
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public ModifyPasswordModel_MembersInjector(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  public static MembersInjector<ModifyPasswordModel> create(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    return new ModifyPasswordModel_MembersInjector(mGsonProvider, mApplicationProvider);
+  }
+
+  @Override
+  public void injectMembers(ModifyPasswordModel instance) {
+    injectMGson(instance, mGsonProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+  }
+
+  public static void injectMGson(ModifyPasswordModel instance, Gson mGson) {
+    instance.mGson = mGson;
+  }
+
+  public static void injectMApplication(ModifyPasswordModel instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="138pt"
+            android:layout_marginBottom="142pt"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="658pt"
+            android:layout_height="80pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt">
+
+            <ImageView
+                android:layout_width="38pt"
+                android:layout_height="38pt"
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_user" />
+
+            <EditText
+                android:id="@+id/etInputPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="输入手机号码"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:textSize="28pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="658pt"
+            android:layout_height="80pt"
+            android:layout_marginTop="50pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt">
+
+            <ImageView
+                android:layout_width="36pt"
+                android:layout_height="40pt"
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_password" />
+
+            <EditText
+                android:id="@+id/etInputPwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="输入密码"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:textSize="28pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="658pt"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="72pt"
+            android:paddingTop="40pt"
+            android:paddingEnd="72pt"
+            android:paddingBottom="54pt">
+
+            <TextView
+                android:id="@+id/tvForgetPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="忘记密码?"
+                android:textColor="@color/color_e4854d"
+                android:textSize="26pt" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="立即注册"
+                android:textColor="@color/color_e4854d"
+                android:textSize="26pt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="658pt"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="72pt"
+            android:layout_marginBottom="30pt"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cbAgree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="勾选代表你同意"
+                android:textSize="24pt" />
+
+            <TextView
+                android:id="@+id/register_user"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="隐私政策"
+                android:textColor="@color/colorAccent"
+                android:textSize="24pt" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="658pt"
+            android:layout_height="80pt"
+            android:background="@drawable/shape_login_register_btn_bg"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="32pt" />
+        <Button
+            android:id="@+id/btnCustomer"
+            android:layout_width="658pt"
+            android:layout_height="80pt"
+            android:layout_marginTop="30pt"
+            android:background="@drawable/shape_login_register_btn_bg"
+            android:text="联系客服"
+            android:textColor="@color/white"
+            android:textSize="32pt" />
+    </LinearLayout>
+
+</ScrollView>

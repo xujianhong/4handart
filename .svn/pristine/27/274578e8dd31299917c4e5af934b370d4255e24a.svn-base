@@ -1,0 +1,56 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ImageDetailsModel_Factory implements Factory<ImageDetailsModel> {
+  private final Provider<IRepositoryManager> repositoryManagerProvider;
+
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public ImageDetailsModel_Factory(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    this.repositoryManagerProvider = repositoryManagerProvider;
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  @Override
+  public ImageDetailsModel get() {
+    return provideInstance(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static ImageDetailsModel provideInstance(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    ImageDetailsModel instance = new ImageDetailsModel(repositoryManagerProvider.get());
+    ImageDetailsModel_MembersInjector.injectMGson(instance, mGsonProvider.get());
+    ImageDetailsModel_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    return instance;
+  }
+
+  public static ImageDetailsModel_Factory create(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    return new ImageDetailsModel_Factory(
+        repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static ImageDetailsModel newImageDetailsModel(IRepositoryManager repositoryManager) {
+    return new ImageDetailsModel(repositoryManager);
+  }
+}

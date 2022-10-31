@@ -1,0 +1,90 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.contract.LoginContract;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LoginPresenter_Factory implements Factory<LoginPresenter> {
+  private final Provider<LoginContract.Model> modelProvider;
+
+  private final Provider<LoginContract.View> rootViewProvider;
+
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  public LoginPresenter_Factory(
+      Provider<LoginContract.Model> modelProvider,
+      Provider<LoginContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    this.modelProvider = modelProvider;
+    this.rootViewProvider = rootViewProvider;
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+  }
+
+  @Override
+  public LoginPresenter get() {
+    return provideInstance(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static LoginPresenter provideInstance(
+      Provider<LoginContract.Model> modelProvider,
+      Provider<LoginContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    LoginPresenter instance = new LoginPresenter(modelProvider.get(), rootViewProvider.get());
+    LoginPresenter_MembersInjector.injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    LoginPresenter_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    LoginPresenter_MembersInjector.injectMImageLoader(instance, mImageLoaderProvider.get());
+    LoginPresenter_MembersInjector.injectMAppManager(instance, mAppManagerProvider.get());
+    return instance;
+  }
+
+  public static LoginPresenter_Factory create(
+      Provider<LoginContract.Model> modelProvider,
+      Provider<LoginContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    return new LoginPresenter_Factory(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static LoginPresenter newLoginPresenter(
+      LoginContract.Model model, LoginContract.View rootView) {
+    return new LoginPresenter(model, rootView);
+  }
+}

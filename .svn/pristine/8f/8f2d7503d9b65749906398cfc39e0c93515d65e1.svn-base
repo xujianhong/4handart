@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.MyStudyCircleContract;
+import com.daomingedu.art.mvp.model.MyStudyCircleModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MyStudyCircleModule_ProvideMyStudyCircleModelFactory
+    implements Factory<MyStudyCircleContract.Model> {
+  private final MyStudyCircleModule module;
+
+  private final Provider<MyStudyCircleModel> modelProvider;
+
+  public MyStudyCircleModule_ProvideMyStudyCircleModelFactory(
+      MyStudyCircleModule module, Provider<MyStudyCircleModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public MyStudyCircleContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static MyStudyCircleContract.Model provideInstance(
+      MyStudyCircleModule module, Provider<MyStudyCircleModel> modelProvider) {
+    return proxyProvideMyStudyCircleModel(module, modelProvider.get());
+  }
+
+  public static MyStudyCircleModule_ProvideMyStudyCircleModelFactory create(
+      MyStudyCircleModule module, Provider<MyStudyCircleModel> modelProvider) {
+    return new MyStudyCircleModule_ProvideMyStudyCircleModelFactory(module, modelProvider);
+  }
+
+  public static MyStudyCircleContract.Model proxyProvideMyStudyCircleModel(
+      MyStudyCircleModule instance, MyStudyCircleModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideMyStudyCircleModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

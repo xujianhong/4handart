@@ -1,0 +1,127 @@
+package com.daomingedu.art.mvp.model.api.service;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u00006\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\b\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0002\bf\u0018\u00002\u00020\u0001Jd\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u0007\u001a\u00020\b2\n\b\u0003\u0010\t\u001a\u0004\u0018\u00010\u00052\n\b\u0003\u0010\n\u001a\u0004\u0018\u00010\u00052\n\b\u0003\u0010\u000b\u001a\u0004\u0018\u00010\u00052\n\b\u0003\u0010\f\u001a\u0004\u0018\u00010\u00052\n\b\u0003\u0010\r\u001a\u0004\u0018\u00010\u0005H\'J(\u0010\u000e\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u000f\u001a\u00020\u0005H\'JB\u0010\u0010\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00120\u00110\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u0013\u001a\u00020\b2\b\b\u0001\u0010\u0014\u001a\u00020\b2\b\b\u0001\u0010\u0015\u001a\u00020\bH\'J2\u0010\u0016\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u000f\u001a\u00020\u00052\b\b\u0001\u0010\u0017\u001a\u00020\u0005H\'J(\u0010\u0018\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00190\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u000f\u001a\u00020\u0005H\'J(\u0010\u001a\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00052\b\b\u0001\u0010\u000f\u001a\u00020\u0005H\'\u00a8\u0006\u001b"}, d2 = {"Lcom/daomingedu/art/mvp/model/api/service/ShareService;", "", "createShare", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "", "sessionId", "shareType", "", "remark", "previewImage", "filePath", "imageUrls", "imageSmallUrls", "delShare", "shareId", "getShareList", "", "Lcom/daomingedu/art/mvp/model/entity/ShareBean;", "isMy", "start", "size", "shareComment", "comment", "shareDetail", "Lcom/daomingedu/art/mvp/model/entity/ShareDetailBean;", "shareLike", "app_release"})
+public abstract interface ShareService {
+    
+    /**
+     * 创建分享
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param shareType 1图片 2录音 3视频
+     * @param remark    分享描述
+     * @param previewImage  如果是视频，视频首帧图片path
+     * @param filePath  如果是音频或者视频，文件path
+     * @param imageUrls 如果是图片，图片的url，多个以逗号间隔
+     * @param imageSmallUrls    如果是图片，略缩图片的urls，多个以逗号间隔
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/createShare")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.String>> createShare(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @retrofit2.http.Field(value = "shareType")
+    int shareType, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "remark")
+    java.lang.String remark, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "previewImage")
+    java.lang.String previewImage, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "filePath")
+    java.lang.String filePath, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "imageUrls")
+    java.lang.String imageUrls, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "imageSmallUrls")
+    java.lang.String imageSmallUrls);
+    
+    /**
+     * 分享列表
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param isMy  此处传1获取我的分享列表，传0获取全部分享列表
+     * @param start 开始行号
+     * @param size  每页行数
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/getShareList")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.ShareBean>>> getShareList(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @retrofit2.http.Field(value = "isMy")
+    int isMy, @retrofit2.http.Field(value = "start")
+    int start, @retrofit2.http.Field(value = "size")
+    int size);
+    
+    /**
+     * 删除分享
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param shareId   shareId
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/delShare")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> delShare(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "shareId")
+    java.lang.String shareId);
+    
+    /**
+     * 分享详情
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param shareId   shareId
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/shareDetail")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.ShareDetailBean>> shareDetail(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "shareId")
+    java.lang.String shareId);
+    
+    /**
+     * 提交评论
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param shareId   shareId
+     * @param comment   评论内容
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/shareComment")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> shareComment(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "shareId")
+    java.lang.String shareId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "comment")
+    java.lang.String comment);
+    
+    /**
+     * 点赞分享(再次点赞为取消点赞)
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param shareId   shareId
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/share/shareLike")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> shareLike(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "shareId")
+    java.lang.String shareId);
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 3)
+    public final class DefaultImpls {
+    }
+}

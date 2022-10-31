@@ -1,0 +1,41 @@
+package com.daomingedu.art.mvp.contract;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/13/2019 21:25
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001:\u0002\u0002\u0003\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/CertificationContract;", "", "Model", "View", "app_debug"})
+public abstract interface CertificationContract {
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J\b\u0010\u0002\u001a\u00020\u0003H&\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/CertificationContract$View;", "Lcom/jess/arms/mvp/IView;", "requestSaveCerSuccess", "", "app_debug"})
+    public static abstract interface View extends com.jess.arms.mvp.IView {
+        
+        public abstract void requestSaveCerSuccess();
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u00002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010$\n\u0000\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J4\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\u0006\u0010\u0006\u001a\u00020\u00072\u0006\u0010\b\u001a\u00020\u00072\u0006\u0010\t\u001a\u00020\u00072\u0006\u0010\n\u001a\u00020\u0007H&J<\u0010\u000b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\f0\u00040\u00032\u0012\u0010\r\u001a\u000e\u0012\u0004\u0012\u00020\u0007\u0012\u0004\u0012\u00020\u00070\u000e2\u0012\u0010\u000f\u001a\u000e\u0012\u0004\u0012\u00020\u0007\u0012\u0004\u0012\u00020\u00100\u000eH&\u00a8\u0006\u0011"}, d2 = {"Lcom/daomingedu/art/mvp/contract/CertificationContract$Model;", "Lcom/jess/arms/mvp/IModel;", "saveCer", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "", "sessionId", "", "name", "idNumber", "phonePath", "uploadFile", "Lcom/daomingedu/art/mvp/model/entity/UploadInfoBean;", "options", "", "externalFileParameters", "Lcom/daomingedu/art/app/UploadFileRequestBody;", "app_debug"})
+    public static abstract interface Model extends com.jess.arms.mvp.IModel {
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> saveCer(@org.jetbrains.annotations.NotNull()
+        java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+        java.lang.String name, @org.jetbrains.annotations.NotNull()
+        java.lang.String idNumber, @org.jetbrains.annotations.NotNull()
+        java.lang.String phonePath);
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.UploadInfoBean>> uploadFile(@org.jetbrains.annotations.NotNull()
+        java.util.Map<java.lang.String, java.lang.String> options, @org.jetbrains.annotations.NotNull()
+        java.util.Map<java.lang.String, com.daomingedu.art.app.UploadFileRequestBody> externalFileParameters);
+    }
+}

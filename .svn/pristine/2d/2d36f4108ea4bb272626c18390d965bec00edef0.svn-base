@@ -1,0 +1,56 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadShareModel_Factory implements Factory<UploadShareModel> {
+  private final Provider<IRepositoryManager> repositoryManagerProvider;
+
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public UploadShareModel_Factory(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    this.repositoryManagerProvider = repositoryManagerProvider;
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  @Override
+  public UploadShareModel get() {
+    return provideInstance(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static UploadShareModel provideInstance(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    UploadShareModel instance = new UploadShareModel(repositoryManagerProvider.get());
+    UploadShareModel_MembersInjector.injectMGson(instance, mGsonProvider.get());
+    UploadShareModel_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    return instance;
+  }
+
+  public static UploadShareModel_Factory create(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    return new UploadShareModel_Factory(
+        repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static UploadShareModel newUploadShareModel(IRepositoryManager repositoryManager) {
+    return new UploadShareModel(repositoryManager);
+  }
+}

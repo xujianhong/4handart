@@ -1,0 +1,55 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LoginModel_Factory implements Factory<LoginModel> {
+  private final Provider<IRepositoryManager> repositoryManagerProvider;
+
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public LoginModel_Factory(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    this.repositoryManagerProvider = repositoryManagerProvider;
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  @Override
+  public LoginModel get() {
+    return provideInstance(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static LoginModel provideInstance(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    LoginModel instance = new LoginModel(repositoryManagerProvider.get());
+    LoginModel_MembersInjector.injectMGson(instance, mGsonProvider.get());
+    LoginModel_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    return instance;
+  }
+
+  public static LoginModel_Factory create(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    return new LoginModel_Factory(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static LoginModel newLoginModel(IRepositoryManager repositoryManager) {
+    return new LoginModel(repositoryManager);
+  }
+}

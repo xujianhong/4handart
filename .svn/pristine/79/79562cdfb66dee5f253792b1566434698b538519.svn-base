@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.UploadShareContract;
+import com.daomingedu.art.mvp.model.UploadShareModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadShareModule_ProvideUploadShareModelFactory
+    implements Factory<UploadShareContract.Model> {
+  private final UploadShareModule module;
+
+  private final Provider<UploadShareModel> modelProvider;
+
+  public UploadShareModule_ProvideUploadShareModelFactory(
+      UploadShareModule module, Provider<UploadShareModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public UploadShareContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static UploadShareContract.Model provideInstance(
+      UploadShareModule module, Provider<UploadShareModel> modelProvider) {
+    return proxyProvideUploadShareModel(module, modelProvider.get());
+  }
+
+  public static UploadShareModule_ProvideUploadShareModelFactory create(
+      UploadShareModule module, Provider<UploadShareModel> modelProvider) {
+    return new UploadShareModule_ProvideUploadShareModelFactory(module, modelProvider);
+  }
+
+  public static UploadShareContract.Model proxyProvideUploadShareModel(
+      UploadShareModule instance, UploadShareModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideUploadShareModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

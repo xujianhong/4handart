@@ -1,0 +1,31 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.ForgetPasswordPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ForgetPasswordActivity_MembersInjector
+    implements MembersInjector<ForgetPasswordActivity> {
+  private final Provider<ForgetPasswordPresenter> mPresenterProvider;
+
+  public ForgetPasswordActivity_MembersInjector(
+      Provider<ForgetPasswordPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<ForgetPasswordActivity> create(
+      Provider<ForgetPasswordPresenter> mPresenterProvider) {
+    return new ForgetPasswordActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(ForgetPasswordActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

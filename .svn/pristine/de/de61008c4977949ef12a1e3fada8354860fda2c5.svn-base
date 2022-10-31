@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:paddingStart="30pt"
+        android:paddingEnd="30pt"
+        android:layout_height="108pt">
+
+    <TextView
+            android:id="@+id/tvTitle"
+            android:layout_marginEnd="30pt"
+            app:layout_constraintEnd_toStartOf="@id/view1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="重庆考级"
+            android:textSize="30pt"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/tvSubTitle"/>
+
+    <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_marginEnd="30pt"
+            app:layout_constraintEnd_toStartOf="@id/view1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:textSize="20pt"
+            app:layout_constrainedWidth="true"
+            android:textColor="@color/color_333333"
+            android:text="重庆音乐家协会考级中心"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            />
+
+    <ImageView
+            android:id="@+id/view1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_width="12pt"
+            android:layout_height="22pt"/>
+</android.support.constraint.ConstraintLayout>

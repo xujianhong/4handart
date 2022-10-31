@@ -1,0 +1,37 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.ShareBean;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleModule_ProvideDatasFactory implements Factory<List<ShareBean>> {
+  private final StudyCircleModule module;
+
+  public StudyCircleModule_ProvideDatasFactory(StudyCircleModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public List<ShareBean> get() {
+    return provideInstance(module);
+  }
+
+  public static List<ShareBean> provideInstance(StudyCircleModule module) {
+    return proxyProvideDatas(module);
+  }
+
+  public static StudyCircleModule_ProvideDatasFactory create(StudyCircleModule module) {
+    return new StudyCircleModule_ProvideDatasFactory(module);
+  }
+
+  public static List<ShareBean> proxyProvideDatas(StudyCircleModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideDatas(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,42 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class BlockUsersModel_MembersInjector implements MembersInjector<BlockUsersModel> {
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public BlockUsersModel_MembersInjector(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  public static MembersInjector<BlockUsersModel> create(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    return new BlockUsersModel_MembersInjector(mGsonProvider, mApplicationProvider);
+  }
+
+  @Override
+  public void injectMembers(BlockUsersModel instance) {
+    injectMGson(instance, mGsonProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+  }
+
+  public static void injectMGson(BlockUsersModel instance, Gson mGson) {
+    instance.mGson = mGson;
+  }
+
+  public static void injectMApplication(BlockUsersModel instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+}

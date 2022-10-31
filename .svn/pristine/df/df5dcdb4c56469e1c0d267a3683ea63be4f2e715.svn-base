@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.LocalWorkContract;
+import com.daomingedu.art.mvp.model.LocalWorkModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LocalWorkModule_ProvideLocalWorkModelFactory
+    implements Factory<LocalWorkContract.Model> {
+  private final LocalWorkModule module;
+
+  private final Provider<LocalWorkModel> modelProvider;
+
+  public LocalWorkModule_ProvideLocalWorkModelFactory(
+      LocalWorkModule module, Provider<LocalWorkModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public LocalWorkContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static LocalWorkContract.Model provideInstance(
+      LocalWorkModule module, Provider<LocalWorkModel> modelProvider) {
+    return proxyProvideLocalWorkModel(module, modelProvider.get());
+  }
+
+  public static LocalWorkModule_ProvideLocalWorkModelFactory create(
+      LocalWorkModule module, Provider<LocalWorkModel> modelProvider) {
+    return new LocalWorkModule_ProvideLocalWorkModelFactory(module, modelProvider);
+  }
+
+  public static LocalWorkContract.Model proxyProvideLocalWorkModel(
+      LocalWorkModule instance, LocalWorkModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideLocalWorkModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

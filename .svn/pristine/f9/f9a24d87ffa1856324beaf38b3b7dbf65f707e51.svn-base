@@ -1,0 +1,74 @@
+package com.daomingedu.art.mvp.model;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 20:07
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000R\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0010\u0000\n\u0002\b\u0002\b\u0007\u0018\u00002\u00020\u00012\u00020\u0002B\u000f\b\u0007\u0012\u0006\u0010\u0003\u001a\u00020\u0004\u00a2\u0006\u0002\u0010\u0005J\b\u0010\u0012\u001a\u00020\u0013H\u0016JX\u0010\u0014\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00170\u00160\u00152\u0006\u0010\u0018\u001a\u00020\u00192\u0006\u0010\u001a\u001a\u00020\u00192\u0006\u0010\u001b\u001a\u00020\u00192\u0006\u0010\u001c\u001a\u00020\u001d2\b\u0010\u001e\u001a\u0004\u0018\u00010\u00192\b\u0010\u001f\u001a\u0004\u0018\u00010\u00192\u0006\u0010 \u001a\u00020\u001d2\u0006\u0010!\u001a\u00020\u0019H\u0016J,\u0010\"\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020#0\u00160\u00152\u0006\u0010\u0018\u001a\u00020\u00192\u0006\u0010\u001a\u001a\u00020\u00192\u0006\u0010$\u001a\u00020\u001dH\u0016R\u001e\u0010\u0006\u001a\u00020\u00078\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\b\u0010\t\"\u0004\b\n\u0010\u000bR\u001e\u0010\f\u001a\u00020\r8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000e\u0010\u000f\"\u0004\b\u0010\u0010\u0011\u00a8\u0006%"}, d2 = {"Lcom/daomingedu/art/mvp/model/RegisterModel;", "Lcom/jess/arms/mvp/BaseModel;", "Lcom/daomingedu/art/mvp/contract/RegisterContract$Model;", "repositoryManager", "Lcom/jess/arms/integration/IRepositoryManager;", "(Lcom/jess/arms/integration/IRepositoryManager;)V", "mApplication", "Landroid/app/Application;", "getMApplication", "()Landroid/app/Application;", "setMApplication", "(Landroid/app/Application;)V", "mGson", "Lcom/google/gson/Gson;", "getMGson", "()Lcom/google/gson/Gson;", "setMGson", "(Lcom/google/gson/Gson;)V", "onDestroy", "", "reg", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/RegisterBean;", "key", "", "mobile", "password", "channel", "", "pushId", "deviceNo", "versionCode", "code", "sendSMS", "", "type", "app_debug"})
+@com.jess.arms.di.scope.ActivityScope()
+public final class RegisterModel extends com.jess.arms.mvp.BaseModel implements com.daomingedu.art.mvp.contract.RegisterContract.Model {
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.google.gson.Gson mGson;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public android.app.Application mApplication;
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> sendSMS(@org.jetbrains.annotations.NotNull()
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    java.lang.String mobile, int type) {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.RegisterBean>> reg(@org.jetbrains.annotations.NotNull()
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    java.lang.String mobile, @org.jetbrains.annotations.NotNull()
+    java.lang.String password, int channel, @org.jetbrains.annotations.Nullable()
+    java.lang.String pushId, @org.jetbrains.annotations.Nullable()
+    java.lang.String deviceNo, int versionCode, @org.jetbrains.annotations.NotNull()
+    java.lang.String code) {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.google.gson.Gson getMGson() {
+        return null;
+    }
+    
+    public final void setMGson(@org.jetbrains.annotations.NotNull()
+    com.google.gson.Gson p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.app.Application getMApplication() {
+        return null;
+    }
+    
+    public final void setMApplication(@org.jetbrains.annotations.NotNull()
+    android.app.Application p0) {
+    }
+    
+    @java.lang.Override()
+    public void onDestroy() {
+    }
+    
+    @javax.inject.Inject()
+    public RegisterModel(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.integration.IRepositoryManager repositoryManager) {
+        super(null);
+    }
+}

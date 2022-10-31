@@ -1,0 +1,55 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SplashModel_Factory implements Factory<SplashModel> {
+  private final Provider<IRepositoryManager> repositoryManagerProvider;
+
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public SplashModel_Factory(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    this.repositoryManagerProvider = repositoryManagerProvider;
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  @Override
+  public SplashModel get() {
+    return provideInstance(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static SplashModel provideInstance(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    SplashModel instance = new SplashModel(repositoryManagerProvider.get());
+    SplashModel_MembersInjector.injectMGson(instance, mGsonProvider.get());
+    SplashModel_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    return instance;
+  }
+
+  public static SplashModel_Factory create(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    return new SplashModel_Factory(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static SplashModel newSplashModel(IRepositoryManager repositoryManager) {
+    return new SplashModel(repositoryManager);
+  }
+}

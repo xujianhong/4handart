@@ -1,0 +1,73 @@
+package com.daomingedu.art.app;
+
+import java.lang.System;
+
+/**
+ * Author : zhongwenpeng
+ * Email : 1340751953@qq.com
+ * Time :  2018/2/26
+ * Description :
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000e\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0005\u0018\u0000 \u0015*\u0004\b\u0000\u0010\u00012\u000e\u0012\u0004\u0012\u00020\u0003\u0012\u0004\u0012\u0002H\u00010\u0002:\u0001\u0015B\u0015\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u0012\u0006\u0010\u0006\u001a\u00028\u0000\u00a2\u0006\u0002\u0010\u0007J\u001d\u0010\t\u001a\u00028\u00002\u0006\u0010\u0004\u001a\u00020\u00052\u0006\u0010\u0006\u001a\u00028\u0000H\u0002\u00a2\u0006\u0002\u0010\nJ\"\u0010\u000b\u001a\u00028\u00002\u0006\u0010\f\u001a\u00020\u00032\n\u0010\r\u001a\u0006\u0012\u0002\b\u00030\u000eH\u0096\u0002\u00a2\u0006\u0002\u0010\u000fJ\u001d\u0010\u0010\u001a\u00020\u00112\u0006\u0010\u0004\u001a\u00020\u00052\u0006\u0010\u0012\u001a\u00028\u0000H\u0003\u00a2\u0006\u0002\u0010\u0007J*\u0010\u0013\u001a\u00020\u00112\u0006\u0010\f\u001a\u00020\u00032\n\u0010\r\u001a\u0006\u0012\u0002\b\u00030\u000e2\u0006\u0010\u0012\u001a\u00028\u0000H\u0096\u0002\u00a2\u0006\u0002\u0010\u0014R\u0010\u0010\u0006\u001a\u00028\u0000X\u0082\u0004\u00a2\u0006\u0004\n\u0002\u0010\bR\u000e\u0010\u0004\u001a\u00020\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000\u00a8\u0006\u0016"}, d2 = {"Lcom/daomingedu/art/app/Preference;", "T", "Lkotlin/properties/ReadWriteProperty;", "", "key", "", "default", "(Ljava/lang/String;Ljava/lang/Object;)V", "Ljava/lang/Object;", "get", "(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;", "getValue", "thisRef", "property", "Lkotlin/reflect/KProperty;", "(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;", "put", "", "value", "setValue", "(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V", "Companion", "app_debug"})
+public final class Preference<T extends java.lang.Object> implements kotlin.properties.ReadWriteProperty<java.lang.Object, T> {
+    private final java.lang.String key = null;
+    @org.jetbrains.annotations.NotNull()
+    public static android.content.SharedPreferences sharedPreferences;
+    public static final com.daomingedu.art.app.Preference.Companion Companion = null;
+    
+    @java.lang.Override()
+    public T getValue(@org.jetbrains.annotations.NotNull()
+    java.lang.Object thisRef, @org.jetbrains.annotations.NotNull()
+    kotlin.reflect.KProperty<?> property) {
+        return null;
+    }
+    
+    private final T get(java.lang.String key, T p1_772401952) {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public void setValue(@org.jetbrains.annotations.NotNull()
+    java.lang.Object thisRef, @org.jetbrains.annotations.NotNull()
+    kotlin.reflect.KProperty<?> property, T value) {
+    }
+    
+    @android.annotation.SuppressLint(value = {"ApplySharedPref"})
+    private final void put(java.lang.String key, T value) {
+    }
+    
+    public Preference(@org.jetbrains.annotations.NotNull()
+    java.lang.String key, T p1_772401952) {
+        super();
+    }
+    
+    public static final void init(@org.jetbrains.annotations.NotNull()
+    android.content.Context context, @org.jetbrains.annotations.NotNull()
+    java.lang.String name) {
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u0006\u0010\t\u001a\u00020\nJ\u001a\u0010\u000b\u001a\u00020\n2\u0006\u0010\f\u001a\u00020\r2\b\b\u0002\u0010\u000e\u001a\u00020\u000fH\u0007R\u001a\u0010\u0003\u001a\u00020\u0004X\u0086.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0005\u0010\u0006\"\u0004\b\u0007\u0010\b\u00a8\u0006\u0010"}, d2 = {"Lcom/daomingedu/art/app/Preference$Companion;", "", "()V", "sharedPreferences", "Landroid/content/SharedPreferences;", "getSharedPreferences", "()Landroid/content/SharedPreferences;", "setSharedPreferences", "(Landroid/content/SharedPreferences;)V", "clean", "", "init", "context", "Landroid/content/Context;", "name", "", "app_debug"})
+    public static final class Companion {
+        
+        @org.jetbrains.annotations.NotNull()
+        public final android.content.SharedPreferences getSharedPreferences() {
+            return null;
+        }
+        
+        public final void setSharedPreferences(@org.jetbrains.annotations.NotNull()
+        android.content.SharedPreferences p0) {
+        }
+        
+        public final void init(@org.jetbrains.annotations.NotNull()
+        android.content.Context context, @org.jetbrains.annotations.NotNull()
+        java.lang.String name) {
+        }
+        
+        public final void clean() {
+        }
+        
+        private Companion() {
+            super();
+        }
+    }
+}

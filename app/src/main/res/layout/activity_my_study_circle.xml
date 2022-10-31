@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="?attr/actionBarSize">
+        <RelativeLayout
+                android:id="@+id/toolbar_back"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+            <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back_black"/>
+        </RelativeLayout>
+
+        <TextView
+                android:text="我的学习圈"
+                android:layout_gravity="center"
+                android:textColor="@color/color_333333"
+                android:textSize="19sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </FrameLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_d6d6d6"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

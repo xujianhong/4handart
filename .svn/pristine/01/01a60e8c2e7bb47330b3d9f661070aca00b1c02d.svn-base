@@ -1,0 +1,247 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Color
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.view.View
+import com.daomingedu.art.BuildConfig
+
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+
+import com.daomingedu.art.di.component.DaggerMainComponent
+import com.daomingedu.art.di.module.MainModule
+import com.daomingedu.art.mvp.contract.MainContract
+import com.daomingedu.art.mvp.presenter.MainPresenter
+
+import com.daomingedu.art.R
+import com.daomingedu.art.app.visible
+import com.daomingedu.art.mvp.model.entity.VersionBean
+import com.daomingedu.art.mvp.ui.fragment.HomeFragment
+import com.daomingedu.art.mvp.ui.fragment.MineFragment
+import com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment
+import com.daomingedu.art.util.Log
+import com.daomingedu.art.util.SharedPreferencesUtil
+import com.jess.arms.integration.AppManager
+import com.jess.arms.utils.Preconditions
+import constant.UiType
+import kotlinx.android.synthetic.main.activity_main.*
+import me.jessyan.autosize.AutoSizeCompat
+import model.UiConfig
+import model.UpdateConfig
+import update.UpdateAppUtils
+import java.io.File
+import javax.inject.Inject
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 20:27
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class MainActivity : BaseActivity<MainPresenter>(), MainContract.View, View.OnClickListener {
+    override fun requestVersionInfoSuccess(data: VersionBean?) {
+        data?.let {
+            llTabStudyCircle.visible(it.isOpenShare==1)
+            SharedPreferencesUtil.setIsShowButton(this, it.isShowButton)
+            SharedPreferencesUtil.setIsShowFolder(this, it.isShowFolder)
+            SharedPreferencesUtil.setIsShowVideo(this, it.isShowVideo)
+            if (BuildConfig.VERSION_CODE < it.versionCode){
+                // ui配置
+                val uiConfig = UiConfig().apply {
+                    uiType = UiType.PLENTIFUL
+                    cancelBtnText = "下次再说"
+//                    updateLogoImgRes = R.mipmap.ic_launcher
+//                    updateBtnBgRes = R.mipmap.ic_launcher
+//                    titleTextColor = Color.BLACK
+//                    titleTextSize = 18f
+//                    contentTextColor = Color.parseColor("#88e16531")
+                }
+
+                // 更新配置
+                val updateConfig = UpdateConfig().apply {
+                    force = it.isMust == 1
+                    checkWifi = true
+//                    needCheckMd5 = true
+                    isShowNotification = true
+                    alwaysShowDownLoadDialog = true
+                    notifyImgRes = R.mipmap.ic_launcher
+//                    apkSavePath = Environment.getExternalStorageDirectory().absolutePath +"/teprinciple"
+//                    apkSaveName = "teprinciple"
+                }
+                UpdateAppUtils
+                    .getInstance()
+                    .apkUrl(it.path)
+                    .updateTitle("发现新版本${it.versionName}")
+                    .updateContent(it.remark)
+                    .updateConfig(updateConfig)
+//                    .uiConfig(uiConfig)
+                    .update()
+            }
+        }
+    }
+
+    @Inject
+    lateinit var mHomeFragment:HomeFragment
+    @Inject
+    lateinit var mStudyCircleFragment:StudyCircleFragment
+    @Inject
+    lateinit var mMineFragment:MineFragment
+
+    private var mCurrentFragment: Fragment? = null
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.llTabHome -> {
+                ivTabHome.setImageResource(R.drawable.tab_home_selected)
+                ivTabStudyCircle.setImageResource(R.drawable.tab_study_circle_defalut)
+                ivTabMine.setImageResource(R.drawable.tab_mine_default)
+                tvTabHome.setTextColor(resources.getColor(R.color.color_e4854d))
+                tvTabStudyCircle.setTextColor(resources.getColor(R.color.color_686868))
+                tvTabMine.setTextColor(resources.getColor(R.color.color_686868))
+                onTabSelected(0)
+            }
+            R.id.llTabStudyCircle -> {
+                ivTabHome.setImageResource(R.drawable.tab_home_default)
+                ivTabStudyCircle.setImageResource(R.drawable.tab_study_circle_selectd)
+                ivTabMine.setImageResource(R.drawable.tab_mine_default)
+                tvTabHome.setTextColor(resources.getColor(R.color.color_686868))
+                tvTabStudyCircle.setTextColor(resources.getColor(R.color.color_e4854d))
+                tvTabMine.setTextColor(resources.getColor(R.color.color_686868))
+                onTabSelected(1)
+            }
+            R.id.llTabMine -> {
+                ivTabHome.setImageResource(R.drawable.tab_home_default)
+                ivTabStudyCircle.setImageResource(R.drawable.tab_study_circle_defalut)
+                ivTabMine.setImageResource(R.drawable.tab_mine_selected)
+                tvTabHome.setTextColor(resources.getColor(R.color.color_686868))
+                tvTabStudyCircle.setTextColor(resources.getColor(R.color.color_686868))
+                tvTabMine.setTextColor(resources.getColor(R.color.color_e4854d))
+                onTabSelected(2)
+            }
+        }
+    }
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerMainComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .mainModule(MainModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_main //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        AppManager.getAppManager().killAll(MainActivity::class.java)
+        setupPages()
+        mPresenter?.getVersionInfo()
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+    private fun setupPages() {
+        llTabHome.setOnClickListener(this)
+        llTabStudyCircle.setOnClickListener(this)
+        llTabMine.setOnClickListener(this)
+        onTabSelected(0)
+    }
+    private fun onTabSelected(position: Int) {
+        when (position) {
+            0 -> {
+                switchFragment(mHomeFragment)
+            }
+            1 -> {
+                switchFragment(mStudyCircleFragment)
+            }
+            2 -> {
+                switchFragment(mMineFragment)
+            }
+            else -> {
+            }
+        }
+    }
+
+    /**
+     * fragment的切换
+     *
+     * @param to
+     */
+    private fun switchFragment(to: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        Preconditions.checkNotNull(to)
+        if (to !== mCurrentFragment) {
+            if (mCurrentFragment == null) {
+                transaction.add(R.id.flContainer, to).commit()
+            } else if (!to.isAdded) {
+                transaction.hide(mCurrentFragment!!).add(R.id.flContainer, to).commit()
+            } else {
+                transaction.hide(mCurrentFragment!!).show(to).commit()
+            }
+            mCurrentFragment = to
+        }
+    }
+
+    var lastEndTime = 0L
+    override fun onBackPressed() {
+        val curTime = System.currentTimeMillis()
+        val intervalTime = curTime - lastEndTime
+        lastEndTime = curTime
+        if (intervalTime < 2000) {
+            super.onBackPressed()
+        }else{
+            ArmsUtils.makeText(applicationContext,"再按一次退出")
+        }
+    }
+
+    /*override fun getResources(): Resources {
+        AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
+        return super.getResources()
+    }*/
+}

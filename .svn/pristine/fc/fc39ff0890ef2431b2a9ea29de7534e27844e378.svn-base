@@ -1,0 +1,55 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.model.entity.BlockUserBean;
+import com.daomingedu.art.mvp.presenter.BlockUsersPresenter;
+import com.daomingedu.art.mvp.ui.adapter.BlockUsersAdapter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class BlockUsersActivity_MembersInjector
+    implements MembersInjector<BlockUsersActivity> {
+  private final Provider<BlockUsersPresenter> mPresenterProvider;
+
+  private final Provider<BlockUsersAdapter> mAdapterProvider;
+
+  private final Provider<List<BlockUserBean>> mDataProvider;
+
+  public BlockUsersActivity_MembersInjector(
+      Provider<BlockUsersPresenter> mPresenterProvider,
+      Provider<BlockUsersAdapter> mAdapterProvider,
+      Provider<List<BlockUserBean>> mDataProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<BlockUsersActivity> create(
+      Provider<BlockUsersPresenter> mPresenterProvider,
+      Provider<BlockUsersAdapter> mAdapterProvider,
+      Provider<List<BlockUserBean>> mDataProvider) {
+    return new BlockUsersActivity_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(BlockUsersActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMAdapter(BlockUsersActivity instance, BlockUsersAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(BlockUsersActivity instance, List<BlockUserBean> mData) {
+    instance.mData = mData;
+  }
+}

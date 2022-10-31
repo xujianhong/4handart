@@ -1,0 +1,221 @@
+package com.daomingedu.art.di.component;
+
+import android.app.Application;
+import com.daomingedu.art.di.module.PersonInfoModule;
+import com.daomingedu.art.di.module.PersonInfoModule_ProvidePersonInfoModelFactory;
+import com.daomingedu.art.di.module.PersonInfoModule_ProvidePersonInfoViewFactory;
+import com.daomingedu.art.mvp.contract.PersonInfoContract;
+import com.daomingedu.art.mvp.model.PersonInfoModel;
+import com.daomingedu.art.mvp.model.PersonInfoModel_Factory;
+import com.daomingedu.art.mvp.presenter.PersonInfoPresenter;
+import com.daomingedu.art.mvp.presenter.PersonInfoPresenter_Factory;
+import com.daomingedu.art.mvp.ui.activity.PersonInfoActivity;
+import com.google.gson.Gson;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class DaggerPersonInfoComponent implements PersonInfoComponent {
+  private com_jess_arms_di_component_AppComponent_repositoryManager repositoryManagerProvider;
+
+  private com_jess_arms_di_component_AppComponent_gson gsonProvider;
+
+  private com_jess_arms_di_component_AppComponent_application applicationProvider;
+
+  private Provider<PersonInfoModel> personInfoModelProvider;
+
+  private Provider<PersonInfoContract.Model> providePersonInfoModelProvider;
+
+  private Provider<PersonInfoContract.View> providePersonInfoViewProvider;
+
+  private com_jess_arms_di_component_AppComponent_rxErrorHandler rxErrorHandlerProvider;
+
+  private com_jess_arms_di_component_AppComponent_imageLoader imageLoaderProvider;
+
+  private com_jess_arms_di_component_AppComponent_appManager appManagerProvider;
+
+  private Provider<PersonInfoPresenter> personInfoPresenterProvider;
+
+  private DaggerPersonInfoComponent(Builder builder) {
+    initialize(builder);
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+    this.repositoryManagerProvider =
+        new com_jess_arms_di_component_AppComponent_repositoryManager(builder.appComponent);
+    this.gsonProvider = new com_jess_arms_di_component_AppComponent_gson(builder.appComponent);
+    this.applicationProvider =
+        new com_jess_arms_di_component_AppComponent_application(builder.appComponent);
+    this.personInfoModelProvider =
+        DoubleCheck.provider(
+            PersonInfoModel_Factory.create(
+                repositoryManagerProvider, gsonProvider, applicationProvider));
+    this.providePersonInfoModelProvider =
+        DoubleCheck.provider(
+            PersonInfoModule_ProvidePersonInfoModelFactory.create(
+                builder.personInfoModule, personInfoModelProvider));
+    this.providePersonInfoViewProvider =
+        DoubleCheck.provider(
+            PersonInfoModule_ProvidePersonInfoViewFactory.create(builder.personInfoModule));
+    this.rxErrorHandlerProvider =
+        new com_jess_arms_di_component_AppComponent_rxErrorHandler(builder.appComponent);
+    this.imageLoaderProvider =
+        new com_jess_arms_di_component_AppComponent_imageLoader(builder.appComponent);
+    this.appManagerProvider =
+        new com_jess_arms_di_component_AppComponent_appManager(builder.appComponent);
+    this.personInfoPresenterProvider =
+        DoubleCheck.provider(
+            PersonInfoPresenter_Factory.create(
+                providePersonInfoModelProvider,
+                providePersonInfoViewProvider,
+                rxErrorHandlerProvider,
+                applicationProvider,
+                imageLoaderProvider,
+                appManagerProvider));
+  }
+
+  @Override
+  public void inject(PersonInfoActivity activity) {
+    injectPersonInfoActivity(activity);
+  }
+
+  private PersonInfoActivity injectPersonInfoActivity(PersonInfoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, personInfoPresenterProvider.get());
+    return instance;
+  }
+
+  public static final class Builder {
+    private PersonInfoModule personInfoModule;
+
+    private AppComponent appComponent;
+
+    private Builder() {}
+
+    public PersonInfoComponent build() {
+      if (personInfoModule == null) {
+        throw new IllegalStateException(PersonInfoModule.class.getCanonicalName() + " must be set");
+      }
+      if (appComponent == null) {
+        throw new IllegalStateException(AppComponent.class.getCanonicalName() + " must be set");
+      }
+      return new DaggerPersonInfoComponent(this);
+    }
+
+    public Builder personInfoModule(PersonInfoModule personInfoModule) {
+      this.personInfoModule = Preconditions.checkNotNull(personInfoModule);
+      return this;
+    }
+
+    public Builder appComponent(AppComponent appComponent) {
+      this.appComponent = Preconditions.checkNotNull(appComponent);
+      return this;
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_repositoryManager
+      implements Provider<IRepositoryManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_repositoryManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public IRepositoryManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.repositoryManager(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_gson implements Provider<Gson> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_gson(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Gson get() {
+      return Preconditions.checkNotNull(
+          appComponent.gson(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_application
+      implements Provider<Application> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_application(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Application get() {
+      return Preconditions.checkNotNull(
+          appComponent.application(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_rxErrorHandler
+      implements Provider<RxErrorHandler> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_rxErrorHandler(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public RxErrorHandler get() {
+      return Preconditions.checkNotNull(
+          appComponent.rxErrorHandler(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_imageLoader
+      implements Provider<ImageLoader> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_imageLoader(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public ImageLoader get() {
+      return Preconditions.checkNotNull(
+          appComponent.imageLoader(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_appManager
+      implements Provider<AppManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_appManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public AppManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.appManager(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+}

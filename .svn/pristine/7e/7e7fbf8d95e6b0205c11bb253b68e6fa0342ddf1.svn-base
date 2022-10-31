@@ -1,0 +1,56 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleModel_Factory implements Factory<StudyCircleModel> {
+  private final Provider<IRepositoryManager> repositoryManagerProvider;
+
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public StudyCircleModel_Factory(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    this.repositoryManagerProvider = repositoryManagerProvider;
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  @Override
+  public StudyCircleModel get() {
+    return provideInstance(repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static StudyCircleModel provideInstance(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    StudyCircleModel instance = new StudyCircleModel(repositoryManagerProvider.get());
+    StudyCircleModel_MembersInjector.injectMGson(instance, mGsonProvider.get());
+    StudyCircleModel_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    return instance;
+  }
+
+  public static StudyCircleModel_Factory create(
+      Provider<IRepositoryManager> repositoryManagerProvider,
+      Provider<Gson> mGsonProvider,
+      Provider<Application> mApplicationProvider) {
+    return new StudyCircleModel_Factory(
+        repositoryManagerProvider, mGsonProvider, mApplicationProvider);
+  }
+
+  public static StudyCircleModel newStudyCircleModel(IRepositoryManager repositoryManager) {
+    return new StudyCircleModel(repositoryManager);
+  }
+}

@@ -1,0 +1,46 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.SplashContract;
+import com.daomingedu.art.mvp.model.SplashModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SplashModule_ProvideSplashModelFactory implements Factory<SplashContract.Model> {
+  private final SplashModule module;
+
+  private final Provider<SplashModel> modelProvider;
+
+  public SplashModule_ProvideSplashModelFactory(
+      SplashModule module, Provider<SplashModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public SplashContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static SplashContract.Model provideInstance(
+      SplashModule module, Provider<SplashModel> modelProvider) {
+    return proxyProvideSplashModel(module, modelProvider.get());
+  }
+
+  public static SplashModule_ProvideSplashModelFactory create(
+      SplashModule module, Provider<SplashModel> modelProvider) {
+    return new SplashModule_ProvideSplashModelFactory(module, modelProvider);
+  }
+
+  public static SplashContract.Model proxyProvideSplashModel(
+      SplashModule instance, SplashModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideSplashModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

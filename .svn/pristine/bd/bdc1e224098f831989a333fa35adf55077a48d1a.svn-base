@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ImageDetailsContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ImageDetailsModule_ProvideImageDetailsViewFactory
+    implements Factory<ImageDetailsContract.View> {
+  private final ImageDetailsModule module;
+
+  public ImageDetailsModule_ProvideImageDetailsViewFactory(ImageDetailsModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public ImageDetailsContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static ImageDetailsContract.View provideInstance(ImageDetailsModule module) {
+    return proxyProvideImageDetailsView(module);
+  }
+
+  public static ImageDetailsModule_ProvideImageDetailsViewFactory create(
+      ImageDetailsModule module) {
+    return new ImageDetailsModule_ProvideImageDetailsViewFactory(module);
+  }
+
+  public static ImageDetailsContract.View proxyProvideImageDetailsView(
+      ImageDetailsModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideImageDetailsView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,90 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.contract.RegisterContract;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class RegisterPresenter_Factory implements Factory<RegisterPresenter> {
+  private final Provider<RegisterContract.Model> modelProvider;
+
+  private final Provider<RegisterContract.View> rootViewProvider;
+
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  public RegisterPresenter_Factory(
+      Provider<RegisterContract.Model> modelProvider,
+      Provider<RegisterContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    this.modelProvider = modelProvider;
+    this.rootViewProvider = rootViewProvider;
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+  }
+
+  @Override
+  public RegisterPresenter get() {
+    return provideInstance(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static RegisterPresenter provideInstance(
+      Provider<RegisterContract.Model> modelProvider,
+      Provider<RegisterContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    RegisterPresenter instance = new RegisterPresenter(modelProvider.get(), rootViewProvider.get());
+    RegisterPresenter_MembersInjector.injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    RegisterPresenter_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    RegisterPresenter_MembersInjector.injectMImageLoader(instance, mImageLoaderProvider.get());
+    RegisterPresenter_MembersInjector.injectMAppManager(instance, mAppManagerProvider.get());
+    return instance;
+  }
+
+  public static RegisterPresenter_Factory create(
+      Provider<RegisterContract.Model> modelProvider,
+      Provider<RegisterContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    return new RegisterPresenter_Factory(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static RegisterPresenter newRegisterPresenter(
+      RegisterContract.Model model, RegisterContract.View rootView) {
+    return new RegisterPresenter(model, rootView);
+  }
+}

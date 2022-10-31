@@ -1,0 +1,51 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:4:5-43
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:3:5-51
+	xmlns:android
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:7:5-68
+	android:name
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:7:22-65
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:8:22-78
+uses-sdk
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+	tools:overrideLibrary
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:15-107
+	android:targetSdkVersion
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:9:5-110
+		INJECTED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml
+application
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:10:5-17:19
+activity#com.daomingedu.ijkplayertest.MainActivity
+ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:11:9-15:20
+	android:screenOrientation
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:13:13-47
+	android:configChanges
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:12:13-74
+	android:name
+		ADDED from C:\E\as_project\handart\4handart\ijkplayer_coustom\src\main\AndroidManifest.xml:11:19-47

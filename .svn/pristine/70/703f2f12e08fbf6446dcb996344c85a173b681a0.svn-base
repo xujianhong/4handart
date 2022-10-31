@@ -1,0 +1,225 @@
+package com.daomingedu.art.di.component;
+
+import android.app.Application;
+import com.daomingedu.art.di.module.LocalVideoDetailModule;
+import com.daomingedu.art.di.module.LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory;
+import com.daomingedu.art.di.module.LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory;
+import com.daomingedu.art.mvp.contract.LocalVideoDetailContract;
+import com.daomingedu.art.mvp.model.LocalVideoDetailModel;
+import com.daomingedu.art.mvp.model.LocalVideoDetailModel_Factory;
+import com.daomingedu.art.mvp.presenter.LocalVideoDetailPresenter;
+import com.daomingedu.art.mvp.presenter.LocalVideoDetailPresenter_Factory;
+import com.daomingedu.art.mvp.ui.activity.LocalVideoDetailActivity;
+import com.google.gson.Gson;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class DaggerLocalVideoDetailComponent implements LocalVideoDetailComponent {
+  private com_jess_arms_di_component_AppComponent_repositoryManager repositoryManagerProvider;
+
+  private com_jess_arms_di_component_AppComponent_gson gsonProvider;
+
+  private com_jess_arms_di_component_AppComponent_application applicationProvider;
+
+  private Provider<LocalVideoDetailModel> localVideoDetailModelProvider;
+
+  private Provider<LocalVideoDetailContract.Model> provideLocalVideoDetailModelProvider;
+
+  private Provider<LocalVideoDetailContract.View> provideLocalVideoDetailViewProvider;
+
+  private com_jess_arms_di_component_AppComponent_rxErrorHandler rxErrorHandlerProvider;
+
+  private com_jess_arms_di_component_AppComponent_imageLoader imageLoaderProvider;
+
+  private com_jess_arms_di_component_AppComponent_appManager appManagerProvider;
+
+  private Provider<LocalVideoDetailPresenter> localVideoDetailPresenterProvider;
+
+  private DaggerLocalVideoDetailComponent(Builder builder) {
+    initialize(builder);
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+    this.repositoryManagerProvider =
+        new com_jess_arms_di_component_AppComponent_repositoryManager(builder.appComponent);
+    this.gsonProvider = new com_jess_arms_di_component_AppComponent_gson(builder.appComponent);
+    this.applicationProvider =
+        new com_jess_arms_di_component_AppComponent_application(builder.appComponent);
+    this.localVideoDetailModelProvider =
+        DoubleCheck.provider(
+            LocalVideoDetailModel_Factory.create(
+                repositoryManagerProvider, gsonProvider, applicationProvider));
+    this.provideLocalVideoDetailModelProvider =
+        DoubleCheck.provider(
+            LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory.create(
+                builder.localVideoDetailModule, localVideoDetailModelProvider));
+    this.provideLocalVideoDetailViewProvider =
+        DoubleCheck.provider(
+            LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory.create(
+                builder.localVideoDetailModule));
+    this.rxErrorHandlerProvider =
+        new com_jess_arms_di_component_AppComponent_rxErrorHandler(builder.appComponent);
+    this.imageLoaderProvider =
+        new com_jess_arms_di_component_AppComponent_imageLoader(builder.appComponent);
+    this.appManagerProvider =
+        new com_jess_arms_di_component_AppComponent_appManager(builder.appComponent);
+    this.localVideoDetailPresenterProvider =
+        DoubleCheck.provider(
+            LocalVideoDetailPresenter_Factory.create(
+                provideLocalVideoDetailModelProvider,
+                provideLocalVideoDetailViewProvider,
+                rxErrorHandlerProvider,
+                applicationProvider,
+                imageLoaderProvider,
+                appManagerProvider));
+  }
+
+  @Override
+  public void inject(LocalVideoDetailActivity activity) {
+    injectLocalVideoDetailActivity(activity);
+  }
+
+  private LocalVideoDetailActivity injectLocalVideoDetailActivity(
+      LocalVideoDetailActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(
+        instance, localVideoDetailPresenterProvider.get());
+    return instance;
+  }
+
+  public static final class Builder {
+    private LocalVideoDetailModule localVideoDetailModule;
+
+    private AppComponent appComponent;
+
+    private Builder() {}
+
+    public LocalVideoDetailComponent build() {
+      if (localVideoDetailModule == null) {
+        throw new IllegalStateException(
+            LocalVideoDetailModule.class.getCanonicalName() + " must be set");
+      }
+      if (appComponent == null) {
+        throw new IllegalStateException(AppComponent.class.getCanonicalName() + " must be set");
+      }
+      return new DaggerLocalVideoDetailComponent(this);
+    }
+
+    public Builder localVideoDetailModule(LocalVideoDetailModule localVideoDetailModule) {
+      this.localVideoDetailModule = Preconditions.checkNotNull(localVideoDetailModule);
+      return this;
+    }
+
+    public Builder appComponent(AppComponent appComponent) {
+      this.appComponent = Preconditions.checkNotNull(appComponent);
+      return this;
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_repositoryManager
+      implements Provider<IRepositoryManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_repositoryManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public IRepositoryManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.repositoryManager(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_gson implements Provider<Gson> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_gson(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Gson get() {
+      return Preconditions.checkNotNull(
+          appComponent.gson(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_application
+      implements Provider<Application> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_application(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Application get() {
+      return Preconditions.checkNotNull(
+          appComponent.application(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_rxErrorHandler
+      implements Provider<RxErrorHandler> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_rxErrorHandler(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public RxErrorHandler get() {
+      return Preconditions.checkNotNull(
+          appComponent.rxErrorHandler(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_imageLoader
+      implements Provider<ImageLoader> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_imageLoader(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public ImageLoader get() {
+      return Preconditions.checkNotNull(
+          appComponent.imageLoader(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_appManager
+      implements Provider<AppManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_appManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public AppManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.appManager(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+}

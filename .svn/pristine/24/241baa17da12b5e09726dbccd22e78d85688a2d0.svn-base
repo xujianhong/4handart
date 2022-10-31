@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.LocalVideoDetailContract;
+import com.daomingedu.art.mvp.model.LocalVideoDetailModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory
+    implements Factory<LocalVideoDetailContract.Model> {
+  private final LocalVideoDetailModule module;
+
+  private final Provider<LocalVideoDetailModel> modelProvider;
+
+  public LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory(
+      LocalVideoDetailModule module, Provider<LocalVideoDetailModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public LocalVideoDetailContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static LocalVideoDetailContract.Model provideInstance(
+      LocalVideoDetailModule module, Provider<LocalVideoDetailModel> modelProvider) {
+    return proxyProvideLocalVideoDetailModel(module, modelProvider.get());
+  }
+
+  public static LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory create(
+      LocalVideoDetailModule module, Provider<LocalVideoDetailModel> modelProvider) {
+    return new LocalVideoDetailModule_ProvideLocalVideoDetailModelFactory(module, modelProvider);
+  }
+
+  public static LocalVideoDetailContract.Model proxyProvideLocalVideoDetailModel(
+      LocalVideoDetailModule instance, LocalVideoDetailModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideLocalVideoDetailModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

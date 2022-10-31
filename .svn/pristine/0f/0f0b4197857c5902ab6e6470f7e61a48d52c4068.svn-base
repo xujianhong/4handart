@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical">
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <include layout="@layout/include_page_head" />
+        <FrameLayout
+                tools:visibility="visible"
+                android:id="@+id/ll_head"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="?attr/actionBarSize"
+                android:visibility="invisible"
+                android:background="@color/green_04"
+                android:orientation="horizontal" >
+            <Button
+                    android:textSize="@dimen/text_15"
+                    android:id="@+id/bt_cancel"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:textColor="@android:color/white"
+                    android:text="取消"
+
+                    android:layout_gravity="bottom|start"
+                    android:layout_width="55dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/null_bg"/>
+            <android.support.v4.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            <Button
+                    android:textSize="@dimen/text_15"
+                    android:id="@+id/bt_all"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:background="@drawable/null_bg"
+                    android:layout_width="55dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:textColor="@android:color/white"
+                    android:text="全选"
+                    android:layout_gravity="bottom|end" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <include layout="@layout/include_no_data"/>
+        <ListView
+                android:id="@+id/lv_work"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:id="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal">
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:alpha="0.1"
+                android:background="@android:color/black"/>
+        <Button
+                android:drawableTop="@drawable/selector_local_del"
+                android:textSize="@dimen/text_13"
+                android:id="@+id/bt_del"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/null_bg"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/black"
+                />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,55 @@
+package com.daomingedu.art.mvp.ui.fragment;
+
+import com.daomingedu.art.mvp.model.entity.ShareBean;
+import com.daomingedu.art.mvp.presenter.StudyCirclePresenter;
+import com.daomingedu.art.mvp.ui.adapter.ShareAdapter;
+import com.jess.arms.base.BaseFragment_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleFragment_MembersInjector
+    implements MembersInjector<StudyCircleFragment> {
+  private final Provider<StudyCirclePresenter> mPresenterProvider;
+
+  private final Provider<ShareAdapter> mAdapterProvider;
+
+  private final Provider<List<ShareBean>> mDataProvider;
+
+  public StudyCircleFragment_MembersInjector(
+      Provider<StudyCirclePresenter> mPresenterProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<StudyCircleFragment> create(
+      Provider<StudyCirclePresenter> mPresenterProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    return new StudyCircleFragment_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(StudyCircleFragment instance) {
+    BaseFragment_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMAdapter(StudyCircleFragment instance, ShareAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(StudyCircleFragment instance, List<ShareBean> mData) {
+    instance.mData = mData;
+  }
+}

@@ -1,0 +1,683 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.webkit.DownloadListener;
+import android.webkit.PermissionRequest;
+import android.webkit.URLUtil;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.daomingedu.art.BuildConfig;
+import com.daomingedu.art.R;
+import com.daomingedu.art.app.Constant;
+import com.daomingedu.art.mvp.model.Action;
+import com.daomingedu.art.mvp.ui.widget.VideoEnabledWebChromeClient;
+import com.daomingedu.art.mvp.ui.widget.VideoEnabledWebView;
+import com.daomingedu.art.util.AndroidBug5497Workaround;
+import com.daomingedu.art.util.Log;
+import com.daomingedu.art.util.SharedPreferencesUtil;
+import com.daomingedu.art.util.Utils;
+
+import java.io.File;
+
+import butterknife.BindView;
+
+
+/**
+ * @author chendong
+ * @description: Web通用页面
+ * @date :2020/5/30 17:17
+ */
+public class CommonWebActivity extends AppCompatActivity {
+
+    VideoEnabledWebView wv_web;
+
+    ProgressBar pb_load;
+
+    FrameLayout rl_web;
+
+    Toolbar toolbar;
+
+    TextView tv_name;
+
+    TextView common_web_record;
+
+    String title;
+    int limit;
+    int water;
+    private String url;
+
+    MsgReceiver msgReceiver;
+
+
+    boolean isback = true;
+
+    private ValueCallback<Uri> uploadMessage;
+    private ValueCallback<Uri[]> uploadMessageAboveL;
+
+    private final static int FILE_CHOOSER_RESULT_CODE = 10000;
+
+    VideoEnabledWebChromeClient webChromeClient;
+    private DownloadCompleteReceiver receiver;
+    private boolean isUploadVideo;//是否是上传视频，默认false不是，用来显示/隐藏选择文件的拍照按钮
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_common_web);
+
+        AndroidBug5497Workaround.assistActivity(this);
+
+        wv_web = findViewById(R.id.wv_web);
+        pb_load =findViewById(R.id.pb_load);
+        rl_web = findViewById(R.id.rl_web);
+        toolbar = findViewById(R.id.toolbar2);
+        tv_name = findViewById(R.id.tv_name);
+        common_web_record = findViewById(R.id.common_web_record);
+
+        toolbar.setNavigationIcon(R.drawable.ic_back_black);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                if (wv_web.canGoBack()) {
+//                    wv_web.goBack();
+//                } else {
+                    wv_web.evaluateJavascript("javascript:appGetBack()", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String s) {
+                            if(s.equals("null")){ //true 代表该网页没有该方法
+                                finish();
+                            }
+                            Log.e(s);
+                        }
+                    });
+//                    wv_web.loadUrl("javascript:appGetBack()");
+//                }
+
+
+//                finish();
+            }
+        });
+        title = getIntent().getStringExtra(Constant.TITLE_EXTRA);
+       /* limit = getIntent().getIntExtra("limit", 0);
+        water = getIntent().getIntExtra("water", 1);
+        SharedPreferencesUtil.INSTANCE.setWater(this, water);
+        SharedPreferencesUtil.INSTANCE.setLimit(this, limit);*/
+        tv_name.setText(title);
+        common_web_record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CommonWebActivity.this, RecordVideoActivity.class));
+            }
+        });
+        url = getIntent().getStringExtra(Constant.URL_EXTRA);
+//        url = "http://192.168.1.155:8080/music/activity/confirm.do";
+
+        initViews();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Action.FINISH_WEBSIGNUP);
+        msgReceiver = new MsgReceiver();
+        LocalBroadcastManager.getInstance(Utils.app).registerReceiver(msgReceiver, filter);
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initViews() {
+        LayoutTransition transition = new LayoutTransition();
+        transition.setAnimator(LayoutTransition.APPEARING, ObjectAnimator.ofFloat(rl_web, "alpha", 0, 1f));
+
+        transition.setAnimator(LayoutTransition.DISAPPEARING, ObjectAnimator.ofFloat(rl_web, "alpha", 1f, 0f));
+        transition.setDuration(300);
+        rl_web.setLayoutTransition(transition);
+
+        View nonVideoLayout = findViewById(R.id.nonVideoLayout); // Your own view, read class comments
+        ViewGroup videoLayout = (ViewGroup) findViewById(R.id.videoLayout); // Your own view, read class comments
+//        View loadingView = getLayoutInflater().inflate(R.layout.view_loading_video, null); // Your own view, read class comments
+        webChromeClient = new VideoEnabledWebChromeClient(nonVideoLayout, videoLayout, null, wv_web) {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                Log.d("newProgress:" + newProgress);
+
+                pb_load.setProgress(newProgress);
+
+
+            }
+
+            @Override
+            public void onPermissionRequest(PermissionRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request.grant(request.getResources());
+                }
+            }
+
+            // For Android < 3.0
+            public void openFileChooser(ValueCallback<Uri> valueCallback) {
+                uploadMessage = valueCallback;
+                openImageChooserActivity(null);
+            }
+
+            // For Android  >= 3.0
+            public void openFileChooser(ValueCallback valueCallback, String acceptType) {
+                uploadMessage = valueCallback;
+                openImageChooserActivity(acceptType);
+            }
+
+
+            //For Android  >= 4.1
+            public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType, String capture) {
+                uploadMessage = valueCallback;
+                openImageChooserActivity(acceptType);
+            }
+
+
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+                String acceptType = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    String[] acceptTypes = fileChooserParams.getAcceptTypes();
+                    if (acceptTypes != null && acceptTypes.length > 0) {
+                        acceptType = acceptTypes[0];
+                    }
+                }
+                uploadMessageAboveL = filePathCallback;
+                openImageChooserActivity(acceptType);
+                return true;
+            }
+        };
+        webChromeClient.setOnToggledFullscreen(new VideoEnabledWebChromeClient.ToggledFullscreenCallback() {
+            @Override
+            public void toggledFullscreen(boolean fullscreen) {
+
+                // Your code to handle the full-screen change, for example showing and hiding the title bar. Example:
+                if (fullscreen) {
+                    if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    }
+
+                    WindowManager.LayoutParams attrs = getWindow().getAttributes();
+                    attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                    attrs.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    getWindow().setAttributes(attrs);
+                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+
+//                    toolbar.setVisibility(View.GONE);
+                } else {
+                    if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    }
+                    WindowManager.LayoutParams attrs = getWindow().getAttributes();
+                    attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
+                    attrs.flags &= ~WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+                    getWindow().setAttributes(attrs);
+                    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+
+//                    toolbar.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+        wv_web.setWebChromeClient(webChromeClient);
+        WebSettings setting = wv_web.getSettings();
+        setting.setUseWideViewPort(true); //将图片调整至适合Webview大小
+        setting.setSupportZoom(true);//支持缩放
+        setting.setLoadWithOverviewMode(true);//缩放至屏幕大小
+        setting.setLoadsImagesAutomatically(true);//支持自动加载图片
+
+        setting.setJavaScriptCanOpenWindowsAutomatically(true);//设置允许js弹窗
+
+        // 加载JS
+        setting.setJavaScriptEnabled(true);//支持js
+//进行缓存
+
+        setting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        if ("音乐游戏".equals(title)) {
+            setting.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//设置缓存模式
+            setting.setDomStorageEnabled(true); //开启dom storage AOI功能
+            setting.setAppCacheEnabled(true);//加载缓存
+            String path = this.getFilesDir().getAbsolutePath() + "/gamecache";
+            Log.d("GameActivity" + path);
+            setting.setAppCachePath(path);//设计缓存路径
+        } else
+            setting.setCacheMode(WebSettings.LOAD_NO_CACHE);//设置缓存模式
+
+
+        //https当中不能加载http资源，需要设置开启。
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setting.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+
+//        updateCookies(url);
+
+
+        //WebView加载web资源
+        wv_web.loadUrl(url);
+        //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
+        wv_web.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
+                // 如下方案可在非微信内部WebView的H5页面中调出微信支付
+                if (url.startsWith("weixin://wap/pay?")) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                    return true;
+                } else if (url.startsWith("alipays://platformapi/startApp")) {
+                    startAlipayActivity(url);
+                    return true;
+                    // android  6.0 两种方式获取intent都可以跳转支付宝成功,7.1测试不成功
+                } else if ((Build.VERSION.SDK_INT > Build.VERSION_CODES.M)
+                        && (url.contains("platformapi") && url.contains("startapp"))) {
+                    startAlipayActivity(url);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                pb_load.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                android.util.Log.d("test", url);
+                if (url.contains("uploadVideo.do")) {
+                    int isShowBtn = SharedPreferencesUtil.INSTANCE.getIsShowButton(CommonWebActivity.this);
+                    if (isShowBtn == 1) {
+                        common_web_record.setVisibility(View.VISIBLE);
+                    } else {
+                        common_web_record.setVisibility(View.GONE);
+                    }
+                } else {
+                    common_web_record.setVisibility(View.GONE);
+                }
+                CookieManager cookieManager = CookieManager.getInstance();
+                String s = cookieManager.getCookie(url);
+                Log.d("Cookies==" + s);
+                pb_load.setVisibility(View.VISIBLE);
+            }
+
+
+        });
+
+        // 使用R
+        receiver = new DownloadCompleteReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        registerReceiver(receiver, intentFilter);
+
+
+        wv_web.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+// 指定下载地址
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                // 允许媒体扫描，根据下载的文件类型被加入相册、音乐等媒体库
+                request.allowScanningByMediaScanner();
+                // 设置通知的显示类型，下载进行时和完成后显示通知
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                // 设置通知栏的标题，如果不设置，默认使用文件名
+//        request.setTitle("This is title");
+                // 设置通知栏的描述
+//        request.setDescription("This is description");
+                // 允许在计费流量下下载
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    request.setAllowedOverMetered(false);
+                }
+                // 允许该记录在下载管理界面可见
+                request.setVisibleInDownloadsUi(false);
+                // 允许漫游时下载
+                request.setAllowedOverRoaming(true);
+                // 允许下载的网路类型
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+                // 设置下载文件保存的路径和文件名
+                String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
+                Log.d("fileName:{}" + fileName);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+//        另外可选一下方法，自定义下载路径
+//        request.setDestinationUri()
+//        request.setDestinationInExternalFilesDir()
+                final DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                // 添加一个下载任务
+                long downloadId = downloadManager.enqueue(request);
+                Log.d("downloadId:{}" + downloadId);
+
+
+            }
+        });
+    }
+
+
+    private class DownloadCompleteReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("onReceive. intent:{}" + intent.toUri(0));
+
+            if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                Log.d("downloadId:{}" + downloadId);
+                DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                String type = null;
+                if (downloadManager != null) {
+                    type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
+                    Log.d("getMimeTypeForDownloadedFile:{}" + type);
+                    if (TextUtils.isEmpty(type)) {
+                        type = "*/*";
+                    }
+                    Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
+                    Log.d("UriForDownloadedFile:{}" + uri);
+                    if (uri != null) {
+                        Intent handlerIntent = new Intent(Intent.ACTION_VIEW);
+                        handlerIntent.setDataAndType(uri, type);
+                        context.startActivity(handlerIntent);
+                    }
+                }
+
+            }
+
+        }
+    }
+
+
+    // 调起支付宝并跳转到指定页面
+    private void startAlipayActivity(String url) {
+        Intent intent;
+        try {
+            intent = Intent.parseUri(url,
+                    Intent.URI_INTENT_SCHEME);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setComponent(null);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void openImageChooserActivity(String acceptType) {
+        if ("video/*".equals(acceptType)) {
+            isUploadVideo = true;
+        } else {
+            isUploadVideo = false;
+        }
+        Intent intent = new Intent(this, SelectPicActivity.class);
+        intent.putExtra("isUploadVideo", isUploadVideo);
+//        intent.putExtra("NoCamera", true);
+//        intent.putExtra("isSelectHead", true);
+//                bd.jumpResult(intent,2);
+        startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
+
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_PICK);
+//       // intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//		startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
+
+
+//        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+//        i.addCategory(Intent.CATEGORY_OPENABLE);
+//        i.setType("image/*");
+//        startActivityForResult(Intent.createChooser(i, "Image Chooser"), FILE_CHOOSER_RESULT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+            if (null == uploadMessage && null == uploadMessageAboveL) return;
+            Uri result = data == null || resultCode != RESULT_OK ? null : Uri.fromFile(new File(data.getStringExtra("picPath")));
+            if (uploadMessageAboveL != null) {
+                onActivityResultAboveL(requestCode, resultCode, data);
+            } else if (uploadMessage != null) {
+                uploadMessage.onReceiveValue(result);
+                uploadMessage = null;
+            }
+        } else if (requestCode == 0) {
+            int result = data.getIntExtra("result", 0);
+            wv_web.loadUrl("javascript:appGoBackH5(\"" + result + "\")");
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void onActivityResultAboveL(int requestCode, int resultCode, Intent intent) {
+        if (requestCode != FILE_CHOOSER_RESULT_CODE || uploadMessageAboveL == null)
+            return;
+        Uri[] results = null;
+        if (resultCode == Activity.RESULT_OK) {
+            if (intent != null) {
+                Uri uri = Uri.fromFile(new File(intent.getStringExtra("picPath")));
+                String dataString = uri.toString();
+//                ClipData clipData = intent.getClipData();
+//                if (clipData != null) {
+//                    results = new Uri[clipData.getItemCount()];
+//                    for (int i = 0; i < clipData.getItemCount(); i++) {
+//                        ClipData.Item item = clipData.getItemAt(i);
+//                        results[i] = item.getUri();
+//                    }
+//                }
+                if (dataString != null)
+                    results = new Uri[]{Uri.parse(dataString)};
+            }
+        }
+        uploadMessageAboveL.onReceiveValue(results);
+        uploadMessageAboveL = null;
+    }
+
+
+    //设置回退
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+
+            if (isback && wv_web.canGoBack()) {
+                wv_web.goBack();
+
+            } else {
+                wv_web.evaluateJavascript("javascript:appGetBack()", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String s) {
+                        if(s.equals("null")){
+                            finish();
+                        }
+                        Log.e(s);
+                    }
+                });
+
+            }
+
+            return true;
+
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        // Notify the VideoEnabledWebChromeClient, and handle it ourselves if it doesn't handle it
+        if (!webChromeClient.onBackPressed()) {
+            if (wv_web.canGoBack()) {
+                wv_web.goBack();
+            } else {
+                // Close app (presumably)
+                super.onBackPressed();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wv_web != null) {
+            wv_web.clearCache(true);
+            wv_web = null;
+
+        }
+        LocalBroadcastManager.getInstance(Utils.app).unregisterReceiver(msgReceiver);
+//        unregisterReceiver(receiver);
+        System.exit(0);
+    }
+
+    /**
+     * 更新Cookies
+     *
+     * @param url
+     */
+    public void updateCookies(String url) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.createInstance(this);
+        }
+        CookieManager cookieManager = CookieManager.getInstance();
+
+//        cookieManager.setAcceptCookie(true);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            cookieManager.removeSessionCookies(new ValueCallback<Boolean>() {
+//                @Override
+//                public void onReceiveValue(Boolean value) {
+//
+//                }
+//            });
+//        } else {
+//            cookieManager.removeSessionCookie();
+//        }
+
+//        String cookieString = "userType:1,"+"version:"+ MyDevice.versionCode+",phoneType:1,sessionId:" + ((MyApp) getApplication()).getSessionId();
+
+        cookieManager.setCookie(url, "userType=1");
+        cookieManager.setCookie(url, "phoneType=1");
+        cookieManager.setCookie(url, "versions=" + BuildConfig.VERSION_CODE);
+        SharedPreferences sp = Utils.app.getSharedPreferences("config", Context.MODE_PRIVATE);
+        String sessionId = sp.getString(Constant.SESSIONID, "");
+        cookieManager.setCookie(url, "sessionId=" + sessionId);
+
+//        cookieManager.setCookie(url,"userId="+((MyApp) getApplication()).getCurUser().ge);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+
+            CookieManager.getInstance().flush();
+        }
+//        Map<String,String> map = new HashMap<>();
+//        map.put("Cookies",cookieString);
+//        return map;
+    }
+
+
+    class MsgReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() == Action.FINISH_WEBSIGNUP) {
+                Log.e("CommonWebAct jump");
+                isback = false;
+                //报名成功
+                wv_web.loadUrl("https://music.4hand.com.cn/piano/ok.html");
+            }
+        }
+    }
+
+
+    public void jumpweixin(String url) {
+        /*String s = url;
+
+        s = s.substring(s.indexOf('{'), s.length());
+
+        WeixinInfo obj = JSON.parseObject(s, WeixinInfo.class);
+        IWXAPI api = WXAPIFactory.createWXAPI(this, weixinAppId, true);
+        api.registerApp(obj.getAppid());
+        if (!api.isWXAppInstalled()) {
+            bd.toast("没有安装微信");
+            return;
+        }
+        if (!api.isWXAppSupportAPI()) {
+            bd.toast("微信当前版本不支持支付功能");
+            return;
+        }
+        PayReq req = new PayReq();
+        req.appId = weixinAppId;
+        req.partnerId = obj.getPartnerid();
+        req.prepayId = obj.getPrepayid();
+        req.nonceStr = obj.getNoncestr();
+        req.timeStamp = obj.getTimestamp();
+        req.packageValue = obj.getPackageValue();
+        req.sign = obj.getSign();
+        if (api.sendReq(req)) {
+            WeixinInfo.type = WeixinInfo.TYPE_WEB;
+        } else {
+            return;
+        }*/
+    }
+
+    /**
+     * 左侧按钮点击事件
+     *
+     * @return toolbar
+     */
+    public Toolbar addNavBtn() {
+        return initBtn(0, false);
+    }
+
+    private Toolbar initBtn(@DrawableRes int resId, boolean isTransparent) {
+        if (resId != 0)
+            toolbar.setNavigationIcon(resId);
+        if (isTransparent)
+            toolbar.getBackground().setAlpha(0);
+        else
+            toolbar.getBackground().setAlpha(255);
+        toolbar.setNavigationIcon(R.mipmap.arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
+        return toolbar;
+    }
+
+    protected void goback() {
+        InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (mInputMethodManager.isActive() && null != this.getCurrentFocus())
+            mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        finish();
+    }
+}

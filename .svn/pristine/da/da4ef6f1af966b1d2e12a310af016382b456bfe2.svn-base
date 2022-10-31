@@ -1,0 +1,136 @@
+package com.daomingedu.art.mvp.ui.widget.playrecording;
+
+import java.lang.System;
+
+/**
+ * 播放录音View
+ * Created by xjh on 2016/7/29.
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000N\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000e\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0006\u0018\u0000 ,2\u00020\u00012\u00020\u00022\u00020\u0003:\u0002,-B\u0015\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u00a2\u0006\u0002\u0010\bJ\u0010\u0010%\u001a\u00020&2\u0006\u0010\'\u001a\u00020(H\u0016J\u0006\u0010)\u001a\u00020&J\u000e\u0010*\u001a\u00020&2\u0006\u0010\u001f\u001a\u00020 J\u000e\u0010+\u001a\u00020&2\u0006\u0010\u001f\u001a\u00020 R\u001a\u0010\u0004\u001a\u00020\u0005X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\t\u0010\n\"\u0004\b\u000b\u0010\fR\u001a\u0010\r\u001a\u00020\u000eX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000f\u0010\u0010\"\u0004\b\u0011\u0010\u0012R\u001a\u0010\u0013\u001a\u00020\u0014X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0015\u0010\u0016\"\u0004\b\u0017\u0010\u0018R\u001a\u0010\u0019\u001a\u00020\u001aX\u0086.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001b\u0010\u001c\"\u0004\b\u001d\u0010\u001eR\u001c\u0010\u001f\u001a\u0004\u0018\u00010 X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b!\u0010\"\"\u0004\b#\u0010$\u00a8\u0006."}, d2 = {"Lcom/daomingedu/art/mvp/ui/widget/playrecording/DailyRecordingView;", "Landroid/widget/RelativeLayout;", "Landroid/view/View$OnClickListener;", "Lme/jessyan/autosize/internal/CancelAdapt;", "context", "Landroid/content/Context;", "attrs", "Landroid/util/AttributeSet;", "(Landroid/content/Context;Landroid/util/AttributeSet;)V", "getContext$app_release", "()Landroid/content/Context;", "setContext$app_release", "(Landroid/content/Context;)V", "handler", "Landroid/os/Handler;", "getHandler$app_release", "()Landroid/os/Handler;", "setHandler$app_release", "(Landroid/os/Handler;)V", "isFirst", "", "isFirst$app_release", "()Z", "setFirst$app_release", "(Z)V", "player", "Lcom/daomingedu/art/mvp/ui/widget/playrecording/Player;", "getPlayer", "()Lcom/daomingedu/art/mvp/ui/widget/playrecording/Player;", "setPlayer", "(Lcom/daomingedu/art/mvp/ui/widget/playrecording/Player;)V", "url", "", "getUrl$app_release", "()Ljava/lang/String;", "setUrl$app_release", "(Ljava/lang/String;)V", "onClick", "", "view", "Landroid/view/View;", "onPause", "playUrl", "setUrl", "Companion", "SeekBarChangeEvent", "app_release"})
+public final class DailyRecordingView extends android.widget.RelativeLayout implements android.view.View.OnClickListener, me.jessyan.autosize.internal.CancelAdapt {
+    @org.jetbrains.annotations.Nullable()
+    private java.lang.String url;
+    @org.jetbrains.annotations.NotNull()
+    public com.daomingedu.art.mvp.ui.widget.playrecording.Player player;
+    private boolean isFirst;
+    @org.jetbrains.annotations.NotNull()
+    private android.os.Handler handler;
+    @org.jetbrains.annotations.NotNull()
+    private android.content.Context context;
+    private static final int PREPRE = 2;
+    public static final com.daomingedu.art.mvp.ui.widget.playrecording.DailyRecordingView.Companion Companion = null;
+    private java.util.HashMap _$_findViewCache;
+    
+    @org.jetbrains.annotations.Nullable()
+    public final java.lang.String getUrl$app_release() {
+        return null;
+    }
+    
+    public final void setUrl$app_release(@org.jetbrains.annotations.Nullable()
+    java.lang.String p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.widget.playrecording.Player getPlayer() {
+        return null;
+    }
+    
+    public final void setPlayer(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.widget.playrecording.Player p0) {
+    }
+    
+    public final boolean isFirst$app_release() {
+        return false;
+    }
+    
+    public final void setFirst$app_release(boolean p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.os.Handler getHandler$app_release() {
+        return null;
+    }
+    
+    public final void setHandler$app_release(@org.jetbrains.annotations.NotNull()
+    android.os.Handler p0) {
+    }
+    
+    /**
+     * 设置音频播放路径
+     *
+     * @param url
+     */
+    public final void setUrl(@org.jetbrains.annotations.NotNull()
+    java.lang.String url) {
+    }
+    
+    /**
+     * 设置url播放
+     * @param url
+     */
+    public final void playUrl(@org.jetbrains.annotations.NotNull()
+    java.lang.String url) {
+    }
+    
+    @java.lang.Override()
+    public void onClick(@org.jetbrains.annotations.NotNull()
+    android.view.View view) {
+    }
+    
+    public final void onPause() {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.content.Context getContext$app_release() {
+        return null;
+    }
+    
+    public final void setContext$app_release(@org.jetbrains.annotations.NotNull()
+    android.content.Context p0) {
+    }
+    
+    public DailyRecordingView(@org.jetbrains.annotations.NotNull()
+    android.content.Context context, @org.jetbrains.annotations.NotNull()
+    android.util.AttributeSet attrs) {
+        super(null);
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0002\b\u0003\b\u0080\u0004\u0018\u00002\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0002J \u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\f2\u0006\u0010\u0003\u001a\u00020\u00042\u0006\u0010\r\u001a\u00020\u000eH\u0016J\u0010\u0010\u000f\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\fH\u0016J\u0010\u0010\u0010\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\fH\u0016R\u001a\u0010\u0003\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0005\u0010\u0006\"\u0004\b\u0007\u0010\b\u00a8\u0006\u0011"}, d2 = {"Lcom/daomingedu/art/mvp/ui/widget/playrecording/DailyRecordingView$SeekBarChangeEvent;", "Landroid/widget/SeekBar$OnSeekBarChangeListener;", "(Lcom/daomingedu/art/mvp/ui/widget/playrecording/DailyRecordingView;)V", "progress", "", "getProgress", "()I", "setProgress", "(I)V", "onProgressChanged", "", "seekBar", "Landroid/widget/SeekBar;", "fromUser", "", "onStartTrackingTouch", "onStopTrackingTouch", "app_release"})
+    public final class SeekBarChangeEvent implements android.widget.SeekBar.OnSeekBarChangeListener {
+        private int progress;
+        
+        public final int getProgress() {
+            return 0;
+        }
+        
+        public final void setProgress(int p0) {
+        }
+        
+        @java.lang.Override()
+        public void onProgressChanged(@org.jetbrains.annotations.NotNull()
+        android.widget.SeekBar seekBar, int progress, boolean fromUser) {
+        }
+        
+        @java.lang.Override()
+        public void onStartTrackingTouch(@org.jetbrains.annotations.NotNull()
+        android.widget.SeekBar seekBar) {
+        }
+        
+        @java.lang.Override()
+        public void onStopTrackingTouch(@org.jetbrains.annotations.NotNull()
+        android.widget.SeekBar seekBar) {
+        }
+        
+        public SeekBarChangeEvent() {
+            super();
+        }
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082D\u00a2\u0006\u0002\n\u0000\u00a8\u0006\u0005"}, d2 = {"Lcom/daomingedu/art/mvp/ui/widget/playrecording/DailyRecordingView$Companion;", "", "()V", "PREPRE", "", "app_release"})
+    public static final class Companion {
+        
+        private Companion() {
+            super();
+        }
+    }
+}

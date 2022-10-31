@@ -1,0 +1,55 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.model.entity.ShareBean;
+import com.daomingedu.art.mvp.presenter.MyStudyCirclePresenter;
+import com.daomingedu.art.mvp.ui.adapter.ShareAdapter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MyStudyCircleActivity_MembersInjector
+    implements MembersInjector<MyStudyCircleActivity> {
+  private final Provider<MyStudyCirclePresenter> mPresenterProvider;
+
+  private final Provider<ShareAdapter> mAdapterProvider;
+
+  private final Provider<List<ShareBean>> mDataProvider;
+
+  public MyStudyCircleActivity_MembersInjector(
+      Provider<MyStudyCirclePresenter> mPresenterProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDataProvider = mDataProvider;
+  }
+
+  public static MembersInjector<MyStudyCircleActivity> create(
+      Provider<MyStudyCirclePresenter> mPresenterProvider,
+      Provider<ShareAdapter> mAdapterProvider,
+      Provider<List<ShareBean>> mDataProvider) {
+    return new MyStudyCircleActivity_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mDataProvider);
+  }
+
+  @Override
+  public void injectMembers(MyStudyCircleActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMData(instance, mDataProvider.get());
+  }
+
+  public static void injectMAdapter(MyStudyCircleActivity instance, ShareAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMData(MyStudyCircleActivity instance, List<ShareBean> mData) {
+    instance.mData = mData;
+  }
+}

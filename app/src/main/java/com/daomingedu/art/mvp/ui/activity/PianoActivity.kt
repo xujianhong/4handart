@@ -1,0 +1,559 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.Manifest
+import android.content.Intent
+import android.database.SQLException
+import android.database.sqlite.SQLiteDatabase
+import android.media.MediaRecorder
+import android.net.Uri
+import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.provider.Settings
+
+import android.text.TextUtils
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import com.daomingedu.art.R
+import com.daomingedu.art.data.BaseDataHelper
+import com.daomingedu.art.di.component.DaggerPianoComponent
+import com.daomingedu.art.di.module.PianoModule
+import com.daomingedu.art.mvp.contract.PianoContract
+import com.daomingedu.art.mvp.presenter.PianoPresenter
+import com.daomingedu.art.mvp.ui.widget.dialog.MyDialog
+import com.daomingedu.art.mvp.ui.widget.piano.MusicUitls
+import com.daomingedu.art.mvp.ui.widget.piano.Piano_view
+import com.daomingedu.art.util.EditUtils
+import com.daomingedu.art.util.StringUtils
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+import com.tbruyelle.rxpermissions2.RxPermissions
+import kotlinx.android.synthetic.main.activity_piano.*
+import kotlinx.android.synthetic.main.test_piano.*
+import me.jessyan.autosize.utils.LogUtils
+import java.io.File
+import java.io.IOException
+import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/12/2019 15:26
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class PianoActivity : BaseActivity<PianoPresenter>(), PianoContract.View, View.OnClickListener {
+    override fun onClick(v: View?) {
+        when (v?.getId()) {
+            R.id.btn_record//录音
+            -> if ("录音" == btn_record.text.toString()) {
+
+                RxPermissions(this).request(
+                    Manifest.permission.RECORD_AUDIO)
+                    .subscribe {
+                        if (it) {
+                            second = 0
+                            minute = 0
+                            list.clear()
+                            start()//开始录音
+                            btn_record.text = "停止"
+                            val nav_up = resources.getDrawable(R.mipmap.piano_pasue)
+                            nav_up.setBounds(0, 0, nav_up.minimumWidth, nav_up.minimumHeight)
+                            btn_record.setCompoundDrawables(nav_up, null, null, null)
+                        }else{
+                            ArmsUtils.makeText(application,"没有开启权限，无法录音")
+                        }
+                    }
+
+            } else {
+                btn_record.text = "录音"
+                val nav_up = resources.getDrawable(R.mipmap.playpasue)
+                nav_up.setBounds(0, 0, nav_up.minimumWidth, nav_up.minimumHeight)
+                btn_record.setCompoundDrawables(nav_up, null, null, null)
+                stopReRecord()
+
+            }
+
+            R.id.ib_back//退后
+            -> if ("录音" == btn_record.text.toString()) {
+                finish()
+            } else {
+                btn_record.text = "录音"
+                val nav_up = resources.getDrawable(R.mipmap.playpasue)
+                nav_up.setBounds(0, 0, nav_up.minimumWidth, nav_up.minimumHeight)
+                btn_record.setCompoundDrawables(nav_up, null, null, null)
+                stopReRecord()
+            }
+            else -> {
+            }
+        }
+    }
+
+    private val PACKAGE_URL_SCHEME = "package:" // 方案
+
+
+    private var tv_time: TextView? = null
+
+
+
+    private val strTempFile = "/DDmusic"
+    private var myRecAudioFile: File? = null
+
+    /**
+     * 录音保存路径
+     */
+    private var myRecAudioDir: File? = null
+    private var audioPath: String? = null
+    private var saveFile: File? = null
+    private var mMediaRecorder01: MediaRecorder? = null
+
+
+    /**
+     * 是否停止录音
+     */
+    private var isStopRecord: Boolean = false
+
+    private var length1: String? = null
+    private val SUFFIX = ".mp4"
+
+
+    /**
+     * 记录需要合成的几段amr语音文件
+     */
+    private val list = ArrayList<String>()
+    internal var second = 0
+
+    internal var minute = 0
+    internal var strMinute = ""
+    internal var strSecond = ""
+
+    /**
+     * 计时器
+     */
+    internal var timer: Timer? = null
+
+    /**
+     * 是否暂停标志位
+     */
+    private var isPause: Boolean = false
+
+    /**
+     * 在暂停状态中
+     */
+    private var inThePause: Boolean = false
+
+    internal var recordFile: Long = Long.MAX_VALUE//限制录音大小
+
+
+    internal var handler: Handler = object : Handler() {
+
+        override fun handleMessage(msg: Message) {
+
+            super.handleMessage(msg)
+
+            if (minute < 10)
+                strMinute = "0$minute"
+            else
+                strMinute = "" + minute
+            if (second < 10)
+                strSecond = "0$second"
+            else
+                strSecond = "" + second
+
+            tv_time!!.text = "$strMinute:$strSecond"
+        }
+
+    }
+
+
+
+    @JvmField
+    public var piano: Piano_view?=null//钢琴布局
+    internal var isSrcoll = false//是否用户滑动
+
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerPianoComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .pianoModule(PianoModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_piano //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        initViews()
+        try {
+            initRecording()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+
+    private fun initViews() {
+
+
+
+        tv_time = findViewById(R.id.tv_time) as TextView
+
+
+        ib_back.setOnClickListener(this)
+
+        btn_record.setOnClickListener(this)
+
+
+        piano = findViewById(R.id.mv) as Piano_view
+
+        piano?.setLayoutParams(LinearLayout.LayoutParams((ArmsUtils.getScreenHeidth(this) / 11.5).toInt() * 51,
+            ArmsUtils.getScreenWidth(this) / 3 * 2))
+
+
+
+        /**
+         * 钢琴键绘制完成监听
+         */
+        piano?.getViewTreeObserver()?.addOnGlobalLayoutListener {
+            if (!isSrcoll) {
+                sb_index.setProgress(55)//seekbar定位
+                hs.scrollTo(55 * (hs.getChildAt(0).width - hs.getWidth()) / 100, 0)//HorizontalScrollView定位
+            }
+        }
+
+        sb_index.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
+                isSrcoll = b
+                if (!b) {
+                    return
+                }
+                LogUtils.e("sb_index,$progress")
+                hs.scrollTo(progress * (hs.getChildAt(0).width - hs.getWidth()) / 100, 0)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+        })
+
+
+    }
+
+    /**
+     * 初始化录音
+     */
+    @Throws(Exception::class)
+    private fun initRecording() {
+
+        //暂停标志位 为false
+        isPause = false
+        //暂停状态标志位
+        inThePause = false
+
+        //        // 判断sd Card是否插入
+        //        sdcardExit = Environment.getExternalStorageState().equals(
+        //                Environment.MEDIA_MOUNTED);
+        //
+        //        // 取得sd card路径作为录音文件的位置
+        //        if (sdcardExit) {
+        //            String pathStr = Environment.getExternalStorageDirectory().getPath() + strTempFile;
+        val pathStr = getFilesDir().getAbsolutePath() + strTempFile
+        myRecAudioDir = File(pathStr)
+        if (!myRecAudioDir?.exists()!!) {
+            myRecAudioDir?.mkdirs()
+            LogUtils.w("创建录音文件！" + myRecAudioDir?.exists())
+        }
+        //        }
+
+        val mMinute1 = getTime()
+        myRecAudioFile = File(myRecAudioDir, mMinute1 + SUFFIX)
+        mMediaRecorder01 = MediaRecorder()
+        // 设置录音为麦克风
+        mMediaRecorder01?.setAudioSource(MediaRecorder.AudioSource.MIC)
+        mMediaRecorder01?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)//aac格式
+        mMediaRecorder01?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)//aac格式
+        //录音文件保存这里
+        mMediaRecorder01?.setOutputFile(
+            myRecAudioFile?.getAbsolutePath()
+        )
+        try {
+            mMediaRecorder01?.prepare()
+        } catch (e: IOException) {
+            ArmsUtils.makeText(application,"没有开启权限，无法录音")
+            e.printStackTrace()
+        }
+
+    }
+
+    /**
+     * 预设录音文件名称为时间
+     *
+     * @return
+     */
+    private fun getTime(): String {
+
+        val formatter = SimpleDateFormat("HHmmss")
+        val curDate = Date(System.currentTimeMillis())//获取当前时间
+        val time = "DDmusic" + formatter.format(curDate)
+        println("当前时间$time")
+        return time
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (piano?.uitls?.soundPool == null) {
+            piano?.uitls = MusicUitls(this)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (piano?.uitls?.soundPool != null) {
+            piano?.uitls?.soundPool?.release()
+            piano?.uitls?.soundPool = null
+        }
+        piano?.recycle()
+    }
+
+    /**
+     * 开始录音
+     */
+    private fun start() {
+
+        val timerTask = object : TimerTask() {
+            override fun run() {
+                second++
+                if (second >= 60) {
+                    second = 0
+                    minute++
+                }
+                handler.sendEmptyMessage(1)
+            }
+        }
+        timer = Timer()
+        timer?.schedule(timerTask, 1000, 1000)
+        if (mMediaRecorder01 == null)
+            try {
+                initRecording()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        try {
+            mMediaRecorder01?.start()
+            mMediaRecorder01?.setOnInfoListener(MediaRecorder.OnInfoListener { mediaRecorder, i, i1 ->
+                val a = mediaRecorder.maxAmplitude
+                LogUtils.w("======mediaRecorder$a")
+            })
+        } catch (e: Exception) {
+            ArmsUtils.makeText(application,"没有开启权限，无法录音")
+        }
+
+        isStopRecord = false
+        //        } catch (IOException e) {
+        //            e.printStackTrace();
+        //        }
+
+    }
+
+    /**
+     * 停止录音
+     */
+    fun stopReRecord() {
+        if (timer == null) {
+            Toast.makeText(this, "请先开始录制！", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        timer?.cancel()
+        timer = null
+
+        if (myRecAudioFile != null && mMediaRecorder01 != null) {
+            // 停止录音
+
+            try {
+                mMediaRecorder01?.stop()
+            } catch (e: RuntimeException) {
+
+            }
+
+            mMediaRecorder01?.release()
+            mMediaRecorder01 = null
+            val df = DecimalFormat("#.000")
+            if (myRecAudioFile?.length()!! <= 1024 * 1024) {
+
+
+                length1 = df.format(myRecAudioFile?.length()!! / 1024.0) + "K"
+            } else {
+                length1 = df.format(myRecAudioFile?.length()!!.toDouble() / 1024.0 / 1024.0) + "M"
+            }
+            println(length1)
+
+            audioPath = myRecAudioFile?.getAbsolutePath()
+        }
+        //                }
+        //停止录音了
+        isStopRecord = true
+        btn_record.text = "录音"
+        val nav_up = resources.getDrawable(R.mipmap.playpasue)
+        nav_up.setBounds(0, 0, nav_up.minimumWidth, nav_up.minimumHeight)
+        btn_record.setCompoundDrawables(nav_up, null, null, null)
+        tv_time?.setText("00:00")
+
+
+        saveFile = File(audioPath)
+        LogUtils.e("saveFile" + saveFile?.length())
+
+        if (saveFile?.length() == 0L) {
+            ArmsUtils.makeText(application,"没有开启权限，无法录音")
+        } else if (saveFile?.length()!! > recordFile) {//文件大于
+            ArmsUtils.makeText(application,"录音大于+" + (recordFile / (1024 * 1024)).toInt() + "M，建议重新录音")
+            if (saveFile?.exists()!!) {
+                saveFile?.delete()
+            }
+        } else {
+            AlertDialog.Builder(this).setTitle("提示")
+                .setMessage("是否保存?")
+                .setNegativeButton("取消",{ _, _ ->
+                    if (saveFile?.exists()!!) {
+                        saveFile?.delete()
+                    }
+                })
+                .setPositiveButton("确定") { _, _ ->
+                    showDialog()
+                }
+                .show()
+        }
+    }
+    internal var helper: BaseDataHelper? = null//数据库
+    internal var db: SQLiteDatabase? = null
+    /**
+     * 添加名称
+     */
+    private fun showDialog() {
+
+        helper = BaseDataHelper(this)
+        db = helper?.getWritableDatabase()
+        val strselect = "select name from contact"
+        val cursor = db?.rawQuery(strselect, null)
+        val listname = ArrayList<String>()
+        while (cursor?.moveToNext()==true) {
+            listname.add(cursor.getString(0))
+
+        }
+        cursor?.close()
+        val myDialog = MyDialog(this)
+        myDialog.setCancelable(false)
+        myDialog.setContentView(R.layout.dialog_msg_et)
+        val et_name = myDialog.findView<EditText>(R.id.et_name)
+
+        val defaultName = "钢琴录音" + SimpleDateFormat("MMddHHmmss").format(System.currentTimeMillis())
+        et_name.setText(defaultName)
+        val btn_cancle = myDialog.findView<Button>(R.id.btn_cancle)
+        val btn_sure = myDialog.findView<Button>(R.id.btn_sure)
+        btn_cancle.setOnClickListener(View.OnClickListener {
+            if (saveFile?.exists()!!) {
+                saveFile?.delete()
+            }
+            myDialog.dismiss()
+        })
+        btn_sure.setOnClickListener(View.OnClickListener {
+            val name = et_name.getText().toString().trim({ it <= ' ' })
+            if (TextUtils.isEmpty(name)) {
+                ArmsUtils.makeText(application,"请输入名称")
+                return@OnClickListener
+            }
+            if (StringUtils.containsEmoji(name)) {
+                ArmsUtils.makeText(application,"不能输入表情")
+                return@OnClickListener
+            }
+            if (EditUtils.compileExChar(name)) {
+                ArmsUtils.makeText(application,"不能输入特殊字符")
+                return@OnClickListener
+            }
+            if (!TextUtils.isEmpty(name)) {
+                for (str in listname) {
+                    if (str == name) {
+                        ArmsUtils.makeText(application,"名称重复，请再次输入")
+                        et_name.setText("")
+                        return@OnClickListener
+                    }
+                }
+                val strtime = getTime()
+                saveFile?.renameTo(File(myRecAudioDir, strtime + SUFFIX))
+                LogUtils.e(myRecAudioDir.toString() + "/" + strtime + SUFFIX + "   " + File(myRecAudioDir.toString() + "/" + strtime + SUFFIX).exists())
+
+                val strinsert =
+                    " insert into contact (type,name,path,createtime) values('" + 2 + "','" + name + "','" + myRecAudioDir + "/" + strtime + SUFFIX + "','" + System.currentTimeMillis() + "')"
+
+                try {
+                    db?.execSQL(strinsert)
+                    ArmsUtils.makeText(application,"保存成功")
+
+                } catch (e: SQLException) {
+                    ArmsUtils.makeText(application,"操作失败")
+                }
+
+                myDialog.dismiss()
+
+            } else {
+                ArmsUtils.makeText(application,"请输入名称")
+                return@OnClickListener
+            }
+        })
+
+        myDialog.show()
+    }
+}

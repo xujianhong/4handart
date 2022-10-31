@@ -1,0 +1,90 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.contract.SplashContract;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SplashPresenter_Factory implements Factory<SplashPresenter> {
+  private final Provider<SplashContract.Model> modelProvider;
+
+  private final Provider<SplashContract.View> rootViewProvider;
+
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  public SplashPresenter_Factory(
+      Provider<SplashContract.Model> modelProvider,
+      Provider<SplashContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    this.modelProvider = modelProvider;
+    this.rootViewProvider = rootViewProvider;
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+  }
+
+  @Override
+  public SplashPresenter get() {
+    return provideInstance(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static SplashPresenter provideInstance(
+      Provider<SplashContract.Model> modelProvider,
+      Provider<SplashContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    SplashPresenter instance = new SplashPresenter(modelProvider.get(), rootViewProvider.get());
+    SplashPresenter_MembersInjector.injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    SplashPresenter_MembersInjector.injectMApplication(instance, mApplicationProvider.get());
+    SplashPresenter_MembersInjector.injectMImageLoader(instance, mImageLoaderProvider.get());
+    SplashPresenter_MembersInjector.injectMAppManager(instance, mAppManagerProvider.get());
+    return instance;
+  }
+
+  public static SplashPresenter_Factory create(
+      Provider<SplashContract.Model> modelProvider,
+      Provider<SplashContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    return new SplashPresenter_Factory(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static SplashPresenter newSplashPresenter(
+      SplashContract.Model model, SplashContract.View rootView) {
+    return new SplashPresenter(model, rootView);
+  }
+}

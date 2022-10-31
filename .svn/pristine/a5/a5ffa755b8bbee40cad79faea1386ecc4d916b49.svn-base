@@ -1,0 +1,84 @@
+package com.daomingedu.art.mvp.ui.activity.presenter;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000.\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u000e\n\u0002\u0010\u0002\n\u0002\b\u0007\n\u0002\u0010\u0006\n\u0002\b\u0007\u0018\u00002\u00020\u0001B\u001d\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u00a2\u0006\u0002\u0010\bJ\u0018\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\u00072\u0006\u0010\u0018\u001a\u00020\u0007H\u0016J\u0010\u0010\u0019\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\u0007H\u0016J\b\u0010\u001a\u001a\u00020\u0016H\u0016J@\u0010\u001b\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\u00072\u0006\u0010\u001c\u001a\u00020\u00072\u0006\u0010\u001d\u001a\u00020\u001e2\u0006\u0010\u001f\u001a\u00020\u00072\u0006\u0010 \u001a\u00020\u00072\u0006\u0010!\u001a\u00020\u00072\u0006\u0010\"\u001a\u00020\u0007H\u0016J\u0018\u0010#\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\u00072\u0006\u0010$\u001a\u00020\u0007H\u0016R\u0014\u0010\t\u001a\u00020\u0007X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\n\u0010\u000bR\u0011\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\b\n\u0000\u001a\u0004\b\f\u0010\rR\u0011\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\b\n\u0000\u001a\u0004\b\u000e\u0010\u000fR\u001a\u0010\u0010\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u000b\"\u0004\b\u0012\u0010\u0013R\u0011\u0010\u0006\u001a\u00020\u0007\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0014\u0010\u000b\u00a8\u0006%"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/presenter/UploadCompl;", "Lcom/daomingedu/art/mvp/ui/activity/presenter/IUploadPresenter;", "context", "Landroid/content/Context;", "iUploadView", "Lcom/daomingedu/art/mvp/ui/activity/view/IUploadView;", "url", "", "(Landroid/content/Context;Lcom/daomingedu/art/mvp/ui/activity/view/IUploadView;Ljava/lang/String;)V", "KEY", "getKEY", "()Ljava/lang/String;", "getContext", "()Landroid/content/Context;", "getIUploadView", "()Lcom/daomingedu/art/mvp/ui/activity/view/IUploadView;", "sessionId", "getSessionId", "setSessionId", "(Ljava/lang/String;)V", "getUrl", "getFaceScore", "", "id", "image", "getSongList", "getTencentKey", "saveUpload", "videoPath", "score", "", "majorLevelSongId", "videoSize", "videoCreateTime", "isAudit", "uploadPath", "fileName", "app_debug"})
+public final class UploadCompl implements com.daomingedu.art.mvp.ui.activity.presenter.IUploadPresenter {
+    @org.jetbrains.annotations.NotNull()
+    private java.lang.String sessionId;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String KEY = "715c714249094c5fb8c90a50f92c8bcd";
+    @org.jetbrains.annotations.NotNull()
+    private final android.content.Context context = null;
+    @org.jetbrains.annotations.NotNull()
+    private final com.daomingedu.art.mvp.ui.activity.view.IUploadView iUploadView = null;
+    @org.jetbrains.annotations.NotNull()
+    private final java.lang.String url = null;
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getSessionId() {
+        return null;
+    }
+    
+    public final void setSessionId(@org.jetbrains.annotations.NotNull()
+    java.lang.String p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getKEY() {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public void getSongList(@org.jetbrains.annotations.NotNull()
+    java.lang.String id) {
+    }
+    
+    @java.lang.Override()
+    public void uploadPath(@org.jetbrains.annotations.NotNull()
+    java.lang.String id, @org.jetbrains.annotations.NotNull()
+    java.lang.String fileName) {
+    }
+    
+    @java.lang.Override()
+    public void getTencentKey() {
+    }
+    
+    @java.lang.Override()
+    public void getFaceScore(@org.jetbrains.annotations.NotNull()
+    java.lang.String id, @org.jetbrains.annotations.NotNull()
+    java.lang.String image) {
+    }
+    
+    @java.lang.Override()
+    public void saveUpload(@org.jetbrains.annotations.NotNull()
+    java.lang.String id, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoPath, double score, @org.jetbrains.annotations.NotNull()
+    java.lang.String majorLevelSongId, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoSize, @org.jetbrains.annotations.NotNull()
+    java.lang.String videoCreateTime, @org.jetbrains.annotations.NotNull()
+    java.lang.String isAudit) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.content.Context getContext() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.activity.view.IUploadView getIUploadView() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String getUrl() {
+        return null;
+    }
+    
+    public UploadCompl(@org.jetbrains.annotations.NotNull()
+    android.content.Context context, @org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.activity.view.IUploadView iUploadView, @org.jetbrains.annotations.NotNull()
+    java.lang.String url) {
+        super();
+    }
+}

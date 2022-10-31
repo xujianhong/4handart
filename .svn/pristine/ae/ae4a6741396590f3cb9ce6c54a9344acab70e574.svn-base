@@ -1,0 +1,30 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.ModifyMottoPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyMottoActivity_MembersInjector
+    implements MembersInjector<ModifyMottoActivity> {
+  private final Provider<ModifyMottoPresenter> mPresenterProvider;
+
+  public ModifyMottoActivity_MembersInjector(Provider<ModifyMottoPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<ModifyMottoActivity> create(
+      Provider<ModifyMottoPresenter> mPresenterProvider) {
+    return new ModifyMottoActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(ModifyMottoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

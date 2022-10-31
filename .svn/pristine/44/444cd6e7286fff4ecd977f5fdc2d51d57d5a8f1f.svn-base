@@ -1,0 +1,42 @@
+package com.daomingedu.art.mvp.model.api.service;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0005\bf\u0018\u00002\u00020\u0001J\u001e\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u0007H\'J<\u0010\b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00072\b\b\u0001\u0010\t\u001a\u00020\u00072\b\b\u0001\u0010\n\u001a\u00020\u00072\b\b\u0001\u0010\u000b\u001a\u00020\u0007H\'\u00a8\u0006\f"}, d2 = {"Lcom/daomingedu/art/mvp/model/api/service/CerStuService;", "", "checkCer", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/CheckCerBean;", "sessionId", "", "saveCer", "name", "idNumber", "phonePath", "app_release"})
+public abstract interface CerStuService {
+    
+    /**
+     * 检查认证状态
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/cerStu/checkCer")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.CheckCerBean>> checkCer(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 保存实名认证(state =1时不用提交认证)
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param name  姓名
+     * @param idNumber  身份证号码
+     * @param phonePath 寸照路径
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/cerStu/saveCer")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> saveCer(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "name")
+    java.lang.String name, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "idNumber")
+    java.lang.String idNumber, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "phonePath")
+    java.lang.String phonePath);
+}

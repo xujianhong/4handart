@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifySexContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifySexModule_ProvideModifySexViewFactory
+    implements Factory<ModifySexContract.View> {
+  private final ModifySexModule module;
+
+  public ModifySexModule_ProvideModifySexViewFactory(ModifySexModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public ModifySexContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static ModifySexContract.View provideInstance(ModifySexModule module) {
+    return proxyProvideModifySexView(module);
+  }
+
+  public static ModifySexModule_ProvideModifySexViewFactory create(ModifySexModule module) {
+    return new ModifySexModule_ProvideModifySexViewFactory(module);
+  }
+
+  public static ModifySexContract.View proxyProvideModifySexView(ModifySexModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideModifySexView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

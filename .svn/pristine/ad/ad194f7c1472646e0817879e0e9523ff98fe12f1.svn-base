@@ -1,0 +1,42 @@
+package com.daomingedu.art.mvp.model;
+
+import android.app.Application;
+import com.google.gson.Gson;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ImageDetailsModel_MembersInjector implements MembersInjector<ImageDetailsModel> {
+  private final Provider<Gson> mGsonProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  public ImageDetailsModel_MembersInjector(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    this.mGsonProvider = mGsonProvider;
+    this.mApplicationProvider = mApplicationProvider;
+  }
+
+  public static MembersInjector<ImageDetailsModel> create(
+      Provider<Gson> mGsonProvider, Provider<Application> mApplicationProvider) {
+    return new ImageDetailsModel_MembersInjector(mGsonProvider, mApplicationProvider);
+  }
+
+  @Override
+  public void injectMembers(ImageDetailsModel instance) {
+    injectMGson(instance, mGsonProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+  }
+
+  public static void injectMGson(ImageDetailsModel instance, Gson mGson) {
+    instance.mGson = mGson;
+  }
+
+  public static void injectMApplication(ImageDetailsModel instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+}

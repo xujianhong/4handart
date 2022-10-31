@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/4handart.iml" filepath="$PROJECT_DIR$/.idea/modules/4handart.iml" group="4handart" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="4handart/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ijkplayer_coustom/ijkplayer_coustom.iml" filepath="$PROJECT_DIR$/.idea/modules/ijkplayer_coustom/ijkplayer_coustom.iml" group="4handart/ijkplayer_coustom" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/imagepicker/imagepicker.iml" filepath="$PROJECT_DIR$/.idea/modules/imagepicker/imagepicker.iml" group="4handart/imagepicker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pickTime/pickTime.iml" filepath="$PROJECT_DIR$/.idea/modules/pickTime/pickTime.iml" group="4handart/pickTime" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/videoRecord/videoRecord.iml" filepath="$PROJECT_DIR$/.idea/modules/videoRecord/videoRecord.iml" group="4handart/videoRecord" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/videocompressor/videocompressor.iml" filepath="$PROJECT_DIR$/.idea/modules/videocompressor/videocompressor.iml" group="4handart/videocompressor" />
+    </modules>
+  </component>
+</project>

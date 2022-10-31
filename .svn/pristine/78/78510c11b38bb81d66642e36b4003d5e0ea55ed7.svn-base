@@ -1,0 +1,30 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.ModifyNamePresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyNameActivity_MembersInjector
+    implements MembersInjector<ModifyNameActivity> {
+  private final Provider<ModifyNamePresenter> mPresenterProvider;
+
+  public ModifyNameActivity_MembersInjector(Provider<ModifyNamePresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<ModifyNameActivity> create(
+      Provider<ModifyNamePresenter> mPresenterProvider) {
+    return new ModifyNameActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(ModifyNameActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

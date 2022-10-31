@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white_ef">
+    <include layout="@layout/include_page_head"/>
+    <RadioGroup
+            android:id="@+id/rg_modify_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <RadioButton
+                android:id="@+id/rb_modify_male"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/Sex_male"
+                android:textSize="@dimen/text_15"
+                android:button="@null"
+                android:drawableLeft="@drawable/sex_select_icon_bg"
+
+                android:paddingLeft="15dp"
+                android:drawablePadding="10dp"
+                android:background="@drawable/sex_select_bg"/>
+        <RadioButton
+                android:id="@+id/rb_modify_man"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:text="@string/Sex_man"
+                android:textSize="@dimen/text_15"
+                android:button="@null"
+                android:drawableLeft="@drawable/sex_select_icon_bg"
+                android:paddingLeft="15dp"
+                android:drawablePadding="10dp"
+                android:background="@drawable/sex_select_bg"/>
+    </RadioGroup>
+</LinearLayout>

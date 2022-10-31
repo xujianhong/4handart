@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:piano="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white_f8">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/green_2b"
+            android:paddingTop="1dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+
+                >
+            <View
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/piano_beijing"/>
+            <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="00:00"
+                    android:textColor="@color/white_f8"/>
+            <Button
+                    android:id="@+id/btn_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="录音"
+                    android:background="@null"
+                    android:drawableLeft="@mipmap/playpasue"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/white_f8"
+                    android:textSize="15sp"/>
+
+            <!--<Button-->
+            <!--android:id="@+id/btn_stop"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:text="停止"-->
+            <!--android:background="@null"-->
+            <!--android:drawableLeft="@mipmap/piano_pasue"-->
+            <!--android:drawablePadding="5dp"-->
+            <!--android:textColor="@color/white_f8"-->
+            <!--android:textSize="15sp"/>-->
+            <View
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@mipmap/piano_beijing"/>
+        </LinearLayout>
+
+        <ImageButton
+                android:id="@+id/ib_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@mipmap/arrow_back"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/white_f8"/>
+    </RelativeLayout>
+
+    <include layout="@layout/test_piano"/>
+</LinearLayout>

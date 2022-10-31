@@ -1,0 +1,54 @@
+// Generated code from Butter Knife. Do not modify!
+package com.daomingedu.art.mvp.ui.widget.playrecording;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.daomingedu.art.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class SingingRecordingView_ViewBinding implements Unbinder {
+  private SingingRecordingView target;
+
+  @UiThread
+  public SingingRecordingView_ViewBinding(SingingRecordingView target) {
+    this(target, target);
+  }
+
+  @UiThread
+  public SingingRecordingView_ViewBinding(SingingRecordingView target, View source) {
+    this.target = target;
+
+    target.ib_pause = Utils.findRequiredViewAsType(source, R.id.ib_pause, "field 'ib_pause'", ImageButton.class);
+    target.tv_time_current = Utils.findRequiredViewAsType(source, R.id.tv_time_current, "field 'tv_time_current'", TextView.class);
+    target.sb_progress = Utils.findRequiredViewAsType(source, R.id.sb_progress, "field 'sb_progress'", SeekBar.class);
+    target.tv_time = Utils.findRequiredViewAsType(source, R.id.tv_time, "field 'tv_time'", TextView.class);
+    target.pb_loading = Utils.findRequiredViewAsType(source, R.id.pb_loading, "field 'pb_loading'", ProgressBar.class);
+    target.ll_bg = Utils.findRequiredViewAsType(source, R.id.ll_bg, "field 'll_bg'", LinearLayout.class);
+    target.ll_daily_recording = Utils.findRequiredViewAsType(source, R.id.ll_daily_recording, "field 'll_daily_recording'", LinearLayout.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    SingingRecordingView target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+    this.target = null;
+
+    target.ib_pause = null;
+    target.tv_time_current = null;
+    target.sb_progress = null;
+    target.tv_time = null;
+    target.pb_loading = null;
+    target.ll_bg = null;
+    target.ll_daily_recording = null;
+  }
+}

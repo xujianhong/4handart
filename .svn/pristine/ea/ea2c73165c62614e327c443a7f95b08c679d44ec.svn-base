@@ -1,0 +1,46 @@
+package com.daomingedu.art.mvp.contract;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/04/2019 18:29
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001:\u0002\u0002\u0003\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/PersonInfoContract;", "", "Model", "View", "app_release"})
+public abstract interface PersonInfoContract {
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0018\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\bf\u0018\u00002\u00020\u0001J\u0012\u0010\u0002\u001a\u00020\u00032\b\u0010\u0004\u001a\u0004\u0018\u00010\u0005H&J\b\u0010\u0006\u001a\u00020\u0003H&\u00a8\u0006\u0007"}, d2 = {"Lcom/daomingedu/art/mvp/contract/PersonInfoContract$View;", "Lcom/jess/arms/mvp/IView;", "requestGetCustomerInfoSuccess", "", "data", "Lcom/daomingedu/art/mvp/model/entity/UserInfoBean;", "requestUpdateCustomer", "app_release"})
+    public static abstract interface View extends com.jess.arms.mvp.IView {
+        
+        public abstract void requestGetCustomerInfoSuccess(@org.jetbrains.annotations.Nullable()
+        com.daomingedu.art.mvp.model.entity.UserInfoBean data);
+        
+        public abstract void requestUpdateCustomer();
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000.\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0004\n\u0002\u0010\b\n\u0002\b\u0004\bf\u0018\u00002\u00020\u0001J\u001c\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\u0006\u0010\u0006\u001a\u00020\u0007H&J]\u0010\b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\t0\u00040\u00032\u0006\u0010\u0006\u001a\u00020\u00072\b\u0010\n\u001a\u0004\u0018\u00010\u00072\b\u0010\u000b\u001a\u0004\u0018\u00010\u00072\b\u0010\f\u001a\u0004\u0018\u00010\u00072\b\u0010\r\u001a\u0004\u0018\u00010\u000e2\b\u0010\u000f\u001a\u0004\u0018\u00010\u00072\b\u0010\u0010\u001a\u0004\u0018\u00010\u0007H&\u00a2\u0006\u0002\u0010\u0011\u00a8\u0006\u0012"}, d2 = {"Lcom/daomingedu/art/mvp/contract/PersonInfoContract$Model;", "Lcom/jess/arms/mvp/IModel;", "getCustomerInfo", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/UserInfoBean;", "sessionId", "", "updateCustomer", "", "image", "realName", "nickName", "sex", "", "birthday", "motto", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)Lio/reactivex/Observable;", "app_release"})
+    public static abstract interface Model extends com.jess.arms.mvp.IModel {
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.UserInfoBean>> getCustomerInfo(@org.jetbrains.annotations.NotNull()
+        java.lang.String sessionId);
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> updateCustomer(@org.jetbrains.annotations.NotNull()
+        java.lang.String sessionId, @org.jetbrains.annotations.Nullable()
+        java.lang.String image, @org.jetbrains.annotations.Nullable()
+        java.lang.String realName, @org.jetbrains.annotations.Nullable()
+        java.lang.String nickName, @org.jetbrains.annotations.Nullable()
+        java.lang.Integer sex, @org.jetbrains.annotations.Nullable()
+        java.lang.String birthday, @org.jetbrains.annotations.Nullable()
+        java.lang.String motto);
+    }
+}

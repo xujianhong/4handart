@@ -1,0 +1,37 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.BlockUserBean;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class BlockUsersModule_ProvideDatasFactory implements Factory<List<BlockUserBean>> {
+  private final BlockUsersModule module;
+
+  public BlockUsersModule_ProvideDatasFactory(BlockUsersModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public List<BlockUserBean> get() {
+    return provideInstance(module);
+  }
+
+  public static List<BlockUserBean> provideInstance(BlockUsersModule module) {
+    return proxyProvideDatas(module);
+  }
+
+  public static BlockUsersModule_ProvideDatasFactory create(BlockUsersModule module) {
+    return new BlockUsersModule_ProvideDatasFactory(module);
+  }
+
+  public static List<BlockUserBean> proxyProvideDatas(BlockUsersModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideDatas(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

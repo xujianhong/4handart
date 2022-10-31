@@ -1,0 +1,715 @@
+package com.daomingedu.art.mvp.ui.widget.coustomview;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.SurfaceTexture;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.AttrRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.*;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import com.daomingedu.art.R;
+
+import java.io.IOException;
+import java.util.Map;
+
+
+/**
+ * Created by jianhongxu on 2017/7/3.
+ */
+
+public class CustomPlayerView extends FrameLayout
+        implements TextureView.SurfaceTextureListener, CustomPlayer {
+
+    private static final String TAG = "CustomPlayerView";
+    MediaPlayer mediaPlayer;
+
+    int mCurrentState = STATE_IDLE;//当前状态
+    int mCurrentDisplay = DISPLAY_SMALL;
+    private int mDuration = STATE_MEDIA_DATA_ERROR; //总的时长
+
+
+    private boolean isBackground = false;
+
+
+    private int mCurrentPosition = STATE_MEDIA_DATA_ERROR;
+    private boolean isRecord;
+    private ImageView imageView;
+    private boolean isInitNoStart;
+    private OnCurrentStatusCallBack callBack;
+
+
+    public boolean isLooping() {
+        return looping;
+    }
+
+    public void setLooping(boolean looping) {
+        this.looping = looping;
+    }
+
+    private boolean looping; //是否循环播放
+
+
+    MyTextureView textureView;
+
+    FrameLayout mContainer;
+
+
+    private Context mContext;
+
+
+    private String mUrlData; //数据源
+
+    public String getmUrlData() {
+        return mUrlData;
+    }
+
+    public void setmUrlData(String mUrlData) {
+        this.mUrlData = mUrlData;
+    }
+
+    private Map<String, String> mHeaders; //请求头
+
+    private SurfaceTexture mSurfaceTexture;
+
+    private BaseController controller;
+
+
+    public CustomPlayerView(@NonNull Context context) {
+        this(context, null);
+
+    }
+
+    public CustomPlayerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public CustomPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        mContext = context;
+
+        initView();
+
+
+    }
+
+    private void initController(boolean isRecord) {
+        if (isRecord) {
+            if (controller == null) {
+                controller = new AudioController(mContext);
+            } else {
+                mContainer.removeView(controller);
+                controller = new AudioController(mContext);
+            }
+
+        } else {
+            if (controller == null) {
+                controller = new VideoController(mContext);
+            } else {
+                mContainer.removeView(controller);
+                controller = new VideoController(mContext);
+            }
+        }
+
+
+        controller.setPlayer(this);
+
+
+        LayoutParams ps =
+                new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        mContainer.addView(controller, ps);
+
+    }
+
+    private void initView() {
+        mContainer = new FrameLayout(mContext);
+        mContainer.setBackgroundColor(Color.BLACK);
+        LayoutParams ps =
+                new LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                );
+        this.addView(mContainer, ps);
+    }
+
+    public void initPlayer() {
+        if (mCurrentState == STATE_IDLE && mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        } else {
+
+            reset();
+        }
+        isBackground = false;
+        mediaPlayer.setLooping(looping);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        //keep screen on
+        ((AppCompatActivity) mContext).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        mediaPlayer.setOnPreparedListener(mOnPreparedListener);
+        mediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
+        mediaPlayer.setOnCompletionListener(mOnCompletionListener);
+        mediaPlayer.setOnErrorListener(mOnErrorListener);
+        mediaPlayer.setOnInfoListener(mOnInfoListener);
+        mediaPlayer.setOnVideoSizeChangedListener(mOnVideoSizeChangedListener);
+
+
+        initImageView(isRecord);//添加播放音频时显示图片
+
+        initController(isRecord);
+
+
+        refreshController(STATE_INITIALIZED);
+        initTextureView();
+
+
+    }
+
+    private void initImageView(boolean isRecord) {
+        if (isRecord) {
+            if (imageView == null)
+                imageView = new ImageView(mContext);
+            imageView.setImageResource(R.mipmap.share_recording_bg);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            LayoutParams ps =
+                    new LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT
+                    );
+
+            mContainer.removeView(imageView);
+            mContainer.addView(imageView, ps);
+        } else {
+            if (imageView != null)
+                mContainer.removeView(imageView);
+        }
+    }
+
+    /**
+     * 更新控制器状态
+     *
+     * @param currentState
+     */
+    public void refreshController(int currentState) {
+        if (currentState != STATE_CURRENT_NULL) {
+            mCurrentState = currentState;
+        }
+        if (controller != null)
+            controller.setPlayerState(mCurrentState);
+        if(callBack!=null)callBack.onCurrentStatus(mCurrentState);
+    }
+
+    public void addCurrentStatusCallBack(OnCurrentStatusCallBack callBack){
+        this.callBack = callBack;
+    }
+
+    /**
+     * 初始化textureView
+     */
+    private void initTextureView() {
+        if (textureView == null) {
+            textureView = new MyTextureView(mContext);
+            textureView.setSurfaceTextureListener(this);
+        }
+
+        int mScaleType = MyTextureView.CENTER_CROPED;
+        textureView.setScaleType(mScaleType);
+        mContainer.removeView(textureView);
+        LayoutParams ps =
+                new LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                );
+        mContainer.addView(textureView, 0, ps);
+
+    }
+
+    public CustomPlayer setUrlData(String urlData, Map<String, String> headers, boolean isRecord) {
+        mHeaders = headers;
+        mUrlData = urlData;
+        this.isRecord = isRecord;
+
+        return this;
+    }
+
+
+    private MediaPlayer.OnPreparedListener mOnPreparedListener = new MediaPlayer.OnPreparedListener() {
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            if (mCurrentState != STATE_PREPARE) return;
+
+            mDuration = mp.getDuration(); //得到数据的总时长
+
+
+            mp.setVolume(1f, 1f);//设置音量
+
+
+            refreshController(STATE_PREPARE_END);
+
+            if (!isInitNoStart) {
+                mp.start();
+                if (mediaPlayer.isPlaying()) {
+                    refreshController(PLAYER_STATE_PLAYING);
+                } else {
+                    refreshController(STATE_CURRENT_NULL);
+                }
+            }
+        }
+    };
+
+    private MediaPlayer.OnBufferingUpdateListener mOnBufferingUpdateListener = new MediaPlayer.OnBufferingUpdateListener() {
+        @Override
+        public void onBufferingUpdate(MediaPlayer MediaPlayer, int i) {
+            Log.d(TAG, "onBufferingUpdate: " + i);
+
+            if (controller != null)
+                controller.setBufferingUpdate(i);
+        }
+    };
+
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer MediaPlayer) {
+
+            Log.d(TAG, "onCompletion: media play Completion");
+            if (mCurrentState != STATE_ERROR) {
+                refreshController(STATE_COMPLETED);
+            } else {
+                refreshController(STATE_CURRENT_NULL);
+            }
+
+
+        }
+    };
+
+    private MediaPlayer.OnErrorListener mOnErrorListener = new MediaPlayer.OnErrorListener() {
+        @Override
+        public boolean onError(MediaPlayer mediaPlayer, int what, int extra) {
+            refreshController(STATE_ERROR);
+            switch (what) {
+                /*
+                  未指定的媒体播放器错误。
+                 */
+                case MediaPlayer.MEDIA_ERROR_UNKNOWN:
+                    Log.e(TAG, "onError-what: MEDIA_ERROR_UNKNOWN");
+                    break;
+                /*
+                  媒体服务器死机。 在这种情况下，应用程序必须释放MediaPlayer对象并实例化一个新对象。
+                 */
+                case MediaPlayer.MEDIA_ERROR_SERVER_DIED:
+                    Log.e(TAG, "onError-what: MEDIA_ERROR_SERVER_DIED");
+                    break;
+            }
+
+            switch (extra) {
+                /*文件或网络相关的操作错误。*/
+                case MediaPlayer.MEDIA_ERROR_IO:
+                    Log.e(TAG, "onError-extra: MEDIA_ERROR_IO");
+                    break;
+                /*位流不符合相关编码标准或文件规格。*/
+                case MediaPlayer.MEDIA_ERROR_MALFORMED:
+                    Log.e(TAG, "onError-extra: MEDIA_ERROR_MALFORMED");
+                    break;
+                /*位流符合相关编码标准或文件规格，但媒体框架不支持该功能。*/
+                case MediaPlayer.MEDIA_ERROR_UNSUPPORTED:
+                    Log.e(TAG, "onError-extra: MEDIA_ERROR_UNSUPPORTED");
+                    break;
+                /*一些操作需要太长时间才能完成，通常超过3-5秒。*/
+                case MediaPlayer.MEDIA_ERROR_TIMED_OUT:
+                    Log.e(TAG, "onError-extra: MEDIA_ERROR_TIMED_OUT");
+                    break;
+
+
+            }
+            return false;
+        }
+    };
+
+    private MediaPlayer.OnInfoListener mOnInfoListener = new MediaPlayer.OnInfoListener() {
+        @Override
+        public boolean onInfo(MediaPlayer mediaPlayer, int what, int i1) {
+            switch (what) {
+                /*
+                  未指定的媒体播放器信息
+                 */
+                case MediaPlayer.MEDIA_INFO_UNKNOWN:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_UNKNOWN");
+                    break;
+                /*
+                  视频对于解码器来说太复杂了：它不能足够快地解码帧。 在这个阶段可能只有音频播放正常。
+                 */
+                case MediaPlayer.MEDIA_INFO_VIDEO_TRACK_LAGGING:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_VIDEO_TRACK_LAGGING");
+                    break;
+
+                /*
+                  播放器刚推出第一个视频帧进行渲染。
+                 */
+                case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_VIDEO_RENDERING_START");
+
+                    break;
+                /*
+                  MediaPlayer暂时暂停内部播放，以缓冲更多的数据。
+                 */
+                case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_BUFFERING_START");
+
+
+                    refreshController(STATE_BUFFING_START);
+
+                    break;
+                /*
+                  填充缓冲区后MediaPlayer正在恢复播放。
+                 */
+                case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_BUFFERING_END");
+
+                    refreshController(STATE_BUFFING_END);
+                    break;
+                case MediaPlayer.MEDIA_INFO_BAD_INTERLEAVING:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_BAD_INTERLEAVING");
+                    break;
+                case MediaPlayer.MEDIA_INFO_NOT_SEEKABLE:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_NOT_SEEKABLE");
+                    break;
+                case MediaPlayer.MEDIA_INFO_METADATA_UPDATE:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_METADATA_UPDATE");
+                    break;
+                case MediaPlayer.MEDIA_INFO_UNSUPPORTED_SUBTITLE:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_UNSUPPORTED_SUBTITLE");
+                    break;
+                case MediaPlayer.MEDIA_INFO_SUBTITLE_TIMED_OUT:
+                    Log.d(TAG, "onInfo: MEDIA_INFO_SUBTITLE_TIMED_OUT");
+                    break;
+
+
+            }
+
+            return false;
+        }
+    };
+
+    private MediaPlayer.OnVideoSizeChangedListener mOnVideoSizeChangedListener = new MediaPlayer.OnVideoSizeChangedListener() {
+        @Override
+        public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+            if (textureView != null) {
+                textureView.setVideoSize(width, height);
+            }
+            Log.d(TAG, "onVideoSizeChanged: width:" + width + "  height:" + height);
+        }
+    };
+
+
+    @Override
+    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+        Log.d(TAG, "surface onSurfaceTextureAvailable: ");
+        if (mSurfaceTexture == null) {
+            isBackground = true;
+            mSurfaceTexture = surface;
+            preparePlayer(mSurfaceTexture);
+
+
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                textureView.setSurfaceTexture(mSurfaceTexture);
+            } else {
+                mediaPlayer.setSurface(new Surface(surface));
+            }
+        }
+    }
+
+    private void preparePlayer(SurfaceTexture surface) {
+        Log.d(TAG, "preparePlayer: mCurrentState:" + mCurrentState);
+        try {
+            if (mCurrentState == STATE_INITIALIZED) {
+                mediaPlayer.setDataSource(mContext, Uri.parse(mUrlData), mHeaders);
+            }
+            if (surface != null) {
+                mediaPlayer.setSurface(new Surface(surface));
+            }
+            mediaPlayer.prepareAsync();
+            refreshController(STATE_PREPARE);
+
+
+        } catch (IOException e) {
+            Log.e(TAG, "perparePlayer: " + e.toString());
+            e.printStackTrace();
+            refreshController(STATE_ERROR);
+
+        }
+
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+        Log.d(TAG, "surface  onSurfaceTextureSizeChanged: ");
+
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+        Log.d(TAG, "surface   onSurfaceTextureDestroyed: " + isBackground);
+        if (!isBackground) {
+            mSurfaceTexture = null;
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+//        Log.d(TAG, "surface   onSurfaceTextureUpdated: ");
+    }
+
+
+    @Override
+    public void start() {
+        if (TextUtils.isEmpty(mUrlData)) {
+            Log.e(TAG, "The Video Path can not be empty");
+            return;
+//            throw new RuntimeException("The Video Path can not be empty");
+
+        }
+
+        isInitNoStart = false;
+        if (PlayerUtils.getConnectedType(mContext) != ConnectivityManager.TYPE_WIFI
+                && mUrlData.contains("http://")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setMessage("当前网络不在WiFi状态下,是否继续播放?");
+            builder.setNegativeButton("不了", null);
+            builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    initPlayer();
+                }
+            });
+
+            builder.show();
+        } else {
+            initPlayer();
+        }
+    }
+
+    public void init() {
+        if (TextUtils.isEmpty(mUrlData)) {
+            throw new IllegalArgumentException("The Video Path can not be empty");
+
+        }
+        isInitNoStart = true;
+        if (PlayerUtils.getConnectedType(mContext) != ConnectivityManager.TYPE_WIFI
+                && mUrlData.contains("http://")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setMessage("当前网络不在WiFi状态下,是否继续播放?");
+            builder.setNegativeButton("不了", null);
+            builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    initPlayer();
+                }
+            });
+
+            builder.show();
+        } else {
+
+            initPlayer();
+        }
+    }
+
+    @Override
+    public void pause() {
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mCurrentPosition = mediaPlayer.getCurrentPosition();
+                mediaPlayer.pause();
+                if (!mediaPlayer.isPlaying())
+                    refreshController(PLAYER_STATE_PAUSE);
+                else{
+                    refreshController(STATE_CURRENT_NULL);
+                }
+            } else {
+                refreshController(STATE_CURRENT_NULL);
+            }
+        }
+    }
+
+    @Override
+    public void resume() {
+        if (mediaPlayer != null) {
+            if (!mediaPlayer.isPlaying()) {
+                mediaPlayer.start();
+                if (mediaPlayer.isPlaying()) {
+                    refreshController(PLAYER_STATE_PLAYING);
+                } else {
+                    refreshController(STATE_CURRENT_NULL);
+                }
+            }
+            else{
+                refreshController(STATE_CURRENT_NULL);
+            }
+        }
+    }
+
+
+    @Override
+    public int getCurrentState() {
+        return mCurrentState;
+    }
+
+
+    @Override
+    public boolean isIdle() {
+        return mCurrentState == STATE_IDLE;
+    }
+
+    @Override
+    public boolean isPreparing() {
+        return mCurrentState == STATE_PREPARE;
+    }
+
+    @Override
+    public boolean isPrePared() {
+        return mCurrentState == STATE_PREPARE_END;
+    }
+
+    @Override
+    public boolean isPlaying() {
+        if (mediaPlayer != null) {
+            try {
+                return mediaPlayer.isPlaying();
+            } catch (IllegalStateException e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isBuffing() {
+        return mCurrentState == STATE_BUFFING_START;
+    }
+
+
+    @Override
+    public boolean isCompleted() {
+        return mCurrentState == STATE_COMPLETED;
+    }
+
+    @Override
+    public void seekTo(int position) {
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(position);
+        }
+    }
+
+    @Override
+    public void release() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            refreshController(STATE_END);
+        }
+        if (mSurfaceTexture != null) {
+            mSurfaceTexture.release();
+            mSurfaceTexture = null;
+        }
+    }
+
+    @Override
+    public void reset() {
+
+        if (mediaPlayer != null) {
+            mediaPlayer.reset();
+
+        }
+        refreshController(STATE_IDLE);
+
+    }
+
+    @Override
+    public int getDuration() {
+
+        return mDuration;
+
+    }
+
+    @Override
+    public long getCurrentPosition() {
+        return !isPlaying() ? mCurrentPosition : mediaPlayer.getCurrentPosition();
+    }
+
+    @Override
+    public void setCurrentPosition(int currentPosition) {
+        mCurrentPosition = currentPosition;
+    }
+
+    @Override
+    public int getDisplayState() {
+        return mCurrentDisplay;
+    }
+
+    @Override
+    public void fullScreen() {
+        if (mCurrentDisplay == DISPLAY_SMALL) {
+            ((AppCompatActivity) mContext).getWindow()
+                    .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            ((AppCompatActivity) mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                this.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            } else {
+                this.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            }
+
+            this.removeView(mContainer);
+            ViewGroup viewGroup = (ViewGroup) ((AppCompatActivity) mContext)
+                    .findViewById(android.R.id.content);
+            for (int i = 0; i < this.getChildCount(); i++) {
+                this.getChildAt(i).setFocusable(false);
+            }
+
+            viewGroup.addView(mContainer);
+            Log.d(TAG, "fullScreen: " + viewGroup.getChildCount());
+            mCurrentDisplay = DISPLAY_FULL;
+        }
+    }
+
+    @Override
+    public void smallScreen() {
+        if (mCurrentDisplay == DISPLAY_FULL) {
+            ((AppCompatActivity) mContext)
+                    .getWindow()
+                    .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            ((AppCompatActivity) mContext).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            this.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            ViewGroup viewGroup = (ViewGroup) ((AppCompatActivity) mContext)
+                    .findViewById(android.R.id.content);
+            viewGroup.removeView(mContainer);
+            ViewGroup.LayoutParams params = new LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+
+            this.addView(mContainer, params);
+            for (int i = 0; i < this.getChildCount(); i++) {
+                this.getChildAt(i).setFocusable(true);
+            }
+            Log.d(TAG, "smallScreen: " + viewGroup.getChildCount());
+            mCurrentDisplay = DISPLAY_SMALL;
+        }
+    }
+
+}

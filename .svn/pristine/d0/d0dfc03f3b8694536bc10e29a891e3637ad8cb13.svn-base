@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.lzy.net:okgo:3.0.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/deafa9f8e96f7123e6b02feb314eef24/okgo-3.0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/deafa9f8e96f7123e6b02feb314eef24/okgo-3.0.3/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.lzy.net/okgo/3.0.3/5e52decf1bf05c911e9f20f53c46b5c71201779b/okgo-3.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

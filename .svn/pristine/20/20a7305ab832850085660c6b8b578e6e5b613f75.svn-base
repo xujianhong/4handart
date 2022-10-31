@@ -1,0 +1,120 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.model.entity.GradeBean;
+import com.daomingedu.art.mvp.model.entity.NewsBean;
+import com.daomingedu.art.mvp.ui.adapter.HomeAdapter;
+import com.daomingedu.art.mvp.ui.adapter.HomeGradeAdapter;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomePresenter_MembersInjector implements MembersInjector<HomePresenter> {
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  private final Provider<HomeGradeAdapter> mHomeGradAdapterProvider;
+
+  private final Provider<List<GradeBean>> mGradesProvider;
+
+  private final Provider<HomeAdapter> mAdapterProvider;
+
+  private final Provider<List<NewsBean>> mDatasProvider;
+
+  public HomePresenter_MembersInjector(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<HomeGradeAdapter> mHomeGradAdapterProvider,
+      Provider<List<GradeBean>> mGradesProvider,
+      Provider<HomeAdapter> mAdapterProvider,
+      Provider<List<NewsBean>> mDatasProvider) {
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+    this.mHomeGradAdapterProvider = mHomeGradAdapterProvider;
+    this.mGradesProvider = mGradesProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDatasProvider = mDatasProvider;
+  }
+
+  public static MembersInjector<HomePresenter> create(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<HomeGradeAdapter> mHomeGradAdapterProvider,
+      Provider<List<GradeBean>> mGradesProvider,
+      Provider<HomeAdapter> mAdapterProvider,
+      Provider<List<NewsBean>> mDatasProvider) {
+    return new HomePresenter_MembersInjector(
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider,
+        mHomeGradAdapterProvider,
+        mGradesProvider,
+        mAdapterProvider,
+        mDatasProvider);
+  }
+
+  @Override
+  public void injectMembers(HomePresenter instance) {
+    injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+    injectMImageLoader(instance, mImageLoaderProvider.get());
+    injectMAppManager(instance, mAppManagerProvider.get());
+    injectMHomeGradAdapter(instance, mHomeGradAdapterProvider.get());
+    injectMGrades(instance, mGradesProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMDatas(instance, mDatasProvider.get());
+  }
+
+  public static void injectMErrorHandler(HomePresenter instance, RxErrorHandler mErrorHandler) {
+    instance.mErrorHandler = mErrorHandler;
+  }
+
+  public static void injectMApplication(HomePresenter instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+
+  public static void injectMImageLoader(HomePresenter instance, ImageLoader mImageLoader) {
+    instance.mImageLoader = mImageLoader;
+  }
+
+  public static void injectMAppManager(HomePresenter instance, AppManager mAppManager) {
+    instance.mAppManager = mAppManager;
+  }
+
+  public static void injectMHomeGradAdapter(
+      HomePresenter instance, HomeGradeAdapter mHomeGradAdapter) {
+    instance.mHomeGradAdapter = mHomeGradAdapter;
+  }
+
+  public static void injectMGrades(HomePresenter instance, List<GradeBean> mGrades) {
+    instance.mGrades = mGrades;
+  }
+
+  public static void injectMAdapter(HomePresenter instance, HomeAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMDatas(HomePresenter instance, List<NewsBean> mDatas) {
+    instance.mDatas = mDatas;
+  }
+}

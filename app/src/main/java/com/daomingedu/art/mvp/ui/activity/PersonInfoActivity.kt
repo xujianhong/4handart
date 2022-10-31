@@ -1,0 +1,231 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.Manifest
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Bundle
+
+import android.text.TextUtils
+import androidx.appcompat.widget.Toolbar
+import com.codbking.widget.DatePickDialog
+import com.codbking.widget.OnSureLisener
+import com.codbking.widget.bean.DateType
+import com.daomingedu.art.R
+import com.daomingedu.art.app.*
+import com.daomingedu.art.di.component.DaggerPersonInfoComponent
+import com.daomingedu.art.di.module.PersonInfoModule
+import com.daomingedu.art.mvp.contract.PersonInfoContract
+import com.daomingedu.art.mvp.model.entity.UserInfoBean
+import com.daomingedu.art.mvp.presenter.PersonInfoPresenter
+import com.daomingedu.art.util.Utils
+import com.daomingedu.art.util.startActivityForResult
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+import com.lzy.imagepicker.ImagePicker
+import com.lzy.imagepicker.bean.ImageItem
+import com.lzy.imagepicker.ui.ImageGridActivity
+import com.tbruyelle.rxpermissions2.RxPermissions
+import kotlinx.android.synthetic.main.activity_person_info.*
+import kotlinx.android.synthetic.main.include_page_head.*
+import me.jessyan.autosize.internal.CancelAdapt
+import java.text.SimpleDateFormat
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/04/2019 18:29
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class PersonInfoActivity : BaseActivity<PersonInfoPresenter>(), PersonInfoContract.View, CancelAdapt {
+    private var date: String? = null
+    private var imageBase64:String?=null
+    override fun requestUpdateCustomer() {
+        ArmsUtils.makeText(application, "修改成功")
+        if (!TextUtils.isEmpty(date)) {
+            tv_me_birth.text = date
+        }
+        val avatarBitmap = Utils.decodeImage(imageBase64)
+        if (avatarBitmap != null) {
+            riv_me_head.setImageBitmap(avatarBitmap)
+
+        }else{
+            riv_me_head.setImageResource(R.drawable.avatar_default)
+        }
+    }
+
+    override fun requestGetCustomerInfoSuccess(data: UserInfoBean?) {
+        data?.let {
+            riv_me_head.loadImage(JHCImageConfig.Builder()
+                .imageView(riv_me_head)
+                .url(Constant.IMAGE_PREFIX+it.imagePath)
+                .isCircle(true)
+                .errorPic(R.drawable.avatar_default)
+                .placeholder(R.drawable.avatar_default)
+                .build())
+            /*imageBase64 = it.imagePath
+            val avatarBitmap = Utils.decodeImage(imageBase64)
+            if (avatarBitmap != null) {
+                riv_me_head.setImageBitmap(avatarBitmap)
+            }else{
+                riv_me_head.setImageResource(R.drawable.avatar_default)
+            }*/
+            tv_me_real_name.text = it.realName
+            tv_me_nick_name.text = it.nickName
+            tv_me_sex.text = when (it.sex) {
+                1 -> "男"
+                0 -> "女"
+                else -> ""
+            }
+            tv_me_birth.text = it.birthday
+            tv_me_motto.text = it.motto
+        }
+    }
+
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerPersonInfoComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .personInfoModule(PersonInfoModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_person_info //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        tv_name.text = "个人信息"
+        val toolbar = findViewById<Toolbar>(R.id.toolbar2)
+        toolbar.background.alpha = 255
+        toolbar.setNavigationIcon(R.drawable.ic_back_white)
+        toolbar.setNavigationOnClickListener { killMyself() }
+        mPresenter?.getCustomerInfo()
+        riv_me_head.onClick {
+            RxPermissions(this).request(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe {
+                    if (it){
+                        startActivityForResult<ImageGridActivity>(callback = {
+                            val images =
+                                it.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS) as ArrayList<ImageItem>
+                            if (images != null && images.size > 0) {
+                                val image = images.get(0)
+                                val options = BitmapFactory.Options()
+                                options.inJustDecodeBounds = true
+                                options.inSampleSize = 4
+                                options.inJustDecodeBounds = false
+                                val bitmap = BitmapFactory.decodeFile(image.path,options)
+                                imageBase64 = Utils.encodeImage(bitmap)
+                                mPresenter?.updateCustomer(image = imageBase64)
+                            }
+
+                        })
+                    }else{
+                        ArmsUtils.makeText(application,"缺少文件读取权限")
+                    }
+                }
+        }
+        btn_me_real_name.onClick {
+            startActivityForResult<ModifyNameActivity>("name" to tv_me_real_name.text,"nameType" to 0, callback = {
+                val name = it.getStringExtra("name")
+                tv_me_real_name.text = name
+            })
+        }
+
+        btn_me_nick_name.onClick {
+            startActivityForResult<ModifyNameActivity>("name" to tv_me_nick_name.text,"nameType" to 1, callback = {
+                val name = it.getStringExtra("name")
+                tv_me_nick_name.text = name
+            })
+        }
+        btn_me_sex.onClick {
+            startActivityForResult<ModifySexActivity>(
+                "sex" to if (tv_me_sex.text == "男") {
+                    1
+                } else {
+                    0
+                }, callback = {
+                    val sex = it.getIntExtra("sex", 0)
+                    tv_me_sex.text = when (sex) {
+                        1 -> "男"
+                        0 -> "女"
+                        else -> ""
+                    }
+                })
+        }
+        btn_me_motto.onClick {
+            startActivityForResult<ModifyMottoActivity>(
+                "motto" to tv_me_motto.text, callback = {
+                    val motto = it.getStringExtra("motto")
+                    tv_me_motto.text = motto
+                })
+        }
+        btn_me_birth.onClick {
+            val dialog = DatePickDialog(this)
+            //设置上下年分限制
+            dialog.setYearLimt(80)
+            //设置标题
+            dialog.setTitle("选择时间")
+            //设置类型
+            dialog.setType(DateType.TYPE_YMD)
+            //设置消息体的显示格式，日期格式
+            dialog.setMessageFormat("yyyy-MM-dd")
+            //设置选择回调
+            dialog.setOnChangeLisener(null)
+            //设置点击确定按钮回调
+            dialog.setOnSureLisener {
+                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                date = sdf.format(it)
+                mPresenter?.updateCustomer(birthday = date!!)
+            }
+            dialog.show()
+        }
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+}

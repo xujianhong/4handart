@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.SplashContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SplashModule_ProvideSplashViewFactory implements Factory<SplashContract.View> {
+  private final SplashModule module;
+
+  public SplashModule_ProvideSplashViewFactory(SplashModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public SplashContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static SplashContract.View provideInstance(SplashModule module) {
+    return proxyProvideSplashView(module);
+  }
+
+  public static SplashModule_ProvideSplashViewFactory create(SplashModule module) {
+    return new SplashModule_ProvideSplashViewFactory(module);
+  }
+
+  public static SplashContract.View proxyProvideSplashView(SplashModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideSplashView(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

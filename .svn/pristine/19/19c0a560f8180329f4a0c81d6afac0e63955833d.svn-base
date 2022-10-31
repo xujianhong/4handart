@@ -1,0 +1,24 @@
+package com.daomingedu.art.di.component;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/27/2019 16:30
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\bg\u0018\u00002\u00020\u0001J\u0010\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u0005H&\u00a8\u0006\u0006"}, d2 = {"Lcom/daomingedu/art/di/component/ForgetPasswordComponent;", "", "inject", "", "activity", "Lcom/daomingedu/art/mvp/ui/activity/ForgetPasswordActivity;", "app_release"})
+@dagger.Component(modules = {com.daomingedu.art.di.module.ForgetPasswordModule.class}, dependencies = {com.jess.arms.di.component.AppComponent.class})
+@com.jess.arms.di.scope.ActivityScope()
+public abstract interface ForgetPasswordComponent {
+    
+    public abstract void inject(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.activity.ForgetPasswordActivity activity);
+}

@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.MyStudyCircleContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MyStudyCircleModule_ProvideMyStudyCircleViewFactory
+    implements Factory<MyStudyCircleContract.View> {
+  private final MyStudyCircleModule module;
+
+  public MyStudyCircleModule_ProvideMyStudyCircleViewFactory(MyStudyCircleModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public MyStudyCircleContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static MyStudyCircleContract.View provideInstance(MyStudyCircleModule module) {
+    return proxyProvideMyStudyCircleView(module);
+  }
+
+  public static MyStudyCircleModule_ProvideMyStudyCircleViewFactory create(
+      MyStudyCircleModule module) {
+    return new MyStudyCircleModule_ProvideMyStudyCircleViewFactory(module);
+  }
+
+  public static MyStudyCircleContract.View proxyProvideMyStudyCircleView(
+      MyStudyCircleModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideMyStudyCircleView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

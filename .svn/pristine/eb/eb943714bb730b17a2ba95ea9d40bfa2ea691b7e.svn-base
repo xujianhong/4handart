@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              tools:background="@color/white"
+              android:layout_height="wrap_content">
+
+    <RadioGroup
+            android:id="@+id/rg_type"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+        <RadioButton
+                android:id="@+id/rb_type1"
+                android:text="涉黄毒赌"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <RadioButton
+                android:id="@+id/rb_type2"
+                android:text="政治敏感"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <RadioButton
+                android:id="@+id/rb_type3"
+                android:text="宣传邪教"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <RadioButton
+                android:id="@+id/rb_type4"
+                android:text="广告"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+    <EditText
+            android:id="@+id/et_jubao_content"
+            android:hint="举报内容"
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btn_ok"
+                android:text="确定"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/btn_cancel"
+                android:text="取消"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.LocalVideoDetailContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory
+    implements Factory<LocalVideoDetailContract.View> {
+  private final LocalVideoDetailModule module;
+
+  public LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory(LocalVideoDetailModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public LocalVideoDetailContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static LocalVideoDetailContract.View provideInstance(LocalVideoDetailModule module) {
+    return proxyProvideLocalVideoDetailView(module);
+  }
+
+  public static LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory create(
+      LocalVideoDetailModule module) {
+    return new LocalVideoDetailModule_ProvideLocalVideoDetailViewFactory(module);
+  }
+
+  public static LocalVideoDetailContract.View proxyProvideLocalVideoDetailView(
+      LocalVideoDetailModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideLocalVideoDetailView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

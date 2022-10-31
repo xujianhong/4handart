@@ -1,0 +1,101 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000z\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000b\n\u0002\b\u0005\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010!\n\u0002\u0010\u000e\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0007\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0004\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u00042\u00020\u0005B\u0005\u00a2\u0006\u0002\u0010\u0006J\b\u0010\u001e\u001a\u00020\u001fH\u0016J\b\u0010 \u001a\u00020\u001fH\u0002J\u0012\u0010!\u001a\u00020\u001f2\b\u0010\"\u001a\u0004\u0018\u00010#H\u0016J\u0012\u0010$\u001a\u00020\u00122\b\u0010\"\u001a\u0004\u0018\u00010#H\u0016J\b\u0010%\u001a\u00020\u001fH\u0016J\u0010\u0010&\u001a\u00020\u001f2\u0006\u0010\'\u001a\u00020(H\u0016J\u0010\u0010)\u001a\u00020\u001f2\u0006\u0010*\u001a\u00020\u0012H\u0016J \u0010+\u001a\u00020\u001f2\u0006\u0010,\u001a\u00020\u00122\u0006\u0010-\u001a\u00020.2\u0006\u0010/\u001a\u00020\u0012H\u0016J\u0010\u00100\u001a\u00020\u001f2\u0006\u00101\u001a\u00020\u0012H\u0016J\"\u00102\u001a\u00020\u001f2\b\u00103\u001a\u0004\u0018\u0001042\u0006\u00105\u001a\u00020.2\u0006\u00106\u001a\u00020.H\u0016J\u0010\u00107\u001a\u00020\u001f2\u0006\u00108\u001a\u000209H\u0016J\b\u0010:\u001a\u00020\u001fH\u0016J\u0010\u0010;\u001a\u00020\u001f2\u0006\u0010<\u001a\u00020\u0018H\u0016R\u0010\u0010\u0007\u001a\u0004\u0018\u00010\bX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u0010\u0010\t\u001a\u0004\u0018\u00010\nX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001b\u0010\u000b\u001a\u00020\f8BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b\u000f\u0010\u0010\u001a\u0004\b\r\u0010\u000eR\u001b\u0010\u0011\u001a\u00020\u00128BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b\u0015\u0010\u0010\u001a\u0004\b\u0013\u0010\u0014R!\u0010\u0016\u001a\b\u0012\u0004\u0012\u00020\u00180\u00178BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b\u001b\u0010\u0010\u001a\u0004\b\u0019\u0010\u001aR\u0010\u0010\u001c\u001a\u0004\u0018\u00010\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006="}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/ImageDetailsActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/ImageDetailsPresenter;", "Lcom/daomingedu/art/mvp/contract/ImageDetailsContract$View;", "Luk/co/senab/photoview/PhotoViewAttacher$OnViewTapListener;", "Landroid/support/v4/view/ViewPager$OnPageChangeListener;", "()V", "adapter", "Lcom/daomingedu/art/mvp/ui/adapter/ViewPagerAdapter;", "animator", "Landroid/animation/ObjectAnimator;", "canDel", "", "getCanDel", "()Z", "canDel$delegate", "Lkotlin/Lazy;", "imagePosition", "", "getImagePosition", "()I", "imagePosition$delegate", "images", "", "", "getImages", "()Ljava/util/List;", "images$delegate", "toolbar", "Landroid/support/v7/widget/Toolbar;", "hideLoading", "", "hideToolBar", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initView", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onPageScrollStateChanged", "state", "onPageScrolled", "p0", "p1", "", "p2", "onPageSelected", "position", "onViewTap", "view", "Landroid/view/View;", "x", "y", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showLoading", "showMessage", "message", "app_release"})
+public final class ImageDetailsActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.ImageDetailsPresenter> implements com.daomingedu.art.mvp.contract.ImageDetailsContract.View, uk.co.senab.photoview.PhotoViewAttacher.OnViewTapListener, android.support.v4.view.ViewPager.OnPageChangeListener {
+    private final kotlin.Lazy imagePosition$delegate = null;
+    private final kotlin.Lazy images$delegate = null;
+    private final kotlin.Lazy canDel$delegate = null;
+    private com.daomingedu.art.mvp.ui.adapter.ViewPagerAdapter adapter;
+    private android.animation.ObjectAnimator animator;
+    private android.support.v7.widget.Toolbar toolbar;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public void onPageScrollStateChanged(int state) {
+    }
+    
+    @java.lang.Override()
+    public void onPageScrolled(int p0, float p1, int p2) {
+    }
+    
+    @java.lang.Override()
+    public void onPageSelected(int position) {
+    }
+    
+    @java.lang.Override()
+    public void onViewTap(@org.jetbrains.annotations.Nullable()
+    android.view.View view, float x, float y) {
+    }
+    
+    private final int getImagePosition() {
+        return 0;
+    }
+    
+    private final java.util.List<java.lang.String> getImages() {
+        return null;
+    }
+    
+    private final boolean getCanDel() {
+        return false;
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    private final void hideToolBar() {
+    }
+    
+    public ImageDetailsActivity() {
+        super();
+    }
+}

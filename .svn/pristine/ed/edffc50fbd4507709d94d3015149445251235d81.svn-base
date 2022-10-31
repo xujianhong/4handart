@@ -1,0 +1,94 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.contract.StudyCircleInfoContract;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleInfoPresenter_Factory implements Factory<StudyCircleInfoPresenter> {
+  private final Provider<StudyCircleInfoContract.Model> modelProvider;
+
+  private final Provider<StudyCircleInfoContract.View> rootViewProvider;
+
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  public StudyCircleInfoPresenter_Factory(
+      Provider<StudyCircleInfoContract.Model> modelProvider,
+      Provider<StudyCircleInfoContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    this.modelProvider = modelProvider;
+    this.rootViewProvider = rootViewProvider;
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+  }
+
+  @Override
+  public StudyCircleInfoPresenter get() {
+    return provideInstance(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static StudyCircleInfoPresenter provideInstance(
+      Provider<StudyCircleInfoContract.Model> modelProvider,
+      Provider<StudyCircleInfoContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    StudyCircleInfoPresenter instance =
+        new StudyCircleInfoPresenter(modelProvider.get(), rootViewProvider.get());
+    StudyCircleInfoPresenter_MembersInjector.injectMErrorHandler(
+        instance, mErrorHandlerProvider.get());
+    StudyCircleInfoPresenter_MembersInjector.injectMApplication(
+        instance, mApplicationProvider.get());
+    StudyCircleInfoPresenter_MembersInjector.injectMImageLoader(
+        instance, mImageLoaderProvider.get());
+    StudyCircleInfoPresenter_MembersInjector.injectMAppManager(instance, mAppManagerProvider.get());
+    return instance;
+  }
+
+  public static StudyCircleInfoPresenter_Factory create(
+      Provider<StudyCircleInfoContract.Model> modelProvider,
+      Provider<StudyCircleInfoContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    return new StudyCircleInfoPresenter_Factory(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static StudyCircleInfoPresenter newStudyCircleInfoPresenter(
+      StudyCircleInfoContract.Model model, StudyCircleInfoContract.View rootView) {
+    return new StudyCircleInfoPresenter(model, rootView);
+  }
+}

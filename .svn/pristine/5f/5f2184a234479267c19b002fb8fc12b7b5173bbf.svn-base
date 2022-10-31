@@ -1,0 +1,182 @@
+package com.daomingedu.art.mvp.ui.fragment;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @FragmentScope(請注意命名空間) class NullObjectPresenterByFragment
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0084\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0010\u000e\n\u0002\b\u0002\u0018\u0000 ;2\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u0004:\u0001;B\u0005\u00a2\u0006\u0002\u0010\u0005J\b\u0010\u001b\u001a\u00020\u001cH\u0016J\b\u0010\u001d\u001a\u00020\u001eH\u0016J\b\u0010\u001f\u001a\u00020\u001cH\u0016J\u0012\u0010 \u001a\u00020\u001c2\b\u0010!\u001a\u0004\u0018\u00010\"H\u0016J\u0006\u0010#\u001a\u00020\u001cJ$\u0010$\u001a\u00020%2\u0006\u0010&\u001a\u00020\'2\b\u0010(\u001a\u0004\u0018\u00010)2\b\u0010!\u001a\u0004\u0018\u00010\"H\u0016J\b\u0010*\u001a\u00020\u001cH\u0016J\u0010\u0010+\u001a\u00020\u001c2\u0006\u0010,\u001a\u00020-H\u0016J\b\u0010.\u001a\u00020\u001cH\u0016J\b\u0010/\u001a\u00020\u001cH\u0016J\u0012\u00100\u001a\u00020\u001c2\b\u00101\u001a\u0004\u0018\u000102H\u0016J\u0010\u00103\u001a\u00020\u001c2\u0006\u00104\u001a\u000205H\u0016J\b\u00106\u001a\u00020\u001cH\u0016J\b\u00107\u001a\u00020\u001cH\u0016J\u0010\u00108\u001a\u00020\u001c2\u0006\u00109\u001a\u00020:H\u0016R\u000e\u0010\u0006\u001a\u00020\u0007X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001e\u0010\b\u001a\u00020\t8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\n\u0010\u000b\"\u0004\b\f\u0010\rR$\u0010\u000e\u001a\b\u0012\u0004\u0012\u00020\u00100\u000f8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u0012\"\u0004\b\u0013\u0010\u0014R\u001c\u0010\u0015\u001a\u0004\u0018\u00010\u0016X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0017\u0010\u0018\"\u0004\b\u0019\u0010\u001a\u00a8\u0006<"}, d2 = {"Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment;", "Lcom/jess/arms/base/BaseFragment;", "Lcom/daomingedu/art/mvp/presenter/StudyCirclePresenter;", "Lcom/daomingedu/art/mvp/contract/StudyCircleContract$View;", "Lme/jessyan/autosize/internal/CancelAdapt;", "()V", "curPosition", "", "mAdapter", "Lcom/daomingedu/art/mvp/ui/adapter/ShareAdapter;", "getMAdapter", "()Lcom/daomingedu/art/mvp/ui/adapter/ShareAdapter;", "setMAdapter", "(Lcom/daomingedu/art/mvp/ui/adapter/ShareAdapter;)V", "mData", "", "Lcom/daomingedu/art/mvp/model/entity/ShareBean;", "getMData", "()Ljava/util/List;", "setMData", "(Ljava/util/List;)V", "mPopupWindow", "Landroid/widget/PopupWindow;", "getMPopupWindow", "()Landroid/widget/PopupWindow;", "setMPopupWindow", "(Landroid/widget/PopupWindow;)V", "dismissDialogLoading", "", "getMActivity", "Landroid/support/v4/app/FragmentActivity;", "hideLoading", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initPopupWindow", "initView", "Landroid/view/View;", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onDestroy", "onResume", "setData", "data", "", "setupFragmentComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showDialogLoading", "showLoading", "showMessage", "message", "", "Companion", "app_release"})
+public final class StudyCircleFragment extends com.jess.arms.base.BaseFragment<com.daomingedu.art.mvp.presenter.StudyCirclePresenter> implements com.daomingedu.art.mvp.contract.StudyCircleContract.View, me.jessyan.autosize.internal.CancelAdapt {
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.adapter.ShareAdapter mAdapter;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public java.util.List<com.daomingedu.art.mvp.model.entity.ShareBean> mData;
+    private int curPosition;
+    @org.jetbrains.annotations.Nullable()
+    private android.widget.PopupWindow mPopupWindow;
+    public static final com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment.Companion Companion = null;
+    private java.util.HashMap _$_findViewCache;
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public android.support.v4.app.FragmentActivity getMActivity() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.adapter.ShareAdapter getMAdapter() {
+        return null;
+    }
+    
+    public final void setMAdapter(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.adapter.ShareAdapter p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.List<com.daomingedu.art.mvp.model.entity.ShareBean> getMData() {
+        return null;
+    }
+    
+    public final void setMData(@org.jetbrains.annotations.NotNull()
+    java.util.List<com.daomingedu.art.mvp.model.entity.ShareBean> p0) {
+    }
+    
+    @java.lang.Override()
+    public void setupFragmentComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public android.view.View initView(@org.jetbrains.annotations.NotNull()
+    android.view.LayoutInflater inflater, @org.jetbrains.annotations.Nullable()
+    android.view.ViewGroup container, @org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.widget.PopupWindow getMPopupWindow() {
+        return null;
+    }
+    
+    public final void setMPopupWindow(@org.jetbrains.annotations.Nullable()
+    android.widget.PopupWindow p0) {
+    }
+    
+    public final void initPopupWindow() {
+    }
+    
+    @java.lang.Override()
+    public void onDestroy() {
+    }
+    
+    /**
+     * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
+     * 建议在有多个需要与外界交互的方法时, 统一传 {@link Message}, 通过 what 字段来区分不同的方法, 在 {@link #setData(Object)}
+     * 方法中就可以 {@code switch} 做不同的操作, 这样就可以用统一的入口方法做多个不同的操作, 可以起到分发的作用
+     * <p>
+     * 调用此方法时请注意调用时 Fragment 的生命周期, 如果调用 {@link #setData(Object)} 方法时 {@link Fragment#onCreate(Bundle)} 还没执行
+     * 但在 {@link #setData(Object)} 里却调用了 Presenter 的方法, 是会报空的, 因为 Dagger 注入是在 {@link Fragment#onCreate(Bundle)} 方法中执行的
+     * 然后才创建的 Presenter, 如果要做一些初始化操作,可以不必让外部调用 {@link #setData(Object)}, 在 {@link #initData(Bundle)} 中初始化就可以了
+     * <p>
+     * Example usage:
+     * <pre>
+     * fun setData(data:Any) {
+     *   if(data is Message){
+     *       when (data.what) {
+     *           0-> {
+     *               //根据what 做你想做的事情
+     *           }
+     *           else -> {
+     *           }
+     *       }
+     *   }
+     * }
+     *
+     *
+     *
+     *
+     *
+     * // call setData(Object):
+     * val data = Message();
+     * data.what = 0;
+     * data.arg1 = 1;
+     * fragment.setData(data);
+     * </pre>
+     *
+     * @param data 当不需要参数时 {@code data} 可以为 {@code null}
+     */
+    @java.lang.Override()
+    public void setData(@org.jetbrains.annotations.Nullable()
+    java.lang.Object data) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    @java.lang.Override()
+    public void showDialogLoading() {
+    }
+    
+    @java.lang.Override()
+    public void dismissDialogLoading() {
+    }
+    
+    @java.lang.Override()
+    public void onResume() {
+    }
+    
+    public StudyCircleFragment() {
+        super();
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u0006\u0010\u0003\u001a\u00020\u0004\u00a8\u0006\u0005"}, d2 = {"Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment$Companion;", "", "()V", "newInstance", "Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment;", "app_release"})
+    public static final class Companion {
+        
+        @org.jetbrains.annotations.NotNull()
+        public final com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment newInstance() {
+            return null;
+        }
+        
+        private Companion() {
+            super();
+        }
+    }
+}

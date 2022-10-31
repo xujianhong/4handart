@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_marginTop="120pt"
+            android:layout_marginStart="90pt"
+            android:layout_marginBottom="50pt"
+            android:text="找回密码"
+            android:textSize="28pt"
+            android:textColor="@color/color_e4854d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_user"
+                android:layout_width="38pt"
+                android:layout_height="38pt"/>
+
+        <EditText
+                android:id="@+id/etInputPhoneNumber"
+                android:background="@null"
+                android:hint="输入手机号码"
+                android:textSize="28pt"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="46pt"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_verification_code"
+                android:layout_width="37pt"
+                android:layout_height="40pt"/>
+
+        <EditText
+                android:id="@+id/etVerCode"
+                android:background="@null"
+                android:hint="输入验证码"
+                android:textSize="28pt"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+
+        <View
+                android:layout_marginStart="20pt"
+                android:layout_marginEnd="20pt"
+                android:background="@color/color_d6d6d6"
+                android:layout_width="1pt"
+                android:layout_height="44pt"/>
+
+        <TextView
+                android:id="@+id/tvSendCode"
+                android:layout_marginStart="20pt"
+                android:layout_marginEnd="20pt"
+                android:textSize="24pt"
+                android:textColor="@color/color_e4854d"
+                android:text="获取验证码"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="46pt"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_password"
+                android:layout_width="36pt"
+                android:layout_height="40pt"/>
+
+        <EditText
+                android:id="@+id/etInputPwd"
+                android:background="@null"
+                android:hint="输入密码"
+                android:textSize="28pt"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="46pt"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_passowrd_agin"
+                android:layout_width="33pt"
+                android:layout_height="39pt"/>
+
+        <EditText
+                android:id="@+id/etInputPwdAgain"
+                android:background="@null"
+                android:hint="确认密码"
+                android:textSize="28pt"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/color_969696"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <Button
+            android:layout_marginTop="75pt"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btnComplete"
+            android:layout_width="658pt"
+            android:text="完成"
+            android:textSize="32pt"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_login_register_btn_bg"
+            android:layout_height="80pt"/>
+</LinearLayout>

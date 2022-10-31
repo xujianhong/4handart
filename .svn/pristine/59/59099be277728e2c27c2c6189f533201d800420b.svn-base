@@ -1,0 +1,28 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.PianoPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class PianoActivity_MembersInjector implements MembersInjector<PianoActivity> {
+  private final Provider<PianoPresenter> mPresenterProvider;
+
+  public PianoActivity_MembersInjector(Provider<PianoPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<PianoActivity> create(Provider<PianoPresenter> mPresenterProvider) {
+    return new PianoActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(PianoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

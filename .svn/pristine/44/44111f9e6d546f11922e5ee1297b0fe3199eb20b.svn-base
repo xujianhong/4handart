@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadShareModule_ProvideDatasFactory implements Factory<List<String>> {
+  private final UploadShareModule module;
+
+  public UploadShareModule_ProvideDatasFactory(UploadShareModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public List<String> get() {
+    return provideInstance(module);
+  }
+
+  public static List<String> provideInstance(UploadShareModule module) {
+    return proxyProvideDatas(module);
+  }
+
+  public static UploadShareModule_ProvideDatasFactory create(UploadShareModule module) {
+    return new UploadShareModule_ProvideDatasFactory(module);
+  }
+
+  public static List<String> proxyProvideDatas(UploadShareModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideDatas(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

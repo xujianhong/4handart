@@ -1,0 +1,31 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.SelectImageVideoPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SelectImageVideoActivity_MembersInjector
+    implements MembersInjector<SelectImageVideoActivity> {
+  private final Provider<SelectImageVideoPresenter> mPresenterProvider;
+
+  public SelectImageVideoActivity_MembersInjector(
+      Provider<SelectImageVideoPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<SelectImageVideoActivity> create(
+      Provider<SelectImageVideoPresenter> mPresenterProvider) {
+    return new SelectImageVideoActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(SelectImageVideoActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

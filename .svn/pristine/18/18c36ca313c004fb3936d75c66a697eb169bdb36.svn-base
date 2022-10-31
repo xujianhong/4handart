@@ -1,0 +1,38 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleInfoModule_ProvideDatasFactory
+    implements Factory<List<ShareInfoMuLtipleItem>> {
+  private final StudyCircleInfoModule module;
+
+  public StudyCircleInfoModule_ProvideDatasFactory(StudyCircleInfoModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public List<ShareInfoMuLtipleItem> get() {
+    return provideInstance(module);
+  }
+
+  public static List<ShareInfoMuLtipleItem> provideInstance(StudyCircleInfoModule module) {
+    return proxyProvideDatas(module);
+  }
+
+  public static StudyCircleInfoModule_ProvideDatasFactory create(StudyCircleInfoModule module) {
+    return new StudyCircleInfoModule_ProvideDatasFactory(module);
+  }
+
+  public static List<ShareInfoMuLtipleItem> proxyProvideDatas(StudyCircleInfoModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideDatas(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

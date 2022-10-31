@@ -1,0 +1,56 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.model.entity.TestCityBean;
+import com.daomingedu.art.mvp.presenter.MusicDanceTestPresenter;
+import com.daomingedu.art.mvp.ui.adapter.MusicDanceTestAdapter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MusicDanceTestActivity_MembersInjector
+    implements MembersInjector<MusicDanceTestActivity> {
+  private final Provider<MusicDanceTestPresenter> mPresenterProvider;
+
+  private final Provider<MusicDanceTestAdapter> mAdapterProvider;
+
+  private final Provider<List<TestCityBean>> mDatasProvider;
+
+  public MusicDanceTestActivity_MembersInjector(
+      Provider<MusicDanceTestPresenter> mPresenterProvider,
+      Provider<MusicDanceTestAdapter> mAdapterProvider,
+      Provider<List<TestCityBean>> mDatasProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDatasProvider = mDatasProvider;
+  }
+
+  public static MembersInjector<MusicDanceTestActivity> create(
+      Provider<MusicDanceTestPresenter> mPresenterProvider,
+      Provider<MusicDanceTestAdapter> mAdapterProvider,
+      Provider<List<TestCityBean>> mDatasProvider) {
+    return new MusicDanceTestActivity_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mDatasProvider);
+  }
+
+  @Override
+  public void injectMembers(MusicDanceTestActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMDatas(instance, mDatasProvider.get());
+  }
+
+  public static void injectMAdapter(
+      MusicDanceTestActivity instance, MusicDanceTestAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMDatas(MusicDanceTestActivity instance, List<TestCityBean> mDatas) {
+    instance.mDatas = mDatas;
+  }
+}

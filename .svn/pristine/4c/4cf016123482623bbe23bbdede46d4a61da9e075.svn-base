@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+        android:background="@color/color_d6d6d6"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib__folder_arrow_back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/icon_arrow_left_black"
+            android:background="@drawable/btn_select_image_bg"
+            />
+        <TextView
+            android:id="@+id/tv_folder"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="start|center_vertical"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:background="@drawable/null_bg"
+            android:textColor="@color/colorText"
+           />
+
+        <Button
+            android:id="@+id/btn_select_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorText"
+            android:textSize="15sp"
+            android:gravity="end|center_vertical"
+            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
+            android:background="@drawable/null_bg"
+            tool:text="已选几个"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_select_image_video"
+        android:layout_width="match_parent"
+
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

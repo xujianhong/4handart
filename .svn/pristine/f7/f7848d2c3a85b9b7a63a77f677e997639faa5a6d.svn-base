@@ -1,0 +1,176 @@
+package com.daomingedu.art.mvp.model.api.service;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * 展示 [Retrofit.create] 中需要传入的 ApiService 的使用方式
+ * 存放关于用户的一些 API
+ *
+ *
+ * Created by JessYan on 08/05/2016 12:05
+ * [Contact me](mailto:jess.yan.effort@gmail.com)
+ * [Follow me](https://github.com/JessYanCoding)
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u00004\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u000e\bf\u0018\u00002\u00020\u0001J2\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0005\u001a\u00020\u00062\b\b\u0001\u0010\u0007\u001a\u00020\u00062\b\b\u0001\u0010\b\u001a\u00020\u0006H\'J\u001e\u0010\t\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\n0\u00040\u00032\b\b\u0001\u0010\u0005\u001a\u00020\u0006H\'J<\u0010\u000b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\f\u001a\u00020\u00062\b\b\u0001\u0010\r\u001a\u00020\u00062\b\b\u0001\u0010\u000e\u001a\u00020\u00062\b\b\u0001\u0010\b\u001a\u00020\u0006H\'J^\u0010\u000f\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00100\u00040\u00032\b\b\u0001\u0010\f\u001a\u00020\u00062\b\b\u0001\u0010\r\u001a\u00020\u00062\b\b\u0001\u0010\u0011\u001a\u00020\u00062\b\b\u0001\u0010\u0012\u001a\u00020\u00132\n\b\u0001\u0010\u0014\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u0015\u001a\u0004\u0018\u00010\u00062\b\b\u0001\u0010\u0016\u001a\u00020\u0013H\'J\u001e\u0010\u0017\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0005\u001a\u00020\u0006H\'Jh\u0010\u0018\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00100\u00040\u00032\b\b\u0001\u0010\f\u001a\u00020\u00062\b\b\u0001\u0010\r\u001a\u00020\u00062\b\b\u0001\u0010\u0011\u001a\u00020\u00062\b\b\u0001\u0010\u0012\u001a\u00020\u00132\n\b\u0001\u0010\u0014\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u0015\u001a\u0004\u0018\u00010\u00062\b\b\u0001\u0010\u0016\u001a\u00020\u00132\b\b\u0001\u0010\u000e\u001a\u00020\u0006H\'Jk\u0010\u0019\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0005\u001a\u00020\u00062\n\b\u0001\u0010\u001a\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u001b\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u001c\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u001d\u001a\u0004\u0018\u00010\u00132\n\b\u0001\u0010\u001e\u001a\u0004\u0018\u00010\u00062\n\b\u0001\u0010\u001f\u001a\u0004\u0018\u00010\u0006H\'\u00a2\u0006\u0002\u0010 \u00a8\u0006!"}, d2 = {"Lcom/daomingedu/art/mvp/model/api/service/CustomerService;", "", "changePsw", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "sessionId", "", "oldPsw", "newPsw", "getCustomerInfo", "Lcom/daomingedu/art/mvp/model/entity/UserInfoBean;", "getPsw", "key", "mobile", "code", "login", "Lcom/daomingedu/art/mvp/model/entity/RegisterBean;", "password", "channel", "", "pushId", "deviceNo", "versionCode", "logout", "reg", "updateCustomer", "image", "realName", "nickName", "sex", "birthday", "motto", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)Lio/reactivex/Observable;", "app_debug"})
+public abstract interface CustomerService {
+    
+    /**
+     * 注册
+     *
+     * @param key
+     * @param mobile 登录手机号	true
+     * @param password  登录密码	true
+     * @param channel   登录渠道,1:Android,2:Ios	true
+     * @param pushId    极光推送regId	false
+     * @param deviceNo  手机设备号	false
+     * @param versionCode   登录APP版本号	true
+     * @param code  短信验证码	true
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/reg.do")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.RegisterBean>> reg(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "mobile")
+    java.lang.String mobile, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "password")
+    java.lang.String password, @retrofit2.http.Field(value = "channel")
+    int channel, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "pushId")
+    java.lang.String pushId, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "deviceNo")
+    java.lang.String deviceNo, @retrofit2.http.Field(value = "versionCode")
+    int versionCode, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "code")
+    java.lang.String code);
+    
+    /**
+     * 登录
+     *
+     * @param mobile 登录手机号	true
+     * @param password  登录密码	true
+     * @param channel   登录渠道,1:Android,2:Ios	true
+     * @param pushId    极光推送regId	false
+     * @param deviceNo  手机设备号	false
+     * @param versionCode   登录APP版本号	true
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/login")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.RegisterBean>> login(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "mobile")
+    java.lang.String mobile, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "password")
+    java.lang.String password, @retrofit2.http.Field(value = "channel")
+    int channel, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "pushId")
+    java.lang.String pushId, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "deviceNo")
+    java.lang.String deviceNo, @retrofit2.http.Field(value = "versionCode")
+    int versionCode);
+    
+    /**
+     * 注销登陆
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/logout")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> logout(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 找回密码
+     *
+     * @param key   key
+     * @param mobile    手机号
+     * @param code  短信验证码
+     * @param newPsw    新密码
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/getPsw")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> getPsw(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "mobile")
+    java.lang.String mobile, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "code")
+    java.lang.String code, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "newPsw")
+    java.lang.String newPsw);
+    
+    /**
+     * 修改密码
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param oldPsw    旧密码
+     * @param newPsw    新密码
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/changePsw")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> changePsw(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "oldPsw")
+    java.lang.String oldPsw, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "newPsw")
+    java.lang.String newPsw);
+    
+    /**
+     * 获取用户信息
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/getCustomerInfo")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.UserInfoBean>> getCustomerInfo(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 编辑个人资料
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param image 头像的base64编码，不能大于40kb
+     * @param realName  真实姓名
+     * @param nickName  昵称
+     * @param sex   性别,1男0女
+     * @param birthday  生日，格式：2000-05-05
+     * @param motto 学习宣言
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/customer/updateCustomer")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> updateCustomer(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "image")
+    java.lang.String image, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "realName")
+    java.lang.String realName, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "nickName")
+    java.lang.String nickName, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "sex")
+    java.lang.Integer sex, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "birthday")
+    java.lang.String birthday, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "motto")
+    java.lang.String motto);
+}

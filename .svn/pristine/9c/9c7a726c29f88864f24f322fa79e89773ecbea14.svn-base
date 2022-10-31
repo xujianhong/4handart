@@ -1,0 +1,87 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.content.pm.PackageManager
+import android.hardware.Camera
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.daomingedu.art.R
+import com.daomingedu.art.app.onClick
+import com.daomingedu.art.app.visible
+import com.daomingedu.art.mvp.ui.widget.CameraPreview
+import kotlinx.android.synthetic.main.activity_cer_camera.*
+
+
+class CerCameraActivity : AppCompatActivity() {
+    private var mPreview: CameraPreview?=null
+    private val FRONT = Camera.CameraInfo.CAMERA_FACING_FRONT//前置摄像头标记
+    private val BACK = Camera.CameraInfo.CAMERA_FACING_BACK//后置摄像头标记
+    private var currentCameraType = Camera.CameraInfo.CAMERA_FACING_BACK//当前打开的摄像头标记
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cer_camera)
+        title = "拍照"
+
+        initCamera()
+
+        ib_take_picture.onClick {
+            mPreview?.takePicture(this)
+        }
+        ib_switch_camera.visible(checkCamera())
+        ib_switch_camera.onClick {
+            changeCamera()
+        }
+    }
+
+    private fun initCamera() {
+        mPreview = CameraPreview(this)
+        camera_preview.addView(mPreview)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mPreview == null) {
+            initCamera()
+        }
+    }
+
+    private fun changeCamera() {
+        var mCamera = mPreview?.cameraInstance
+        mCamera?.stopPreview()
+        mCamera?.release()
+        if (currentCameraType == FRONT) {
+            mCamera = openCamera(BACK)
+        } else if (currentCameraType == BACK) {
+            mCamera = openCamera(FRONT)
+        }
+        mPreview?.updateCamera(mCamera,currentCameraType)
+    }
+
+    private fun openCamera(type: Int): Camera? {
+        var frontIndex = -1
+        var backIndex = -1
+        val cameraCount = Camera.getNumberOfCameras()
+        val info = Camera.CameraInfo()
+        for (cameraIndex in 0 until cameraCount) {
+            Camera.getCameraInfo(cameraIndex, info)
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                frontIndex = cameraIndex
+            } else if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                backIndex = cameraIndex
+            }
+        }
+
+        currentCameraType = type
+        if (type == FRONT && frontIndex != -1) {
+            return Camera.open(frontIndex)
+        } else if (type == BACK && backIndex != -1) {
+            return Camera.open(backIndex)
+        }
+        return null
+    }
+    /**
+     * @return 摄像头是否存在
+     */
+    private fun checkCamera(): Boolean {
+        return packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
+    }
+}

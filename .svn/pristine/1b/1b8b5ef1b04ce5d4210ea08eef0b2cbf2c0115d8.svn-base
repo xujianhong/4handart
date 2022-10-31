@@ -1,0 +1,214 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u00a6\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000b\n\u0002\b\t\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\t\n\u0002\b\b\n\u0002\u0010\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0018\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u0004\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u00042\u00020\u00052\u00020\u00062\u00020\u0007B\u0005\u00a2\u0006\u0002\u0010\bJ\b\u0010;\u001a\u00020<H\u0002J\b\u0010=\u001a\u00020<H\u0002J\b\u0010>\u001a\u00020<H\u0016J\u0012\u0010?\u001a\u00020<2\b\u0010@\u001a\u0004\u0018\u00010AH\u0016J\u0012\u0010B\u001a\u00020C2\b\u0010@\u001a\u0004\u0018\u00010AH\u0016J\b\u0010D\u001a\u00020<H\u0016J\u0010\u0010E\u001a\u00020<2\u0006\u0010F\u001a\u00020GH\u0016J\"\u0010H\u001a\u00020<2\u0006\u0010I\u001a\u00020C2\u0006\u0010J\u001a\u00020C2\b\u0010K\u001a\u0004\u0018\u00010GH\u0014J\u0012\u0010L\u001a\u00020<2\b\u0010M\u001a\u0004\u0018\u00010NH\u0016J0\u0010O\u001a\u00020<2\f\u0010P\u001a\b\u0012\u0002\b\u0003\u0018\u00010Q2\b\u0010R\u001a\u0004\u0018\u00010N2\u0006\u0010S\u001a\u00020C2\u0006\u0010T\u001a\u000203H\u0016J0\u0010U\u001a\u00020\u001c2\f\u0010P\u001a\b\u0012\u0002\b\u0003\u0018\u00010Q2\b\u0010R\u001a\u0004\u0018\u00010N2\u0006\u0010V\u001a\u00020C2\u0006\u0010T\u001a\u000203H\u0016J\u001a\u0010W\u001a\u00020\u001c2\u0006\u0010X\u001a\u00020C2\b\u0010Y\u001a\u0004\u0018\u00010ZH\u0016J\b\u0010[\u001a\u00020<H\u0014J\b\u0010\\\u001a\u00020<H\u0014J\b\u0010]\u001a\u00020<H\u0004J\u0010\u0010^\u001a\u00020<2\u0006\u0010!\u001a\u00020\u001cH\u0002J\u0010\u0010_\u001a\u00020<2\u0006\u0010`\u001a\u00020aH\u0016J\u0010\u0010b\u001a\u00020<2\u0006\u0010c\u001a\u00020dH\u0002J\b\u0010e\u001a\u00020<H\u0016J\u0010\u0010f\u001a\u00020<2\u0006\u0010g\u001a\u00020dH\u0016R\u001c\u0010\t\u001a\u0004\u0018\u00010\nX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR\u001c\u0010\u000f\u001a\u0004\u0018\u00010\u0010X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u0012\"\u0004\b\u0013\u0010\u0014R\u001c\u0010\u0015\u001a\u0004\u0018\u00010\u0016X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0017\u0010\u0018\"\u0004\b\u0019\u0010\u001aR\u001a\u0010\u001b\u001a\u00020\u001cX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001d\u0010\u001e\"\u0004\b\u001f\u0010 R\u000e\u0010!\u001a\u00020\u001cX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001a\u0010\"\u001a\u00020\u001cX\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b#\u0010\u001e\"\u0004\b$\u0010 R\u001c\u0010%\u001a\u0004\u0018\u00010&X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\'\u0010(\"\u0004\b)\u0010*R \u0010+\u001a\b\u0012\u0004\u0012\u00020-0,X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b.\u0010/\"\u0004\b0\u00101R\u001a\u00102\u001a\u000203X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b4\u00105\"\u0004\b6\u00107R \u00108\u001a\b\u0012\u0004\u0012\u00020-0,X\u0080\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b9\u0010/\"\u0004\b:\u00101\u00a8\u0006h"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/LocalWorkActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/LocalWorkPresenter;", "Lcom/daomingedu/art/mvp/contract/LocalWorkContract$View;", "Landroid/view/View$OnClickListener;", "Landroid/widget/AdapterView$OnItemClickListener;", "Landroid/widget/AdapterView$OnItemLongClickListener;", "Lme/jessyan/autosize/internal/CancelAdapt;", "()V", "adapter", "Lcom/daomingedu/art/mvp/ui/adapter/LocalAdapter;", "getAdapter$app_debug", "()Lcom/daomingedu/art/mvp/ui/adapter/LocalAdapter;", "setAdapter$app_debug", "(Lcom/daomingedu/art/mvp/ui/adapter/LocalAdapter;)V", "db", "Landroid/database/sqlite/SQLiteDatabase;", "getDb$app_debug", "()Landroid/database/sqlite/SQLiteDatabase;", "setDb$app_debug", "(Landroid/database/sqlite/SQLiteDatabase;)V", "helper", "Lcom/daomingedu/art/data/BaseDataHelper;", "getHelper$app_debug", "()Lcom/daomingedu/art/data/BaseDataHelper;", "setHelper$app_debug", "(Lcom/daomingedu/art/data/BaseDataHelper;)V", "isShare", "", "isShare$app_debug", "()Z", "setShare$app_debug", "(Z)V", "isShow", "isUpdate", "isUpdate$app_debug", "setUpdate$app_debug", "popLocalMenu", "Lcom/daomingedu/art/mvp/ui/widget/PopLocalMenu;", "getPopLocalMenu$app_debug", "()Lcom/daomingedu/art/mvp/ui/widget/PopLocalMenu;", "setPopLocalMenu$app_debug", "(Lcom/daomingedu/art/mvp/ui/widget/PopLocalMenu;)V", "selectedWorks", "", "Lcom/daomingedu/art/mvp/model/LocalWork;", "getSelectedWorks$app_debug", "()Ljava/util/List;", "setSelectedWorks$app_debug", "(Ljava/util/List;)V", "videofile", "", "getVideofile$app_debug", "()J", "setVideofile$app_debug", "(J)V", "works", "getWorks$app_debug", "setWorks$app_debug", "changeCheckAllButton", "", "deleteDialog", "hideLoading", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initView", "", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onActivityResult", "requestCode", "resultCode", "data", "onClick", "v", "Landroid/view/View;", "onItemClick", "parent", "Landroid/widget/AdapterView;", "view", "i", "id", "onItemLongClick", "position", "onKeyDown", "keyCode", "event", "Landroid/view/KeyEvent;", "onPause", "onResume", "requestData", "setShow", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showDialog", "path", "", "showLoading", "showMessage", "message", "app_debug"})
+public final class LocalWorkActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.LocalWorkPresenter> implements com.daomingedu.art.mvp.contract.LocalWorkContract.View, android.view.View.OnClickListener, android.widget.AdapterView.OnItemClickListener, android.widget.AdapterView.OnItemLongClickListener, me.jessyan.autosize.internal.CancelAdapt {
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.mvp.ui.widget.PopLocalMenu popLocalMenu;
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.data.BaseDataHelper helper;
+    @org.jetbrains.annotations.Nullable()
+    private android.database.sqlite.SQLiteDatabase db;
+    @org.jetbrains.annotations.Nullable()
+    private com.daomingedu.art.mvp.ui.adapter.LocalAdapter adapter;
+    @org.jetbrains.annotations.NotNull()
+    private java.util.List<com.daomingedu.art.mvp.model.LocalWork> works;
+    private boolean isUpdate;
+    private boolean isShare;
+    private long videofile;
+    private boolean isShow;
+    @org.jetbrains.annotations.NotNull()
+    private java.util.List<com.daomingedu.art.mvp.model.LocalWork> selectedWorks;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public boolean onItemLongClick(@org.jetbrains.annotations.Nullable()
+    android.widget.AdapterView<?> parent, @org.jetbrains.annotations.Nullable()
+    android.view.View view, int position, long id) {
+        return false;
+    }
+    
+    @java.lang.Override()
+    public void onItemClick(@org.jetbrains.annotations.Nullable()
+    android.widget.AdapterView<?> parent, @org.jetbrains.annotations.Nullable()
+    android.view.View view, int i, long id) {
+    }
+    
+    @java.lang.Override()
+    public void onClick(@org.jetbrains.annotations.Nullable()
+    android.view.View v) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.mvp.ui.widget.PopLocalMenu getPopLocalMenu$app_debug() {
+        return null;
+    }
+    
+    public final void setPopLocalMenu$app_debug(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.mvp.ui.widget.PopLocalMenu p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.data.BaseDataHelper getHelper$app_debug() {
+        return null;
+    }
+    
+    public final void setHelper$app_debug(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.data.BaseDataHelper p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.database.sqlite.SQLiteDatabase getDb$app_debug() {
+        return null;
+    }
+    
+    public final void setDb$app_debug(@org.jetbrains.annotations.Nullable()
+    android.database.sqlite.SQLiteDatabase p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final com.daomingedu.art.mvp.ui.adapter.LocalAdapter getAdapter$app_debug() {
+        return null;
+    }
+    
+    public final void setAdapter$app_debug(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.mvp.ui.adapter.LocalAdapter p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.List<com.daomingedu.art.mvp.model.LocalWork> getWorks$app_debug() {
+        return null;
+    }
+    
+    public final void setWorks$app_debug(@org.jetbrains.annotations.NotNull()
+    java.util.List<com.daomingedu.art.mvp.model.LocalWork> p0) {
+    }
+    
+    public final boolean isUpdate$app_debug() {
+        return false;
+    }
+    
+    public final void setUpdate$app_debug(boolean p0) {
+    }
+    
+    public final boolean isShare$app_debug() {
+        return false;
+    }
+    
+    public final void setShare$app_debug(boolean p0) {
+    }
+    
+    public final long getVideofile$app_debug() {
+        return 0L;
+    }
+    
+    public final void setVideofile$app_debug(long p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.List<com.daomingedu.art.mvp.model.LocalWork> getSelectedWorks$app_debug() {
+        return null;
+    }
+    
+    public final void setSelectedWorks$app_debug(@org.jetbrains.annotations.NotNull()
+    java.util.List<com.daomingedu.art.mvp.model.LocalWork> p0) {
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    private final void changeCheckAllButton() {
+    }
+    
+    private final void setShow(boolean isShow) {
+    }
+    
+    @java.lang.Override()
+    public boolean onKeyDown(int keyCode, @org.jetbrains.annotations.Nullable()
+    android.view.KeyEvent event) {
+        return false;
+    }
+    
+    /**
+     * 删除
+     */
+    private final void deleteDialog() {
+    }
+    
+    protected final synchronized void requestData() {
+    }
+    
+    @java.lang.Override()
+    protected void onResume() {
+    }
+    
+    @java.lang.Override()
+    protected void onPause() {
+    }
+    
+    @java.lang.Override()
+    protected void onActivityResult(int requestCode, int resultCode, @org.jetbrains.annotations.Nullable()
+    android.content.Intent data) {
+    }
+    
+    /**
+     * 添加名称
+     *
+     * @param path
+     */
+    private final void showDialog(java.lang.String path) {
+    }
+    
+    public LocalWorkActivity() {
+        super();
+    }
+}

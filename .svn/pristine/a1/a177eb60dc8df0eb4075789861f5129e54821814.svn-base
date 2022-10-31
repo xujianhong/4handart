@@ -1,0 +1,100 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.model.entity.TestCityBean;
+import com.daomingedu.art.mvp.ui.adapter.MusicDanceTestAdapter;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MusicDanceTestPresenter_MembersInjector
+    implements MembersInjector<MusicDanceTestPresenter> {
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  private final Provider<MusicDanceTestAdapter> mAdapterProvider;
+
+  private final Provider<List<TestCityBean>> mDatasProvider;
+
+  public MusicDanceTestPresenter_MembersInjector(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<MusicDanceTestAdapter> mAdapterProvider,
+      Provider<List<TestCityBean>> mDatasProvider) {
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mDatasProvider = mDatasProvider;
+  }
+
+  public static MembersInjector<MusicDanceTestPresenter> create(
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider,
+      Provider<MusicDanceTestAdapter> mAdapterProvider,
+      Provider<List<TestCityBean>> mDatasProvider) {
+    return new MusicDanceTestPresenter_MembersInjector(
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider,
+        mAdapterProvider,
+        mDatasProvider);
+  }
+
+  @Override
+  public void injectMembers(MusicDanceTestPresenter instance) {
+    injectMErrorHandler(instance, mErrorHandlerProvider.get());
+    injectMApplication(instance, mApplicationProvider.get());
+    injectMImageLoader(instance, mImageLoaderProvider.get());
+    injectMAppManager(instance, mAppManagerProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMDatas(instance, mDatasProvider.get());
+  }
+
+  public static void injectMErrorHandler(
+      MusicDanceTestPresenter instance, RxErrorHandler mErrorHandler) {
+    instance.mErrorHandler = mErrorHandler;
+  }
+
+  public static void injectMApplication(
+      MusicDanceTestPresenter instance, Application mApplication) {
+    instance.mApplication = mApplication;
+  }
+
+  public static void injectMImageLoader(
+      MusicDanceTestPresenter instance, ImageLoader mImageLoader) {
+    instance.mImageLoader = mImageLoader;
+  }
+
+  public static void injectMAppManager(MusicDanceTestPresenter instance, AppManager mAppManager) {
+    instance.mAppManager = mAppManager;
+  }
+
+  public static void injectMAdapter(
+      MusicDanceTestPresenter instance, MusicDanceTestAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMDatas(MusicDanceTestPresenter instance, List<TestCityBean> mDatas) {
+    instance.mDatas = mDatas;
+  }
+}

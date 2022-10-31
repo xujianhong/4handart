@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="jubao">
+        <item>涉黄毒赌</item>
+        <item>政治敏感</item>
+        <item>宣传邪教</item>
+        <item>广告</item>
+    </string-array>
+</resources>

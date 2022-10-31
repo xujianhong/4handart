@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifyNameContract;
+import com.daomingedu.art.mvp.model.ModifyNameModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyNameModule_ProvideModifyNameModelFactory
+    implements Factory<ModifyNameContract.Model> {
+  private final ModifyNameModule module;
+
+  private final Provider<ModifyNameModel> modelProvider;
+
+  public ModifyNameModule_ProvideModifyNameModelFactory(
+      ModifyNameModule module, Provider<ModifyNameModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public ModifyNameContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static ModifyNameContract.Model provideInstance(
+      ModifyNameModule module, Provider<ModifyNameModel> modelProvider) {
+    return proxyProvideModifyNameModel(module, modelProvider.get());
+  }
+
+  public static ModifyNameModule_ProvideModifyNameModelFactory create(
+      ModifyNameModule module, Provider<ModifyNameModel> modelProvider) {
+    return new ModifyNameModule_ProvideModifyNameModelFactory(module, modelProvider);
+  }
+
+  public static ModifyNameContract.Model proxyProvideModifyNameModel(
+      ModifyNameModule instance, ModifyNameModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideModifyNameModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

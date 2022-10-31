@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.TestCityBean;
+import com.daomingedu.art.mvp.ui.adapter.MusicDanceTestAdapter;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MusicDanceTestModule_ProvideAdapterFactory
+    implements Factory<MusicDanceTestAdapter> {
+  private final MusicDanceTestModule module;
+
+  private final Provider<List<TestCityBean>> datasProvider;
+
+  public MusicDanceTestModule_ProvideAdapterFactory(
+      MusicDanceTestModule module, Provider<List<TestCityBean>> datasProvider) {
+    this.module = module;
+    this.datasProvider = datasProvider;
+  }
+
+  @Override
+  public MusicDanceTestAdapter get() {
+    return provideInstance(module, datasProvider);
+  }
+
+  public static MusicDanceTestAdapter provideInstance(
+      MusicDanceTestModule module, Provider<List<TestCityBean>> datasProvider) {
+    return proxyProvideAdapter(module, datasProvider.get());
+  }
+
+  public static MusicDanceTestModule_ProvideAdapterFactory create(
+      MusicDanceTestModule module, Provider<List<TestCityBean>> datasProvider) {
+    return new MusicDanceTestModule_ProvideAdapterFactory(module, datasProvider);
+  }
+
+  public static MusicDanceTestAdapter proxyProvideAdapter(
+      MusicDanceTestModule instance, List<TestCityBean> datas) {
+    return Preconditions.checkNotNull(
+        instance.provideAdapter(datas), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

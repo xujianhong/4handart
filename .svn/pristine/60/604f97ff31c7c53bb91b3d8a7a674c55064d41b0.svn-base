@@ -1,0 +1,39 @@
+package com.daomingedu.art.mvp.model.api.service;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u00000\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001J$\u0010\u0002\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00060\u00050\u00040\u00032\b\b\u0001\u0010\u0007\u001a\u00020\bH\'JB\u0010\t\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\n0\u00050\u00040\u00032\b\b\u0001\u0010\u0007\u001a\u00020\b2\b\b\u0001\u0010\u000b\u001a\u00020\f2\b\b\u0001\u0010\r\u001a\u00020\f2\b\b\u0001\u0010\u000e\u001a\u00020\fH\'\u00a8\u0006\u000f"}, d2 = {"Lcom/daomingedu/art/mvp/model/api/service/NewsService;", "", "bannerList", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "", "Lcom/daomingedu/art/mvp/model/entity/BannerBean;", "sessionId", "", "newsList", "Lcom/daomingedu/art/mvp/model/entity/NewsBean;", "type", "", "start", "size", "app_release"})
+public abstract interface NewsService {
+    
+    /**
+     * banner列表
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/news/bannerList")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.BannerBean>>> bannerList(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 新闻列表
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param type  咨询类型，1：通用
+     * @param start 列表第一条数据位置
+     * @param size  列表数据数量
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/news/newsList")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.NewsBean>>> newsList(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @retrofit2.http.Field(value = "type")
+    int type, @retrofit2.http.Field(value = "start")
+    int start, @retrofit2.http.Field(value = "size")
+    int size);
+}

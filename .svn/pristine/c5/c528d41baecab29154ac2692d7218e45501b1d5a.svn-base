@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/black"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:id="@+id/ll_back">
+    <FrameLayout
+            android:id="@+id/fl_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include layout="@layout/item_video" />
+    </FrameLayout>
+    <com.daomingedu.art.mvp.ui.widget.playrecording.DailyRecordingView
+            android:id="@+id/prv_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+</LinearLayout>

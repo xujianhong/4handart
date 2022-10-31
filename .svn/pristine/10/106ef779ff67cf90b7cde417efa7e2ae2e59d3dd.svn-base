@@ -1,0 +1,189 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.ObjectAnimator.ofFloat
+import android.content.Intent
+import android.os.Bundle
+import android.support.v4.view.ViewPager
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.Toolbar
+import android.view.View
+
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+
+import com.daomingedu.art.di.component.DaggerImageDetailsComponent
+import com.daomingedu.art.di.module.ImageDetailsModule
+import com.daomingedu.art.mvp.contract.ImageDetailsContract
+import com.daomingedu.art.mvp.presenter.ImageDetailsPresenter
+
+import com.daomingedu.art.R
+import com.daomingedu.art.mvp.ui.adapter.ViewPagerAdapter
+import kotlinx.android.synthetic.main.activity_image_details.*
+import kotlinx.android.synthetic.main.include_page_head.*
+import uk.co.senab.photoview.PhotoViewAttacher
+import java.io.Serializable
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/07/2019 21:18
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class ImageDetailsActivity : BaseActivity<ImageDetailsPresenter>(), ImageDetailsContract.View,
+    PhotoViewAttacher.OnViewTapListener, ViewPager.OnPageChangeListener {
+    override fun onPageScrollStateChanged(state: Int) {
+        if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+            hideToolBar()
+        }
+    }
+
+    override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+    }
+
+    override fun onPageSelected(position: Int) {
+        // 每当页数发生改变时重新设定一遍当前的页数和总页数
+        page_text.text = "${position + 1}/" + images.size
+    }
+
+    override fun onViewTap(view: View?, x: Float, y: Float) {
+        if (canDel) {
+            if (toolbar?.getVisibility() == View.GONE) {
+                ObjectAnimator.ofFloat(toolbar!!, "y", -toolbar?.height!!.toFloat(), 0f).setDuration(300).start()
+                toolbar?.setVisibility(View.VISIBLE)
+            } else {
+                hideToolBar()
+            }
+        } else {
+            killMyself()
+        }
+    }
+
+    private val imagePosition by lazy { intent.getIntExtra("position",0) }
+    private val images: MutableList<String> by lazy { intent.getSerializableExtra("images") as MutableList<String> }
+    private val canDel by lazy { intent.getBooleanExtra("canDel", false) }
+    private var adapter: ViewPagerAdapter? = null
+    private var animator: ObjectAnimator? = null
+    private var toolbar:Toolbar? = null
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerImageDetailsComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .imageDetailsModule(ImageDetailsModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_image_details //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        if (images.size == 0) {
+            killMyself()
+        }
+        if (UploadShareActivity.ADD_PHOTO_STR.equals(images.get(images.size - 1))){
+            images.removeAt(images.size - 1)
+        }
+
+        toolbar = findViewById<Toolbar>(R.id.toolbar2)
+        if (canDel) {
+            tv_name.text = ""
+            toolbar?.background?.alpha = 255
+            toolbar?.setNavigationIcon(R.drawable.ic_back_white)
+            toolbar?.setNavigationOnClickListener { killMyself() }
+            toolbar?.inflateMenu(R.menu.menu_del)
+            toolbar?.setOnMenuItemClickListener {
+                if (it.itemId == R.id.delete){//删除
+                    val currentItem = view_pager.currentItem
+                    AlertDialog.Builder(this).setTitle("确定要删除这张照片吗?")
+                        .setNegativeButton("取消",null)
+                        .setPositiveButton("确定") { _, _ ->
+                            images.removeAt(currentItem)
+                            view_pager.adapter = adapter
+                            adapter = ViewPagerAdapter(this, images, this)
+                            if (images.size == 0) {
+                                setResult(RESULT_OK, intent.putExtra("images", images as Serializable))
+                                finish()
+                            } else if (currentItem >= images.size) {
+                                view_pager.currentItem = images.size - 1
+                            } else {
+                                view_pager.currentItem = currentItem
+                            }
+                            page_text.text = (view_pager.currentItem + 1).toString() + "/" + images.size }
+                        .show()
+                }
+                return@setOnMenuItemClickListener false
+            }
+        } else{
+            toolbar?.setVisibility(View.GONE)
+        }
+        view_pager.setOffscreenPageLimit(images.size)
+        adapter = ViewPagerAdapter(this, images, this)
+        view_pager.setAdapter(adapter)
+        view_pager.setCurrentItem(imagePosition)
+        view_pager.addOnPageChangeListener(this)
+        view_pager.setEnabled(false)
+        // 设定当前的页数和总页数
+        page_text.setText((imagePosition + 1).toString() + "/" + images.size)
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+
+    private fun hideToolBar() {
+        if (toolbar?.getVisibility() == View.VISIBLE && (animator == null || !animator?.isRunning()!!)) {
+            animator = ofFloat(toolbar, "y", 0f, -toolbar!!.height.toFloat())
+            animator?.setDuration(300)?.start()
+            animator?.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    toolbar?.setVisibility(View.GONE)
+                }
+            })
+
+        }
+    }
+}

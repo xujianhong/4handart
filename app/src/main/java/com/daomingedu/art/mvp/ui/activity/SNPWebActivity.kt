@@ -1,0 +1,198 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.annotation.TargetApi
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+
+import android.webkit.*
+import androidx.appcompat.app.AppCompatActivity
+import com.daomingedu.art.R
+import com.daomingedu.art.app.Constant
+import com.daomingedu.art.app.visible
+import kotlinx.android.synthetic.main.activity_snpweb.*
+import kotlinx.android.synthetic.main.include_title.*
+import java.io.File
+import java.io.IOException
+
+
+class SNPWebActivity : AppCompatActivity() {
+    companion object{
+        val FILECHOOSER_RESULTCODE = 10
+        val REQ_CHOOSE = 12
+    }
+    private var mUploadMessage: ValueCallback<Uri>? = null
+    private var mUploadCallbackAboveL: ValueCallback<Array<Uri>>? = null
+    private val url by lazy { intent.getStringExtra(Constant.URL_EXTRA) }
+    private val title by lazy { intent.getStringExtra(Constant.TITLE_EXTRA) }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_snpweb)
+        toolbar_title.visible(false)
+        toolbar_title.text = ""
+        webView.settings.apply {
+            javaScriptEnabled = true
+            loadWithOverviewMode = true
+            useWideViewPort = true
+            layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+            domStorageEnabled = true
+            defaultTextEncodingName = "UTF-8"
+            allowContentAccess = true // 是否可访问Content Provider的资源，默认值 true
+            allowFileAccess = true   // 是否可访问本地文件，默认值 true
+            // 是否允许通过file url加载的Javascript读取本地文件，默认值 false
+            allowFileAccessFromFileURLs = false
+            // 是否允许通过file url加载的Javascript读取全部资源(包括文件,http,https)，默认值 false
+            allowUniversalAccessFromFileURLs = false
+            // 支持缩放
+            setSupportZoom(true)
+        }
+        webView.webChromeClient = object : WebChromeClient() {
+            //3.0++
+            fun openFileChooser(uploadMsg: ValueCallback<Uri>, acceptType: String) {
+                openFileChooserImpl(uploadMsg)
+            }
+
+            //3.0--
+            fun openFileChooser(uploadMsg: ValueCallback<Uri>) {
+                openFileChooserImpl(uploadMsg)
+            }
+
+            //4.1
+            fun openFileChooser(uploadMsg: ValueCallback<Uri>, acceptType: String, capture: String) {
+
+                openFileChooserImpl(uploadMsg)
+            }
+
+            override fun onShowFileChooser(
+                webView: WebView?,
+                filePathCallback: ValueCallback<Array<Uri>>?,
+                fileChooserParams: FileChooserParams?
+            ): Boolean {
+                openFileChooserImplForAndroid5(filePathCallback)
+                return true
+            }
+
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                super.onProgressChanged(view, newProgress)
+                progressBar.visible(newProgress != 100)
+                progressBar.progress = newProgress
+            }
+
+            override fun onReceivedTitle(view: WebView?, title: String?) {
+                super.onReceivedTitle(view, title)
+//                toolbar_title.text = title
+            }
+        }
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                return super.shouldOverrideUrlLoading(view, request)
+            }
+        }
+        webView.loadUrl(url)
+    }
+
+    private fun openFileChooserImplForAndroid5(uploadMsg: ValueCallback<Array<Uri>>?) {
+        mUploadCallbackAboveL = uploadMsg
+        dispatchTakePictureIntent()
+    }
+    //5.0以下的掉用
+    private fun openFileChooserImpl(uploadMsg: ValueCallback<Uri>) {
+        mUploadMessage = uploadMsg
+        dispatchTakePictureIntent()
+    }
+    //拍照
+    private fun dispatchTakePictureIntent() {
+        chosePic()
+    }
+
+    private fun takePhoto() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(packageManager) != null) {
+            var imageUri: Uri? = null
+            try {
+                imageUri = Uri.fromFile(createImageFile())
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            startActivityForResult(takePictureIntent, FILECHOOSER_RESULTCODE)
+        }
+    }
+
+    /**
+     * 209.
+     * 本地相册选择图片
+     * 210.
+     */
+    private fun chosePic() {
+        val innerIntent = Intent(Intent.ACTION_GET_CONTENT)
+        val IMAGE_UNSPECIFIED = "image/*"
+        innerIntent.type = IMAGE_UNSPECIFIED // 查看类型
+        val wrapperIntent = Intent.createChooser(innerIntent, null)
+        startActivityForResult(wrapperIntent, REQ_CHOOSE)
+    }
+
+    var mCurrentPhotoPath: String? = null
+    var FileName = "forum"
+    //创建文件夹包装图片
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        var storageDir = File(Environment.getExternalStorageDirectory().toString()+ File.separator + FileName)
+
+        if (!storageDir.exists()) {
+            storageDir.mkdirs()
+        }
+        storageDir =
+            File(Environment.getExternalStorageDirectory().toString()+ File.separator+ FileName + "/", System.currentTimeMillis().toString() + ".jpg")
+        //保存当前图片路径
+        mCurrentPhotoPath = storageDir.getAbsolutePath()
+        return storageDir
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == FILECHOOSER_RESULTCODE || requestCode == REQ_CHOOSE) {
+            if (null == mUploadMessage && null == mUploadCallbackAboveL) return
+            val result = if (data == null || resultCode != Activity.RESULT_OK) null else data.data
+            if (mUploadCallbackAboveL != null) {
+                onActivityResultAboveL(requestCode, data)
+            } else if (mUploadMessage != null) {
+                mUploadMessage?.onReceiveValue(result)
+                mUploadMessage = null
+            }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun onActivityResultAboveL(requestCode: Int, data: Intent?) {
+
+        if (mUploadCallbackAboveL == null) {
+            return
+        }
+        var result: Uri? = null
+        if (requestCode == FILECHOOSER_RESULTCODE) {
+            val file = File(mCurrentPhotoPath)
+            val localUri = Uri.fromFile(file)
+            val localIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, localUri)
+            sendBroadcast(localIntent)
+            result = Uri.fromFile(file)
+
+        } else if (requestCode == REQ_CHOOSE) {
+            result = data?.data
+        }
+        if (result != null) {
+            mUploadCallbackAboveL?.onReceiveValue(arrayOf(result))
+        }
+        mUploadCallbackAboveL = null
+        return
+    }
+
+
+
+
+}

@@ -1,0 +1,45 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.model.entity.NewsBean;
+import com.daomingedu.art.mvp.ui.adapter.HomeAdapter;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeModule_ProvideAdapterFactory implements Factory<HomeAdapter> {
+  private final HomeModule module;
+
+  private final Provider<List<NewsBean>> datasProvider;
+
+  public HomeModule_ProvideAdapterFactory(
+      HomeModule module, Provider<List<NewsBean>> datasProvider) {
+    this.module = module;
+    this.datasProvider = datasProvider;
+  }
+
+  @Override
+  public HomeAdapter get() {
+    return provideInstance(module, datasProvider);
+  }
+
+  public static HomeAdapter provideInstance(
+      HomeModule module, Provider<List<NewsBean>> datasProvider) {
+    return proxyProvideAdapter(module, datasProvider.get());
+  }
+
+  public static HomeModule_ProvideAdapterFactory create(
+      HomeModule module, Provider<List<NewsBean>> datasProvider) {
+    return new HomeModule_ProvideAdapterFactory(module, datasProvider);
+  }
+
+  public static HomeAdapter proxyProvideAdapter(HomeModule instance, List<NewsBean> datas) {
+    return Preconditions.checkNotNull(
+        instance.provideAdapter(datas), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.RegisterContract;
+import com.daomingedu.art.mvp.model.RegisterModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class RegisterModule_ProvideRegisterModelFactory
+    implements Factory<RegisterContract.Model> {
+  private final RegisterModule module;
+
+  private final Provider<RegisterModel> modelProvider;
+
+  public RegisterModule_ProvideRegisterModelFactory(
+      RegisterModule module, Provider<RegisterModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public RegisterContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static RegisterContract.Model provideInstance(
+      RegisterModule module, Provider<RegisterModel> modelProvider) {
+    return proxyProvideRegisterModel(module, modelProvider.get());
+  }
+
+  public static RegisterModule_ProvideRegisterModelFactory create(
+      RegisterModule module, Provider<RegisterModel> modelProvider) {
+    return new RegisterModule_ProvideRegisterModelFactory(module, modelProvider);
+  }
+
+  public static RegisterContract.Model proxyProvideRegisterModel(
+      RegisterModule instance, RegisterModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideRegisterModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

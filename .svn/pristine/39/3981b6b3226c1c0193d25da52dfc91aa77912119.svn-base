@@ -1,0 +1,41 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import com.daomingedu.art.R
+import com.daomingedu.art.mvp.ui.activity.presenter.FeedbackCompl
+import com.daomingedu.art.mvp.ui.activity.presenter.IFeedbackPresenter
+import com.daomingedu.art.mvp.ui.activity.view.IFeedbackView
+import kotlinx.android.synthetic.main.activity_feedback.*
+import kotlinx.android.synthetic.main.include_title.*
+import kotlinx.android.synthetic.main.toolbar.*
+
+class FeedbackActivity : AppCompatActivity(), IFeedbackView {
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_feedback)
+
+        toolbar_new.setNavigationOnClickListener { finish() }
+        toolbar_new_title.text = "意见反馈"
+
+        iFeedbackPresenter = FeedbackCompl(this, this)
+
+        feedback_btn.setOnClickListener {
+            if (feedback_et.text.toString().isEmpty()){
+                Toast.makeText(this, "请输入反馈内容", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            iFeedbackPresenter.feedback(feedback_et.text.toString())
+        }
+    }
+
+    lateinit var iFeedbackPresenter: IFeedbackPresenter
+
+    override fun feedbackResult(result: String) {
+        Toast.makeText(this, "反馈已提交", Toast.LENGTH_SHORT).show()
+        finish()
+    }
+}

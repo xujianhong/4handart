@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.ModifyPasswordContract;
+import com.daomingedu.art.mvp.model.ModifyPasswordModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyPasswordModule_ProvideModifyPasswordModelFactory
+    implements Factory<ModifyPasswordContract.Model> {
+  private final ModifyPasswordModule module;
+
+  private final Provider<ModifyPasswordModel> modelProvider;
+
+  public ModifyPasswordModule_ProvideModifyPasswordModelFactory(
+      ModifyPasswordModule module, Provider<ModifyPasswordModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public ModifyPasswordContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static ModifyPasswordContract.Model provideInstance(
+      ModifyPasswordModule module, Provider<ModifyPasswordModel> modelProvider) {
+    return proxyProvideModifyPasswordModel(module, modelProvider.get());
+  }
+
+  public static ModifyPasswordModule_ProvideModifyPasswordModelFactory create(
+      ModifyPasswordModule module, Provider<ModifyPasswordModel> modelProvider) {
+    return new ModifyPasswordModule_ProvideModifyPasswordModelFactory(module, modelProvider);
+  }
+
+  public static ModifyPasswordContract.Model proxyProvideModifyPasswordModel(
+      ModifyPasswordModule instance, ModifyPasswordModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideModifyPasswordModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

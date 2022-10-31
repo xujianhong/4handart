@@ -1,0 +1,301 @@
+package com.daomingedu.art.mvp.ui.widget.refreshview;
+
+import android.content.Context;
+import android.os.Handler;
+
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.daomingedu.art.R;
+import com.google.gson.Gson;
+
+import me.jessyan.autosize.internal.CancelAdapt;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by qinyang on 2017/4/20.
+ */
+
+public class BaseRefreshView<T> extends FrameLayout implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener, CancelAdapt {
+
+    public RecyclerView getmRecyclerView() {
+        return mRecyclerView;
+    }
+
+    public void setmRecyclerView(RecyclerView mRecyclerView) {
+        this.mRecyclerView = mRecyclerView;
+    }
+
+    public RecyclerView mRecyclerView;
+    private BaseQuickAdapter<T, BaseViewHolder> pullToRefreshAdapter;
+
+    public SwipeRefreshLayout mSwipeRefreshLayout;
+    public int pageSize = 16;
+    private int mCurrentCounter = 0;
+    private View empty_view;
+    private View error_view;
+    private boolean isRefresh;
+    private BaseRefreshViewListener baseRefreshViewListener;
+
+    CustomLinearLayoutManager customLinearLayoutManager;
+    boolean isScroll = true;
+
+    public void setBaseRefreshViewListener(BaseRefreshViewListener baseRefreshViewListener) {
+        this.baseRefreshViewListener = baseRefreshViewListener;
+    }
+
+    Context context;
+
+    public BaseRefreshView(@NonNull Context context) {
+        super(context);
+        this.context = context;
+        initView();
+    }
+
+    public BaseRefreshView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        initView();
+    }
+
+    public BaseRefreshView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.context = context;
+        initView();
+    }
+
+    /**
+     * 初始化view
+     */
+    public void initView() {
+        View rootView = View.inflate(getContext(), R.layout.base_refresh_layout, this);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list);
+        mRecyclerView.setHasFixedSize(true);
+        customLinearLayoutManager = new CustomLinearLayoutManager(getContext());
+        customLinearLayoutManager.setScrollEnabled(isScroll);
+        mRecyclerView.setLayoutManager(customLinearLayoutManager);
+        error_view = View.inflate(getContext(), R.layout.base_error_data, null);
+        empty_view = View.inflate(getContext(), R.layout.base_no_data, null);
+
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.green_04);
+    }
+
+    public void addItemDecoration(RecyclerView.ItemDecoration decor) {
+        mRecyclerView.addItemDecoration(decor);
+    }
+
+
+    private View errorShow(final View rootView) {
+        rootView.findViewById(R.id.pb_error).setVisibility(View.INVISIBLE);
+        rootView.findViewById(R.id.rl_error).setVisibility(View.VISIBLE);
+        ((TextView) rootView.findViewById(R.id.tv_error)).setText(context.getResources().getString(R.string.Include_error_text));
+        rootView.findViewById(R.id.tv_error).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rootView.findViewById(R.id.pb_error).setVisibility(View.VISIBLE);
+                ((TextView) rootView.findViewById(R.id.tv_error)).setText(context.getResources().getString(R.string.Include_error_load));
+                onRefresh();
+            }
+        });
+        return rootView;
+    }
+
+    public boolean isScroll() {
+        return isScroll;
+    }
+
+    public void setScroll(boolean scroll) {
+        isScroll = scroll;
+        customLinearLayoutManager.setScrollEnabled(isScroll);
+    }
+
+    /**
+     * 请求数据
+     *
+     * @param pageSize
+     * @param mCurrentCounter
+     * @param isRefresh
+     */
+    public void requestData(String pageSize, String mCurrentCounter, boolean isRefresh) {
+        if (baseRefreshViewListener != null) {
+            baseRefreshViewListener.onRequestData(pageSize, mCurrentCounter, isRefresh);
+        }
+    }
+
+    /**
+     * 刷新监听
+     */
+    @Override
+    public void onRefresh() {
+        isRefresh = true;
+        mSwipeRefreshLayout.setRefreshing(false);
+        pullToRefreshAdapter.setEnableLoadMore(false);
+        //requestData(pageSize + "", "0", true);
+    }
+
+    /**
+     * 加载监听
+     */
+    @Override
+    public void onLoadMoreRequested() {
+        isRefresh = false;
+        mSwipeRefreshLayout.setEnabled(false);
+        requestData(pageSize + "", mCurrentCounter + "", false);
+    }
+
+
+    /**
+     * 获取数据失败时调用即可
+     */
+    public void onRequestDataFailed() {
+        if (isRefresh) {
+            pullToRefreshAdapter.setNewData(new ArrayList<T>());
+
+            pullToRefreshAdapter.setEmptyView(errorShow(error_view));
+            mSwipeRefreshLayout.setRefreshing(false);
+            pullToRefreshAdapter.setEnableLoadMore(true);
+            pullToRefreshAdapter.notifyDataSetChanged();
+        } else {
+            pullToRefreshAdapter.loadMoreFail();
+            mSwipeRefreshLayout.setEnabled(true);
+        }
+    }
+
+    /**
+     * 获取数据成功,获取数据成功时调用
+     *
+     * @param list
+     */
+    public void onRequestDataSuccess(@NonNull final List<T> list) {
+        Handler handler = new Handler();
+        Runnable r = new Runnable() {
+            public void run() {
+
+                if (isRefresh) {
+                    pullToRefreshAdapter.setEmptyView(empty_view);
+                    pullToRefreshAdapter.setNewData(list);
+                    mCurrentCounter = list.size();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    if (list.size() < pageSize) {
+                        pullToRefreshAdapter.loadMoreEnd();
+                        pullToRefreshAdapter.setEnableLoadMore(false);
+                    } else pullToRefreshAdapter.setEnableLoadMore(true);
+                } else {
+                    mCurrentCounter = mCurrentCounter + list.size();
+                    pullToRefreshAdapter.setNewData(list);
+                    //pullToRefreshAdapter.addData(list);
+                    pullToRefreshAdapter.notifyDataSetChanged();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    mSwipeRefreshLayout.setEnabled(true);
+                    pullToRefreshAdapter.setEnableLoadMore(false);
+                    pullToRefreshAdapter.loadMoreComplete();
+                    if (list.size() < pageSize) {
+                        pullToRefreshAdapter.loadMoreEnd();
+                        pullToRefreshAdapter.setEnableLoadMore(false);
+                    }
+                }
+
+            }
+        };
+        handler.post(r);
+
+    }
+
+    public void setNoDataHint(String message) {
+        empty_view.findViewById(R.id.iv_nodata).setVisibility(GONE);
+        ((TextView) empty_view.findViewById(R.id.tv_nodata)).setText(message);
+    }
+
+    public void setNoDataHint(@DrawableRes int resId, String message) {
+        empty_view.findViewById(R.id.iv_nodata).setVisibility(VISIBLE);
+        ((ImageView) empty_view.findViewById(R.id.iv_nodata)).setImageResource(resId);
+        ((TextView) empty_view.findViewById(R.id.tv_nodata)).setText(message);
+    }
+
+    public List<T> getDataList() {
+        return pullToRefreshAdapter == null ? new ArrayList<T>() : pullToRefreshAdapter.getData();
+    }
+
+    public BaseQuickAdapter<T, BaseViewHolder> getAdapter() {
+        return pullToRefreshAdapter;
+    }
+
+    public int getmCurrentCounter() {
+        return mCurrentCounter;
+    }
+
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public View getEmpty_view() {
+        return empty_view;
+    }
+
+    public View setEmpty_view(View empty_view) {
+        this.empty_view = empty_view;
+        return empty_view;
+    }
+
+    public View getError_view() {
+        return error_view;
+    }
+
+    public View setError_view(View error_view) {
+        this.error_view = error_view;
+        return error_view;
+    }
+
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
+        mRecyclerView.setLayoutManager(layoutManager);
+        if (layoutManager instanceof GridLayoutManager)
+            mRecyclerView.swapAdapter(pullToRefreshAdapter, true);
+    }
+    public RecyclerView.LayoutManager getLayoutManager(){
+       return mRecyclerView.getLayoutManager();
+    }
+
+    public void setAdapter(BaseQuickAdapter<T, BaseViewHolder> adapter) {
+
+        if (adapter == null) return;
+        pullToRefreshAdapter = adapter;
+
+        pullToRefreshAdapter.setOnLoadMoreListener(this);
+//        pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
+//        pullToRefreshAdapter.setAutoLoadMoreSize(4);
+        mRecyclerView.setAdapter(pullToRefreshAdapter);
+    }
+
+    public void setEnableLoadMore(boolean enableLoadMore) {
+        pullToRefreshAdapter.setEnableLoadMore(enableLoadMore);
+    }
+
+    public void setEnableRefresh(boolean enableRefresh) {
+        mSwipeRefreshLayout.setEnabled(enableRefresh);
+    }
+
+
+    public interface BaseRefreshViewListener {
+        void onRequestData(String pageSize, String mCurrentCounter, Boolean isRefresh);
+    }
+}

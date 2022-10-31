@@ -1,0 +1,621 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.daomingedu.art"
+4    android:versionCode="25"
+5    android:versionName="1.2.5" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="27" />
+9-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml
+10    <!-- if you want to load images from the internet -->
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:6:5-79
+11-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:6:22-76
+12    <uses-permission android:name="android.permission.INTERNET" /> <!-- if you want to load images from a file OR from the internet -->
+12-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:7:5-67
+12-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:7:22-64
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:8:5-80
+13-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:8:22-77
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:9:5-81
+14-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:9:22-78
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:10:5-71
+15-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:10:22-68
+16    <uses-permission android:name="android.permission.CAMERA" />
+16-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:11:5-65
+16-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:11:22-62
+17    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+17-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:12:5-75
+17-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:12:22-72
+18
+19    <uses-feature android:name="android.hardware.camera" />
+19-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:14:5-60
+19-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:14:19-57
+20
+21    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+21-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:10:5-88
+21-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:10:22-85
+22    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+22-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:14:5-83
+22-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:14:22-80
+23    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+23-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:15:5-84
+23-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:15:22-81
+24    <uses-permission android:name="android.permission.RESTART_PACKAGES" /> <!-- 在SDCard中创建与删除文件权限 -->
+24-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:16:5-75
+24-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:16:22-72
+25    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+25-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:12:5-84
+25-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:12:22-81
+26    <uses-permission android:name="android.permission.WAKE_LOCK" />
+26-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:12:5-68
+26-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:12:22-65
+27    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+27-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:12:5-76
+27-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:12:22-73
+28    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- To allow starting foreground services on Android P+ - https://developer.android.com/preview/behavior-changes#fg-svc -->
+28-->[com.github.yangjie10930:EpMedia:v0.9.5] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\86f6b3f93cd8788d180387518f6d7822\EpMedia-v0.9.5\AndroidManifest.xml:12:5-73
+28-->[com.github.yangjie10930:EpMedia:v0.9.5] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\86f6b3f93cd8788d180387518f6d7822\EpMedia-v0.9.5\AndroidManifest.xml:12:22-70
+29    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- LBS定位权限 -->
+29-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:9:5-77
+29-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:9:22-74
+30    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+30-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:19:5-81
+30-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:19:22-78
+31    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+31-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:20:5-79
+31-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:20:22-76
+32    <uses-permission android:name="android.permission.VIBRATE" />
+32-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:21:5-66
+32-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:21:22-63
+33
+34    <application
+34-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:16:5-163:19
+35        android:name="com.jess.arms.base.BaseApplication"
+35-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:17:9-58
+36        android:allowBackup="true"
+36-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:18:9-35
+37        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+37-->[com.android.support:support-compat:28.0.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\fea4e99f0261aad30a89b49006d34db4\support-compat-28.0.0\AndroidManifest.xml:22:18-91
+38        android:icon="@mipmap/ic_launcher"
+38-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:19:9-43
+39        android:label="@string/app_name"
+39-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:20:9-41
+40        android:networkSecurityConfig="@xml/network_security_config"
+40-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:19:9-69
+41        android:roundIcon="@mipmap/ic_launcher"
+41-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:21:9-48
+42        android:supportsRtl="true"
+42-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:22:9-35
+43        android:theme="@style/AppTheme" >
+43-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:23:9-40
+44        <activity android:name="com.daomingedu.art.mvp.ui.activity.UploadVideoPlayActivity" />
+44-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:24:9-86
+44-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:24:19-74
+45        <activity android:name="com.daomingedu.art.mvp.ui.activity.FeedbackActivity" />
+45-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:25:9-70
+45-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:25:19-67
+46        <activity
+46-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:26:9-27:46
+47            android:name="com.daomingedu.art.mvp.ui.activity.UploadVideoListActivity"
+47-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:26:19-74
+48            android:launchMode="singleTask" />
+48-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:27:13-44
+49        <activity android:name="com.daomingedu.art.mvp.ui.activity.UploadActivity" />
+49-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:28:9-68
+49-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:28:19-65
+50        <activity
+50-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:29:9-32:52
+51            android:name="com.daomingedu.art.mvp.ui.activity.RecordVideoActivity"
+51-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:30:13-64
+52            android:launchMode="singleTop"
+52-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:31:13-43
+53            android:screenOrientation="portrait" />
+53-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:32:13-49
+54        <activity
+54-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:33:9-37:55
+55            android:name="com.daomingedu.art.mvp.ui.activity.LocalVideoDetailActivity"
+55-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:34:13-69
+56            android:configChanges="orientation|screenSize"
+56-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:35:13-59
+57            android:launchMode="singleTop"
+57-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:36:13-43
+58            android:windowSoftInputMode="adjustPan" />
+58-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:37:13-52
+59        <activity
+59-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:38:9-40:53
+60            android:name="com.jmolsmobile.landscapevideocapture.VideoCaptureActivity"
+60-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:39:13-86
+61            android:label="@string/app_name"
+61-->[:videoRecord] C:\E\as_project\handart\4handart\videoRecord\build\intermediates\library_manifest\release\AndroidManifest.xml:32:13-45
+62            android:screenOrientation="landscape" />
+62-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:40:13-50
+63        <activity
+63-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:41:9-44:52
+64            android:name="com.daomingedu.art.mvp.ui.activity.LocalVideoListActivity"
+64-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:42:13-67
+65            android:launchMode="singleTop"
+65-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:43:13-43
+66            android:screenOrientation="portrait" />
+66-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:44:13-49
+67        <activity
+67-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:45:9-47:52
+68            android:name="com.daomingedu.art.mvp.ui.activity.BlockUsersActivity"
+68-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:46:13-63
+69            android:screenOrientation="portrait" />
+69-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:47:13-49
+70        <activity
+70-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:48:9-50:52
+71            android:name="com.daomingedu.art.mvp.ui.activity.MyStudyCircleActivity"
+71-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:49:13-66
+72            android:screenOrientation="portrait" />
+72-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:50:13-49
+73        <activity
+73-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:51:9-53:52
+74            android:name="com.daomingedu.art.mvp.ui.activity.CerCameraActivity"
+74-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:52:13-62
+75            android:screenOrientation="portrait" />
+75-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:53:13-49
+76        <activity
+76-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:54:9-56:52
+77            android:name="com.daomingedu.art.mvp.ui.activity.CertificationActivity"
+77-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:55:13-66
+78            android:screenOrientation="portrait" />
+78-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:56:13-49
+79        <activity
+79-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:57:9-59:52
+80            android:name="com.daomingedu.art.mvp.ui.activity.UploadVideoPreviewActivity"
+80-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:58:13-71
+81            android:screenOrientation="portrait" />
+81-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:59:13-49
+82        <activity
+82-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:60:9-62:53
+83            android:name="com.daomingedu.art.mvp.ui.activity.PianoActivity"
+83-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:61:13-58
+84            android:screenOrientation="landscape" />
+84-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:62:13-50
+85        <activity
+85-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:63:9-65:52
+86            android:name="com.daomingedu.art.mvp.ui.activity.LocalWorkActivity"
+86-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:64:13-62
+87            android:screenOrientation="portrait" />
+87-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:65:13-49
+88        <activity
+88-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:66:9-70:55
+89            android:name="com.daomingedu.art.mvp.ui.activity.StudyCircleInfoActivity"
+89-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:67:13-68
+90            android:configChanges="orientation|screenSize"
+90-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:68:13-59
+91            android:launchMode="singleTop"
+91-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:69:13-43
+92            android:windowSoftInputMode="adjustPan" />
+92-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:70:13-52
+93        <activity
+93-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:71:9-73:52
+94            android:name="com.daomingedu.art.mvp.ui.activity.ImageDetailsActivity"
+94-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:72:13-65
+95            android:screenOrientation="portrait" />
+95-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:73:13-49
+96        <activity
+96-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:74:9-76:52
+97            android:name="com.daomingedu.art.mvp.ui.activity.SelectImageVideoActivity"
+97-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:75:13-69
+98            android:screenOrientation="portrait" />
+98-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:76:13-49
+99        <activity
+99-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:77:9-79:52
+100            android:name="com.daomingedu.art.mvp.ui.activity.UploadShareActivity"
+100-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:78:13-64
+101            android:screenOrientation="portrait" />
+101-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:79:13-49
+102        <activity
+102-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:80:9-82:52
+103            android:name="com.daomingedu.art.mvp.ui.activity.ModifyMottoActivity"
+103-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:81:13-64
+104            android:screenOrientation="portrait" />
+104-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:82:13-49
+105        <activity
+105-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:83:9-85:52
+106            android:name="com.daomingedu.art.mvp.ui.activity.ModifySexActivity"
+106-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:84:13-62
+107            android:screenOrientation="portrait" />
+107-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:85:13-49
+108        <activity
+108-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:86:9-88:52
+109            android:name="com.daomingedu.art.mvp.ui.activity.ModifyNameActivity"
+109-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:87:13-63
+110            android:screenOrientation="portrait" />
+110-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:88:13-49
+111        <activity
+111-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:89:9-91:52
+112            android:name="com.daomingedu.art.mvp.ui.activity.PersonInfoActivity"
+112-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:90:13-63
+113            android:screenOrientation="portrait" />
+113-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:91:13-49
+114        <activity
+114-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:92:9-94:52
+115            android:name="com.daomingedu.art.mvp.ui.activity.ModifyPasswordActivity"
+115-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:93:13-67
+116            android:screenOrientation="portrait" />
+116-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:94:13-49
+117        <activity
+117-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:95:9-97:52
+118            android:name="com.daomingedu.art.mvp.ui.activity.ForgetPasswordActivity"
+118-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:96:13-67
+119            android:screenOrientation="portrait" />
+119-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:97:13-49
+120        <activity
+120-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:98:9-100:52
+121            android:name="com.daomingedu.art.mvp.ui.activity.MusicDanceTestActivity"
+121-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:99:13-67
+122            android:screenOrientation="portrait" />
+122-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:100:13-49
+123        <activity
+123-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:101:9-103:52
+124            android:name="com.daomingedu.art.mvp.ui.activity.MainActivity"
+124-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:102:13-57
+125            android:screenOrientation="portrait" />
+125-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:103:13-49
+126        <activity
+126-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:104:9-106:52
+127            android:name="com.daomingedu.art.mvp.ui.activity.RegisterActivity"
+127-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:105:13-61
+128            android:screenOrientation="portrait" />
+128-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:106:13-49
+129        <activity
+129-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:107:9-109:52
+130            android:name="com.daomingedu.art.mvp.ui.activity.LoginActivity"
+130-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:108:13-58
+131            android:screenOrientation="portrait" />
+131-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:109:13-49
+132        <activity
+132-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:110:9-116:52
+133            android:name="com.daomingedu.art.mvp.ui.activity.CommonWebActivity"
+133-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:111:13-62
+134            android:configChanges="orientation|keyboardHidden|screenSize"
+134-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:112:13-74
+135            android:hardwareAccelerated="true"
+135-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:113:13-47
+136            android:launchMode="singleTop"
+136-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:114:13-43
+137            android:process=":web"
+137-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:115:13-35
+138            android:screenOrientation="portrait" />
+138-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:116:13-49
+139
+140        <service android:name="com.daomingedu.art.app.service.InitializeService" />
+140-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:118:9-66
+140-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:118:18-63
+141
+142        <activity
+142-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:120:9-128:20
+143            android:name="com.daomingedu.art.mvp.ui.activity.SplashActivity"
+143-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:121:13-59
+144            android:theme="@style/AppTheme.FullScreenTheme.Launch" >
+144-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:122:13-67
+145            <intent-filter>
+145-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:123:13-127:29
+146                <action android:name="android.intent.action.MAIN" />
+146-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:124:17-69
+146-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:124:25-66
+147
+148                <category android:name="android.intent.category.LAUNCHER" />
+148-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:126:17-77
+148-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:126:27-74
+149            </intent-filter>
+150        </activity>
+151        <activity
+151-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:129:9-133:52
+152            android:name="com.daomingedu.art.mvp.ui.activity.SelectPicActivity"
+152-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:130:13-62
+153            android:configChanges="keyboardHidden|orientation|screenSize"
+153-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:131:13-74
+154            android:launchMode="singleTop"
+154-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:132:13-43
+155            android:screenOrientation="portrait" />
+155-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:133:13-49
+156        <!--
+157 只要依赖 AutoSize 就必须填写设计图尺寸, 否则报错, 不想使用 AutoSize 就不要依赖 AutoSize
+158        只要填写完设计图的尺寸, AutoSize 就会自动启动, 以下 dp 尺寸是根据公式 px / (dpi / 160) 求出, 运算时使用测试机的 dpi 即可
+159        AutoSize 的详细介绍请看这里 https://juejin.im/post/5bce688e6fb9a05cf715d1c2
+160        -->
+161        <meta-data
+161-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:139:9-141:35
+162            android:name="design_width_in_dp"
+162-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:140:13-46
+163            android:value="750" />
+163-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:141:13-32
+164        <meta-data
+164-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:142:9-144:36
+165            android:name="design_height_in_dp"
+165-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:143:13-47
+166            android:value="1334" /> <!-- Arms 配置 -->
+166-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:144:13-33
+167        <meta-data
+167-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:145:9-147:44
+168            android:name="com.daomingedu.art.app.GlobalConfiguration"
+168-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:146:13-70
+169            android:value="ConfigModule" /> <!-- 适配18:9 -->
+169-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:147:13-41
+170        <meta-data
+170-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:148:9-150:35
+171            android:name="android.max_aspect"
+171-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:149:13-46
+172            android:value="2.1" />
+172-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:150:13-32
+173
+174        <provider
+174-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:152:9-162:20
+175            android:name="com.daomingedu.art.provider.MyProvider"
+175-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:153:13-48
+176            android:authorities="com.daomingedu.art.fileprovider"
+176-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:154:13-66
+177            android:exported="false"
+177-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:155:13-37
+178            android:grantUriPermissions="true" >
+178-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:156:13-47
+179
+180            <!-- 元数据 -->
+181            <meta-data
+181-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+182                android:name="android.support.FILE_PROVIDER_PATHS"
+182-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+183                android:resource="@xml/file_path" />
+183-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+184        </provider>
+185
+186        <activity
+186-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:10:9-15:75
+187            android:name="com.blankj.utilcode.util.Utils$TransActivity"
+187-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:11:13-72
+188            android:configChanges="orientation|keyboardHidden|screenSize"
+188-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:12:13-74
+189            android:multiprocess="true"
+189-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:13:13-40
+190            android:theme="@style/ActivityTranslucent"
+190-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:14:13-55
+191            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+191-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:15:13-72
+192
+193        <provider
+193-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:17:9-26:20
+194            android:name="com.blankj.utilcode.util.Utils$FileProvider4UtilCode"
+194-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:18:13-80
+195            android:authorities="com.daomingedu.art.utilcode.provider"
+195-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:19:13-69
+196            android:exported="false"
+196-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:20:13-37
+197            android:grantUriPermissions="true"
+197-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:21:13-47
+198            android:multiprocess="true" >
+198-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:22:13-40
+199            <meta-data
+199-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+200                android:name="android.support.FILE_PROVIDER_PATHS"
+200-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+201                android:resource="@xml/util_code_provider_paths" />
+201-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+202        </provider>
+203
+204        <service android:name="com.blankj.utilcode.util.MessengerUtils$ServerService" >
+204-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:28:9-32:19
+204-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:28:18-86
+205            <intent-filter>
+205-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:29:13-31:29
+206                <action android:name="com.daomingedu.art.messenger" />
+206-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:30:17-69
+206-->[com.blankj:utilcode:1.26.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\dc3aa0826e96de93e2654a67b849cbdb\utilcode-1.26.0\AndroidManifest.xml:30:25-66
+207            </intent-filter>
+208        </service>
+209
+210        <activity
+210-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:21:9-24:58
+211            android:name="ui.UpdateAppActivity"
+211-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:22:13-48
+212            android:launchMode="singleTask"
+212-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:23:13-44
+213            android:theme="@style/DialogActivityTheme" />
+213-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:24:13-55
+214
+215        <service android:name="update.UpdateAppService" />
+215-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:26:9-59
+215-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:26:18-56
+216
+217        <provider
+217-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:28:9-36:20
+218            android:name="update.UpdateFileProvider"
+218-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:29:13-53
+219            android:authorities="com.daomingedu.art.fileprovider"
+219-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:30:13-64
+220            android:exported="false"
+220-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:31:13-37
+221            android:grantUriPermissions="true" >
+221-->[com.teprinciple:updateapputils:2.3.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\0722224fa16b91b15f2659053722a767\updateapputils-2.3.0\AndroidManifest.xml:32:13-47
+222            <meta-data
+222-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+223                android:name="android.support.FILE_PROVIDER_PATHS"
+223-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+224                android:resource="@xml/update_file_paths" />
+224-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+225        </provider>
+226
+227        <activity android:name="com.lzy.imagepicker.ui.ImageBaseActivity" />
+227-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:21:9-77
+227-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:21:19-74
+228        <activity
+228-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:22:9-25:55
+229            android:name="com.lzy.imagepicker.ui.ImageGridActivity"
+229-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:23:13-68
+230            android:configChanges="orientation|screenSize"
+230-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:24:13-59
+231            android:theme="@style/ImagePickerTheme" />
+231-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:25:13-52
+232        <activity
+232-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:26:9-30:55
+233            android:name="com.lzy.imagepicker.ui.ImageCropActivity"
+233-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:27:13-68
+234            android:configChanges="orientation|screenSize"
+234-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:28:13-59
+235            android:hardwareAccelerated="false"
+235-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:29:13-48
+236            android:theme="@style/ImagePickerTheme" />
+236-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:30:13-52
+237        <activity
+237-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:31:9-34:65
+238            android:name="com.lzy.imagepicker.ui.ImagePreviewActivity"
+238-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:32:13-71
+239            android:configChanges="orientation|screenSize"
+239-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:33:13-59
+240            android:theme="@style/ImagePickerThemeFullScreen" />
+240-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:34:13-62
+241        <activity
+241-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:35:9-38:65
+242            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+242-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:36:13-74
+243            android:configChanges="orientation|screenSize"
+243-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:37:13-59
+244            android:theme="@style/ImagePickerThemeFullScreen" />
+244-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:38:13-62
+245
+246        <provider
+246-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:40:9-48:20
+247            android:name="com.lzy.imagepicker.ImagePickerProvider"
+247-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:41:13-67
+248            android:authorities="com.daomingedu.art.provider"
+248-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:42:13-60
+249            android:exported="false"
+249-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:43:13-37
+250            android:grantUriPermissions="true" >
+250-->[:imagepicker] C:\E\as_project\handart\4handart\imagepicker\build\intermediates\library_manifest\release\AndroidManifest.xml:44:13-47
+251            <meta-data
+251-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+252                android:name="android.support.FILE_PROVIDER_PATHS"
+252-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+253                android:resource="@xml/provider_paths" />
+253-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+254        </provider>
+255
+256        <activity
+256-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:16:9-20:20
+257            android:name="com.daomingedu.ijkplayertest.MainActivity"
+257-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:17:13-69
+258            android:configChanges="orientation|keyboardHidden|screenSize"
+258-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:18:13-74
+259            android:screenOrientation="sensor" >
+259-->[:ijkplayer_coustom] C:\E\as_project\handart\4handart\ijkplayer_coustom\build\intermediates\library_manifest\release\AndroidManifest.xml:19:13-47
+260        </activity>
+261        <activity
+261-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:15:9-17:66
+262            android:name="net.alhazmy13.mediapicker.Image.ImageActivity"
+262-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:16:13-73
+263            android:theme="@style/Theme.AppCompat.Translucent" />
+263-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:17:13-63
+264        <activity
+264-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:18:9-20:66
+265            android:name="net.alhazmy13.mediapicker.Video.VideoActivity"
+265-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:19:13-73
+266            android:theme="@style/Theme.AppCompat.Translucent" />
+266-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:20:13-63
+267
+268        <provider
+268-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:22:9-30:20
+269            android:name="android.support.v4.content.FileProvider"
+269-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:23:13-67
+270            android:authorities="com.daomingedu.art.provider"
+270-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:24:13-60
+271            android:exported="false"
+271-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:25:13-37
+272            android:grantUriPermissions="true" >
+272-->[net.alhazmy13.MediaPicker:libary:2.4.4] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\2fa8b6881c40c785fe0d77789f084ab3\libary-2.4.4\AndroidManifest.xml:26:13-47
+273            <meta-data
+273-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+274                android:name="android.support.FILE_PROVIDER_PATHS"
+274-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+275                android:resource="@xml/provider_paths" />
+275-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+276        </provider>
+277        <provider
+277-->[me.jessyan:autosize:1.1.2] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\8876df540c68b62369a562cf99a8f8c1\autosize-1.1.2\AndroidManifest.xml:12:9-16:43
+278            android:name="me.jessyan.autosize.InitProvider"
+278-->[me.jessyan:autosize:1.1.2] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\8876df540c68b62369a562cf99a8f8c1\autosize-1.1.2\AndroidManifest.xml:13:13-60
+279            android:authorities="com.daomingedu.art.autosize-init-provider"
+279-->[me.jessyan:autosize:1.1.2] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\8876df540c68b62369a562cf99a8f8c1\autosize-1.1.2\AndroidManifest.xml:14:13-74
+280            android:exported="false"
+280-->[me.jessyan:autosize:1.1.2] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\8876df540c68b62369a562cf99a8f8c1\autosize-1.1.2\AndroidManifest.xml:15:13-37
+281            android:multiprocess="true" />
+281-->[me.jessyan:autosize:1.1.2] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\8876df540c68b62369a562cf99a8f8c1\autosize-1.1.2\AndroidManifest.xml:16:13-40
+282
+283        <activity android:name="com.tencent.bugly.beta.ui.BetaActiveAlertActivity" /> <!-- Beta Activity -->
+283-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:17:9-86
+283-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:17:19-83
+284        <activity
+284-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:19:9-23:56
+285            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+285-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:20:13-66
+286            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+286-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:21:13-81
+287            android:theme="@android:style/Theme.Translucent" /> <!-- Custom FileProvider for 7.x -->
+287-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:22:13-61
+288        <provider
+288-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:24:9-34:20
+289            android:name="com.tencent.bugly.beta.utils.BuglyFileProvider"
+289-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:25:13-74
+290            android:authorities="com.daomingedu.art.fileProvider"
+290-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:26:13-64
+291            android:exported="false"
+291-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:27:13-37
+292            android:grantUriPermissions="true" >
+292-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:28:13-47
+293            <meta-data
+293-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:159:13-161:53
+294                android:name="android.support.FILE_PROVIDER_PATHS"
+294-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:160:17-67
+295                android:resource="@xml/provider_paths" />
+295-->C:\E\as_project\handart\4handart\app\src\main\AndroidManifest.xml:161:17-50
+296        </provider> <!-- 配置tinker合成结果service -->
+297        <service
+297-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:36:9-39:72
+298            android:name="com.tencent.bugly.beta.tinker.TinkerResultService"
+298-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:37:13-77
+299            android:exported="false"
+299-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:38:13-37
+300            android:permission="android.permission.BIND_JOB_SERVICE" />
+300-->[com.tencent.bugly:crashreport_upgrade:1.5.0] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\58f5b8e40581822e32f720415e2267c7\crashreport_upgrade-1.5.0\AndroidManifest.xml:39:13-69
+301        <service android:name="com.liulishuo.filedownloader.services.FileDownloadService$SharedMainProcessService" />
+301-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:12:9-118
+301-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:12:18-115
+302        <service
+302-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:13:9-15:49
+303            android:name="com.liulishuo.filedownloader.services.FileDownloadService$SeparateProcessService"
+303-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:14:13-108
+304            android:process=":filedownloader" />
+304-->[com.liulishuo.filedownloader:library:1.7.7] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\37197097118ea16efbc2c52506f5f9ba\library-1.7.7\AndroidManifest.xml:15:13-46
+305
+306        <activity android:name="com.tencent.qcloud.logutils.LogActivity" />
+306-->[com.tencent.qcloud:logUtils:5.5.1] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\e6854edcc4e60e9dfe7e010cc09217a5\logUtils-5.5.1\AndroidManifest.xml:15:9-76
+306-->[com.tencent.qcloud:logUtils:5.5.1] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\e6854edcc4e60e9dfe7e010cc09217a5\logUtils-5.5.1\AndroidManifest.xml:15:19-73
+307
+308        <provider
+308-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:32:9-35:40
+309            android:name="com.tencent.stat.SmartProvider"
+309-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:33:13-58
+310            android:authorities="com.daomingedu.art.MTA.SmartProvider"
+310-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:34:13-69
+311            android:exported="false" />
+311-->[com.qq.mta:mta:3.4.7-release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\c8df3383d42d92fdfac2e99a28e517a5\mta-3.4.7-release\AndroidManifest.xml:35:13-37
+312        <provider
+312-->[com.tencent.mid:mid:4.06-Release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\5b4bd5a2125a29a9773092f2fc0b4580\mid-4.06-Release\AndroidManifest.xml:12:9-16:20
+313            android:name="com.tencent.mid.api.MidProvider"
+313-->[com.tencent.mid:mid:4.06-Release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\5b4bd5a2125a29a9773092f2fc0b4580\mid-4.06-Release\AndroidManifest.xml:13:13-59
+314            android:authorities="com.daomingedu.art.TENCENT.MID.V4"
+314-->[com.tencent.mid:mid:4.06-Release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\5b4bd5a2125a29a9773092f2fc0b4580\mid-4.06-Release\AndroidManifest.xml:14:13-66
+315            android:exported="true" >
+315-->[com.tencent.mid:mid:4.06-Release] C:\Users\26986\.gradle\caches\transforms-2\files-2.1\5b4bd5a2125a29a9773092f2fc0b4580\mid-4.06-Release\AndroidManifest.xml:15:13-36
+316        </provider>
+317    </application>
+318
+319</manifest>

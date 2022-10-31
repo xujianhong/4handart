@@ -1,0 +1,34 @@
+package com.daomingedu.art.mvp.contract;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 20:27
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001:\u0002\u0002\u0003\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/MainContract;", "", "Model", "View", "app_debug"})
+public abstract interface MainContract {
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J\u0012\u0010\u0002\u001a\u00020\u00032\b\u0010\u0004\u001a\u0004\u0018\u00010\u0005H&\u00a8\u0006\u0006"}, d2 = {"Lcom/daomingedu/art/mvp/contract/MainContract$View;", "Lcom/jess/arms/mvp/IView;", "requestVersionInfoSuccess", "", "data", "Lcom/daomingedu/art/mvp/model/entity/VersionBean;", "app_debug"})
+    public static abstract interface View extends com.jess.arms.mvp.IView {
+        
+        public abstract void requestVersionInfoSuccess(@org.jetbrains.annotations.Nullable()
+        com.daomingedu.art.mvp.model.entity.VersionBean data);
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000$\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\b\n\u0000\bf\u0018\u00002\u00020\u0001J$\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\u0006\u0010\u0006\u001a\u00020\u00072\u0006\u0010\b\u001a\u00020\tH&\u00a8\u0006\n"}, d2 = {"Lcom/daomingedu/art/mvp/contract/MainContract$Model;", "Lcom/jess/arms/mvp/IModel;", "getVersionInfo", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/VersionBean;", "key", "", "systemType", "", "app_debug"})
+    public static abstract interface Model extends com.jess.arms.mvp.IModel {
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.VersionBean>> getVersionInfo(@org.jetbrains.annotations.NotNull()
+        java.lang.String key, int systemType);
+    }
+}

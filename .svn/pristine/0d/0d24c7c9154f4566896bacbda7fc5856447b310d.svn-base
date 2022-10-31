@@ -1,0 +1,31 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.LocalVideoListPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LocalVideoListActivity_MembersInjector
+    implements MembersInjector<LocalVideoListActivity> {
+  private final Provider<LocalVideoListPresenter> mPresenterProvider;
+
+  public LocalVideoListActivity_MembersInjector(
+      Provider<LocalVideoListPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<LocalVideoListActivity> create(
+      Provider<LocalVideoListPresenter> mPresenterProvider) {
+    return new LocalVideoListActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(LocalVideoListActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

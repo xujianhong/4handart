@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.LocalVideoListContract;
+import com.daomingedu.art.mvp.model.LocalVideoListModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LocalVideoListModule_ProvideLocalVideoListModelFactory
+    implements Factory<LocalVideoListContract.Model> {
+  private final LocalVideoListModule module;
+
+  private final Provider<LocalVideoListModel> modelProvider;
+
+  public LocalVideoListModule_ProvideLocalVideoListModelFactory(
+      LocalVideoListModule module, Provider<LocalVideoListModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public LocalVideoListContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static LocalVideoListContract.Model provideInstance(
+      LocalVideoListModule module, Provider<LocalVideoListModel> modelProvider) {
+    return proxyProvideLocalVideoListModel(module, modelProvider.get());
+  }
+
+  public static LocalVideoListModule_ProvideLocalVideoListModelFactory create(
+      LocalVideoListModule module, Provider<LocalVideoListModel> modelProvider) {
+    return new LocalVideoListModule_ProvideLocalVideoListModelFactory(module, modelProvider);
+  }
+
+  public static LocalVideoListContract.Model proxyProvideLocalVideoListModel(
+      LocalVideoListModule instance, LocalVideoListModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideLocalVideoListModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

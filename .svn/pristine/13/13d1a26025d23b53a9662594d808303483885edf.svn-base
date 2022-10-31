@@ -1,0 +1,28 @@
+package com.daomingedu.art.mvp.ui.fragment;
+
+import com.daomingedu.art.mvp.presenter.MinePresenter;
+import com.jess.arms.base.BaseFragment_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MineFragment_MembersInjector implements MembersInjector<MineFragment> {
+  private final Provider<MinePresenter> mPresenterProvider;
+
+  public MineFragment_MembersInjector(Provider<MinePresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<MineFragment> create(Provider<MinePresenter> mPresenterProvider) {
+    return new MineFragment_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(MineFragment instance) {
+    BaseFragment_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

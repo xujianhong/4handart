@@ -1,0 +1,54 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.UploadSharePresenter;
+import com.daomingedu.art.mvp.ui.adapter.UploadPhotosAdapter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadShareActivity_MembersInjector
+    implements MembersInjector<UploadShareActivity> {
+  private final Provider<UploadSharePresenter> mPresenterProvider;
+
+  private final Provider<UploadPhotosAdapter> mAdapterProvider;
+
+  private final Provider<List<String>> pathListProvider;
+
+  public UploadShareActivity_MembersInjector(
+      Provider<UploadSharePresenter> mPresenterProvider,
+      Provider<UploadPhotosAdapter> mAdapterProvider,
+      Provider<List<String>> pathListProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.pathListProvider = pathListProvider;
+  }
+
+  public static MembersInjector<UploadShareActivity> create(
+      Provider<UploadSharePresenter> mPresenterProvider,
+      Provider<UploadPhotosAdapter> mAdapterProvider,
+      Provider<List<String>> pathListProvider) {
+    return new UploadShareActivity_MembersInjector(
+        mPresenterProvider, mAdapterProvider, pathListProvider);
+  }
+
+  @Override
+  public void injectMembers(UploadShareActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectPathList(instance, pathListProvider.get());
+  }
+
+  public static void injectMAdapter(UploadShareActivity instance, UploadPhotosAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectPathList(UploadShareActivity instance, List<String> pathList) {
+    instance.pathList = pathList;
+  }
+}

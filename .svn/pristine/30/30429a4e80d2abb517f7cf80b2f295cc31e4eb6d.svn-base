@@ -1,0 +1,136 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000|\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0010\u000e\n\u0002\b\u0003\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u0004B\u0005\u00a2\u0006\u0002\u0010\u0005J\b\u0010 \u001a\u00020!H\u0016J\u0012\u0010\"\u001a\u00020!2\b\u0010#\u001a\u0004\u0018\u00010$H\u0016J\u0012\u0010%\u001a\u00020&2\b\u0010#\u001a\u0004\u0018\u00010$H\u0016J\b\u0010\'\u001a\u00020!H\u0016J\u0010\u0010(\u001a\u00020!2\u0006\u0010)\u001a\u00020*H\u0016J\b\u0010+\u001a\u00020!H\u0016J\u0012\u0010,\u001a\u00020!2\b\u0010-\u001a\u0004\u0018\u00010.H\u0016J\u0010\u0010/\u001a\u00020!2\u0006\u00100\u001a\u00020&H\u0002J\u0012\u00101\u001a\u00020!2\b\u00102\u001a\u0004\u0018\u000103H\u0016J\u0010\u00104\u001a\u00020!2\u0006\u00105\u001a\u000206H\u0016J\b\u00107\u001a\u00020!H\u0002J\b\u00108\u001a\u00020!H\u0016J\u0010\u00109\u001a\u00020!2\u0006\u0010:\u001a\u00020;H\u0016J\u0010\u0010<\u001a\u00020!2\u0006\u0010=\u001a\u00020\rH\u0002R\u001a\u0010\u0006\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\b\u0010\t\"\u0004\b\n\u0010\u000bR\u0010\u0010\f\u001a\u0004\u0018\u00010\rX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001e\u0010\u000e\u001a\u00020\u000f8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0010\u0010\u0011\"\u0004\b\u0012\u0010\u0013R\u001e\u0010\u0014\u001a\u00020\u00158\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0016\u0010\u0017\"\u0004\b\u0018\u0010\u0019R\u001e\u0010\u001a\u001a\u00020\u001b8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001c\u0010\u001d\"\u0004\b\u001e\u0010\u001f\u00a8\u0006>"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/MainActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/MainPresenter;", "Lcom/daomingedu/art/mvp/contract/MainContract$View;", "Landroid/view/View$OnClickListener;", "()V", "lastEndTime", "", "getLastEndTime", "()J", "setLastEndTime", "(J)V", "mCurrentFragment", "Landroid/support/v4/app/Fragment;", "mHomeFragment", "Lcom/daomingedu/art/mvp/ui/fragment/HomeFragment;", "getMHomeFragment", "()Lcom/daomingedu/art/mvp/ui/fragment/HomeFragment;", "setMHomeFragment", "(Lcom/daomingedu/art/mvp/ui/fragment/HomeFragment;)V", "mMineFragment", "Lcom/daomingedu/art/mvp/ui/fragment/MineFragment;", "getMMineFragment", "()Lcom/daomingedu/art/mvp/ui/fragment/MineFragment;", "setMMineFragment", "(Lcom/daomingedu/art/mvp/ui/fragment/MineFragment;)V", "mStudyCircleFragment", "Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment;", "getMStudyCircleFragment", "()Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment;", "setMStudyCircleFragment", "(Lcom/daomingedu/art/mvp/ui/fragment/StudyCircleFragment;)V", "hideLoading", "", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initView", "", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onBackPressed", "onClick", "v", "Landroid/view/View;", "onTabSelected", "position", "requestVersionInfoSuccess", "data", "Lcom/daomingedu/art/mvp/model/entity/VersionBean;", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "setupPages", "showLoading", "showMessage", "message", "", "switchFragment", "to", "app_release"})
+public final class MainActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.MainPresenter> implements com.daomingedu.art.mvp.contract.MainContract.View, android.view.View.OnClickListener {
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.fragment.HomeFragment mHomeFragment;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment mStudyCircleFragment;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.fragment.MineFragment mMineFragment;
+    private android.support.v4.app.Fragment mCurrentFragment;
+    private long lastEndTime;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public void requestVersionInfoSuccess(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.mvp.model.entity.VersionBean data) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.fragment.HomeFragment getMHomeFragment() {
+        return null;
+    }
+    
+    public final void setMHomeFragment(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.fragment.HomeFragment p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment getMStudyCircleFragment() {
+        return null;
+    }
+    
+    public final void setMStudyCircleFragment(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.fragment.MineFragment getMMineFragment() {
+        return null;
+    }
+    
+    public final void setMMineFragment(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.fragment.MineFragment p0) {
+    }
+    
+    @java.lang.Override()
+    public void onClick(@org.jetbrains.annotations.Nullable()
+    android.view.View v) {
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    private final void setupPages() {
+    }
+    
+    private final void onTabSelected(int position) {
+    }
+    
+    /**
+     * fragment的切换
+     *
+     * @param to
+     */
+    private final void switchFragment(android.support.v4.app.Fragment to) {
+    }
+    
+    public final long getLastEndTime() {
+        return 0L;
+    }
+    
+    public final void setLastEndTime(long p0) {
+    }
+    
+    @java.lang.Override()
+    public void onBackPressed() {
+    }
+    
+    public MainActivity() {
+        super();
+    }
+}

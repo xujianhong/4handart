@@ -1,0 +1,64 @@
+package com.daomingedu.art.mvp.model
+
+import android.app.Application
+import com.google.gson.Gson
+import com.jess.arms.integration.IRepositoryManager
+import com.jess.arms.mvp.BaseModel
+
+import com.jess.arms.di.scope.FragmentScope
+import javax.inject.Inject
+
+import com.daomingedu.art.mvp.contract.MineContract
+import com.daomingedu.art.mvp.model.api.service.CerStuService
+import com.daomingedu.art.mvp.model.api.service.CommonService
+import com.daomingedu.art.mvp.model.api.service.CustomerService
+import com.daomingedu.art.mvp.model.entity.AboutUsBean
+import com.daomingedu.art.mvp.model.entity.BaseJson
+import com.daomingedu.art.mvp.model.entity.CheckCerBean
+import com.daomingedu.art.mvp.model.entity.UserInfoBean
+import io.reactivex.Observable
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 21:53
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@FragmentScope
+class MineModel
+@Inject
+constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager), MineContract.Model {
+    override fun checkCer(sessionId: String): Observable<BaseJson<CheckCerBean>> {
+        return mRepositoryManager.obtainRetrofitService(CerStuService::class.java)
+            .checkCer(sessionId)
+    }
+
+    override fun aboutUs(sessionId: String): Observable<BaseJson<AboutUsBean>> {
+        return mRepositoryManager.obtainRetrofitService(CommonService::class.java).aboutUs(sessionId)
+    }
+
+    override fun getCustomerInfo(sessionId: String): Observable<BaseJson<UserInfoBean>> {
+        return mRepositoryManager.obtainRetrofitService(CustomerService::class.java).getCustomerInfo(sessionId)
+    }
+
+    override fun logout(sessionId: String): Observable<BaseJson<Any>> {
+        return mRepositoryManager.obtainRetrofitService(CustomerService::class.java)
+            .logout(sessionId)
+    }
+
+    @Inject
+    lateinit var mGson: Gson;
+    @Inject
+    lateinit var mApplication: Application;
+
+    override fun onDestroy() {
+        super.onDestroy();
+    }
+}

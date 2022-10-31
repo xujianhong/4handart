@@ -1,0 +1,31 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import com.daomingedu.art.mvp.presenter.ModifyPasswordPresenter;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyPasswordActivity_MembersInjector
+    implements MembersInjector<ModifyPasswordActivity> {
+  private final Provider<ModifyPasswordPresenter> mPresenterProvider;
+
+  public ModifyPasswordActivity_MembersInjector(
+      Provider<ModifyPasswordPresenter> mPresenterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+  }
+
+  public static MembersInjector<ModifyPasswordActivity> create(
+      Provider<ModifyPasswordPresenter> mPresenterProvider) {
+    return new ModifyPasswordActivity_MembersInjector(mPresenterProvider);
+  }
+
+  @Override
+  public void injectMembers(ModifyPasswordActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+  }
+}

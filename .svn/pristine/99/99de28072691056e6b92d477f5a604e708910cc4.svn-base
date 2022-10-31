@@ -1,0 +1,79 @@
+package com.daomingedu.art.mvp.model;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/09/2019 20:35
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000J\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\b\u0007\u0018\u00002\u00020\u00012\u00020\u0002B\u000f\b\u0007\u0012\u0006\u0010\u0003\u001a\u00020\u0004\u00a2\u0006\u0002\u0010\u0005J$\u0010\u0012\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00150\u00140\u00132\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010\u0018\u001a\u00020\u0017H\u0016J\b\u0010\u0019\u001a\u00020\u001aH\u0016J,\u0010\u001b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00150\u00140\u00132\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010\u0018\u001a\u00020\u00172\u0006\u0010\u001c\u001a\u00020\u0017H\u0016J$\u0010\u001d\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u001e0\u00140\u00132\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010\u0018\u001a\u00020\u0017H\u0016R\u001e\u0010\u0006\u001a\u00020\u00078\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\b\u0010\t\"\u0004\b\n\u0010\u000bR\u001e\u0010\f\u001a\u00020\r8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000e\u0010\u000f\"\u0004\b\u0010\u0010\u0011\u00a8\u0006\u001f"}, d2 = {"Lcom/daomingedu/art/mvp/model/StudyCircleInfoModel;", "Lcom/jess/arms/mvp/BaseModel;", "Lcom/daomingedu/art/mvp/contract/StudyCircleInfoContract$Model;", "repositoryManager", "Lcom/jess/arms/integration/IRepositoryManager;", "(Lcom/jess/arms/integration/IRepositoryManager;)V", "mApplication", "Landroid/app/Application;", "getMApplication", "()Landroid/app/Application;", "setMApplication", "(Landroid/app/Application;)V", "mGson", "Lcom/google/gson/Gson;", "getMGson", "()Lcom/google/gson/Gson;", "setMGson", "(Lcom/google/gson/Gson;)V", "delShare", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "", "sessionId", "", "shareId", "onDestroy", "", "shareComment", "comment", "shareDetail", "Lcom/daomingedu/art/mvp/model/entity/ShareDetailBean;", "app_release"})
+@com.jess.arms.di.scope.ActivityScope()
+public final class StudyCircleInfoModel extends com.jess.arms.mvp.BaseModel implements com.daomingedu.art.mvp.contract.StudyCircleInfoContract.Model {
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.google.gson.Gson mGson;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public android.app.Application mApplication;
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> shareComment(@org.jetbrains.annotations.NotNull()
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    java.lang.String shareId, @org.jetbrains.annotations.NotNull()
+    java.lang.String comment) {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.ShareDetailBean>> shareDetail(@org.jetbrains.annotations.NotNull()
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    java.lang.String shareId) {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.google.gson.Gson getMGson() {
+        return null;
+    }
+    
+    public final void setMGson(@org.jetbrains.annotations.NotNull()
+    com.google.gson.Gson p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final android.app.Application getMApplication() {
+        return null;
+    }
+    
+    public final void setMApplication(@org.jetbrains.annotations.NotNull()
+    android.app.Application p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    @java.lang.Override()
+    public io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> delShare(@org.jetbrains.annotations.NotNull()
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    java.lang.String shareId) {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public void onDestroy() {
+    }
+    
+    @javax.inject.Inject()
+    public StudyCircleInfoModel(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.integration.IRepositoryManager repositoryManager) {
+        super(null);
+    }
+}

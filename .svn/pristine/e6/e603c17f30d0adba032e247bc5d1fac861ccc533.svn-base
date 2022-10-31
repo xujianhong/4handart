@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.ui.fragment.HomeFragment;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class MainModule_ProvideHomeFragmentFactory implements Factory<HomeFragment> {
+  private final MainModule module;
+
+  public MainModule_ProvideHomeFragmentFactory(MainModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public HomeFragment get() {
+    return provideInstance(module);
+  }
+
+  public static HomeFragment provideInstance(MainModule module) {
+    return proxyProvideHomeFragment(module);
+  }
+
+  public static MainModule_ProvideHomeFragmentFactory create(MainModule module) {
+    return new MainModule_ProvideHomeFragmentFactory(module);
+  }
+
+  public static HomeFragment proxyProvideHomeFragment(MainModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideHomeFragment(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

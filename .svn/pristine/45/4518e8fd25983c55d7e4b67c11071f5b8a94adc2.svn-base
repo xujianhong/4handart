@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout
+            android:id="@+id/flContainer"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+
+    <View
+            android:background="@color/color_d6d6d6"
+            android:layout_width="match_parent"
+            android:layout_height="1pt"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_height="92pt">
+
+        <LinearLayout
+                android:id="@+id/llTabHome"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/ivTabHome"
+                    android:src="@drawable/tab_home_selected"
+                    android:layout_width="40pt"
+                    android:layout_height="40pt"/>
+
+            <TextView
+                    android:id="@+id/tvTabHome"
+                    android:text="首页"
+                    android:textColor="@color/color_e4854d"
+                    android:textSize="22pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/llTabStudyCircle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/ivTabStudyCircle"
+                    android:src="@drawable/tab_study_circle_defalut"
+                    android:layout_width="40pt"
+                    android:layout_height="40pt"/>
+
+            <TextView
+                    android:id="@+id/tvTabStudyCircle"
+                    android:text="学习圈"
+                    android:textColor="@color/color_686868"
+                    android:textSize="22pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/llTabMine"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/ivTabMine"
+                    android:src="@drawable/tab_mine_default"
+                    android:layout_width="40pt"
+                    android:layout_height="40pt"/>
+
+            <TextView
+                    android:id="@+id/tvTabMine"
+                    android:text="我的"
+                    android:textColor="@color/color_686868"
+                    android:textSize="22pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

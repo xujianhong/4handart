@@ -1,0 +1,47 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\E\\as_project\\handart\\4handart\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
+            "map": [
+                {
+                    "source": "C:\\E\\as_project\\handart\\4handart\\imagepicker\\build\\intermediates\\packaged_res\\debug\\values-v19\\values-v19.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "329"
+                    },
+                    "to": {
+                        "startLines": "15",
+                        "startColumns": "4",
+                        "startOffsets": "736",
+                        "endLines": "19",
+                        "endColumns": "12",
+                        "endOffsets": "1010"
+                    }
+                },
+                {
+                    "source": "C:\\E\\as_project\\handart\\4handart\\app\\src\\main\\res\\values-v19\\styles.xml",
+                    "from": {
+                        "startLines": "3,9",
+                        "startColumns": "2,2",
+                        "startOffsets": "70,378",
+                        "endLines": "8,15",
+                        "endColumns": "10,10",
+                        "endOffsets": "374,756"
+                    },
+                    "to": {
+                        "startLines": "2,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,359",
+                        "endLines": "7,14",
+                        "endColumns": "10,10",
+                        "endOffsets": "354,731"
+                    }
+                }
+            ]
+        }
+    ]
+}

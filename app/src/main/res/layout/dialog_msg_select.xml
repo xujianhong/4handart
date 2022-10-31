@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="300dp"
+android:layout_height="wrap_content"
+android:background="@drawable/filled_box"
+    android:paddingLeft="15dp"
+android:paddingTop="15dp"
+android:paddingRight="15dp"
+
+android:orientation="vertical" >
+
+<Button
+    android:id="@+id/btn_selecttext"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:textColor="@color/black_1f"
+    android:paddingTop="10dp"
+    android:text="文字批注"
+    android:background="@drawable/sex_select_bg"
+    android:textSize="15sp" />
+
+
+/>
+<Button
+    android:id="@+id/btn_selectrecodong"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:textColor="@color/black_1f"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/sex_select_bg"
+    android:paddingTop="10dp"
+    android:text="录音批注"
+    android:textSize="15sp" />
+
+
+/>
+
+<Button
+    android:id="@+id/btn_mid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/sex_select_bg"
+    android:layout_marginTop="15dp"
+    android:textColor="#127e69"
+    android:textSize="15sp"
+
+    android:text="知道了" />
+
+</LinearLayout>

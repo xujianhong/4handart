@@ -1,0 +1,177 @@
+package com.daomingedu.art.mvp.model.api.service;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * 存放通用的一些 API
+ *
+ *
+ * Created by JessYan on 08/05/2016 12:05
+ * [Contact me](mailto:jess.yan.effort@gmail.com)
+ * [Follow me](https://github.com/JessYanCoding)
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000^\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\t\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010$\n\u0000\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J\u001e\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u0007H\'J\u001e\u0010\b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\t0\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u0007H\'J.\u0010\n\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\f0\u000b0\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00072\b\b\u0001\u0010\r\u001a\u00020\u000eH\'J(\u0010\u000f\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00072\b\b\u0001\u0010\u0010\u001a\u00020\u0007H\'J(\u0010\u0011\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00120\u00040\u00032\b\b\u0001\u0010\u0013\u001a\u00020\u00072\b\b\u0001\u0010\u0014\u001a\u00020\u000eH\'J$\u0010\u0015\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00160\u000b0\u00040\u00032\b\b\u0001\u0010\u0013\u001a\u00020\u0007H\'J8\u0010\u0017\u001a\u0014\u0012\u0010\u0012\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00180\u000b0\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00072\b\b\u0001\u0010\u0019\u001a\u00020\u000e2\b\b\u0001\u0010\u001a\u001a\u00020\u000eH\'JL\u0010\u001b\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0006\u001a\u00020\u00072\n\b\u0001\u0010\u001c\u001a\u0004\u0018\u00010\u00072\n\b\u0001\u0010\u001d\u001a\u0004\u0018\u00010\u00072\b\b\u0001\u0010\r\u001a\u00020\u000e2\n\b\u0001\u0010\u001e\u001a\u0004\u0018\u00010\u0007H\'J2\u0010\u001f\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00010\u00040\u00032\b\b\u0001\u0010\u0013\u001a\u00020\u00072\b\b\u0001\u0010 \u001a\u00020\u00072\b\b\u0001\u0010\r\u001a\u00020\u000eH\'J@\u0010!\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\"0\u00040\u00032\u0014\b\u0001\u0010#\u001a\u000e\u0012\u0004\u0012\u00020\u0007\u0012\u0004\u0012\u00020\u00070$2\u0014\b\u0001\u0010%\u001a\u000e\u0012\u0004\u0012\u00020\u0007\u0012\u0004\u0012\u00020&0$H\'\u00a8\u0006\'"}, d2 = {"Lcom/daomingedu/art/mvp/model/api/service/CommonService;", "", "aboutUs", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/AboutUsBean;", "sessionId", "", "checkSessionId", "Lcom/daomingedu/art/mvp/model/entity/SessionIdBean;", "cityList", "", "Lcom/daomingedu/art/mvp/model/entity/TestCityBean;", "type", "", "delReport", "reportId", "getVersionInfo", "Lcom/daomingedu/art/mvp/model/entity/VersionBean;", "key", "systemType", "gradedList", "Lcom/daomingedu/art/mvp/model/entity/GradeBean;", "myReport", "Lcom/daomingedu/art/mvp/model/entity/BlockUserBean;", "start", "size", "reportShare", "shareId", "userId", "remake", "sendSMS", "mobile", "uploadFile", "Lcom/daomingedu/art/mvp/model/entity/UploadInfoBean;", "options", "", "externalFileParameters", "Lcom/daomingedu/art/app/UploadFileRequestBody;", "app_release"})
+public abstract interface CommonService {
+    
+    /**
+     * 短信发送接口
+     *
+     * @param key
+     * @param mobile    手机号	true
+     * @param type  1:注册,2：找回密码	true
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/sendSMS")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> sendSMS(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "mobile")
+    java.lang.String mobile, @retrofit2.http.Field(value = "type")
+    int type);
+    
+    /**
+     * 检查sessionId是否有效
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/checkSessionId")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.SessionIdBean>> checkSessionId(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 考级城市列表
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @param type  考级类型，1：音乐考级 ，2：舞蹈考级
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/cityList")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.TestCityBean>>> cityList(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @retrofit2.http.Field(value = "type")
+    int type);
+    
+    /**
+     * 关于我们
+     *
+     * @param sessionId 本次会话Id,时效24小时
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/aboutUs")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.AboutUsBean>> aboutUs(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId);
+    
+    /**
+     * 文件上传
+     *
+     * @param options
+     * @param externalFileParameters
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/uploadFile")
+    @retrofit2.http.Multipart()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.UploadInfoBean>> uploadFile(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.QueryMap()
+    java.util.Map<java.lang.String, java.lang.String> options, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.PartMap()
+    java.util.Map<java.lang.String, com.daomingedu.art.app.UploadFileRequestBody> externalFileParameters);
+    
+    /**
+     * 最新版本信息
+     *
+     * @param key   key=bfbcd9d2974b4d33bca9012b4b2b28c5
+     * @param systemType    1:android 2:IOS
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/getVersionInfo")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.VersionBean>> getVersionInfo(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key, @retrofit2.http.Field(value = "systemType")
+    int systemType);
+    
+    /**
+     * 考级列表
+     *
+     * @param key
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/gradedList")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.GradeBean>>> gradedList(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "key")
+    java.lang.String key);
+    
+    /**
+     * 学习圈举报/屏蔽
+     *
+     * @param sessionId
+     * @param shareId   被举报的shareId (shareId和userId不能同时为空）
+     * @param userId    被屏蔽的userId  (shareId和userId不能同时为空）
+     * @param type  举报类型(1:涉黄毒赌2政治敏感3宣传邪教4广告
+     * @param remake    举报描述
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/reportShare")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> reportShare(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "shareId")
+    java.lang.String shareId, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "userId")
+    java.lang.String userId, @retrofit2.http.Field(value = "type")
+    int type, @org.jetbrains.annotations.Nullable()
+    @retrofit2.http.Field(value = "remake")
+    java.lang.String remake);
+    
+    /**
+     * 我屏蔽的用户列表
+     *
+     * @param sessionId
+     * @param start 开始行号
+     * @param size  每页行数
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/myReport")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.util.List<com.daomingedu.art.mvp.model.entity.BlockUserBean>>> myReport(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @retrofit2.http.Field(value = "start")
+    int start, @retrofit2.http.Field(value = "size")
+    int size);
+    
+    /**
+     * 取消屏蔽用户
+     *
+     * @param sessionId
+     * @param reportId     举报id
+     * @return
+     */
+    @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.POST(value = "api/common/delReport")
+    @retrofit2.http.FormUrlEncoded()
+    public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<java.lang.Object>> delReport(@org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "sessionId")
+    java.lang.String sessionId, @org.jetbrains.annotations.NotNull()
+    @retrofit2.http.Field(value = "reportId")
+    java.lang.String reportId);
+}

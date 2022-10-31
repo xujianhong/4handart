@@ -1,0 +1,128 @@
+package com.daomingedu.art.mvp.ui.activity
+
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.widget.Toolbar
+import android.text.TextUtils
+import android.widget.RadioGroup
+
+import com.jess.arms.base.BaseActivity
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+
+import com.daomingedu.art.di.component.DaggerModifySexComponent
+import com.daomingedu.art.di.module.ModifySexModule
+import com.daomingedu.art.mvp.contract.ModifySexContract
+import com.daomingedu.art.mvp.presenter.ModifySexPresenter
+
+import com.daomingedu.art.R
+import com.daomingedu.art.util.StringUtils
+import kotlinx.android.synthetic.main.activity_modify_name.*
+import kotlinx.android.synthetic.main.activity_modify_sex.*
+import kotlinx.android.synthetic.main.include_page_head.*
+import me.jessyan.autosize.internal.CancelAdapt
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 05/04/2019 20:00
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class ModifySexActivity : BaseActivity<ModifySexPresenter>(), ModifySexContract.View, CancelAdapt {
+    private var sex: Int = 0//性别
+
+    override fun requestUpdateCustomerSuccess() {
+        ArmsUtils.makeText(application,"修改成功")
+        val data = intent.apply {
+            this.putExtra("sex",sex)
+        }
+        setResult(RESULT_OK,data)
+        finish()
+    }
+    override fun setupActivityComponent(appComponent: AppComponent) {
+        DaggerModifySexComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .modifySexModule(ModifySexModule(this))
+            .build()
+            .inject(this)
+    }
+
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return R.layout.activity_modify_sex //如果你不需要框架帮你设置 setContentView(id) 需要自行设置,请返回 0
+    }
+
+
+    override fun initData(savedInstanceState: Bundle?) {
+        tv_name.text = "选择性别"
+        val toolbar = findViewById<Toolbar>(R.id.toolbar2)
+        toolbar.background.alpha = 255
+        toolbar.setNavigationIcon(R.drawable.ic_back_white)
+        toolbar.setNavigationOnClickListener { killMyself() }
+        toolbar.inflateMenu(R.menu.menu_name_save)
+        toolbar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.save) {
+                mPresenter?.updateCustomer(sex)
+            }
+            return@setOnMenuItemClickListener false
+        }
+
+        rg_modify_sex.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            run {
+                sex = if (checkedId == rb_modify_man.id) {
+                    1
+                } else {
+                    0
+                }
+            }
+        })
+
+        val sex = intent.getIntExtra("sex",0)
+        when(sex) {
+            0 ->  rb_modify_male.isChecked = true
+            1 -> rb_modify_man.isChecked = true
+        }
+    }
+
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+        finish()
+    }
+}

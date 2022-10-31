@@ -1,0 +1,18 @@
+package com.daomingedu.art.mvp.ui.adapter;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\"\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010!\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0003\u0018\u00002\u000e\u0012\u0004\u0012\u00020\u0002\u0012\u0004\u0012\u00020\u00030\u0001B\u0013\u0012\f\u0010\u0004\u001a\b\u0012\u0004\u0012\u00020\u00020\u0005\u00a2\u0006\u0002\u0010\u0006J\u0018\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u0002H\u0014\u00a8\u0006\u000b"}, d2 = {"Lcom/daomingedu/art/mvp/ui/adapter/HomeGradeAdapter;", "Lcom/chad/library/adapter/base/BaseQuickAdapter;", "Lcom/daomingedu/art/mvp/model/entity/GradeBean;", "Lcom/chad/library/adapter/base/BaseViewHolder;", "datas", "", "(Ljava/util/List;)V", "convert", "", "helper", "item", "app_debug"})
+public final class HomeGradeAdapter extends com.chad.library.adapter.base.BaseQuickAdapter<com.daomingedu.art.mvp.model.entity.GradeBean, com.chad.library.adapter.base.BaseViewHolder> {
+    
+    @java.lang.Override()
+    protected void convert(@org.jetbrains.annotations.NotNull()
+    com.chad.library.adapter.base.BaseViewHolder helper, @org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.model.entity.GradeBean item) {
+    }
+    
+    public HomeGradeAdapter(@org.jetbrains.annotations.NotNull()
+    java.util.List<com.daomingedu.art.mvp.model.entity.GradeBean> datas) {
+        super(0, null);
+    }
+}

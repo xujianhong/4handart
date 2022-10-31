@@ -1,0 +1,53 @@
+R_DEF: Internal format may change without notice
+local
+attr? addZeroIfSmallThanTen
+attr? alwaysShowTwoWheel
+attr? canSetUpFutureTime
+attr? canSetUpPastTime
+attr? isCurrentSelectVisible
+attr? leftWheelVisibleLine
+attr? picker_select_textColor
+attr? picker_split
+attr? picker_split_height
+attr? picker_text_color
+attr? rightWheelVisibleLine
+attr? setCurrentTimeVisible
+attr? shapeArrow
+attr? showDateLastString
+attr? showTaiwanYear
+attr? singleTextSize
+attr? timeMode
+attr? triangleColor
+attr? visibleLine
+attr? wheelTwoDimensionTextSize
+color tram
+id DOWN
+id LEFT
+id RIGHT
+id UP
+id cancel
+id countDown
+id day
+id hour
+id message
+id minute
+id month
+id select
+id sure
+id text
+id title
+id week
+id wheelLayout
+id year
+layout cbk_dialog_pick_time
+layout cbk_wheel_default_inner_text
+layout cbk_wheel_picker
+string app_name
+style DialogAnimation
+style dialog_style
+styleable DatePicker picker_text_color picker_select_textColor picker_split picker_split_height
+styleable TriangleViewStyle triangleColor shapeArrow
+styleable WheelFullDatePickerStyle showTaiwanYear addZeroIfSmallThanTen setCurrentTimeVisible canSetUpPastTime canSetUpFutureTime showDateLastString
+styleable WheelSinglePickerStyle visibleLine singleTextSize
+styleable WheelTimerStyle timeMode
+styleable WheelTwoDimensionPickerStyle alwaysShowTwoWheel leftWheelVisibleLine rightWheelVisibleLine wheelTwoDimensionTextSize isCurrentSelectVisible

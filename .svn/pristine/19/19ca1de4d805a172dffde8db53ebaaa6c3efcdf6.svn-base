@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2pt"
+            android:background="@color/color_d6d6d6" />
+
+
+    <ImageView
+            android:id="@+id/iv_record"
+            android:layout_width="match_parent"
+            android:layout_height="120pt"
+            android:layout_marginTop="120pt"
+            android:layout_marginBottom="20pt"
+            android:src="@drawable/btn_start_record_video" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50pt"
+            android:text="1.点击上方按钮开始拍摄考级视频；"
+            android:textColor="@color/gray_96"
+            android:visibility="invisible"
+            android:textSize="32pt" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.视频拍摄结束后将保存到手机“相册”库里；"
+            android:textColor="@color/gray_96"
+            android:visibility="invisible"
+            android:textSize="32pt" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.请在“相册”库里预览查看和管理；"
+            android:textColor="@color/gray_96"
+            android:visibility="invisible"
+            android:textSize="32pt" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.SelectImageVideoContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class SelectImageVideoModule_ProvideSelectImageVideoViewFactory
+    implements Factory<SelectImageVideoContract.View> {
+  private final SelectImageVideoModule module;
+
+  public SelectImageVideoModule_ProvideSelectImageVideoViewFactory(SelectImageVideoModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public SelectImageVideoContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static SelectImageVideoContract.View provideInstance(SelectImageVideoModule module) {
+    return proxyProvideSelectImageVideoView(module);
+  }
+
+  public static SelectImageVideoModule_ProvideSelectImageVideoViewFactory create(
+      SelectImageVideoModule module) {
+    return new SelectImageVideoModule_ProvideSelectImageVideoViewFactory(module);
+  }
+
+  public static SelectImageVideoContract.View proxyProvideSelectImageVideoView(
+      SelectImageVideoModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideSelectImageVideoView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

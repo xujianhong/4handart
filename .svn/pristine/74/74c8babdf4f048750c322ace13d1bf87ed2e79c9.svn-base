@@ -1,0 +1,288 @@
+package com.daomingedu.art.mvp.ui.fragment
+
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
+import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import com.daomingedu.art.R
+import com.daomingedu.art.app.onClick
+import com.daomingedu.art.di.component.DaggerStudyCircleComponent
+import com.daomingedu.art.di.module.StudyCircleModule
+import com.daomingedu.art.mvp.contract.StudyCircleContract
+import com.daomingedu.art.mvp.model.entity.ShareBean
+import com.daomingedu.art.mvp.presenter.StudyCirclePresenter
+import com.daomingedu.art.mvp.ui.activity.StudyCircleInfoActivity
+import com.daomingedu.art.mvp.ui.activity.UploadShareActivity
+import com.daomingedu.art.mvp.ui.adapter.ShareAdapter
+import com.daomingedu.art.mvp.ui.widget.PopUploadMenu
+import com.daomingedu.art.mvp.ui.widget.WrapContentLinearLayoutManager
+import com.daomingedu.art.util.startActivityForResult
+import com.jess.arms.base.BaseFragment
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+import kotlinx.android.synthetic.main.fragment_study_circle.*
+import kotlinx.android.synthetic.main.include_page_head.*
+import kotlinx.android.synthetic.main.view_jubao.*
+import me.jessyan.autosize.AutoSize
+import me.jessyan.autosize.internal.CancelAdapt
+import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.startActivity
+import javax.inject.Inject
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 21:53
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @FragmentScope(請注意命名空間) class NullObjectPresenterByFragment
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class StudyCircleFragment : BaseFragment<StudyCirclePresenter>(), StudyCircleContract.View,CancelAdapt {
+
+    override fun getMActivity() = activity!!
+
+    /*val loadingDialog: LoadingDialog by lazy {
+        LoadingDialog(context!!)
+    }*/
+    @Inject
+    lateinit var mAdapter:ShareAdapter
+    @Inject
+    lateinit var mData:MutableList<ShareBean>
+
+    private var curPosition:Int = 0
+    companion object {
+        fun newInstance(): StudyCircleFragment {
+            val fragment = StudyCircleFragment()
+            return fragment
+        }
+    }
+
+
+    override fun setupFragmentComponent(appComponent: AppComponent) {
+        DaggerStudyCircleComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .studyCircleModule(StudyCircleModule(this))
+            .build()
+            .inject(this)
+    }
+
+    override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_study_circle, container, false)
+    }
+
+    override fun initData(savedInstanceState: Bundle?) {
+        tv_name.text = "学习圈"
+        val toolbar = toolbar2
+        toolbar.background.alpha = 255
+        toolbar.inflateMenu(R.menu.menu_name_upload)
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            if (menuItem.itemId == R.id.upload) {//上传
+                val uploadMenu = PopUploadMenu(activity) {
+                    when(it.id){
+                        R.id.pop_upload_video -> startActivity<UploadShareActivity>(
+                            UploadShareActivity.TYPE to UploadShareActivity.TYPE_VIDEO)
+                        R.id.pop_upload_photos -> startActivity<UploadShareActivity>(
+                            UploadShareActivity.TYPE to UploadShareActivity.TYPE_PHOTO)
+                        R.id.pop_upload_recording -> startActivity<UploadShareActivity>(
+                            UploadShareActivity.TYPE to UploadShareActivity.TYPE_RECORDING)
+                    }
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    uploadMenu.elevation = 10f
+                }
+                uploadMenu.showAsDropDown(toolbar2, 0,0,Gravity.END)
+            }
+            false
+        }
+        swipeRefreshLayout.setOnRefreshListener {
+            mPresenter?.getShareList(true)
+        }
+        recyclerView.layoutManager =  WrapContentLinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false)
+        recyclerView.adapter = mAdapter.apply {
+            setOnItemChildClickListener { adapter, view, position ->
+                when(view.id){
+                    R.id.tv_shield -> {
+                        curPosition = position
+                        mPopupWindow?.showAtLocation(activity.window.decorView,Gravity.BOTTOM,0,0)
+                    }
+                    R.id.ib_share_delete -> {
+                        AlertDialog.Builder(activity).setTitle("是否删除该分享?")
+                            .setNegativeButton("否",null)
+                            .setPositiveButton("是") { _, _ -> mPresenter?.delShare(mData[position].id,position) }
+                            .show()
+                    }
+                }
+            }
+            setOnItemClickListener{ adapter, view, position ->
+                startActivityForResult<StudyCircleInfoActivity>("share" to mData[position],callback = {
+                    val share = it.getSerializableExtra("shareinfo") as ShareBean
+                    mData[position] = share
+                    adapter.notifyItemChanged(position)
+                })
+            }
+            setOnLoadMoreListener({
+                mPresenter?.getShareList(false)
+            }, recyclerView)
+            setEnableLoadMore(true)
+        }
+        mPresenter?.getShareList(true)
+        initPopupWindow()
+    }
+
+    var mPopupWindow:PopupWindow?=null
+    fun initPopupWindow(){
+        val contentView = LayoutInflater.from(context).inflate(R.layout.popup_shield,null)
+        contentView.find<TextView>(R.id.tv_jubao).onClick {
+            mPopupWindow?.dismiss()
+            val jubaoView = LayoutInflater.from(context).inflate(R.layout.view_jubao,null)
+            val jubaoDialog = AlertDialog.Builder(activity!!)
+                .setView(jubaoView)
+                .create()
+            jubaoDialog.show()
+            jubaoView.find<Button>(R.id.btn_ok).onClick {
+                val type = when(jubaoView.find<RadioGroup>(R.id.rg_type).checkedRadioButtonId){
+                    R.id.rb_type1 -> 1
+                    R.id.rb_type2 -> 2
+                    R.id.rb_type3 -> 3
+                    R.id.rb_type4 -> 4
+                    else -> 0
+                }
+                if (type == 0) {
+                    ArmsUtils.makeText(context,"请选一条举报类型")
+                    return@onClick
+                }
+                val remakeText = jubaoView.find<EditText>(R.id.et_jubao_content).text.toString().trim()
+                mPresenter?.reportShare(shareId = mData[curPosition].id,type = type,remake = remakeText)
+                jubaoDialog.dismiss()
+            }
+            jubaoView.find<Button>(R.id.btn_cancel).onClick {
+                jubaoDialog.dismiss()
+            }
+        }
+        contentView.find<TextView>(R.id.tv_pbctdt).onClick {
+            mPopupWindow?.dismiss()
+            mPresenter?.reportShare(shareId = mData[curPosition].id,type = 0,remake = "")
+        }
+        contentView.find<TextView>(R.id.tv_pbtddt).onClick {
+            mPopupWindow?.dismiss()
+            mPresenter?.reportShare(userId = mData[curPosition].userId,type = 0,remake = "")
+        }
+        contentView.find<Button>(R.id.btn_cancel).onClick {
+            mPopupWindow?.dismiss()
+        }
+        mPopupWindow = PopupWindow(contentView,ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            setBackgroundDrawable(BitmapDrawable())
+            isOutsideTouchable = true
+            isTouchable = true
+            isFocusable = true
+            animationStyle = R.style.mypopwindow_anim_style
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPopupWindow?.dismiss()
+        mPopupWindow = null
+    }
+
+    /**
+     * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
+     * 建议在有多个需要与外界交互的方法时, 统一传 {@link Message}, 通过 what 字段来区分不同的方法, 在 {@link #setData(Object)}
+     * 方法中就可以 {@code switch} 做不同的操作, 这样就可以用统一的入口方法做多个不同的操作, 可以起到分发的作用
+     * <p>
+     * 调用此方法时请注意调用时 Fragment 的生命周期, 如果调用 {@link #setData(Object)} 方法时 {@link Fragment#onCreate(Bundle)} 还没执行
+     * 但在 {@link #setData(Object)} 里却调用了 Presenter 的方法, 是会报空的, 因为 Dagger 注入是在 {@link Fragment#onCreate(Bundle)} 方法中执行的
+     * 然后才创建的 Presenter, 如果要做一些初始化操作,可以不必让外部调用 {@link #setData(Object)}, 在 {@link #initData(Bundle)} 中初始化就可以了
+     * <p>
+     * Example usage:
+     * <pre>
+     *fun setData(data:Any) {
+     *   if(data is Message){
+     *       when (data.what) {
+     *           0-> {
+     *               //根据what 做你想做的事情
+     *           }
+     *           else -> {
+     *           }
+     *       }
+     *   }
+     *}
+     *
+     *
+     *
+     *
+     *
+     * // call setData(Object):
+     * val data = Message();
+     * data.what = 0;
+     * data.arg1 = 1;
+     * fragment.setData(data);
+     * </pre>
+     *
+     * @param data 当不需要参数时 {@code data} 可以为 {@code null}
+     */
+    override fun setData(data: Any?) {
+
+    }
+
+    override fun showLoading() {
+        swipeRefreshLayout.isRefreshing = true
+    }
+
+    override fun hideLoading() {
+        swipeRefreshLayout.isRefreshing = false
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+
+    }
+
+    override fun showDialogLoading() {
+//        loadingDialog.show()
+    }
+
+    override fun dismissDialogLoading() {
+//        loadingDialog.dismiss()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        AutoSize.cancelAdapt(activity)
+    }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:gravity="center_vertical"
+              android:layout_marginStart="18pt"
+              android:layout_marginEnd="18pt"
+              android:layout_marginBottom="20pt"
+              android:background="@drawable/shape_home_menu_bg"
+              android:layout_height="140pt">
+    <ImageView
+            android:id="@+id/ivGradeIcon"
+            android:layout_marginStart="26pt"
+            android:layout_marginEnd="28pt"
+            android:src="@drawable/ic_music_test"
+            android:layout_width="97pt"
+            android:layout_height="96pt"/>
+
+    <TextView
+            android:id="@+id/tvGradeName"
+            android:textSize="32pt"
+            android:text="音乐考级"
+            android:textColor="@color/color_010101"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

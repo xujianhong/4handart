@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tencent.qcloud:cosxml:5.5.5@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.qcloud/cosxml/5.5.5/e4d0a4dbd75b0baa1cf7b6403e487fafdfd2c60e/cosxml-5.5.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.qcloud/cosxml/5.5.5/8c8aeb0ebb8941ee7911574b04bb680515998ecd/cosxml-5.5.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent.qcloud/cosxml/5.5.5/c130ef03b09cedd2767ff7b828f002a5efd88686/cosxml-5.5.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

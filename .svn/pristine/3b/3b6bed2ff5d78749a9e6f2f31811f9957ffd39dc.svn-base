@@ -1,0 +1,192 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000p\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010!\n\u0002\u0010\u000e\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0006\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\u0018\u0000 >2\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u0004:\u0001>B\u0005\u00a2\u0006\u0002\u0010\u0005J\u0010\u0010\'\u001a\u00020(2\u0006\u0010)\u001a\u00020\u0014H\u0002J\u0010\u0010*\u001a\u00020(2\u0006\u0010+\u001a\u00020\u0014H\u0002J\b\u0010,\u001a\u00020(H\u0016J\u0012\u0010-\u001a\u00020(2\b\u0010.\u001a\u0004\u0018\u00010/H\u0016J\u0012\u00100\u001a\u00020!2\b\u0010.\u001a\u0004\u0018\u00010/H\u0016J\b\u00101\u001a\u00020(H\u0016J\u0010\u00102\u001a\u00020(2\u0006\u00103\u001a\u000204H\u0016J\b\u00105\u001a\u00020(H\u0014J\u0012\u00106\u001a\u00020(2\b\u00107\u001a\u0004\u0018\u00010\u0014H\u0016J\u0010\u00108\u001a\u00020(2\u0006\u00109\u001a\u00020:H\u0016J\b\u0010;\u001a\u00020(H\u0016J\u0010\u0010<\u001a\u00020(2\u0006\u0010=\u001a\u00020\u0014H\u0016R\u001b\u0010\u0006\u001a\u00020\u00078FX\u0086\u0084\u0002\u00a2\u0006\f\n\u0004\b\n\u0010\u000b\u001a\u0004\b\b\u0010\tR\u001e\u0010\f\u001a\u00020\r8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000e\u0010\u000f\"\u0004\b\u0010\u0010\u0011R$\u0010\u0012\u001a\b\u0012\u0004\u0012\u00020\u00140\u00138\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0015\u0010\u0016\"\u0004\b\u0017\u0010\u0018R\u001b\u0010\u0019\u001a\u00020\u001a8FX\u0086\u0084\u0002\u00a2\u0006\f\n\u0004\b\u001d\u0010\u000b\u001a\u0004\b\u001b\u0010\u001cR\u0010\u0010\u001e\u001a\u0004\u0018\u00010\u001fX\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u001b\u0010 \u001a\u00020!8FX\u0086\u0084\u0002\u00a2\u0006\f\n\u0004\b$\u0010\u000b\u001a\u0004\b\"\u0010#R\u0010\u0010%\u001a\u0004\u0018\u00010&X\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006?"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/UploadShareActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/UploadSharePresenter;", "Lcom/daomingedu/art/mvp/contract/UploadShareContract$View;", "Lme/jessyan/autosize/internal/CancelAdapt;", "()V", "loadingDialog", "Lcom/daomingedu/art/mvp/ui/widget/LoadingDialog2;", "getLoadingDialog", "()Lcom/daomingedu/art/mvp/ui/widget/LoadingDialog2;", "loadingDialog$delegate", "Lkotlin/Lazy;", "mAdapter", "Lcom/daomingedu/art/mvp/ui/adapter/UploadPhotosAdapter;", "getMAdapter", "()Lcom/daomingedu/art/mvp/ui/adapter/UploadPhotosAdapter;", "setMAdapter", "(Lcom/daomingedu/art/mvp/ui/adapter/UploadPhotosAdapter;)V", "pathList", "", "", "getPathList", "()Ljava/util/List;", "setPathList", "(Ljava/util/List;)V", "threadPoolExecutor", "Ljava/util/concurrent/ThreadPoolExecutor;", "getThreadPoolExecutor", "()Ljava/util/concurrent/ThreadPoolExecutor;", "threadPoolExecutor$delegate", "thumbnailBitmap", "Landroid/graphics/Bitmap;", "type", "", "getType", "()I", "type$delegate", "videoFile", "Ljava/io/File;", "getRecording", "", "path", "getVideo", "videoPath", "hideLoading", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initView", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onResume", "requestCreateShareSuccess", "data", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "showLoading", "showMessage", "message", "Companion", "app_debug"})
+public final class UploadShareActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.UploadSharePresenter> implements com.daomingedu.art.mvp.contract.UploadShareContract.View, me.jessyan.autosize.internal.CancelAdapt {
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.adapter.UploadPhotosAdapter mAdapter;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public java.util.List<java.lang.String> pathList;
+    private java.io.File videoFile;
+    private android.graphics.Bitmap thumbnailBitmap;
+    @org.jetbrains.annotations.NotNull()
+    private final kotlin.Lazy type$delegate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final kotlin.Lazy loadingDialog$delegate = null;
+    @org.jetbrains.annotations.NotNull()
+    private final kotlin.Lazy threadPoolExecutor$delegate = null;
+    @org.jetbrains.annotations.NotNull()
+    private static final java.lang.String TYPE = "type";
+    private static final int TYPE_PHOTO = 1;
+    private static final int TYPE_VIDEO = 3;
+    private static final int TYPE_RECORDING = 2;
+    private static final int PHOTOS_NUM = 6;
+    @org.jetbrains.annotations.NotNull()
+    private static final java.lang.String ADD_PHOTO_STR = "addButton";
+    private static final int PICK_PHOTO = 0;
+    private static final int ADD_PHOTO = 1;
+    private static final int SCAN_PHOTOS = 2;
+    private static final int PICK_VIDEO = 3;
+    private static final int PICK_RECORDING = 4;
+    public static final com.daomingedu.art.mvp.ui.activity.UploadShareActivity.Companion Companion = null;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public void requestCreateShareSuccess(@org.jetbrains.annotations.Nullable()
+    java.lang.String data) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.adapter.UploadPhotosAdapter getMAdapter() {
+        return null;
+    }
+    
+    public final void setMAdapter(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.adapter.UploadPhotosAdapter p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.List<java.lang.String> getPathList() {
+        return null;
+    }
+    
+    public final void setPathList(@org.jetbrains.annotations.NotNull()
+    java.util.List<java.lang.String> p0) {
+    }
+    
+    public final int getType() {
+        return 0;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.widget.LoadingDialog2 getLoadingDialog() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.concurrent.ThreadPoolExecutor getThreadPoolExecutor() {
+        return null;
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    private final void getVideo(java.lang.String videoPath) {
+    }
+    
+    private final void getRecording(java.lang.String path) {
+    }
+    
+    @java.lang.Override()
+    protected void onResume() {
+    }
+    
+    public UploadShareActivity() {
+        super();
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u001c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0010\u000e\n\u0002\b\u0015\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002R\u0014\u0010\u0003\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0005\u0010\u0006R\u0014\u0010\u0007\u001a\u00020\bX\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\t\u0010\nR\u0014\u0010\u000b\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\f\u0010\u0006R\u0014\u0010\r\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u000e\u0010\u0006R\u0014\u0010\u000f\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0010\u0010\u0006R\u0014\u0010\u0011\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0012\u0010\u0006R\u0014\u0010\u0013\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0014\u0010\u0006R\u0014\u0010\u0015\u001a\u00020\bX\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0016\u0010\nR\u0014\u0010\u0017\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u0018\u0010\u0006R\u0014\u0010\u0019\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001a\u0010\u0006R\u0014\u0010\u001b\u001a\u00020\u0004X\u0086D\u00a2\u0006\b\n\u0000\u001a\u0004\b\u001c\u0010\u0006\u00a8\u0006\u001d"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/UploadShareActivity$Companion;", "", "()V", "ADD_PHOTO", "", "getADD_PHOTO", "()I", "ADD_PHOTO_STR", "", "getADD_PHOTO_STR", "()Ljava/lang/String;", "PHOTOS_NUM", "getPHOTOS_NUM", "PICK_PHOTO", "getPICK_PHOTO", "PICK_RECORDING", "getPICK_RECORDING", "PICK_VIDEO", "getPICK_VIDEO", "SCAN_PHOTOS", "getSCAN_PHOTOS", "TYPE", "getTYPE", "TYPE_PHOTO", "getTYPE_PHOTO", "TYPE_RECORDING", "getTYPE_RECORDING", "TYPE_VIDEO", "getTYPE_VIDEO", "app_debug"})
+    public static final class Companion {
+        
+        @org.jetbrains.annotations.NotNull()
+        public final java.lang.String getTYPE() {
+            return null;
+        }
+        
+        public final int getTYPE_PHOTO() {
+            return 0;
+        }
+        
+        public final int getTYPE_VIDEO() {
+            return 0;
+        }
+        
+        public final int getTYPE_RECORDING() {
+            return 0;
+        }
+        
+        public final int getPHOTOS_NUM() {
+            return 0;
+        }
+        
+        @org.jetbrains.annotations.NotNull()
+        public final java.lang.String getADD_PHOTO_STR() {
+            return null;
+        }
+        
+        public final int getPICK_PHOTO() {
+            return 0;
+        }
+        
+        public final int getADD_PHOTO() {
+            return 0;
+        }
+        
+        public final int getSCAN_PHOTOS() {
+            return 0;
+        }
+        
+        public final int getPICK_VIDEO() {
+            return 0;
+        }
+        
+        public final int getPICK_RECORDING() {
+            return 0;
+        }
+        
+        private Companion() {
+            super();
+        }
+    }
+}

@@ -1,0 +1,172 @@
+package com.daomingedu.art.mvp.ui.activity;
+
+import java.lang.System;
+
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @ActivityScope(請注意命名空間) class NullObjectPresenterByActivity
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u00a0\u0001\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010!\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u000e\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u000e\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0006\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u00012\u00020\u00032\u00020\u00042\u00020\u0005B\u0005\u00a2\u0006\u0002\u0010\u0006J\b\u0010,\u001a\u00020-H\u0002J\b\u0010.\u001a\u00020-H\u0016J\u0012\u0010/\u001a\u00020-2\b\u00100\u001a\u0004\u0018\u000101H\u0016J\u0012\u00102\u001a\u0002032\b\u00100\u001a\u0004\u0018\u000101H\u0016J\b\u00104\u001a\u00020-H\u0016J\u0010\u00105\u001a\u00020-2\u0006\u00106\u001a\u000207H\u0016J\u0012\u00108\u001a\u00020-2\b\u00109\u001a\u0004\u0018\u00010:H\u0016J\b\u0010;\u001a\u00020-H\u0014J\u001a\u0010<\u001a\u00020=2\u0006\u0010>\u001a\u0002032\b\u0010?\u001a\u0004\u0018\u00010@H\u0016J\b\u0010A\u001a\u00020-H\u0014J+\u0010B\u001a\u00020-2\b\u0010C\u001a\u0004\u0018\u00010\u00172\b\u0010D\u001a\u0004\u0018\u00010\u00172\b\u0010E\u001a\u0004\u0018\u00010=H\u0016\u00a2\u0006\u0002\u0010FJ\b\u0010G\u001a\u00020-H\u0014J\b\u0010H\u001a\u00020-H\u0014J\b\u0010I\u001a\u00020-H\u0002J\b\u0010J\u001a\u00020-H\u0016J\b\u0010K\u001a\u00020-H\u0016J\b\u0010L\u001a\u00020-H\u0016J!\u0010M\u001a\u00020-2\b\u0010N\u001a\u0004\u0018\u00010O2\b\u0010E\u001a\u0004\u0018\u00010=H\u0016\u00a2\u0006\u0002\u0010PJ\u0010\u0010Q\u001a\u00020-2\u0006\u0010R\u001a\u00020SH\u0016J\u000e\u0010T\u001a\u00020-2\u0006\u0010U\u001a\u00020=J\b\u0010V\u001a\u00020-H\u0016J\u0010\u0010W\u001a\u00020-2\u0006\u0010X\u001a\u00020\u0017H\u0016R\u000e\u0010\u0007\u001a\u00020\bX\u0082.\u00a2\u0006\u0002\n\u0000R\u001e\u0010\t\u001a\u00020\n8\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\f\"\u0004\b\r\u0010\u000eR$\u0010\u000f\u001a\b\u0012\u0004\u0012\u00020\u00110\u00108\u0006@\u0006X\u0087.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0012\u0010\u0013\"\u0004\b\u0014\u0010\u0015R\u001b\u0010\u0016\u001a\u00020\u00178BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b\u001a\u0010\u001b\u001a\u0004\b\u0018\u0010\u0019R\u0010\u0010\u001c\u001a\u0004\u0018\u00010\u001dX\u0082\u000e\u00a2\u0006\u0002\n\u0000R \u0010\u001e\u001a\b\u0012\u0004\u0012\u00020\u00110\u001fX\u0086.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b \u0010!\"\u0004\b\"\u0010#R\u000e\u0010$\u001a\u00020%X\u0082.\u00a2\u0006\u0002\n\u0000R\u001b\u0010&\u001a\u00020\'8BX\u0082\u0084\u0002\u00a2\u0006\f\n\u0004\b*\u0010+\u001a\u0004\b(\u0010)\u00a8\u0006Y"}, d2 = {"Lcom/daomingedu/art/mvp/ui/activity/StudyCircleInfoActivity;", "Lcom/jess/arms/base/BaseActivity;", "Lcom/daomingedu/art/mvp/presenter/StudyCircleInfoPresenter;", "Lcom/daomingedu/art/mvp/contract/StudyCircleInfoContract$View;", "Lcom/daomingedu/art/mvp/ui/widget/refreshview/BaseRefreshView$BaseRefreshViewListener;", "Lme/jessyan/autosize/internal/CancelAdapt;", "()V", "drv_recording", "Lcom/daomingedu/art/mvp/ui/widget/playrecording/DailyRecordingView;", "mAdapter", "Lcom/daomingedu/art/mvp/ui/adapter/ShareInfoAdapter;", "getMAdapter", "()Lcom/daomingedu/art/mvp/ui/adapter/ShareInfoAdapter;", "setMAdapter", "(Lcom/daomingedu/art/mvp/ui/adapter/ShareInfoAdapter;)V", "mData", "", "Lcom/daomingedu/art/mvp/ui/adapter/ShareInfoMuLtipleItem;", "getMData", "()Ljava/util/List;", "setMData", "(Ljava/util/List;)V", "mSessionId", "", "getMSessionId", "()Ljava/lang/String;", "mSessionId$delegate", "Lcom/daomingedu/art/app/Preference;", "playView", "Lcom/daomingedu/ijkplayertest/widget/PlayView;", "refreshView", "Lcom/daomingedu/art/mvp/ui/widget/refreshview/BaseRefreshView;", "getRefreshView", "()Lcom/daomingedu/art/mvp/ui/widget/refreshview/BaseRefreshView;", "setRefreshView", "(Lcom/daomingedu/art/mvp/ui/widget/refreshview/BaseRefreshView;)V", "rl_share_title", "Landroid/widget/RelativeLayout;", "share", "Lcom/daomingedu/art/mvp/model/entity/ShareBean;", "getShare", "()Lcom/daomingedu/art/mvp/model/entity/ShareBean;", "share$delegate", "Lkotlin/Lazy;", "addHeadView", "", "hideLoading", "initData", "savedInstanceState", "Landroid/os/Bundle;", "initView", "", "killMyself", "launchActivity", "intent", "Landroid/content/Intent;", "onConfigurationChanged", "newConfig", "Landroid/content/res/Configuration;", "onDestroy", "onKeyDown", "", "keyCode", "event", "Landroid/view/KeyEvent;", "onPause", "onRequestData", "pageSize", "mCurrentCounter", "isRefresh", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)V", "onResume", "onStart", "refreshData", "requestDelShareSuccess", "requestShareCommentSuccess", "requestShareDetailFail", "requestShareDetailSuccess", "data", "Lcom/daomingedu/art/mvp/model/entity/ShareDetailBean;", "(Lcom/daomingedu/art/mvp/model/entity/ShareDetailBean;Ljava/lang/Boolean;)V", "setupActivityComponent", "appComponent", "Lcom/jess/arms/di/component/AppComponent;", "shareLikeStr", "isRefersh", "showLoading", "showMessage", "message", "app_debug"})
+public final class StudyCircleInfoActivity extends com.jess.arms.base.BaseActivity<com.daomingedu.art.mvp.presenter.StudyCircleInfoPresenter> implements com.daomingedu.art.mvp.contract.StudyCircleInfoContract.View, com.daomingedu.art.mvp.ui.widget.refreshview.BaseRefreshView.BaseRefreshViewListener, me.jessyan.autosize.internal.CancelAdapt {
+    private final kotlin.Lazy share$delegate = null;
+    private final com.daomingedu.art.app.Preference mSessionId$delegate = null;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter mAdapter;
+    @org.jetbrains.annotations.NotNull()
+    @javax.inject.Inject()
+    public java.util.List<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> mData;
+    @org.jetbrains.annotations.NotNull()
+    public com.daomingedu.art.mvp.ui.widget.refreshview.BaseRefreshView<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> refreshView;
+    private com.daomingedu.ijkplayertest.widget.PlayView playView;
+    private android.widget.RelativeLayout rl_share_title;
+    private com.daomingedu.art.mvp.ui.widget.playrecording.DailyRecordingView drv_recording;
+    private java.util.HashMap _$_findViewCache;
+    
+    @java.lang.Override()
+    public void requestShareDetailFail() {
+    }
+    
+    @java.lang.Override()
+    public void requestShareDetailSuccess(@org.jetbrains.annotations.Nullable()
+    com.daomingedu.art.mvp.model.entity.ShareDetailBean data, @org.jetbrains.annotations.Nullable()
+    java.lang.Boolean isRefresh) {
+    }
+    
+    @java.lang.Override()
+    public void requestShareCommentSuccess() {
+    }
+    
+    private final com.daomingedu.art.mvp.model.entity.ShareBean getShare() {
+        return null;
+    }
+    
+    private final java.lang.String getMSessionId() {
+        return null;
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter getMAdapter() {
+        return null;
+    }
+    
+    public final void setMAdapter(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final java.util.List<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> getMData() {
+        return null;
+    }
+    
+    public final void setMData(@org.jetbrains.annotations.NotNull()
+    java.util.List<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> p0) {
+    }
+    
+    @org.jetbrains.annotations.NotNull()
+    public final com.daomingedu.art.mvp.ui.widget.refreshview.BaseRefreshView<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> getRefreshView() {
+        return null;
+    }
+    
+    public final void setRefreshView(@org.jetbrains.annotations.NotNull()
+    com.daomingedu.art.mvp.ui.widget.refreshview.BaseRefreshView<com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem> p0) {
+    }
+    
+    @java.lang.Override()
+    public void setupActivityComponent(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.di.component.AppComponent appComponent) {
+    }
+    
+    @java.lang.Override()
+    public int initView(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+        return 0;
+    }
+    
+    @java.lang.Override()
+    public void initData(@org.jetbrains.annotations.Nullable()
+    android.os.Bundle savedInstanceState) {
+    }
+    
+    @java.lang.Override()
+    public void showLoading() {
+    }
+    
+    @java.lang.Override()
+    public void hideLoading() {
+    }
+    
+    @java.lang.Override()
+    public void showMessage(@org.jetbrains.annotations.NotNull()
+    java.lang.String message) {
+    }
+    
+    @java.lang.Override()
+    public void launchActivity(@org.jetbrains.annotations.NotNull()
+    android.content.Intent intent) {
+    }
+    
+    @java.lang.Override()
+    public void killMyself() {
+    }
+    
+    @java.lang.Override()
+    public void requestDelShareSuccess() {
+    }
+    
+    private final void refreshData() {
+    }
+    
+    @java.lang.Override()
+    public void onRequestData(@org.jetbrains.annotations.Nullable()
+    java.lang.String pageSize, @org.jetbrains.annotations.Nullable()
+    java.lang.String mCurrentCounter, @org.jetbrains.annotations.Nullable()
+    java.lang.Boolean isRefresh) {
+    }
+    
+    private final void addHeadView() {
+    }
+    
+    public final void shareLikeStr(boolean isRefersh) {
+    }
+    
+    @java.lang.Override()
+    public void onConfigurationChanged(@org.jetbrains.annotations.Nullable()
+    android.content.res.Configuration newConfig) {
+    }
+    
+    @java.lang.Override()
+    protected void onDestroy() {
+    }
+    
+    @java.lang.Override()
+    protected void onStart() {
+    }
+    
+    @java.lang.Override()
+    protected void onPause() {
+    }
+    
+    @java.lang.Override()
+    public boolean onKeyDown(int keyCode, @org.jetbrains.annotations.Nullable()
+    android.view.KeyEvent event) {
+        return false;
+    }
+    
+    @java.lang.Override()
+    protected void onResume() {
+    }
+    
+    public StudyCircleInfoActivity() {
+        super();
+    }
+}

@@ -1,0 +1,44 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.HomeContract;
+import com.daomingedu.art.mvp.model.HomeModel;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeModule_ProvideHomeModelFactory implements Factory<HomeContract.Model> {
+  private final HomeModule module;
+
+  private final Provider<HomeModel> modelProvider;
+
+  public HomeModule_ProvideHomeModelFactory(HomeModule module, Provider<HomeModel> modelProvider) {
+    this.module = module;
+    this.modelProvider = modelProvider;
+  }
+
+  @Override
+  public HomeContract.Model get() {
+    return provideInstance(module, modelProvider);
+  }
+
+  public static HomeContract.Model provideInstance(
+      HomeModule module, Provider<HomeModel> modelProvider) {
+    return proxyProvideHomeModel(module, modelProvider.get());
+  }
+
+  public static HomeModule_ProvideHomeModelFactory create(
+      HomeModule module, Provider<HomeModel> modelProvider) {
+    return new HomeModule_ProvideHomeModelFactory(module, modelProvider);
+  }
+
+  public static HomeContract.Model proxyProvideHomeModel(HomeModule instance, HomeModel model) {
+    return Preconditions.checkNotNull(
+        instance.provideHomeModel(model),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.LoginContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class LoginModule_ProvideLoginViewFactory implements Factory<LoginContract.View> {
+  private final LoginModule module;
+
+  public LoginModule_ProvideLoginViewFactory(LoginModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public LoginContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static LoginContract.View provideInstance(LoginModule module) {
+    return proxyProvideLoginView(module);
+  }
+
+  public static LoginModule_ProvideLoginViewFactory create(LoginModule module) {
+    return new LoginModule_ProvideLoginViewFactory(module);
+  }
+
+  public static LoginContract.View proxyProvideLoginView(LoginModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideLoginView(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

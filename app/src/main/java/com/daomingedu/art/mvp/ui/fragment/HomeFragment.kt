@@ -1,0 +1,214 @@
+package com.daomingedu.art.mvp.ui.fragment
+
+import android.content.Intent
+import android.os.Bundle
+
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import com.blankj.utilcode.util.ScreenUtils
+import com.daomingedu.art.R
+import com.daomingedu.art.app.BannerImageLoader
+import com.daomingedu.art.app.Constant
+import com.daomingedu.art.app.px
+import com.daomingedu.art.di.component.DaggerHomeComponent
+import com.daomingedu.art.di.module.HomeModule
+import com.daomingedu.art.mvp.contract.HomeContract
+import com.daomingedu.art.mvp.model.entity.BannerBean
+import com.daomingedu.art.mvp.presenter.HomePresenter
+import com.daomingedu.art.mvp.ui.activity.CommonWebActivity
+import com.daomingedu.art.mvp.ui.activity.MusicDanceTestActivity
+import com.daomingedu.art.mvp.ui.adapter.HomeAdapter
+import com.daomingedu.art.mvp.ui.adapter.HomeGradeAdapter
+import com.daomingedu.art.mvp.ui.decoration.DividerDecoration
+import com.jess.arms.base.BaseFragment
+import com.jess.arms.di.component.AppComponent
+import com.jess.arms.utils.ArmsUtils
+import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.support.v4.startActivity
+import javax.inject.Inject
+
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/25/2019 21:54
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+/**
+ * 如果没presenter
+ * 你可以这样写
+ *
+ * @FragmentScope(請注意命名空間) class NullObjectPresenterByFragment
+ * @Inject constructor() : IPresenter {
+ * override fun onStart() {
+ * }
+ *
+ * override fun onDestroy() {
+ * }
+ * }
+ */
+class HomeFragment : BaseFragment<HomePresenter>(), HomeContract.View {
+    @Inject
+    lateinit var mAdapter:HomeAdapter
+    @Inject
+    lateinit var mHomeGradeAdapter:HomeGradeAdapter
+
+    private var bannerImages = mutableListOf<String>()
+    private val bannerList = mutableListOf<BannerBean>()
+
+    override fun requestBannerListSuccess(data: MutableList<BannerBean>?) {
+        data?.let { bannerList.addAll(it) }
+        data?.forEach { item ->
+            bannerImages.add(Constant.IMAGE_PREFIX+item.image)
+        }
+        banner.setImages(bannerImages).start()
+
+    }
+
+    companion object {
+        fun newInstance(): HomeFragment {
+            val fragment = HomeFragment()
+            return fragment
+        }
+    }
+
+    override fun setupFragmentComponent(appComponent: AppComponent) {
+        DaggerHomeComponent //如找不到该类,请编译一下项目
+            .builder()
+            .appComponent(appComponent)
+            .homeModule(HomeModule(this))
+            .build()
+            .inject(this)
+    }
+
+    override fun initView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun initData(savedInstanceState: Bundle?) {
+//        val screenWidth = ScreenUtils.getScreenWidth()
+//        val bannerHeight = screenWidth * 34.0f / 64
+//        banner.layoutParams = LinearLayout.LayoutParams(screenWidth,bannerHeight.toInt())
+        banner.setImageLoader(BannerImageLoader())
+        banner.setOnBannerListener {
+            val url = bannerList[it].url
+            val title = bannerList[it].title
+            if (!TextUtils.isEmpty(url)) {
+                loadWebUrl(url,title)
+            }
+        }
+        rvGrade.isNestedScrollingEnabled = false
+        rvGrade.layoutManager = GridLayoutManager(context,2)
+        rvGrade.adapter = mHomeGradeAdapter.apply {
+            setOnItemClickListener { adapter, view, position ->
+                val item = mHomeGradeAdapter.getItem(position)
+                item?.apply {
+                    startActivity<MusicDanceTestActivity>(Constant.TEST_POSITION_EXTRA to position,
+                        Constant.TEST_CITIES_EXTRA to cityList,Constant.TEST_TITLE_EXTRA to gradedNamae)
+                }
+            }
+        }
+
+        val paddingSize = 8.px
+        val dividerDecoration = DividerDecoration(resources.getColor(R.color.color_d6d6d6), 1, paddingSize, paddingSize)
+        dividerDecoration.setDrawLastItem(false)
+        recyclerView.isNestedScrollingEnabled = false
+        recyclerView.addItemDecoration(dividerDecoration)
+        recyclerView.adapter = mAdapter.apply {
+            setOnItemClickListener { _, _, position ->
+                mAdapter.getItem(position)?.apply {
+                    if (!TextUtils.isEmpty(url)) {
+                        loadWebUrl(url,"资讯")
+                    }
+                }
+            }
+        }
+        mPresenter?.bannerList()
+        mPresenter?.gradeList()
+        mPresenter?.newsList(true)
+    }
+
+    private fun loadWebUrl(url:String,title:String) {
+        startActivity<CommonWebActivity>(Constant.URL_EXTRA to url, Constant.TITLE_EXTRA to title)
+    }
+
+    /**
+     * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
+     * 建议在有多个需要与外界交互的方法时, 统一传 {@link Message}, 通过 what 字段来区分不同的方法, 在 {@link #setData(Object)}
+     * 方法中就可以 {@code switch} 做不同的操作, 这样就可以用统一的入口方法做多个不同的操作, 可以起到分发的作用
+     * <p>
+     * 调用此方法时请注意调用时 Fragment 的生命周期, 如果调用 {@link #setData(Object)} 方法时 {@link Fragment#onCreate(Bundle)} 还没执行
+     * 但在 {@link #setData(Object)} 里却调用了 Presenter 的方法, 是会报空的, 因为 Dagger 注入是在 {@link Fragment#onCreate(Bundle)} 方法中执行的
+     * 然后才创建的 Presenter, 如果要做一些初始化操作,可以不必让外部调用 {@link #setData(Object)}, 在 {@link #initData(Bundle)} 中初始化就可以了
+     * <p>
+     * Example usage:
+     * <pre>
+     *fun setData(data:Any) {
+     *   if(data is Message){
+     *       when (data.what) {
+     *           0-> {
+     *               //根据what 做你想做的事情
+     *           }
+     *           else -> {
+     *           }
+     *       }
+     *   }
+     *}
+     *
+     *
+     *
+     *
+     *
+     * // call setData(Object):
+     * val data = Message();
+     * data.what = 0;
+     * data.arg1 = 1;
+     * fragment.setData(data);
+     * </pre>
+     *
+     * @param data 当不需要参数时 {@code data} 可以为 {@code null}
+     */
+    override fun setData(data: Any?) {
+
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        banner.startAutoPlay()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        banner.stopAutoPlay()
+    }
+
+    override fun showMessage(message: String) {
+        ArmsUtils.snackbarText(message)
+    }
+
+    override fun launchActivity(intent: Intent) {
+        ArmsUtils.startActivity(intent)
+    }
+
+    override fun killMyself() {
+
+    }
+}

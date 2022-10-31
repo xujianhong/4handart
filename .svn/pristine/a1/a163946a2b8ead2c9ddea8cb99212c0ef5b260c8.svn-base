@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.HomeContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeModule_ProvideHomeViewFactory implements Factory<HomeContract.View> {
+  private final HomeModule module;
+
+  public HomeModule_ProvideHomeViewFactory(HomeModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public HomeContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static HomeContract.View provideInstance(HomeModule module) {
+    return proxyProvideHomeView(module);
+  }
+
+  public static HomeModule_ProvideHomeViewFactory create(HomeModule module) {
+    return new HomeModule_ProvideHomeViewFactory(module);
+  }
+
+  public static HomeContract.View proxyProvideHomeView(HomeModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideHomeView(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

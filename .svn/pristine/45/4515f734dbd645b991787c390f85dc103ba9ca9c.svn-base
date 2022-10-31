@@ -1,0 +1,41 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.UploadVideoPreviewContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class UploadVideoPreviewModule_ProvideUploadVideoPreviewViewFactory
+    implements Factory<UploadVideoPreviewContract.View> {
+  private final UploadVideoPreviewModule module;
+
+  public UploadVideoPreviewModule_ProvideUploadVideoPreviewViewFactory(
+      UploadVideoPreviewModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public UploadVideoPreviewContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static UploadVideoPreviewContract.View provideInstance(UploadVideoPreviewModule module) {
+    return proxyProvideUploadVideoPreviewView(module);
+  }
+
+  public static UploadVideoPreviewModule_ProvideUploadVideoPreviewViewFactory create(
+      UploadVideoPreviewModule module) {
+    return new UploadVideoPreviewModule_ProvideUploadVideoPreviewViewFactory(module);
+  }
+
+  public static UploadVideoPreviewContract.View proxyProvideUploadVideoPreviewView(
+      UploadVideoPreviewModule instance) {
+    return Preconditions.checkNotNull(
+        instance.provideUploadVideoPreviewView(),
+        "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

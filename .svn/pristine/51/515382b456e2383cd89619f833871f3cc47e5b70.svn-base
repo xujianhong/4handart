@@ -1,0 +1,94 @@
+package com.daomingedu.art.mvp.presenter;
+
+import android.app.Application;
+import com.daomingedu.art.mvp.contract.ModifyPasswordContract;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import dagger.internal.Factory;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class ModifyPasswordPresenter_Factory implements Factory<ModifyPasswordPresenter> {
+  private final Provider<ModifyPasswordContract.Model> modelProvider;
+
+  private final Provider<ModifyPasswordContract.View> rootViewProvider;
+
+  private final Provider<RxErrorHandler> mErrorHandlerProvider;
+
+  private final Provider<Application> mApplicationProvider;
+
+  private final Provider<ImageLoader> mImageLoaderProvider;
+
+  private final Provider<AppManager> mAppManagerProvider;
+
+  public ModifyPasswordPresenter_Factory(
+      Provider<ModifyPasswordContract.Model> modelProvider,
+      Provider<ModifyPasswordContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    this.modelProvider = modelProvider;
+    this.rootViewProvider = rootViewProvider;
+    this.mErrorHandlerProvider = mErrorHandlerProvider;
+    this.mApplicationProvider = mApplicationProvider;
+    this.mImageLoaderProvider = mImageLoaderProvider;
+    this.mAppManagerProvider = mAppManagerProvider;
+  }
+
+  @Override
+  public ModifyPasswordPresenter get() {
+    return provideInstance(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static ModifyPasswordPresenter provideInstance(
+      Provider<ModifyPasswordContract.Model> modelProvider,
+      Provider<ModifyPasswordContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    ModifyPasswordPresenter instance =
+        new ModifyPasswordPresenter(modelProvider.get(), rootViewProvider.get());
+    ModifyPasswordPresenter_MembersInjector.injectMErrorHandler(
+        instance, mErrorHandlerProvider.get());
+    ModifyPasswordPresenter_MembersInjector.injectMApplication(
+        instance, mApplicationProvider.get());
+    ModifyPasswordPresenter_MembersInjector.injectMImageLoader(
+        instance, mImageLoaderProvider.get());
+    ModifyPasswordPresenter_MembersInjector.injectMAppManager(instance, mAppManagerProvider.get());
+    return instance;
+  }
+
+  public static ModifyPasswordPresenter_Factory create(
+      Provider<ModifyPasswordContract.Model> modelProvider,
+      Provider<ModifyPasswordContract.View> rootViewProvider,
+      Provider<RxErrorHandler> mErrorHandlerProvider,
+      Provider<Application> mApplicationProvider,
+      Provider<ImageLoader> mImageLoaderProvider,
+      Provider<AppManager> mAppManagerProvider) {
+    return new ModifyPasswordPresenter_Factory(
+        modelProvider,
+        rootViewProvider,
+        mErrorHandlerProvider,
+        mApplicationProvider,
+        mImageLoaderProvider,
+        mAppManagerProvider);
+  }
+
+  public static ModifyPasswordPresenter newModifyPasswordPresenter(
+      ModifyPasswordContract.Model model, ModifyPasswordContract.View rootView) {
+    return new ModifyPasswordPresenter(model, rootView);
+  }
+}

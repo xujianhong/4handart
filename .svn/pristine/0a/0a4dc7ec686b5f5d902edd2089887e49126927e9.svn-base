@@ -1,0 +1,36 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.contract.PianoContract;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class PianoModule_ProvidePianoViewFactory implements Factory<PianoContract.View> {
+  private final PianoModule module;
+
+  public PianoModule_ProvidePianoViewFactory(PianoModule module) {
+    this.module = module;
+  }
+
+  @Override
+  public PianoContract.View get() {
+    return provideInstance(module);
+  }
+
+  public static PianoContract.View provideInstance(PianoModule module) {
+    return proxyProvidePianoView(module);
+  }
+
+  public static PianoModule_ProvidePianoViewFactory create(PianoModule module) {
+    return new PianoModule_ProvidePianoViewFactory(module);
+  }
+
+  public static PianoContract.View proxyProvidePianoView(PianoModule instance) {
+    return Preconditions.checkNotNull(
+        instance.providePianoView(), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

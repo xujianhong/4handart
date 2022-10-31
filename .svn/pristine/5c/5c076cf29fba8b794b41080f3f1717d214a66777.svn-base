@@ -1,0 +1,37 @@
+package com.daomingedu.art.mvp.contract;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * Description:
+ * <p>
+ * Created by MVPArmsTemplate on 04/24/2019 23:28
+ * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
+ * <a href="https://github.com/JessYanCoding">Follow me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArms/wiki">See me</a>
+ * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001:\u0002\u0002\u0003\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/LoginContract;", "", "Model", "View", "app_release"})
+public abstract interface LoginContract {
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000\u0010\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J\b\u0010\u0002\u001a\u00020\u0003H&\u00a8\u0006\u0004"}, d2 = {"Lcom/daomingedu/art/mvp/contract/LoginContract$View;", "Lcom/jess/arms/mvp/IView;", "requestLoginSuccess", "", "app_release"})
+    public static abstract interface View extends com.jess.arms.mvp.IView {
+        
+        public abstract void requestLoginSuccess();
+    }
+    
+    @kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0010\b\n\u0002\b\u0004\bf\u0018\u00002\u00020\u0001JP\u0010\u0002\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u00020\u00050\u00040\u00032\u0006\u0010\u0006\u001a\u00020\u00072\u0006\u0010\b\u001a\u00020\u00072\u0006\u0010\t\u001a\u00020\u00072\u0006\u0010\n\u001a\u00020\u000b2\b\u0010\f\u001a\u0004\u0018\u00010\u00072\b\u0010\r\u001a\u0004\u0018\u00010\u00072\u0006\u0010\u000e\u001a\u00020\u000bH&\u00a8\u0006\u000f"}, d2 = {"Lcom/daomingedu/art/mvp/contract/LoginContract$Model;", "Lcom/jess/arms/mvp/IModel;", "login", "Lio/reactivex/Observable;", "Lcom/daomingedu/art/mvp/model/entity/BaseJson;", "Lcom/daomingedu/art/mvp/model/entity/RegisterBean;", "key", "", "mobile", "password", "channel", "", "pushId", "deviceNo", "versionCode", "app_release"})
+    public static abstract interface Model extends com.jess.arms.mvp.IModel {
+        
+        @org.jetbrains.annotations.NotNull()
+        public abstract io.reactivex.Observable<com.daomingedu.art.mvp.model.entity.BaseJson<com.daomingedu.art.mvp.model.entity.RegisterBean>> login(@org.jetbrains.annotations.NotNull()
+        java.lang.String key, @org.jetbrains.annotations.NotNull()
+        java.lang.String mobile, @org.jetbrains.annotations.NotNull()
+        java.lang.String password, int channel, @org.jetbrains.annotations.Nullable()
+        java.lang.String pushId, @org.jetbrains.annotations.Nullable()
+        java.lang.String deviceNo, int versionCode);
+    }
+}

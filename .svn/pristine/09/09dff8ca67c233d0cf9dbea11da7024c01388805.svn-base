@@ -1,0 +1,47 @@
+package com.daomingedu.art.di.module;
+
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoAdapter;
+import com.daomingedu.art.mvp.ui.adapter.ShareInfoMuLtipleItem;
+import dagger.internal.Factory;
+import dagger.internal.Preconditions;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class StudyCircleInfoModule_ProvideAdapterFactory
+    implements Factory<ShareInfoAdapter> {
+  private final StudyCircleInfoModule module;
+
+  private final Provider<List<ShareInfoMuLtipleItem>> dataProvider;
+
+  public StudyCircleInfoModule_ProvideAdapterFactory(
+      StudyCircleInfoModule module, Provider<List<ShareInfoMuLtipleItem>> dataProvider) {
+    this.module = module;
+    this.dataProvider = dataProvider;
+  }
+
+  @Override
+  public ShareInfoAdapter get() {
+    return provideInstance(module, dataProvider);
+  }
+
+  public static ShareInfoAdapter provideInstance(
+      StudyCircleInfoModule module, Provider<List<ShareInfoMuLtipleItem>> dataProvider) {
+    return proxyProvideAdapter(module, dataProvider.get());
+  }
+
+  public static StudyCircleInfoModule_ProvideAdapterFactory create(
+      StudyCircleInfoModule module, Provider<List<ShareInfoMuLtipleItem>> dataProvider) {
+    return new StudyCircleInfoModule_ProvideAdapterFactory(module, dataProvider);
+  }
+
+  public static ShareInfoAdapter proxyProvideAdapter(
+      StudyCircleInfoModule instance, List<ShareInfoMuLtipleItem> data) {
+    return Preconditions.checkNotNull(
+        instance.provideAdapter(data), "Cannot return null from a non-@Nullable @Provides method");
+  }
+}

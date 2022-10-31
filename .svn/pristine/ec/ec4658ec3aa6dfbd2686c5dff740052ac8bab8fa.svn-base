@@ -1,0 +1,54 @@
+package com.daomingedu.art.mvp.ui.fragment;
+
+import com.daomingedu.art.mvp.presenter.HomePresenter;
+import com.daomingedu.art.mvp.ui.adapter.HomeAdapter;
+import com.daomingedu.art.mvp.ui.adapter.HomeGradeAdapter;
+import com.jess.arms.base.BaseFragment_MembersInjector;
+import dagger.MembersInjector;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class HomeFragment_MembersInjector implements MembersInjector<HomeFragment> {
+  private final Provider<HomePresenter> mPresenterProvider;
+
+  private final Provider<HomeAdapter> mAdapterProvider;
+
+  private final Provider<HomeGradeAdapter> mHomeGradeAdapterProvider;
+
+  public HomeFragment_MembersInjector(
+      Provider<HomePresenter> mPresenterProvider,
+      Provider<HomeAdapter> mAdapterProvider,
+      Provider<HomeGradeAdapter> mHomeGradeAdapterProvider) {
+    this.mPresenterProvider = mPresenterProvider;
+    this.mAdapterProvider = mAdapterProvider;
+    this.mHomeGradeAdapterProvider = mHomeGradeAdapterProvider;
+  }
+
+  public static MembersInjector<HomeFragment> create(
+      Provider<HomePresenter> mPresenterProvider,
+      Provider<HomeAdapter> mAdapterProvider,
+      Provider<HomeGradeAdapter> mHomeGradeAdapterProvider) {
+    return new HomeFragment_MembersInjector(
+        mPresenterProvider, mAdapterProvider, mHomeGradeAdapterProvider);
+  }
+
+  @Override
+  public void injectMembers(HomeFragment instance) {
+    BaseFragment_MembersInjector.injectMPresenter(instance, mPresenterProvider.get());
+    injectMAdapter(instance, mAdapterProvider.get());
+    injectMHomeGradeAdapter(instance, mHomeGradeAdapterProvider.get());
+  }
+
+  public static void injectMAdapter(HomeFragment instance, HomeAdapter mAdapter) {
+    instance.mAdapter = mAdapter;
+  }
+
+  public static void injectMHomeGradeAdapter(
+      HomeFragment instance, HomeGradeAdapter mHomeGradeAdapter) {
+    instance.mHomeGradeAdapter = mHomeGradeAdapter;
+  }
+}

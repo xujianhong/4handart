@@ -1,0 +1,242 @@
+package com.daomingedu.art.di.component;
+
+import android.app.Application;
+import com.daomingedu.art.di.module.MainModule;
+import com.daomingedu.art.di.module.MainModule_ProvideHomeFragmentFactory;
+import com.daomingedu.art.di.module.MainModule_ProvideMainModelFactory;
+import com.daomingedu.art.di.module.MainModule_ProvideMainViewFactory;
+import com.daomingedu.art.di.module.MainModule_ProvideMineFragmentFactory;
+import com.daomingedu.art.di.module.MainModule_ProvideStudyCircleFragmentFactory;
+import com.daomingedu.art.mvp.contract.MainContract;
+import com.daomingedu.art.mvp.model.MainModel;
+import com.daomingedu.art.mvp.model.MainModel_Factory;
+import com.daomingedu.art.mvp.presenter.MainPresenter;
+import com.daomingedu.art.mvp.presenter.MainPresenter_Factory;
+import com.daomingedu.art.mvp.ui.activity.MainActivity;
+import com.daomingedu.art.mvp.ui.activity.MainActivity_MembersInjector;
+import com.daomingedu.art.mvp.ui.fragment.HomeFragment;
+import com.daomingedu.art.mvp.ui.fragment.MineFragment;
+import com.daomingedu.art.mvp.ui.fragment.StudyCircleFragment;
+import com.google.gson.Gson;
+import com.jess.arms.base.BaseActivity_MembersInjector;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.ImageLoader;
+import com.jess.arms.integration.AppManager;
+import com.jess.arms.integration.IRepositoryManager;
+import dagger.internal.DoubleCheck;
+import dagger.internal.Preconditions;
+import javax.annotation.Generated;
+import javax.inject.Provider;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+
+@Generated(
+  value = "dagger.internal.codegen.ComponentProcessor",
+  comments = "https://google.github.io/dagger"
+)
+public final class DaggerMainComponent implements MainComponent {
+  private com_jess_arms_di_component_AppComponent_repositoryManager repositoryManagerProvider;
+
+  private com_jess_arms_di_component_AppComponent_gson gsonProvider;
+
+  private com_jess_arms_di_component_AppComponent_application applicationProvider;
+
+  private Provider<MainModel> mainModelProvider;
+
+  private Provider<MainContract.Model> provideMainModelProvider;
+
+  private Provider<MainContract.View> provideMainViewProvider;
+
+  private com_jess_arms_di_component_AppComponent_rxErrorHandler rxErrorHandlerProvider;
+
+  private com_jess_arms_di_component_AppComponent_imageLoader imageLoaderProvider;
+
+  private com_jess_arms_di_component_AppComponent_appManager appManagerProvider;
+
+  private Provider<MainPresenter> mainPresenterProvider;
+
+  private Provider<HomeFragment> provideHomeFragmentProvider;
+
+  private Provider<StudyCircleFragment> provideStudyCircleFragmentProvider;
+
+  private Provider<MineFragment> provideMineFragmentProvider;
+
+  private DaggerMainComponent(Builder builder) {
+    initialize(builder);
+  }
+
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initialize(final Builder builder) {
+    this.repositoryManagerProvider =
+        new com_jess_arms_di_component_AppComponent_repositoryManager(builder.appComponent);
+    this.gsonProvider = new com_jess_arms_di_component_AppComponent_gson(builder.appComponent);
+    this.applicationProvider =
+        new com_jess_arms_di_component_AppComponent_application(builder.appComponent);
+    this.mainModelProvider =
+        DoubleCheck.provider(
+            MainModel_Factory.create(repositoryManagerProvider, gsonProvider, applicationProvider));
+    this.provideMainModelProvider =
+        DoubleCheck.provider(
+            MainModule_ProvideMainModelFactory.create(builder.mainModule, mainModelProvider));
+    this.provideMainViewProvider =
+        DoubleCheck.provider(MainModule_ProvideMainViewFactory.create(builder.mainModule));
+    this.rxErrorHandlerProvider =
+        new com_jess_arms_di_component_AppComponent_rxErrorHandler(builder.appComponent);
+    this.imageLoaderProvider =
+        new com_jess_arms_di_component_AppComponent_imageLoader(builder.appComponent);
+    this.appManagerProvider =
+        new com_jess_arms_di_component_AppComponent_appManager(builder.appComponent);
+    this.mainPresenterProvider =
+        DoubleCheck.provider(
+            MainPresenter_Factory.create(
+                provideMainModelProvider,
+                provideMainViewProvider,
+                rxErrorHandlerProvider,
+                applicationProvider,
+                imageLoaderProvider,
+                appManagerProvider));
+    this.provideHomeFragmentProvider =
+        DoubleCheck.provider(MainModule_ProvideHomeFragmentFactory.create(builder.mainModule));
+    this.provideStudyCircleFragmentProvider =
+        DoubleCheck.provider(
+            MainModule_ProvideStudyCircleFragmentFactory.create(builder.mainModule));
+    this.provideMineFragmentProvider =
+        DoubleCheck.provider(MainModule_ProvideMineFragmentFactory.create(builder.mainModule));
+  }
+
+  @Override
+  public void inject(MainActivity activity) {
+    injectMainActivity(activity);
+  }
+
+  private MainActivity injectMainActivity(MainActivity instance) {
+    BaseActivity_MembersInjector.injectMPresenter(instance, mainPresenterProvider.get());
+    MainActivity_MembersInjector.injectMHomeFragment(instance, provideHomeFragmentProvider.get());
+    MainActivity_MembersInjector.injectMStudyCircleFragment(
+        instance, provideStudyCircleFragmentProvider.get());
+    MainActivity_MembersInjector.injectMMineFragment(instance, provideMineFragmentProvider.get());
+    return instance;
+  }
+
+  public static final class Builder {
+    private MainModule mainModule;
+
+    private AppComponent appComponent;
+
+    private Builder() {}
+
+    public MainComponent build() {
+      if (mainModule == null) {
+        throw new IllegalStateException(MainModule.class.getCanonicalName() + " must be set");
+      }
+      if (appComponent == null) {
+        throw new IllegalStateException(AppComponent.class.getCanonicalName() + " must be set");
+      }
+      return new DaggerMainComponent(this);
+    }
+
+    public Builder mainModule(MainModule mainModule) {
+      this.mainModule = Preconditions.checkNotNull(mainModule);
+      return this;
+    }
+
+    public Builder appComponent(AppComponent appComponent) {
+      this.appComponent = Preconditions.checkNotNull(appComponent);
+      return this;
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_repositoryManager
+      implements Provider<IRepositoryManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_repositoryManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public IRepositoryManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.repositoryManager(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_gson implements Provider<Gson> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_gson(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Gson get() {
+      return Preconditions.checkNotNull(
+          appComponent.gson(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_application
+      implements Provider<Application> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_application(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public Application get() {
+      return Preconditions.checkNotNull(
+          appComponent.application(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_rxErrorHandler
+      implements Provider<RxErrorHandler> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_rxErrorHandler(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public RxErrorHandler get() {
+      return Preconditions.checkNotNull(
+          appComponent.rxErrorHandler(),
+          "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_imageLoader
+      implements Provider<ImageLoader> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_imageLoader(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public ImageLoader get() {
+      return Preconditions.checkNotNull(
+          appComponent.imageLoader(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+
+  private static class com_jess_arms_di_component_AppComponent_appManager
+      implements Provider<AppManager> {
+    private final AppComponent appComponent;
+
+    com_jess_arms_di_component_AppComponent_appManager(AppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public AppManager get() {
+      return Preconditions.checkNotNull(
+          appComponent.appManager(), "Cannot return null from a non-@Nullable component method");
+    }
+  }
+}

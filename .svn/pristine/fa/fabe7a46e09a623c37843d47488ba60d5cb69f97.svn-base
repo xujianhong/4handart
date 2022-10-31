@@ -1,0 +1,35 @@
+package com.daomingedu.art.util;
+
+import java.lang.System;
+
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 2, d1 = {"\u00006\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0002\b\u0003\u001an\u0010\u0000\u001a\b\u0012\u0004\u0012\u00020\u00020\u0001\"\n\b\u0000\u0010\u0003\u0018\u0001*\u00020\u0004*\u00020\u00052&\u0010\u0006\u001a\u0014\u0012\u0010\b\u0001\u0012\f\u0012\u0004\u0012\u00020\t\u0012\u0002\b\u00030\b0\u0007\"\f\u0012\u0004\u0012\u00020\t\u0012\u0002\b\u00030\b2\n\b\u0002\u0010\n\u001a\u0004\u0018\u00010\u000b2\u0014\b\n\u0010\f\u001a\u000e\u0012\u0004\u0012\u00020\u0002\u0012\u0004\u0012\u00020\u000e0\rH\u0086\b\u00a2\u0006\u0002\u0010\u000f\u001an\u0010\u0000\u001a\b\u0012\u0004\u0012\u00020\u00020\u0001\"\n\b\u0000\u0010\u0003\u0018\u0001*\u00020\u0004*\u00020\u00042&\u0010\u0006\u001a\u0014\u0012\u0010\b\u0001\u0012\f\u0012\u0004\u0012\u00020\t\u0012\u0002\b\u00030\b0\u0007\"\f\u0012\u0004\u0012\u00020\t\u0012\u0002\b\u00030\b2\n\b\u0002\u0010\n\u001a\u0004\u0018\u00010\u000b2\u0014\b\n\u0010\f\u001a\u000e\u0012\u0004\u0012\u00020\u0002\u0012\u0004\u0012\u00020\u000e0\rH\u0086\b\u00a2\u0006\u0002\u0010\u0010\u00a8\u0006\u0011"}, d2 = {"startActivityForResult", "Lcom/daomingedu/art/util/LambdaHolder;", "Landroid/content/Intent;", "F", "Landroid/support/v4/app/FragmentActivity;", "Landroid/support/v4/app/Fragment;", "params", "", "Lkotlin/Pair;", "", "options", "Landroid/os/Bundle;", "callback", "Lkotlin/Function1;", "", "(Landroid/support/v4/app/Fragment;[Lkotlin/Pair;Landroid/os/Bundle;Lkotlin/jvm/functions/Function1;)Lcom/daomingedu/art/util/LambdaHolder;", "(Landroid/support/v4/app/FragmentActivity;[Lkotlin/Pair;Landroid/os/Bundle;Lkotlin/jvm/functions/Function1;)Lcom/daomingedu/art/util/LambdaHolder;", "app_release"})
+public final class StartActivityExpKt {
+    
+    /**
+     * 启动Activity并接收Intent的扩展方法，不需要重写[#onActivityResult]方法
+     * @receiver 基于[FragmentActivity]的扩展方法
+     * @param params Array<out Pair<String, *>> 要携带的参数
+     * @param options Bundle?   动画参数
+     * @param callback (Intent) -> Unit 返回此界面时，当ResultCode为RESULT_OK时的回调
+     * @return LambdaHolder<Intent> 可以在此对象上继续调用 [LambdaHolder#onCanceled]或
+     *         [LambdaHolder#onDefined]方法来设置ResultCode为RESULT_CANCELED或RESULT_FIRST_USER时的回调
+     */
+    private static final <F extends android.support.v4.app.FragmentActivity>com.daomingedu.art.util.LambdaHolder<android.content.Intent> startActivityForResult(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.FragmentActivity $this$startActivityForResult, kotlin.Pair<java.lang.String, ?>[] params, android.os.Bundle options, kotlin.jvm.functions.Function1<? super android.content.Intent, kotlin.Unit> callback) {
+        return null;
+    }
+    
+    /**
+     * 启动Activity并接收Intent的扩展方法，不需要重写[#onActivityResult]方法
+     * @receiver 基于[Fragment]的扩展方法
+     * @param params Array<out Pair<String, *>> 要携带的参数
+     * @param options Bundle?   动画参数
+     * @param callback (Intent) -> Unit 返回此界面时，当ResultCode为RESULT_OK时的回调
+     * @return LambdaHolder<Intent> 可以在此对象上继续调用 [#onCanceled]或[#onDefined]方法来
+     *         设置ResultCode为RESULT_CANCELED或RESULT_FIRST_USER时的回调
+     */
+    private static final <F extends android.support.v4.app.FragmentActivity>com.daomingedu.art.util.LambdaHolder<android.content.Intent> startActivityForResult(@org.jetbrains.annotations.NotNull()
+    android.support.v4.app.Fragment $this$startActivityForResult, kotlin.Pair<java.lang.String, ?>[] params, android.os.Bundle options, kotlin.jvm.functions.Function1<? super android.content.Intent, kotlin.Unit> callback) {
+        return null;
+    }
+}

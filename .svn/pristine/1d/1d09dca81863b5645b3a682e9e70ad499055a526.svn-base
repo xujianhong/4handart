@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:gravity="center_horizontal"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_marginTop="138pt"
+            android:layout_marginBottom="142pt"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="192pt"
+            android:layout_height="192pt"/>
+
+    <LinearLayout
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_user"
+                android:layout_width="38pt"
+                android:layout_height="38pt"/>
+
+        <EditText
+                android:id="@+id/etInputPhoneNumber"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:background="@null"
+                android:hint="输入手机号码"
+                android:textSize="28pt"
+                android:textColor="@color/color_969696"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="50pt"
+            android:layout_width="658pt"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20pt"
+            android:paddingEnd="20pt"
+            android:background="@drawable/shape_edit_input_bg"
+            android:layout_height="80pt">
+
+        <ImageView
+                android:layout_marginEnd="20pt"
+                android:src="@drawable/ic_password"
+                android:layout_width="36pt"
+                android:layout_height="40pt"/>
+
+        <EditText
+                android:id="@+id/etInputPwd"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:hint="输入密码"
+                android:textSize="28pt"
+                android:textColor="@color/color_969696"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:paddingStart="72pt"
+            android:paddingEnd="72pt"
+            android:paddingTop="40pt"
+            android:paddingBottom="54pt"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tvForgetPwd"
+                android:text="忘记密码?"
+                android:textSize="26pt"
+                android:textColor="@color/color_e4854d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"/>
+
+        <TextView
+                android:id="@+id/tvRegister"
+                android:text="立即注册"
+                android:textSize="26pt"
+                android:textColor="@color/color_e4854d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="658pt"
+            android:text="登录"
+            android:textSize="32pt"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_login_register_btn_bg"
+            android:layout_height="80pt"/>
+</LinearLayout>

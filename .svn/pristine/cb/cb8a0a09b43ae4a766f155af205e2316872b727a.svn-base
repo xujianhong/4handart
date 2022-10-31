@@ -1,0 +1,44 @@
+package com.daomingedu.art.app.utils;
+
+import java.lang.System;
+
+/**
+ * ================================================
+ * 放置便于使用 RxJava 的一些工具方法
+ *
+ *
+ * Created by JessYan on 11/10/2016 16:39
+ * [Contact me](mailto:jess.yan.effort@gmail.com)
+ * [Follow me](https://github.com/JessYanCoding)
+ * ================================================
+ */
+@kotlin.Metadata(mv = {1, 1, 15}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000 \n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\b\u00c6\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J \u0010\u0003\u001a\u000e\u0012\u0004\u0012\u0002H\u0005\u0012\u0004\u0012\u0002H\u00050\u0004\"\u0004\b\u0000\u0010\u00052\u0006\u0010\u0006\u001a\u00020\u0007J\u001c\u0010\b\u001a\b\u0012\u0004\u0012\u0002H\u00050\t\"\u0004\b\u0000\u0010\u00052\u0006\u0010\u0006\u001a\u00020\u0007H\u0007\u00a8\u0006\n"}, d2 = {"Lcom/daomingedu/art/app/utils/RxUtils;", "", "()V", "applySchedulers", "Lio/reactivex/ObservableTransformer;", "T", "view", "Lcom/jess/arms/mvp/IView;", "bindToLifecycle", "Lcom/trello/rxlifecycle2/LifecycleTransformer;", "app_release"})
+public final class RxUtils {
+    public static final com.daomingedu.art.app.utils.RxUtils INSTANCE = null;
+    
+    @org.jetbrains.annotations.NotNull()
+    public final <T extends java.lang.Object>io.reactivex.ObservableTransformer<T, T> applySchedulers(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.mvp.IView view) {
+        return null;
+    }
+    
+    /**
+     * 此方法已废弃
+     *
+     * @param view
+     * @param <T>
+     * @return
+     * @see RxLifecycleUtils 此类可以实现 {@link RxLifecycle} 的所有功能, 使用方法和之前一致
+     *
+     *   </T>
+     */
+    @org.jetbrains.annotations.NotNull()
+    public final <T extends java.lang.Object>com.trello.rxlifecycle2.LifecycleTransformer<T> bindToLifecycle(@org.jetbrains.annotations.NotNull()
+    com.jess.arms.mvp.IView view) {
+        return null;
+    }
+    
+    private RxUtils() {
+        super();
+    }
+}
